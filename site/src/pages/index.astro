@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
 import Roadmap from '../components/Roadmap.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
+import Faq from '../components/Faq.astro';
 import LogoSlot from '../components/LogoSlot.astro';
 import { routes } from '../data/nav.js';
 
@@ -197,22 +198,7 @@ const faqs = [
     </section>
 
     <!-- 08 FAQ -->
-    <section id="faq" class="faq">
-      <div class="faq-glow" aria-hidden="true"></div>
-      <div class="faq-head">
-        <span class="faq-eyebrow">Good to know</span>
-        <h2>Frequently Asked Questions</h2>
-      </div>
-      <div class="faq-grid">
-        {faqs.map((f) => (
-          <div class="faq-card">
-            <span class="faq-num">{f.num}</span>
-            <h3>{f.q}</h3>
-            <p>{f.a}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <Faq items={faqs} />
 
     <!-- 09 CLOSING CTA (standardized) -->
     <ClosingCTA />
@@ -313,19 +299,6 @@ const faqs = [
   .tst-quote { margin: 0; flex: 1; font-size: 16px; line-height: 26px; color: #E4E6EC; text-wrap: pretty; }
   .tst-card-foot { border-top: 1px solid #2A2D34; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; line-height: 16px; color: #8A8E97; }
   .tst-stat { color: var(--sky-aqua); }
-
-  /* FAQ */
-  .faq { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(48px, 6vw, 88px) clamp(24px, 6vw, 88px); }
-  .faq-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(600px 340px at 12% 0%, rgba(123,47,226,0.10), transparent 70%); }
-  .faq-head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 720px; margin: 0 auto clamp(28px, 3.4vw, 44px); }
-  .faq-eyebrow { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ultra-violet); }
-  .faq-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 44px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; }
-  .faq-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .faq-card { background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px rgba(16,16,20,0.05); }
-  .faq-card:hover { border-color: var(--ultra-violet); box-shadow: 0 16px 38px rgba(123,47,226,0.14); }
-  .faq-num { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.12em; color: var(--ultra-violet); }
-  .faq-card h3 { margin: 0; font-family: var(--font-display); font-size: 17px; line-height: 1.25; font-weight: 700; color: var(--ink); text-wrap: pretty; }
-  .faq-card p { margin: 0; font-size: 15px; line-height: 24px; color: var(--ink-soft); text-wrap: pretty; }
 
   /* CLOSING CTA */
   .close { position: relative; overflow: hidden; border-top: 1px dashed var(--hairline-dashed); padding: clamp(64px, 8vw, 128px) clamp(24px, 6vw, 80px); text-align: center; background: linear-gradient(180deg, #15171B, #0C0A12); }

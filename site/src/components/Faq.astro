@@ -1,0 +1,61 @@
+---
+// Shared FAQ: two-column light-mode section. Heading on the left, an accordion
+// of questions on the right. Uses native <details>/<summary> so it works
+// without JS and stays keyboard-accessible. Used on the home page and the
+// Solutions pages.
+interface Props {
+  items: { q: string; a: string }[];
+  heading?: string;
+  id?: string;
+}
+const { items, heading = 'Frequently asked questions', id = 'faq' } = Astro.props;
+---
+<section id={id} class="faq2">
+  <div class="faq2-wrap">
+    <aside class="faq2-aside">
+      <h2>{heading}</h2>
+    </aside>
+    <div class="faq2-list">
+      {items.map((f, i) => (
+        <details class="faq2-item" open={i === 0}>
+          <summary class="faq2-q">
+            <span class="faq2-qt">{f.q}</span>
+            <span class="faq2-ic" aria-hidden="true"></span>
+          </summary>
+          <div class="faq2-a"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq2 { background: var(--snow); color: var(--ink); padding: clamp(48px, 6vw, 104px) clamp(24px, 6vw, 88px); }
+  .faq2-wrap { max-width: var(--maxw, 1320px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); gap: clamp(28px, 5vw, 88px); align-items: start; }
+
+  .faq2-aside h2 { position: sticky; top: 104px; margin: 0; font-family: var(--font-display); font-size: clamp(30px, 4vw, 52px); line-height: 1.02; font-weight: 800; letter-spacing: -0.035em; color: var(--ink); text-wrap: balance; }
+
+  .faq2-list { display: flex; flex-direction: column; min-width: 0; }
+  .faq2-item { border-top: 1px solid rgba(16, 16, 20, 0.12); }
+  .faq2-item:last-child { border-bottom: 1px solid rgba(16, 16, 20, 0.12); }
+
+  .faq2-q { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(19px, 2.1vw, 27px) 0; }
+  .faq2-q::-webkit-details-marker { display: none; }
+  .faq2-qt { font-family: var(--font-body); font-size: clamp(16px, 1.5vw, 19px); line-height: 1.32; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; text-wrap: pretty; transition: color 0.16s ease; }
+  .faq2-q:hover .faq2-qt, .faq2-item[open] .faq2-qt { color: var(--ultra-violet); }
+
+  /* +/- toggle drawn in CSS: vertical bar hides when open, leaving a minus. */
+  .faq2-ic { position: relative; flex: 0 0 auto; width: 20px; height: 20px; }
+  .faq2-ic::before, .faq2-ic::after { content: ''; position: absolute; background: var(--ultra-violet); border-radius: 2px; }
+  .faq2-ic::before { left: 0; top: 50%; width: 20px; height: 2.4px; transform: translateY(-50%); }
+  .faq2-ic::after { top: 0; left: 50%; width: 2.4px; height: 20px; transform: translateX(-50%); transition: opacity 0.2s ease, transform 0.2s ease; }
+  .faq2-item[open] .faq2-ic::after { opacity: 0; transform: translateX(-50%) rotate(90deg); }
+
+  .faq2-a { padding: 0 0 clamp(20px, 2.2vw, 28px); max-width: 70ch; }
+  .faq2-a p { margin: 0; font-family: var(--font-body); font-size: clamp(14px, 1.4vw, 16px); line-height: 1.62; color: var(--ink-soft); text-wrap: pretty; }
+
+  @media (max-width: 860px) {
+    .faq2-wrap { grid-template-columns: 1fr; gap: clamp(18px, 4vw, 28px); }
+    .faq2-aside h2 { position: static; }
+  }
+</style>
