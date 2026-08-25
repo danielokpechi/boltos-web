@@ -14,9 +14,11 @@ export function logoFor(name) {
   if (n.includes('trovio')) return P + 'trovio.png';
   if (n.includes('primal')) return P + 'primal-capital.png';
   if (n.includes('thesoul') || n.includes('soulpublishing')) return P + 'thesoul.png';
+  // Bridget's: colour badge icon (magenta ground, white wordmark) used on the
+  // Bridget's case-study card only.
+  if (n.includes('bridget')) return '/assets/logos/bridget.png';
   if (n.includes('bolt')) return '/assets/logo/BoltPlus_Primary_RGB.svg';
-  // Still needed (not present in the supplied deck): Bridget's Healthy
-  // Kitchen, Dooya Media Group. These fall through to a placeholder.
+  // Dooya Media Group has no supplied logo yet; falls through to a placeholder.
   return null;
 }
 
@@ -26,5 +28,5 @@ export function logoFor(name) {
 // their own colours on every ground.
 export function logoKeepColor(name) {
   const n = String(name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  return n.includes('24h') || n.includes('dubai') || n.includes('hankook');
+  return n.includes('24h') || n.includes('dubai') || n.includes('hankook') || n.includes('bridget');
 }

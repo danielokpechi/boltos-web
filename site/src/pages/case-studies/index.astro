@@ -78,7 +78,9 @@ const cards = [
   .csi-card { position: relative; min-width: 0; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 22px; padding: clamp(26px, 3vw, 42px); display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
   a.csi-card:hover { border-color: var(--hover); }
   .csi-card-ghost { position: absolute; right: -12px; top: -26px; font-family: var(--font-display); font-size: clamp(84px, 10vw, 150px); line-height: 0.8; font-weight: 800; letter-spacing: -0.05em; color: rgba(247,247,245,0.05); }
-  .csi-card-logo { position: relative; width: 72px; height: 72px; border-radius: 14px; object-fit: contain; background: var(--snow); padding: 6px; box-sizing: border-box; display: block; }
+  /* Keep card logos at their own aspect ratio: the card is a flex column, which
+     would otherwise stretch a logo to the full card width. */
+  .csi-card :global(.logo-real) { position: relative; align-self: flex-start; }
   .csi-card-bar { position: relative; width: 44px; height: 3px; border-radius: 3px; }
   .csi-card h2 { position: relative; margin: 0; font-family: var(--font-display); font-size: clamp(23px, 2.8vw, 34px); line-height: 1.06; font-weight: 800; letter-spacing: -0.03em; color: var(--snow); text-wrap: pretty; }
   .csi-card p { position: relative; margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
