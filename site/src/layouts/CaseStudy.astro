@@ -2,6 +2,7 @@
 import Base from './Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
+import LogoSlot from '../components/LogoSlot.astro';
 import { routes } from '../data/nav.js';
 
 interface Study {
@@ -51,7 +52,7 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
     <div class="cs-lede">
       <div class="cs-wave cs-wave-tr" aria-hidden="true"><ParticleWave /></div>
       <div class="cs-lede-inner">
-        <img src={study.brandmark} alt={study.eyebrow} class="cs-brandmark" />
+        <LogoSlot name={study.eyebrow} h={44} />
         <span class="cs-eyebrow">{study.eyebrow}</span>
         <h1 class="cs-h1" style={`max-width:${study.headlineMax};`}>{study.headline}</h1>
       </div>
@@ -87,9 +88,9 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
       <div class="cs-why-inner">
         <div class="cs-why-copy">
           <div class="cs-why-logos">
-            <img src="/assets/logos/boltos-app.webp" alt="BoltOS" class="cs-why-logo cover" />
+            <img src="/assets/logo/BoltOS_Secondary_RGB.svg" alt="BoltOS" style="height:26px; width:auto; display:block;" />
             <span class="cs-why-x">&times;</span>
-            <img src={study.whyBrandmark} alt={study.eyebrow} class="cs-why-logo contain" />
+            <LogoSlot name={study.eyebrow} h={30} onLight />
           </div>
           <h2 class="cs-h2 ink">Why BoltOS?</h2>
           {study.why.map((p) => <p>{p}</p>)}

@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
 import Roadmap from '../components/Roadmap.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
+import LogoSlot from '../components/LogoSlot.astro';
 import { routes } from '../data/nav.js';
 
 const partners = [
@@ -105,11 +106,7 @@ const faqs = [
     <div class="trusted">
       <div class="trusted-track">
         {[...partners, ...partners].map((p) => (
-          <span class="trusted-item">
-            {p.src
-              ? <img src={p.src} alt={p.name} class="trusted-logo" />
-              : <span class="trusted-text">{p.name}</span>}
-          </span>
+          <span class="trusted-item"><LogoSlot name={p.name} h={30} /></span>
         ))}
       </div>
     </div>
@@ -186,7 +183,7 @@ const faqs = [
           {[...cases, ...cases].map((c) => (
             <div class="tst-card">
               <div class="tst-card-head">
-                <span class="tst-name">{c.name}</span>
+                <LogoSlot name={c.name} h={26} />
                 <span class="tst-tag">{c.tag}</span>
               </div>
               <p class="tst-quote">“{c.quote}”</p>

@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ParticleWave from '../../components/ParticleWave.astro';
 import ClosingCTA from '../../components/ClosingCTA.astro';
+import LogoSlot from '../../components/LogoSlot.astro';
 import { routes } from '../../data/nav.js';
 
 const cards = [
@@ -40,7 +41,7 @@ const cards = [
           const inner = (
             <>
               <span class="csi-card-ghost">{c.num}</span>
-              <img src={c.logo} alt={c.name} class="csi-card-logo" />
+              <LogoSlot name={c.name} h={34} />
               <span class="csi-card-bar" style={`background:${c.bar};`}></span>
               <h2>{c.name}</h2>
               <p>{c.copy}</p>

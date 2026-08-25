@@ -1,0 +1,38 @@
+---
+// A client/partner logo. When `src` is set it renders the real logo at a fixed
+// height with width:auto, so each logo keeps its own aspect ratio (never forced
+// into a uniform box). Until the file is supplied it renders a correctly-
+// proportioned horizontal placeholder showing the brand name.
+interface Props {
+  name: string;
+  src?: string | null;
+  h?: number;       // rendered height in px
+  onLight?: boolean; // placeholder tuned for light grounds
+  class?: string;
+}
+const { name, src, h = 34, onLight = false, class: className } = Astro.props;
+---
+{src ? (
+  <img src={src} alt={name} class:list={['logo-real', className]} style={`height:${h}px; width:auto;`} />
+) : (
+  <span
+    class:list={['logo-slot', { 'on-light': onLight }, className]}
+    data-logo-slot={name}
+    role="img"
+    aria-label={name}
+    style={`height:${h}px;`}
+  >{name}</span>
+)}
+
+<style>
+  .logo-real { display: block; }
+  .logo-slot {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 14px; min-width: 88px; box-sizing: border-box;
+    border: 1px dashed rgba(198,171,245,0.45); border-radius: 8px;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.01em; white-space: nowrap;
+    color: var(--text-soft); background: rgba(123,47,226,0.06);
+  }
+  .logo-slot.on-light { border-color: rgba(123,47,226,0.4); color: var(--ink-2); background: rgba(123,47,226,0.05); }
+</style>
