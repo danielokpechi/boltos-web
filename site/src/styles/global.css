@@ -40,7 +40,9 @@
   /* Type */
   --font-display: 'Host Grotesk', Helvetica, sans-serif;
   --font-body: 'Geist', Helvetica, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  /* Only two families site-wide: Host Grotesk (headings/hero) + Geist (everything
+     else). --font-mono now points at Geist so eyebrows/labels use Geist too. */
+  --font-mono: 'Geist', Helvetica, sans-serif;
 
   /* Signature gradients */
   --grad-cta: linear-gradient(180deg, #7B2FE2 0%, #D62086 100%);

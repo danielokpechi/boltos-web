@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
 import Roadmap from '../components/Roadmap.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
 import { routes } from '../data/nav.js';
 
 const partners = [
@@ -67,7 +68,7 @@ const faqs = [
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-top">
-        <div class="hero-badge"><span class="dot"></span>Live on 14M+ screens worldwide</div>
+        <div class="hero-badge"><span class="hero-badge-emoji" aria-hidden="true">🚀</span>New: AI-Powered Analytics</div>
         <h1 class="hero-h1">The interaction layer<br />for live media</h1>
         <p class="hero-sub">Chat, shop, rewards and AI mounted on the player you already own. Author once, then drive it live on matchday.</p>
         <div class="hero-cta"><a href={routes.bookDemo} class="btn-snow">Book a demo</a></div>
@@ -216,16 +217,8 @@ const faqs = [
       </div>
     </section>
 
-    <!-- 09 CLOSING CTA -->
-    <div class="close">
-      <div class="close-grid" aria-hidden="true"></div>
-      <div class="close-glow" aria-hidden="true"></div>
-      <div class="close-inner">
-        <h2>Your next broadcast shouldn't leave money on the table.</h2>
-        <p>Join over 50 media brands already using our tools to transform passive viewers into active, valuable audience members.</p>
-        <div class="hero-cta"><a href={routes.bookDemo} class="btn-snow">Book a demo</a></div>
-      </div>
-    </div>
+    <!-- 09 CLOSING CTA (standardized) -->
+    <ClosingCTA />
   </div>
 </Base>
 

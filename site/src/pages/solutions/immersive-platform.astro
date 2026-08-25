@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ParticleWave from '../../components/ParticleWave.astro';
-import PlatformCTA from '../../components/PlatformCTA.astro';
+import ClosingCTA from '../../components/ClosingCTA.astro';
 import { routes } from '../../data/nav.js';
 
 const heroPoints = ['No platform migration', 'No disruption', 'Immediate monetisation'];
@@ -229,8 +229,8 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
       </div>
     </section>
 
-    <!-- Closing CTA -->
-    <PlatformCTA line1="Turn Engagement" line2="into Revenue" />
+    <!-- Closing CTA (standardized) -->
+    <ClosingCTA />
   </div>
 </Base>
 

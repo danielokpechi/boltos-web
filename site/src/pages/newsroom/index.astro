@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ParticleWave from '../../components/ParticleWave.astro';
+import ClosingCTA from '../../components/ClosingCTA.astro';
 import { articles, hrefFor, isExternal, keyFor } from '../../data/articles.js';
 
 const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Leadership'];
@@ -53,6 +54,7 @@ const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Lea
         ))}
       </div>
     </div>
+    <ClosingCTA />
   </div>
 </Base>
 

@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
-import { contactEmail } from '../data/nav.js';
 
 const modules = ['Rewards', 'AI', 'Read', 'Shop', 'Chat', 'Analytics'];
 // Google Calendar appointment scheduling embed (provided by client).
@@ -48,46 +47,6 @@ const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/Ac
       </div>
     </section>
 
-    <!-- Fallback request form -->
-    <section class="bd-form-sec">
-      <div class="bd-form-glow" aria-hidden="true"></div>
-      <div class="bd-form-inner">
-        <div class="bd-form-head">
-          <span class="bd-form-eyebrow">Prefer to send your details?</span>
-          <h2>Request a demo</h2>
-        </div>
-        <form class="bd-form" data-mailto={contactEmail} data-subject="Demo request">
-          <div class="bd-field">
-            <label for="bd-name">Name <span class="bd-req">*</span></label>
-            <input id="bd-name" name="Name" type="text" required autocomplete="name" />
-          </div>
-          <div class="bd-field">
-            <label for="bd-org">Organisation <span class="bd-req">*</span></label>
-            <input id="bd-org" name="Organisation" type="text" required autocomplete="organization" />
-          </div>
-          <div class="bd-field">
-            <label for="bd-email">Email <span class="bd-req">*</span></label>
-            <input id="bd-email" name="Email" type="email" required autocomplete="email" />
-          </div>
-          <div class="bd-field">
-            <label for="bd-phone">Phone <span class="bd-opt">(optional)</span></label>
-            <input id="bd-phone" name="Phone" type="tel" autocomplete="tel" />
-          </div>
-          <div class="bd-field">
-            <label for="bd-date">Date</label>
-            <input id="bd-date" name="Date" type="date" />
-          </div>
-          <div class="bd-field">
-            <label for="bd-time">Time</label>
-            <input id="bd-time" name="Time" type="time" />
-          </div>
-          <div class="bd-form-actions">
-            <button type="submit" class="bd-submit">Book Demo</button>
-            <span class="bd-form-note" data-form-note role="status" aria-live="polite"></span>
-          </div>
-        </form>
-      </div>
-    </section>
   </div>
 </Base>
 
@@ -120,46 +79,4 @@ const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/Ac
   .bd-cal-frame { width: 100%; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; box-shadow: 0 28px 70px rgba(0,0,0,0.5); }
   .bd-cal-frame iframe { display: block; width: 100%; height: clamp(620px, 78vh, 760px); background: #FFFFFF; }
   .bd-cal-caption { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: center; }
-
-  /* Form */
-  .bd-form-sec { position: relative; overflow: hidden; background: var(--night-4); padding: clamp(52px, 6.4vw, 96px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
-  .bd-form-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(700px 400px at 80% 10%, rgba(123,47,226,0.16), transparent 72%); }
-  .bd-form-inner { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px); }
-  .bd-form-head { display: flex; flex-direction: column; gap: 12px; }
-  .bd-form-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lilac); }
-  .bd-form-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 42px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
-  .bd-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: clamp(16px, 2vw, 22px); }
-  .bd-field { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
-  .bd-field label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); }
-  .bd-req { color: var(--hot-rose); }
-  .bd-opt { color: var(--text-dim); }
-  .bd-field input { font-family: var(--font-body); font-size: 15px; line-height: 1.4; color: var(--snow); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px 14px; width: 100%; box-sizing: border-box; }
-  .bd-field input::placeholder { color: var(--text-dim); }
-  .bd-field input:focus { outline: none; border-color: var(--ultra-violet); box-shadow: 0 0 0 3px rgba(123,47,226,0.22); }
-  .bd-field input:invalid:not(:placeholder-shown) { border-color: rgba(214,32,134,0.6); }
-  .bd-form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-  .bd-submit { font-size: 16px; line-height: 24px; font-weight: 600; color: #FFFFFF; background: var(--ultra-violet); border: 0; padding: 14px 30px; border-radius: 100px; cursor: pointer; }
-  .bd-submit:hover { background: var(--ultra-violet-press); }
-  .bd-form-note { font-size: 14px; line-height: 20px; color: var(--text-muted); }
 </style>
-
-<script>
-  // Fallback: compose a pre-filled email from the form fields (no backend on static host).
-  const form = document.querySelector('.bd-form') as HTMLFormElement | null;
-  if (form) {
-    const note = form.querySelector('[data-form-note]') as HTMLElement | null;
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      const to = form.dataset.mailto || '';
-      if (!to) { if (note) note.textContent = 'Please use the calendar above to book.'; return; }
-      const data = new FormData(form);
-      const lines: string[] = [];
-      for (const [k, v] of data.entries()) if (String(v).trim()) lines.push(`${k}: ${v}`);
-      const subject = encodeURIComponent(form.dataset.subject || 'Demo request');
-      const body = encodeURIComponent(lines.join('\n'));
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      if (note) note.textContent = 'Opening your email app…';
-    });
-  }
-</script>

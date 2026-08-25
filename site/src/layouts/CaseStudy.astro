@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
 import { routes } from '../data/nav.js';
 
 interface Study {
@@ -142,14 +143,8 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
       </div>
     </div>
 
-    <!-- CTA -->
-    <div class="cs-cta">
-      <div class="cs-cta-glow" aria-hidden="true"></div>
-      <div class="cs-cta-inner">
-        <h2>Let's talk.</h2>
-        <a href={routes.bookDemo} class="cs-cta-btn">Contact us</a>
-      </div>
-    </div>
+    <!-- Closing CTA (standardized) -->
+    <ClosingCTA />
   </div>
 </Base>
 

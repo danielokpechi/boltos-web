@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ParticleWave from '../../components/ParticleWave.astro';
+import ClosingCTA from '../../components/ClosingCTA.astro';
 import { articles, hrefFor, isExternal, keyFor } from '../../data/articles.js';
 import { external, routes } from '../../data/nav.js';
 
@@ -101,6 +102,8 @@ const socialCards = [
         ))}
       </div>
     </section>
+
+    <ClosingCTA />
   </article>
 </Base>
 

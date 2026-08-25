@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
 import { routes } from '../data/nav.js';
 
 const challenge = [
@@ -213,14 +214,8 @@ const backers = [
       </div>
     </section>
 
-    <!-- CTA -->
-    <div class="ab-cta">
-      <div class="ab-cta-glow" aria-hidden="true"></div>
-      <div class="ab-cta-inner">
-        <h2>Let's shape what comes next.</h2>
-        <a href={routes.bookDemo} class="ab-cta-btn">Book a Demo</a>
-      </div>
-    </div>
+    <!-- Closing CTA (standardized) -->
+    <ClosingCTA />
   </div>
 </Base>
 
@@ -370,9 +365,13 @@ const backers = [
       const role = document.getElementById('ab-voice-role')!;
       const quote = document.getElementById('ab-voice-quote')!;
       const count = document.getElementById('ab-voice-count')!;
+      // Derive the folder from the first (server-rendered, base-correct) image so
+      // swapped images resolve under any base path (root or /boltos-web/).
+      const dir = (img.getAttribute('src') || '').replace(/[^/]+$/, '');
+      const fileOf = (p: string) => p.split('/').pop() || p;
       const render = () => {
         const v = voices[((i % voices.length) + voices.length) % voices.length];
-        img.src = v.src; img.alt = v.name;
+        img.src = dir + fileOf(v.src); img.alt = v.name;
         head.textContent = v.head; name.textContent = v.name; role.textContent = v.role;
         quote.textContent = v.quote;
         count.textContent = `${(((i % voices.length) + voices.length) % voices.length) + 1} / ${voices.length}`;
