@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import ParticleWave from '../components/ParticleWave.astro';
+import { routes, contactEmail } from '../data/nav.js';
+---
+<Base title="Newsletter, BoltOS" description="Sign up to receive BoltOS newsletters and announcements.">
+  <div class="su">
+    <div class="su-glow" aria-hidden="true"></div>
+    <div class="su-wave" aria-hidden="true"><ParticleWave /></div>
+    <div class="su-inner">
+      <div class="su-head">
+        <div class="su-eyebrow"><span class="su-eyebrow-rule"></span><span class="lilac">Newsletter</span></div>
+        <h1>Newsletter</h1>
+        <p>Signup to receive our newsletters and announcements.</p>
+      </div>
+
+      <form class="su-form" data-mailto={contactEmail} data-subject="Newsletter signup">
+        <div class="su-field">
+          <label for="su-name">Name</label>
+          <input id="su-name" name="Name" type="text" autocomplete="name" />
+        </div>
+        <div class="su-field">
+          <label for="su-email">Email <span class="su-req">*</span></label>
+          <input id="su-email" name="Email" type="email" required autocomplete="email" />
+        </div>
+
+        <div class="su-perms">
+          <h2>Marketing Permissions</h2>
+          <p class="su-perms-intro">The information you provide on this form will only be used to provide you with updates and personalized marketing. Your privacy is important to us! Please let us know how you would like to keep in touch:</p>
+
+          <label class="su-check">
+            <input type="checkbox" name="Email updates" value="Yes" />
+            <span class="su-check-body">
+              <span class="su-check-title">Email</span>
+              <span class="su-check-copy">We will send you occasional emails about promotions, new products and important updates to keep you in the loop.</span>
+            </span>
+          </label>
+
+          <label class="su-check">
+            <input type="checkbox" name="Customized online advertising" value="Yes" />
+            <span class="su-check-body">
+              <span class="su-check-title">Customized online advertising</span>
+              <span class="su-check-copy">We will use your information to show you ads that are more relevant to you to improve your online experience.</span>
+            </span>
+          </label>
+        </div>
+
+        <p class="su-ack">By clicking below to submit this form, you acknowledge that the information you provide will be processed in accordance with our <a href={routes.privacy}>Privacy Policy</a>.</p>
+
+        <div class="su-actions">
+          <button type="submit" class="su-submit">Opt in to receive news and updates.</button>
+          <span class="su-note" data-form-note role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .lilac { color: var(--text-lilac); }
+  .su { position: relative; overflow: hidden; padding: clamp(48px, 6vw, 96px) var(--edge) clamp(64px, 8vw, 120px); }
+  .su-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(760px 440px at 50% 0%, rgba(123,47,226,0.16), transparent 72%); }
+  .su-wave { position: absolute; right: -8%; top: -14%; width: min(48vw, 540px); height: min(28vw, 300px); z-index: 0; opacity: 0.24; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .su-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); }
+
+  .su-head { display: flex; flex-direction: column; gap: 14px; }
+  .su-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .su-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); }
+  .su-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .su-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 4.4vw, 54px); line-height: 1.03; font-weight: 800; letter-spacing: -0.034em; }
+  .su-head p { margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.6; color: var(--text-soft); }
+
+  .su-form { display: flex; flex-direction: column; gap: 20px; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 22px; padding: clamp(24px, 3vw, 40px); }
+  .su-field { display: flex; flex-direction: column; gap: 8px; }
+  .su-field label { font-size: 14px; font-weight: 600; color: var(--snow); }
+  .su-req { color: var(--ultra-violet); }
+  .su-field input {
+    width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; color: var(--snow);
+    background: var(--night); border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 14px;
+  }
+  .su-field input:focus-visible { outline: none; border-color: var(--ultra-violet); box-shadow: 0 0 0 3px rgba(123,47,226,0.25); }
+
+  .su-perms { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; border-top: 1px solid var(--hairline); }
+  .su-perms h2 { margin: 6px 0 0; font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--snow); }
+  .su-perms-intro { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+  .su-check { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; cursor: pointer; }
+  .su-check input { margin: 3px 0 0; width: 18px; height: 18px; accent-color: var(--ultra-violet); flex: 0 0 auto; }
+  .su-check-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .su-check-title { font-size: 14px; font-weight: 600; color: var(--snow); }
+  .su-check-copy { font-size: 13px; line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
+
+  .su-ack { margin: 0; font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+  .su-ack a { color: var(--text-lilac); }
+  .su-ack a:hover { color: var(--ultra-violet); }
+
+  .su-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .su-submit {
+    font: inherit; font-size: 15px; font-weight: 600; color: #FFFFFF; cursor: pointer;
+    background: var(--ultra-violet); border: 0; border-radius: 100px; padding: 13px 26px;
+  }
+  .su-submit:hover { background: var(--ultra-violet-press); }
+  .su-note { font-size: 13px; color: var(--text-muted); }
+</style>
+
+<script>
+  const form = document.querySelector('.su-form') as HTMLFormElement | null;
+  if (form) {
+    const note = form.querySelector('[data-form-note]') as HTMLElement | null;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const to = form.dataset.mailto || '';
+      if (!to) { if (note) note.textContent = 'Please try again later.'; return; }
+      const data = new FormData(form);
+      const lines: string[] = [];
+      for (const [k, v] of data.entries()) if (String(v).trim()) lines.push(`${k}: ${v}`);
+      const subject = encodeURIComponent(form.dataset.subject || 'Newsletter signup');
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      if (note) note.textContent = 'Opening your email app…';
+    });
+  }
+</script>

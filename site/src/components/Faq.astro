@@ -3,6 +3,7 @@
 // of questions on the right. Uses native <details>/<summary> so it works
 // without JS and stays keyboard-accessible. Used on the home page and the
 // Solutions pages.
+import ParticleWave from './ParticleWave.astro';
 interface Props {
   items: { q: string; a: string }[];
   heading?: string;
@@ -11,6 +12,8 @@ interface Props {
 const { items, heading = 'Frequently asked questions', id = 'faq' } = Astro.props;
 ---
 <section id={id} class="faq2">
+  <div class="faq2-wave faq2-wave-a" aria-hidden="true"><ParticleWave running={true} /></div>
+  <div class="faq2-wave faq2-wave-b" aria-hidden="true"><ParticleWave running={true} /></div>
   <div class="faq2-wrap">
     <aside class="faq2-aside">
       <h2>{heading}</h2>
@@ -30,8 +33,12 @@ const { items, heading = 'Frequently asked questions', id = 'faq' } = Astro.prop
 </section>
 
 <style>
-  .faq2 { background: var(--snow); color: var(--ink); padding: clamp(48px, 6vw, 104px) clamp(24px, 6vw, 88px); }
-  .faq2-wrap { max-width: var(--maxw, 1320px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); gap: clamp(28px, 5vw, 88px); align-items: start; }
+  .faq2 { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(48px, 6vw, 104px) clamp(24px, 6vw, 88px); }
+  /* Kinetic particle field in the section background. */
+  .faq2-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .faq2-wave-a { right: -6%; top: -16%; width: min(54vw, 660px); height: min(34vw, 380px); opacity: 0.7; }
+  .faq2-wave-b { left: -10%; bottom: -18%; width: min(48vw, 560px); height: min(30vw, 340px); opacity: 0.5; }
+  .faq2-wrap { position: relative; z-index: 1; max-width: var(--maxw, 1320px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); gap: clamp(28px, 5vw, 88px); align-items: start; }
 
   .faq2-aside h2 { position: sticky; top: 104px; margin: 0; font-family: var(--font-display); font-size: clamp(30px, 4vw, 52px); line-height: 1.02; font-weight: 800; letter-spacing: -0.035em; color: var(--ink); text-wrap: balance; }
 

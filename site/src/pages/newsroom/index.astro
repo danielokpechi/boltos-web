@@ -5,6 +5,11 @@ import ClosingCTA from '../../components/ClosingCTA.astro';
 import { articles, hrefFor, isExternal, keyFor } from '../../data/articles.js';
 
 const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Leadership'];
+
+// Client-side pagination: render the page buttons server-side so they get the
+// component's scoped styles; the script only manages which page is shown.
+const PAGE_SIZE = 4;
+const pageCount = Math.ceil(articles.length / PAGE_SIZE);
 ---
 <Base title="Newsroom, BoltOS">
   <div class="nr">
@@ -42,6 +47,7 @@ const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Lea
             href={hrefFor(p)}
             {...(isExternal(p) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             class="nr-post"
+            data-nr-item
           >
             <div class="nr-post-media"><img src={p.image} alt={p.title} /></div>
             <div class="nr-post-body">
@@ -53,6 +59,17 @@ const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Lea
           </a>
         ))}
       </div>
+      {pageCount > 1 && (
+        <nav class="nr-pager" aria-label="Newsroom pages" data-nr-pager data-page-size={PAGE_SIZE}>
+          <button type="button" class="nr-pager-arrow" data-nr-prev aria-label="Previous page">&larr;</button>
+          <div class="nr-pager-nums" data-nr-nums>
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <button type="button" class="nr-pager-num" data-nr-page={i + 1} aria-label={`Page ${i + 1}`}>{i + 1}</button>
+            ))}
+          </div>
+          <button type="button" class="nr-pager-arrow" data-nr-next aria-label="Next page">&rarr;</button>
+        </nav>
+      )}
     </div>
     <ClosingCTA />
   </div>
@@ -96,4 +113,42 @@ const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Lea
   .nr-post-body p { margin: 0; font-size: 15px; line-height: 25px; color: var(--text-muted); max-width: 62ch; text-wrap: pretty; }
   .nr-post-cta { padding-top: 8px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; line-height: 21px; font-weight: 600; color: var(--snow); }
   .nr-arrow { color: var(--text-lilac); }
+
+  .nr-pager { position: relative; z-index: 2; max-width: 1240px; margin: clamp(30px, 3.6vw, 48px) auto 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .nr-pager-nums { display: flex; gap: 8px; }
+  .nr-pager-arrow, .nr-pager-num { min-width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--night-2); color: var(--text-soft); font: inherit; font-size: 15px; cursor: pointer; }
+  .nr-pager-arrow:hover:not(:disabled), .nr-pager-num:hover:not([aria-current]) { border-color: rgba(123,47,226,0.65); color: var(--snow); }
+  .nr-pager-arrow:disabled { opacity: 0.4; cursor: default; }
+  .nr-pager-num[aria-current="page"] { background: var(--ultra-violet); border-color: var(--ultra-violet); color: #FFFFFF; cursor: default; }
 </style>
+
+<script>
+  const pager = document.querySelector('[data-nr-pager]') as HTMLElement | null;
+  const items = Array.from(document.querySelectorAll('[data-nr-item]')) as HTMLElement[];
+  if (pager && items.length) {
+    const size = parseInt(pager.getAttribute('data-page-size') || '6', 10);
+    const numBtns = Array.from(pager.querySelectorAll('[data-nr-page]')) as HTMLButtonElement[];
+    const pages = numBtns.length;
+    const prev = pager.querySelector('[data-nr-prev]') as HTMLButtonElement;
+    const next = pager.querySelector('[data-nr-next]') as HTMLButtonElement;
+    let cur = 1;
+    const render = () => {
+      items.forEach((el, idx) => { el.style.display = Math.floor(idx / size) + 1 === cur ? '' : 'none'; });
+      numBtns.forEach((b, i) => {
+        if (i + 1 === cur) b.setAttribute('aria-current', 'page');
+        else b.removeAttribute('aria-current');
+      });
+      prev.disabled = cur === 1;
+      next.disabled = cur === pages;
+    };
+    const go = (p: number, scroll = true) => {
+      cur = Math.min(pages, Math.max(1, p));
+      render();
+      if (scroll) document.querySelector('.nr-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    numBtns.forEach((b, i) => b.addEventListener('click', () => go(i + 1)));
+    prev.addEventListener('click', () => go(cur - 1));
+    next.addEventListener('click', () => go(cur + 1));
+    render();
+  }
+</script>
