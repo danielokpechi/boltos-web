@@ -40,7 +40,7 @@ import SocialLinks from './SocialLinks.astro';
         <div class="np-company-col">
           <div class="np-eyebrow">COMPANY</div>
           <a href={routes.about} class="np-company-link">About Us</a>
-          <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" class="np-company-link">Brand Assets</a>
+          <a href={external.brandAssets} download aria-label="Download the BoltOS brand guidelines (PDF)" class="np-company-link">Brand Assets</a>
         </div>
         <SocialLinks showLabels class="np-socials" />
       </div>
@@ -87,7 +87,7 @@ import SocialLinks from './SocialLinks.astro';
         <button type="button" class="nav-acc-trigger" aria-expanded="false">Company<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
         <div class="nav-acc-panel" hidden>
           <a href={routes.about} class="nav-acc-link" data-drawer-nav>About Us</a>
-          <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" class="nav-acc-link" data-drawer-nav>Brand Assets</a>
+          <a href={external.brandAssets} download class="nav-acc-link" data-drawer-nav>Brand Assets</a>
           <div class="nav-acc-social"><SocialLinks /></div>
         </div>
       </div>

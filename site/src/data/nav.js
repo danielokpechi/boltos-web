@@ -26,7 +26,8 @@ export const contactEmail = 'contact@bolt.global';
 
 export const external = {
   boltplus: 'https://boltplus.tv/home',
-  brandAssets: 'https://drive.google.com/drive/folders/1oKsI_NIusj-tBJTO9MDh0SXPuqjZe3g6',
+  // Brand guidelines PDF, hosted on the site and downloaded directly (was a Drive folder).
+  brandAssets: '/assets/brand/BoltOS-Brand-Guidelines-2026.pdf',
   x: 'https://x.com/boltplus',
   linkedin: 'https://www.linkedin.com/company/boltos',
   discord: 'https://discord.gg/boltos-577830719645024278',
