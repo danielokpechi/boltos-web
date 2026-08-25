@@ -27,7 +27,6 @@ site/
     styles/       global.css  (brand design tokens)
   public/         assets/ + particle-wave.js  (served at site root)
 design-system/    BoltOS brand reference (tokens, type, spacing, logo rules)
-CLAUDE.md         project/design-system instructions
 *.dc.html         original design prototypes (design source of truth, see note below)
 ```
 

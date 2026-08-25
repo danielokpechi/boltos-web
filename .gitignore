@@ -9,3 +9,6 @@ archive/
 .DS_Store
 **/.DS_Store
 *.log
+
+# Local project notes (not part of the published repo)
+CLAUDE.md

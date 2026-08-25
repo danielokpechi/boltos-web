@@ -1,15 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ParticleWave from '../../components/ParticleWave.astro';
-
-// Newsroom posts link out to boltos.ai articles (external, new tab).
-const posts = [
-  { title: 'BoltOS Appoints Former Premier League & England International Defender Kieran Gibbs as Senior Advisor, Soccer', date: '25 February 2026', excerpt: '', href: 'https://boltos.ai/boltos-appoints-former-premier-league-england-international-defender-kieran-gibbs-as-senior-advisor-soccer/', image: '/assets/news/kieran-gibbs.png' },
-  { title: "BoltOS Powers Olympusat's Revenue Evolution with Immersive Technology Integration Across FreeTV Channels", date: '28 November 2025', excerpt: 'Olympusat gains access to advanced audience engagement tools that drive revenue increases through enhanced viewer retention and interactivity.', href: 'https://boltos.ai/boltos-powers-olympusats-revenue-evolution-with-immersive-technology-integration-across-freetv-channels/', image: '/assets/news/olympusat.png' },
-  { title: 'BoltOS Scores Star Studded Lineup with Dooya Media Group', date: '26 February 2025', excerpt: "A partnership with Dooya Media Group building on last summer's events, with audience immersion features driving interaction and brand building.", href: 'https://boltos.ai/boltos-scores-star-studded-lineup-with-dooya-media-group/', image: '/assets/news/dooya.webp' },
-  { title: 'Bolt+ Migration: Phase One Successfully Completed', date: '27 November 2024', excerpt: 'The first phase of the Bolt+ infrastructure migration is complete, with the platform transitioned to new service providers.', href: 'https://boltos.ai/bolt-migration-phase-one-successfully-completed/', image: '/assets/news/bolt-migration.webp' },
-  { title: 'TheSoul Publishing joins Bolt+', date: '30 September 2024', excerpt: "TheSoul Publishing's channels arrive on Bolt+ in English and Spanish, with real-time interactive features, e-commerce and AI-powered content discovery.", href: 'https://boltos.ai/thesoul-publishing-joins-bolt/', image: '/assets/news/thesoul.webp' },
-];
+import { articles, hrefFor, isExternal, keyFor } from '../../data/articles.js';
 
 const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Leadership'];
 ---
@@ -35,7 +27,7 @@ const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Lea
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7E838C" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 L21 21" stroke-linecap="round"></path></svg>
               Search
             </span>
-            <span class="nr-count">{posts.length} articles</span>
+            <span class="nr-count">{articles.length} articles</span>
           </div>
         </div>
       </div>
@@ -44,8 +36,12 @@ const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Lea
     <div class="nr-list-wrap">
       <div class="nr-wave nr-wave-b" aria-hidden="true"><ParticleWave /></div>
       <div class="nr-list">
-        {posts.map((p) => (
-          <a href={p.href} target="_blank" rel="noopener noreferrer" class="nr-post">
+        {articles.map((p) => (
+          <a
+            href={hrefFor(p)}
+            {...(isExternal(p) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            class="nr-post"
+          >
             <div class="nr-post-media"><img src={p.image} alt={p.title} /></div>
             <div class="nr-post-body">
               <span class="nr-post-date">{p.date}</span>
