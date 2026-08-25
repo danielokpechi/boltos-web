@@ -11,8 +11,11 @@ export function logoFor(name) {
   if (n.includes('olympusat')) return P + 'olympusat.png';
   if (n.includes('vidaa')) return P + 'vidaa.png';
   if (n.includes('24h') || n.includes('dubai')) return P + '24h-series.png';
+  if (n.includes('trovio')) return P + 'trovio.png';
+  if (n.includes('primal')) return P + 'primal-capital.png';
+  if (n.includes('thesoul') || n.includes('soulpublishing')) return P + 'thesoul.png';
   if (n.includes('bolt')) return '/assets/logo/BoltPlus_Primary_RGB.svg';
-  // Still needed: Bridget's Healthy Kitchen, Dooya Media Group,
-  // TheSoul Publishing, Primal Capital, Trovio Group.
+  // Still needed (not present in the supplied deck): Bridget's Healthy
+  // Kitchen, Dooya Media Group. These fall through to a placeholder.
   return null;
 }
