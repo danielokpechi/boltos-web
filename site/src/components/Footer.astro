@@ -1,0 +1,74 @@
+---
+// Four-column footer. Social list shared with the Company dropdown from one source.
+import { socials, routes, external } from '../data/nav.js';
+---
+<footer class="ft">
+  <div class="ft-brand">
+    <img src="/assets/logo/BoltOS_Primary_RGB.png" alt="BoltOS logo" class="ft-logo" />
+    <div class="ft-tag">Audience Revenue Engine</div>
+    <img src="/assets/badges/cyber-essentials-plus.png" alt="Cyber Essentials Certified Plus" class="ft-badge" />
+  </div>
+  <div class="ft-col">
+    <div class="ft-head">COMPANY</div>
+    <a href={routes.about}>About BoltOS</a>
+    <a href={routes.cases}>Case Studies</a>
+    <a href={routes.newsroom}>Newsroom</a>
+    <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive">Brand Assets</a>
+    <a href={routes.bookDemo} class="ft-btn">Book a demo</a>
+  </div>
+  <div class="ft-col">
+    <div class="ft-head">SOLUTIONS</div>
+    <a href={routes.solutions}>All Solutions</a>
+    <a href={routes.immersive}>Immersive Platform</a>
+    <a href={routes.customBolt}>Custom Bolt+</a>
+  </div>
+  <div class="ft-col">
+    <div class="ft-head">STAY CONNECTED</div>
+    <a href={routes.contact}>Contact Us</a>
+    <span class="ft-plain">Monthly Newsletter</span>
+    <a href={routes.signup} class="ft-btn">Sign up</a>
+  </div>
+  <div class="ft-col">
+    <div class="ft-head">FOLLOW US</div>
+    {socials.map((s) => (
+      <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.aria}>{s.label}</a>
+    ))}
+  </div>
+</footer>
+<div class="ft-legal">
+  <div>© 2026 BoltOS, Inc. All rights reserved. Built in Singapore and London.</div>
+  <div class="ft-legal-links">
+    <a href={external.privacy} target="_blank" rel="noopener noreferrer">Privacy</a>
+    <a href={external.cookies} target="_blank" rel="noopener noreferrer">Cookies</a>
+  </div>
+</div>
+
+<style>
+  .ft {
+    position: relative; border-top: 1px solid var(--hairline);
+    padding: clamp(40px, 5vw, 72px) var(--edge) 0;
+    display: flex; flex-wrap: wrap; gap: clamp(28px, 4vw, 56px);
+  }
+  .ft a { color: var(--text-soft); }
+  .ft a:hover { color: var(--ultra-violet); }
+  .ft-brand { flex: 1.4 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .ft-logo { height: 24px; width: auto; align-self: flex-start; }
+  .ft-tag { font-family: var(--font-mono); font-size: 11px; line-height: 18px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+  .ft-badge { width: 63px; height: auto; display: block; margin-top: 12px; }
+  .ft-col { flex: 0 1 170px; min-width: 0; max-width: 210px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 21px; }
+  .ft-head { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 4px; }
+  .ft-plain { font-size: 14px; line-height: 21px; color: var(--text-soft); }
+  .ft-btn {
+    align-self: flex-start; margin-top: 4px; font-size: 13px; line-height: 20px; font-weight: 600;
+    color: #FFFFFF !important; background: var(--ultra-violet); padding: 9px 18px; border-radius: 100px;
+  }
+  .ft-btn:hover { background: var(--ultra-violet-press); }
+  .ft-legal {
+    border-top: 1px dashed var(--hairline-dashed);
+    margin: clamp(32px, 4vw, 56px) var(--edge) 0; padding: 20px 0 28px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 16px; font-size: 12px; line-height: 18px; color: var(--text-dim);
+  }
+  .ft-legal a { color: var(--text-dim); }
+  .ft-legal-links { display: flex; gap: 24px; }
+</style>

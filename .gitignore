@@ -1,0 +1,11 @@
+# Dependencies & build output (regenerable)
+site/node_modules/
+site/dist/
+
+# Redundant / historical material — preserved locally, intentionally not tracked
+archive/
+
+# OS & editor cruft
+.DS_Store
+**/.DS_Store
+*.log

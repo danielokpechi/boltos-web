@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+import ParticleWave from '../../components/ParticleWave.astro';
+
+// Newsroom posts link out to boltos.ai articles (external, new tab).
+const posts = [
+  { title: 'BoltOS Appoints Former Premier League & England International Defender Kieran Gibbs as Senior Advisor, Soccer', date: '25 February 2026', excerpt: '', href: 'https://boltos.ai/boltos-appoints-former-premier-league-england-international-defender-kieran-gibbs-as-senior-advisor-soccer/', image: '/assets/news/kieran-gibbs.png' },
+  { title: "BoltOS Powers Olympusat's Revenue Evolution with Immersive Technology Integration Across FreeTV Channels", date: '28 November 2025', excerpt: 'Olympusat gains access to advanced audience engagement tools that drive revenue increases through enhanced viewer retention and interactivity.', href: 'https://boltos.ai/boltos-powers-olympusats-revenue-evolution-with-immersive-technology-integration-across-freetv-channels/', image: '/assets/news/olympusat.png' },
+  { title: 'BoltOS Scores Star Studded Lineup with Dooya Media Group', date: '26 February 2025', excerpt: "A partnership with Dooya Media Group building on last summer's events, with audience immersion features driving interaction and brand building.", href: 'https://boltos.ai/boltos-scores-star-studded-lineup-with-dooya-media-group/', image: '/assets/news/dooya.webp' },
+  { title: 'Bolt+ Migration: Phase One Successfully Completed', date: '27 November 2024', excerpt: 'The first phase of the Bolt+ infrastructure migration is complete, with the platform transitioned to new service providers.', href: 'https://boltos.ai/bolt-migration-phase-one-successfully-completed/', image: '/assets/news/bolt-migration.webp' },
+  { title: 'TheSoul Publishing joins Bolt+', date: '30 September 2024', excerpt: "TheSoul Publishing's channels arrive on Bolt+ in English and Spanish, with real-time interactive features, e-commerce and AI-powered content discovery.", href: 'https://boltos.ai/thesoul-publishing-joins-bolt/', image: '/assets/news/thesoul.webp' },
+];
+
+const categories = ['Ecosystem', 'Events', 'News', 'Press Release', 'Thought Leadership'];
+---
+<Base title="Newsroom, BoltOS">
+  <div class="nr">
+    <header class="nr-hero">
+      <div class="nr-hero-glow" aria-hidden="true"></div>
+      <div class="nr-wave nr-wave-a" aria-hidden="true"><ParticleWave /></div>
+      <div class="nr-hero-inner">
+        <span class="nr-eyebrow">Newsroom</span>
+        <h1>Bolt Newsroom</h1>
+        <!-- Filter/search toolbar: presentational only (matches prototype; no logic wired). -->
+        <div class="nr-toolbar">
+          <div class="nr-cats">
+            <span class="nr-cats-label">Categories</span>
+            <div class="nr-cats-list">
+              {categories.map((c) => <span class="nr-cat">{c}</span>)}
+            </div>
+          </div>
+          <div class="nr-controls">
+            <span class="nr-sort">Newest first <span class="nr-caret">&#9662;</span></span>
+            <span class="nr-search">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7E838C" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 L21 21" stroke-linecap="round"></path></svg>
+              Search
+            </span>
+            <span class="nr-count">{posts.length} articles</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="nr-list-wrap">
+      <div class="nr-wave nr-wave-b" aria-hidden="true"><ParticleWave /></div>
+      <div class="nr-list">
+        {posts.map((p) => (
+          <a href={p.href} target="_blank" rel="noopener noreferrer" class="nr-post">
+            <div class="nr-post-media"><img src={p.image} alt={p.title} /></div>
+            <div class="nr-post-body">
+              <span class="nr-post-date">{p.date}</span>
+              <h2>{p.title}</h2>
+              {p.excerpt && <p>{p.excerpt}</p>}
+              <span class="nr-post-cta">Read more <span class="nr-arrow">&rarr;</span></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .nr { position: relative; }
+  .nr-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+
+  .nr-hero { position: relative; overflow: hidden; z-index: 10; padding: clamp(56px, 8vw, 120px) clamp(24px, 6vw, 80px) clamp(36px, 4.4vw, 64px); }
+  .nr-hero-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(900px 520px at 50% 0%, rgba(123,47,226,0.16), transparent 74%); }
+  .nr-wave-a { left: -10%; top: -20%; width: min(52vw, 600px); height: min(30vw, 330px); opacity: 0.28; }
+  .nr-hero-inner { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+  .nr-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-lilac); }
+  .nr-hero-inner h1 { margin: 0; font-family: var(--font-display); font-size: clamp(36px, 5.4vw, 76px); line-height: 1.0; font-weight: 800; letter-spacing: -0.036em; }
+  .nr-toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(18px, 2.4vw, 36px); align-items: end; margin-top: clamp(10px, 1.6vw, 20px); padding-top: clamp(20px, 2.4vw, 30px); border-top: 1px solid var(--hairline); }
+  .nr-cats { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .nr-cats-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lilac); }
+  .nr-cats-list { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .nr-cat { font-size: 14px; line-height: 21px; color: var(--text-muted); cursor: default; }
+  .nr-cat:hover { color: var(--snow); }
+  .nr-controls { min-width: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; }
+  .nr-sort { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; line-height: 21px; color: var(--text-soft); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 10px; padding: 11px 16px; }
+  .nr-caret { color: var(--text-dim); }
+  .nr-search { flex: 1 1 180px; min-width: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; line-height: 21px; color: var(--text-dim); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 10px; padding: 11px 16px; }
+  .nr-count { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+  .nr-list-wrap { position: relative; overflow: hidden; padding: 0 clamp(24px, 6vw, 80px) clamp(56px, 7vw, 104px); }
+  .nr-wave-b { right: -12%; top: 6%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.22; }
+  .nr-list { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 22px); }
+  .nr-post { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 20px; overflow: hidden; color: var(--snow); }
+  .nr-post:hover { border-color: rgba(123,47,226,0.65); background: #191B21; }
+  .nr-post-media { position: relative; min-width: 0; min-height: clamp(200px, 20vw, 260px); background: var(--night); }
+  .nr-post-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nr-post-body { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: clamp(24px, 2.8vw, 44px); }
+  .nr-post-date { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lilac); }
+  .nr-post-body h2 { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2.2vw, 28px); line-height: 1.2; font-weight: 800; letter-spacing: -0.024em; overflow-wrap: break-word; text-wrap: pretty; }
+  .nr-post-body p { margin: 0; font-size: 15px; line-height: 25px; color: var(--text-muted); max-width: 62ch; text-wrap: pretty; }
+  .nr-post-cta { padding-top: 8px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; line-height: 21px; font-weight: 600; color: var(--snow); }
+  .nr-arrow { color: var(--text-lilac); }
+</style>

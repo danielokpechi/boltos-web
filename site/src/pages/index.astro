@@ -1,0 +1,347 @@
+---
+import Base from '../layouts/Base.astro';
+import ParticleWave from '../components/ParticleWave.astro';
+import Roadmap from '../components/Roadmap.astro';
+import { routes } from '../data/nav.js';
+
+const partners = [
+  { name: 'Hisense', src: '/assets/logos/hisense.png' },
+  { name: 'Bloomberg', src: '/assets/logos/bloomberg-cut.png' },
+  { name: 'OneFootball', src: '/assets/logos/one-football.webp' },
+  { name: 'Dubai 24H Series', src: '/assets/logos/dubai-24h.png' },
+  { name: "Bridget's Healthy Kitchen", src: '/assets/logos/bridget.png' },
+  { name: 'Bolt+', src: '/assets/logos/boltos-app-cut.png' },
+  { name: 'VIDAA', src: '/assets/logos/vidaa.jpeg' },
+  { name: 'Binance Pay', src: '/assets/logos/binance-pay-cut.png' },
+  { name: 'Olympusat', src: '' },
+  { name: 'Dooya Media Group', src: '/assets/logos/dooya-cut.png' },
+  { name: 'TheSoul Publishing', src: '' },
+];
+
+const modules = [
+  { num: '01', name: 'Chat', copy: 'Real-time conversations, quizzes and ad banners, keep viewers glued to their screens for 3x longer. When audiences interact, they stay engaged.' },
+  { num: '02', name: 'Shop', copy: 'Take advantage of personalized shopping integration. Host your merch store at the heart of where your community is engaging, bumping up your conversion numbers.' },
+  { num: '03', name: 'Read', copy: 'For brands with premium reading material, why not organize your thought pieces to complement your content? Increasing click-throughs and ensuring your audience is interacting with your wider ecosystem.' },
+  { num: '04', name: 'AI', copy: 'Turn your panel into a two-way interaction. Our AI companion is there to engage with your audience, learn from them and deliver an even more curated panel experience. All while supplying you with the data to make smarter decisions around your content and advertising.' },
+  { num: '05', name: 'Rewards', copy: "Host giveaways, competitions or sponsored campaigns in the panel itself. Don't just make it a social experience, make it an event. Use this module for building retention and for giving back to your community." },
+  { num: '06', name: 'Analytics and Control', copy: 'Every Immersive Platform is accompanied with a state-of-the-art control panel, delivering real-time analytics showing engagement metrics, sentiment analysis, demographic breakdown, and behavior patterns as they happen. Understand what resonates and optimize content on the fly. Make data-driven decisions during the broadcast, not days later.' },
+];
+
+const stats = [
+  { value: '3×', label: 'Longer watch time', color: '#F7F7F5' },
+  { value: '1M+', label: 'Interactions served', color: '#C6ABF5' },
+  { value: '50+', label: 'Media brands', color: '#35C7DF' },
+];
+
+const pillars = [
+  { icon: '⚯', title: 'Seamless Integration', copy: 'Mounted on the player you already own. No third-party app, no lost immersion, no audience sent elsewhere to buy.' },
+  { icon: '✦', title: 'Real-time Intelligence', copy: 'Engagement, sentiment and behaviour as they happen, so you adapt during the broadcast instead of days later.' },
+  { icon: '⛨', title: 'Enterprise-Grade Reliability', copy: '99.9% uptime, 250,000+ concurrent viewers and GDPR compliance end to end.' },
+  { icon: '◷', title: '100+ Years of Experience', copy: 'A team that has spent a century in media between them, building live products for broadcasters and rights holders.' },
+];
+
+const cases = [
+  { name: 'Hisense', tag: 'Smart TV', quote: 'We view our partnership with BoltOS as strategic and valuable for building and maintaining viewer loyalty.', person: 'Jerry Liu · VP, Hisense International', stat: '14M TVs · 80 countries' },
+  { name: 'VIDAA', tag: 'TV OS', quote: "A powerful example of social TV, enabling real interaction on live and VOD content. They're set for great success.", person: 'Guy Edri · CEO, VIDAA International', stat: "World's leading TV OS" },
+  { name: '24H Series', tag: 'Motorsport', quote: 'Interactive features, moderated feeds and car POV feeds, the highlight of the entire Hankook Endurance Season.', person: 'Erik Naeser · Sports Advantage', stat: '150K interactions' },
+  { name: 'Binance Pay', tag: 'Payments', quote: 'Creators and brands can easily earn and engage fans using the secure Binance ecosystem through TVs for the first time.', person: 'Jonathan Lim · Global Head, Binance Pay', stat: '$12B processed' },
+];
+
+const faqs = [
+  ['Do I need technical expertise to use BoltOS products?', 'Not at all. Our products are designed for media teams, not developers. The control panel designed to manage them is also intuitive, and we provide guidance and workshops to educate your teams on best practices.'],
+  ['How long does setup take?', 'Setup once the brief is finalized can take anywhere from two to four weeks, depending on our workload at the time. However, we always endeavor to deliver in the shortest time frame possible while not compromising on quality.'],
+  ["What if my broadcasting platform isn't listed in your integrations?", "We add new integrations regularly based on customer demand. If your platform isn't currently supported, contact our team. We can often create custom integrations or use other means of connection."],
+  ['Can viewers access interactive features on mobile devices?', 'Yes. All our interactive features are fully optimized for mobile, tablet, and desktop. Your audience can participate regardless of device.'],
+  ['How many concurrent viewers can your system handle?', "Our infrastructure auto-scales to handle unlimited concurrent users. We've successfully supported broadcasts with 250,000+ simultaneous viewers without performance degradation."],
+  ['Can I customize the look and feel to match my brand?', 'Absolutely. You have complete control over colors, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully custom designs. Enterprise plans include white-label options with custom domains.'],
+  ['How does monetization work?', 'Panels contain banner ads that will generate ad dollars. Viewers can also make purchases or unlock premium content directly within your panel. We will work with you to ensure your preferred major payment gateways are added.'],
+  ['What happens if something breaks during a live broadcast?', 'We provide 24/7 support for Critical and High priority issues, including weekends and holidays. If you experience a critical failure during a live broadcast, our team responds within 5 minutes and aims for resolution within 1 hour. We take your reputation as seriously as you do.'],
+  ["What's your uptime guarantee?", 'We maintain 99.9% uptime backed by redundant infrastructure and continuous monitoring. Our status page provides real-time system health updates.'],
+  ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
+].map(([q, a], i) => ({ q, a, num: String(i + 1).padStart(2, '0') }));
+---
+<Base title="BoltOS, Audience Revenue Engine" description="BoltOS turns viewers into revenue: chat, shop, rewards and AI mounted on the player you already own.">
+  <div class="hp">
+    <!-- 01 HERO -->
+    <header class="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-top">
+        <div class="hero-badge"><span class="dot"></span>Live on 14M+ screens worldwide</div>
+        <h1 class="hero-h1">The interaction layer<br />for live media</h1>
+        <p class="hero-sub">Chat, shop, rewards and AI mounted on the player you already own. Author once, then drive it live on matchday.</p>
+        <div class="hero-cta"><a href={routes.bookDemo} class="btn-snow">Book a demo</a></div>
+      </div>
+      <div class="hero-player-wrap">
+        <div class="hero-grid-v" aria-hidden="true"></div>
+        <div class="hero-wave" aria-hidden="true"><ParticleWave /></div>
+        <div class="hero-player">
+          <div class="hero-video">
+            <a href="https://youtu.be/AByOQDvWeIE" target="_blank" rel="noopener noreferrer" class="hero-video-fallback">
+              <img src="/assets/photos/broadcast-still.web.jpg" alt="BoltOS platform video" class="hero-video-poster" />
+              <span class="hero-video-scrim"></span>
+              <span class="hero-video-btn">▶ Watch the platform video</span>
+            </a>
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/AByOQDvWeIE?rel=0&amp;modestbranding=1&amp;playsinline=1"
+              title="BoltOS platform video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+              loading="lazy"
+              class="hero-video-frame"
+            ></iframe>
+          </div>
+          <div class="hero-player-foot">
+            <div>Panel mounted on your player</div>
+            <div class="mono">latency 84ms</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 02 TRUSTED BY -->
+    <div class="trusted">
+      <div class="trusted-track">
+        {[...partners, ...partners].map((p) => (
+          <span class="trusted-item">
+            {p.src
+              ? <img src={p.src} alt={p.name} class="trusted-logo" />
+              : <span class="trusted-text">{p.name}</span>}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- 03 PRODUCT SUITE -->
+    <section id="suite" class="suite">
+      <div class="suite-grid" aria-hidden="true"></div>
+      <div class="suite-glow" aria-hidden="true"></div>
+      <div class="suite-head">
+        <div class="suite-eyebrow">Get to know BoltOS</div>
+        <h2 class="suite-h2">The Immersive Platform</h2>
+        <p class="suite-sub">The all-in-one interactive tool that drives results.</p>
+      </div>
+      <div class="suite-modules">
+        {modules.map((m) => (
+          <div class="module">
+            <div class="module-num">{m.num}</div>
+            <h3>{m.name}</h3>
+            <p>{m.copy}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 04 STATS -->
+    <section class="stats">
+      <div class="stats-glow" aria-hidden="true"></div>
+      <div class="stats-wave" aria-hidden="true"><ParticleWave running={true} /></div>
+      <div class="stats-head">
+        <h2>Real tools. Real results.</h2>
+        <p>In a crowded world of tech, BoltOS has exceeded expectations time and time again</p>
+      </div>
+      <div class="stats-row">
+        {stats.map((s) => (
+          <div class="stat">
+            <div class="stat-value" style={`color:${s.color};`}>{s.value}</div>
+            <div class="stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 05 WHY BOLTOS -->
+    <section id="why" class="why">
+      <div class="why-grid" aria-hidden="true"></div>
+      <div class="why-head">
+        <div class="why-eyebrow"><span class="dot dot-uv"></span>Why BoltOS</div>
+        <h2>Why modern media platforms need BoltOS</h2>
+        <p>Most content keeps audiences passive. They watch, but they never participate, never buy, never truly engage. Every broadcast without interaction is money left on the table.</p>
+      </div>
+      <div class="why-pillars">
+        {pillars.map((p) => (
+          <div class="pillar">
+            <span class="pillar-icon">{p.icon}</span>
+            <h3>{p.title}</h3>
+            <p>{p.copy}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 06 ROADMAP -->
+    <Roadmap />
+
+    <!-- 07 TESTIMONIALS -->
+    <section id="partners" class="tst">
+      <div class="tst-glow" aria-hidden="true"></div>
+      <div class="tst-head">
+        <h2>In their own words</h2>
+        <p>Broadcasters, TV platforms and rights holders running live audiences on BoltOS.</p>
+      </div>
+      <div class="tst-marquee">
+        <div class="tst-track">
+          {[...cases, ...cases].map((c) => (
+            <div class="tst-card">
+              <div class="tst-card-head">
+                <span class="tst-name">{c.name}</span>
+                <span class="tst-tag">{c.tag}</span>
+              </div>
+              <p class="tst-quote">“{c.quote}”</p>
+              <div class="tst-card-foot">
+                <span>{c.person}</span><span class="tst-stat">{c.stat}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 FAQ -->
+    <section id="faq" class="faq">
+      <div class="faq-glow" aria-hidden="true"></div>
+      <div class="faq-head">
+        <span class="faq-eyebrow">Good to know</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-grid">
+        {faqs.map((f) => (
+          <div class="faq-card">
+            <span class="faq-num">{f.num}</span>
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 09 CLOSING CTA -->
+    <div class="close">
+      <div class="close-grid" aria-hidden="true"></div>
+      <div class="close-glow" aria-hidden="true"></div>
+      <div class="close-inner">
+        <h2>Your next broadcast shouldn't leave money on the table.</h2>
+        <p>Join over 50 media brands already using our tools to transform passive viewers into active, valuable audience members.</p>
+        <div class="hero-cta"><a href={routes.bookDemo} class="btn-snow">Book a demo</a></div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .hp { position: relative; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sky-aqua); }
+  .dot-uv { width: 7px; height: 7px; background: var(--ultra-violet); }
+  .mono { font-family: var(--font-mono); }
+  .uv { color: var(--ultra-violet); }
+  .btn-snow { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 15px 30px; border-radius: 100px; }
+  .btn-snow:hover { color: var(--snow); background: var(--ultra-violet); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  /* HERO */
+  .hero { position: relative; overflow: hidden; padding: clamp(48px, 6vw, 88px) 0 0; text-align: center; }
+  .hero-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, #1D2026 1px, transparent 1px), linear-gradient(#1D2026 1px, transparent 1px); background-size: 96px 96px; opacity: 0.5; }
+  .hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(700px 340px at 50% 12%, rgba(123,47,226,0.10), transparent 70%); }
+  .hero-top { position: relative; padding: 0 clamp(24px, 6vw, 80px); display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .hero-badge { display: flex; align-items: center; gap: 10px; border: 1px solid var(--hairline-2); background: var(--night-2); border-radius: 100px; padding: 7px 16px; font-size: 13px; line-height: 19px; color: var(--text-soft); }
+  .hero-h1 { margin: 0; font-family: var(--font-display); font-size: clamp(34px, 5.6vw, 76px); line-height: 1.02; font-weight: 500; letter-spacing: -0.032em; max-width: 940px; }
+  .hero-sub { margin: 0; font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-muted); max-width: 600px; }
+  .hero-player-wrap { position: relative; margin-top: clamp(20px, 2.6vw, 32px); border-bottom: 1px dashed var(--hairline-dashed); padding: 0 clamp(24px, 6vw, 80px) clamp(32px, 5vw, 64px); overflow: hidden; }
+  .hero-grid-v { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, #1D2026 1px, transparent 1px); background-size: 96px 96px; opacity: 0.6; }
+  .hero-wave { position: absolute; left: 0; right: 0; bottom: -60px; height: 300px; opacity: 0.4; pointer-events: none; }
+  .hero-player { position: relative; width: 100%; max-width: 900px; margin: 0 auto; background: var(--night-2); border: 1px solid var(--hairline-2); border-radius: 16px; box-shadow: 0 28px 60px rgba(0,0,0,0.55); overflow: hidden; }
+  .hero-video { position: relative; aspect-ratio: 16 / 9; background: #0B0B0F; }
+  .hero-video-fallback { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; }
+  .hero-video-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-video-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,15,0.35), rgba(11,11,15,0.65)); }
+  .hero-video-btn { position: relative; white-space: nowrap; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 12px 22px; border-radius: 100px; }
+  .hero-video-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .hero-player-foot { padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--hairline); text-align: left; }
+  .hero-player-foot > div:first-child { font-size: 13px; line-height: 19px; color: var(--text-muted); }
+  .hero-player-foot .mono { font-size: 11px; color: var(--text-dim); }
+
+  /* TRUSTED BY */
+  .trusted { position: relative; overflow: hidden; padding: clamp(28px, 4vw, 48px) 0; border-bottom: 1px dashed var(--hairline-dashed); background: linear-gradient(180deg, rgba(123,47,226,0.05), rgba(251,251,250,0)); }
+  .trusted-track { display: flex; gap: 64px; width: max-content; animation: v5marquee 38s linear infinite; align-items: center; padding-top: 8px; font-family: var(--font-display); font-size: clamp(16px, 1.8vw, 22px); font-weight: 700; color: var(--text-dim); }
+  .trusted-item { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; height: clamp(40px, 4.4vw, 56px); padding: 0 4px; }
+  .trusted-logo { display: block; height: 100%; aspect-ratio: 1 / 1; border-radius: 12px; object-fit: cover; }
+  .trusted-text { white-space: nowrap; }
+
+  /* PRODUCT SUITE */
+  .suite { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 104px) clamp(24px, 6vw, 80px); }
+  .suite-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, var(--snow-line) 1px, transparent 1px); background-size: 96px 96px; opacity: 0.4; }
+  .suite-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(560px 320px at 88% 76%, rgba(53,199,223,0.10), transparent 70%); }
+  .suite-head { position: relative; display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
+  .suite-eyebrow { font-size: 14px; line-height: 21px; color: var(--ink-muted); }
+  .suite-h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 46px); line-height: 1.08; font-weight: 700; letter-spacing: -0.025em; }
+  .suite-sub { margin: 0; font-size: 16px; line-height: 26px; color: var(--ink-muted); }
+  .suite-modules { position: relative; margin-top: clamp(32px, 4vw, 56px); border: 1px solid var(--snow-line); border-radius: 14px; background: rgba(255,255,255,0.88); backdrop-filter: blur(6px); box-shadow: 0 20px 50px rgba(16,16,20,0.08); display: flex; flex-wrap: wrap; overflow: hidden; }
+  .module { flex: 1 1 260px; min-width: 0; padding: 24px; box-shadow: inset -1px 0 0 var(--snow-line), inset 0 -1px 0 var(--snow-line); display: flex; flex-direction: column; gap: 10px; }
+  .module:hover { background: rgba(123,47,226,0.10); }
+  .module-num { width: 34px; height: 34px; border-radius: 10px; background: rgba(123,47,226,0.10); border: 1px solid rgba(123,47,226,0.14); color: var(--ultra-violet-press); font-family: var(--font-mono); font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .module h3 { margin: 0; font-family: var(--font-display); font-size: 18px; line-height: 1.2; font-weight: 700; }
+  .module p { margin: 0; font-size: 14px; line-height: 22px; color: var(--ink-muted); text-wrap: pretty; }
+
+  /* STATS */
+  .stats { position: relative; overflow: hidden; background: var(--night); color: var(--snow); padding: clamp(48px, 6vw, 88px) clamp(24px, 6vw, 88px); }
+  .stats-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(700px 380px at 20% 10%, rgba(123,47,226,0.22), transparent 70%); }
+  .stats-wave { position: absolute; left: 0; right: 0; bottom: -40px; height: 300px; opacity: 0.22; pointer-events: none; }
+  .stats-head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 760px; margin: 0 auto clamp(28px, 3.4vw, 44px); }
+  .stats-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 44px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; }
+  .stats-head p { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-muted); text-wrap: pretty; }
+  .stats-row { position: relative; display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 72px); justify-content: center; align-items: flex-end; text-align: center; }
+  .stat { flex: 0 1 240px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .stat-value { font-family: var(--font-display); font-size: clamp(34px, 5vw, 68px); line-height: 0.92; font-weight: 800; letter-spacing: -0.04em; }
+  .stat-label { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.12em; color: var(--text-muted); }
+
+  /* WHY */
+  .why { position: relative; overflow: hidden; background: var(--night-4); padding: clamp(56px, 7vw, 112px) clamp(20px, 5vw, 64px); }
+  .why-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, var(--hairline) 1px, transparent 1px), linear-gradient(var(--hairline) 1px, transparent 1px); background-size: 72px 72px; opacity: 0.6; }
+  .why-head { position: relative; max-width: 900px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .why-eyebrow { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; line-height: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ultra-violet); }
+  .why-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; }
+  .why-head p { margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; color: #CFC9C0; max-width: 720px; text-wrap: pretty; }
+  .why-pillars { position: relative; max-width: var(--maxw); margin: clamp(36px, 4vw, 56px) auto 0; display: flex; flex-wrap: wrap; gap: 16px; }
+  .pillar { flex: 1 1 260px; min-width: 0; background: var(--surface-1); border: 1px solid #2A2D34; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+  .pillar-icon { width: 38px; height: 38px; border-radius: 11px; background: #2A1C42; color: var(--ultra-violet); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .pillar h3 { margin: 0; font-family: var(--font-display); font-size: 19px; line-height: 1.2; font-weight: 700; }
+  .pillar p { margin: 0; font-size: 15px; line-height: 23px; color: #CFC9C0; text-wrap: pretty; }
+
+  /* TESTIMONIALS */
+  .tst { position: relative; overflow: hidden; border-bottom: 1px solid #232323; padding: clamp(48px, 6vw, 88px) 0; }
+  .tst-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(680px 360px at 50% 0%, rgba(123,47,226,0.18), transparent 70%); }
+  .tst-head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 760px; margin: 0 auto clamp(28px, 3.4vw, 44px); padding: 0 clamp(24px, 6vw, 88px); }
+  .tst-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.8vw, 48px); line-height: 1.04; font-weight: 700; letter-spacing: -0.03em; }
+  .tst-head p { margin: 0; font-size: 16px; line-height: 26px; color: #B9BCC4; }
+  .tst-marquee { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .tst-track { display: flex; gap: 16px; width: max-content; animation: v5rail 46s linear infinite; }
+  .tst-card { width: min(78vw, 420px); flex-shrink: 0; background: linear-gradient(165deg, rgba(123,47,226,0.16), rgba(21,23,27,0.95) 58%); border: 1px solid #2A2D34; border-radius: 18px; padding: clamp(22px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 16px; }
+  .tst-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .tst-name { font-family: var(--font-display); font-size: 22px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+  .tst-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lilac); }
+  .tst-quote { margin: 0; flex: 1; font-size: 16px; line-height: 26px; color: #E4E6EC; text-wrap: pretty; }
+  .tst-card-foot { border-top: 1px solid #2A2D34; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; line-height: 16px; color: #8A8E97; }
+  .tst-stat { color: var(--sky-aqua); }
+
+  /* FAQ */
+  .faq { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(48px, 6vw, 88px) clamp(24px, 6vw, 88px); }
+  .faq-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(600px 340px at 12% 0%, rgba(123,47,226,0.10), transparent 70%); }
+  .faq-head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 720px; margin: 0 auto clamp(28px, 3.4vw, 44px); }
+  .faq-eyebrow { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ultra-violet); }
+  .faq-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 44px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; }
+  .faq-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .faq-card { background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px rgba(16,16,20,0.05); }
+  .faq-card:hover { border-color: var(--ultra-violet); box-shadow: 0 16px 38px rgba(123,47,226,0.14); }
+  .faq-num { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.12em; color: var(--ultra-violet); }
+  .faq-card h3 { margin: 0; font-family: var(--font-display); font-size: 17px; line-height: 1.25; font-weight: 700; color: var(--ink); text-wrap: pretty; }
+  .faq-card p { margin: 0; font-size: 15px; line-height: 24px; color: var(--ink-soft); text-wrap: pretty; }
+
+  /* CLOSING CTA */
+  .close { position: relative; overflow: hidden; border-top: 1px dashed var(--hairline-dashed); padding: clamp(64px, 8vw, 128px) clamp(24px, 6vw, 80px); text-align: center; background: linear-gradient(180deg, #15171B, #0C0A12); }
+  .close-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, #1D2026 1px, transparent 1px), linear-gradient(#1D2026 1px, transparent 1px); background-size: 96px 96px; opacity: 0.45; }
+  .close-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(640px 340px at 50% 108%, rgba(123,47,226,0.22), transparent 68%), radial-gradient(420px 260px at 14% 8%, rgba(53,199,223,0.14), transparent 72%); }
+  .close-inner { position: relative; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .close-inner h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 4.4vw, 60px); line-height: 1.04; font-weight: 500; letter-spacing: -0.03em; max-width: 840px; }
+  .close-inner p { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-muted); max-width: 560px; }
+</style>

@@ -1,0 +1,15 @@
+---
+// Signature dotted sine field. Ports particle-wave.js as-is (loaded once in Base).
+// Used static, low-opacity and radially masked in section corners.
+interface Props {
+  running?: boolean;
+  class?: string;
+  style?: string;
+}
+const { running = false, class: className, style } = Astro.props;
+---
+<bolt-particle-wave
+  running={String(running)}
+  class={className}
+  style={style ?? 'position:absolute; inset:0;'}
+></bolt-particle-wave>

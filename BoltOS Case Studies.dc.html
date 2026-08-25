@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Case Studies, BoltOS</title>
+<meta name="ext-resource-dependency" content="assets/logo/BoltOS_Primary_RGB.png" data-resource-id="BoltOS_Primary_RGB.png">
+<meta name="ext-resource-dependency" content="assets/logo/BoltPlus.png" data-resource-id="BoltPlus.png">
+<meta name="ext-resource-dependency" content="assets/badges/cyber-essentials-plus.png" data-resource-id="cyber-essentials-plus.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-cal.png" data-resource-id="step-cal.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-brief.png" data-resource-id="step-brief.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-settings.png" data-resource-id="step-settings.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-plug.png" data-resource-id="step-plug.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-rocket.png" data-resource-id="step-rocket.png">
+<meta name="ext-resource-dependency" content="assets/video/case-studies.mp4" data-resource-id="case-studies.mp4">
+<meta name="ext-resource-dependency" content="assets/logos/hisense.png" data-resource-id="hisense.png">
+<meta name="ext-resource-dependency" content="assets/logos/bloomberg.png" data-resource-id="bloomberg.png">
+<meta name="ext-resource-dependency" content="assets/logos/dubai-24h.png" data-resource-id="dubai-24h.png">
+<meta name="ext-resource-dependency" content="assets/logos/one-football.webp" data-resource-id="one-football.webp">
+<meta name="ext-resource-dependency" content="assets/logos/bridget.png" data-resource-id="bridget.png">
+<meta name="ext-resource-dependency" content="assets/photos/broadcast-still.web.jpg" data-resource-id="broadcast-still.web.jpg">
+<script>(function(){var need=[['image-slot','./image-slot.js'],['bolt-particle-wave','./particle-wave.js']];need.forEach(function(p){if(!customElements.get(p[0])){var s=document.createElement('script');s.src=p[1];document.head.appendChild(s);}});})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0E0E12; }
+a { color:#C6ABF5; text-decoration:none; }
+a:hover { color:#F7F7F5; }
+@media (max-width: 1080px) {
+  .cbp-rail { display:none; }
+  .cbp-spokes { grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)) !important; }
+}
+</style>
+</helmet>
+
+<section data-screen-label="Case Studies" style="position:relative; font-family:Geist,Helvetica,sans-serif; background:#0E0E12; color:#F7F7F5; overflow-x:hidden;">
+  <div style="position:sticky; top:0; z-index:40; padding:14px clamp(16px,4vw,40px); background:linear-gradient(180deg,rgba(14,14,18,0.96),rgba(14,14,18,0));">
+    <div ref="{{ navWrapRef }}" onMouseLeave="{{ closeMenu }}" onMouseEnter="{{ holdMenu }}" style="position:relative; max-width:1320px; margin:0 auto;">
+      <nav style="position:relative; z-index:2; background:rgba(16,16,20,0.88); backdrop-filter:blur(14px); border:1px solid #23262C; border-radius:clamp(22px,4vw,100px); box-shadow:0 10px 34px rgba(0,0,0,0.5); padding:12px clamp(16px,2vw,26px); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px 14px;">
+        <a href="BoltOS%20Website%20Final.dc.html" aria-label="BoltOS home" style="display:flex; align-items:center;"><img src="assets/logo/BoltOS_Primary_RGB.png" style="height:22px; width:auto; display:block;" alt="BoltOS logo"></a>
+        <div style="flex:1 1 auto; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:clamp(10px,1.6vw,22px); font-size:14px; line-height:20px;">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+            <sc-if value="{{ n.isMenu }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onMouseEnter="{{ n.enter }}" onFocus="{{ n.enter }}" onClick="{{ n.enter }}" onKeyDown="{{ n.key }}" aria-haspopup="true" aria-expanded="{{ n.expanded }}" style="display:flex; align-items:center; gap:5px; padding:6px 2px; cursor:pointer; background:none; border:0; font-family:inherit; font-size:14px; line-height:20px; color:{{ n.color }};">{{ n.label }}<span style="font-size:9px; opacity:0.6;">▾</span></button>
+            </sc-if>
+            <sc-if value="{{ n.isFlat }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ n.href }}" onMouseEnter="{{ n.enter }}" onFocus="{{ n.enter }}" style="display:flex; align-items:center; padding:6px 2px; color:{{ n.color }};">{{ n.label }}</a>
+            </sc-if>
+          </sc-for>
+        </div>
+        <div style="margin-left:auto; display:flex; align-items:center; justify-content:flex-end; gap:14px;">
+          <a href="/book-a-demo/" style="font-size:14px; line-height:20px; font-weight:700; color:#FFFFFF; background:#7B2FE2; padding:10px 20px; border-radius:100px;" style-hover="color:#FFFFFF; background:#5F1FBC;">Book a Demo</a>
+        </div>
+      </nav>
+
+      <sc-if value="{{ showProduct }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); margin-top:0; border-top:8px solid transparent; background-clip:padding-box; z-index:50; width:min(360px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:22px;">
+          <a href="https://boltplus.tv/home" target="_blank" rel="noopener noreferrer" aria-label="Bolt+ web app" style="display:flex; flex-direction:column; gap:14px; align-items:flex-start; padding:14px; margin:-14px; border-radius:14px;" style-hover="background:rgba(123,47,226,0.12);">
+            <span style="display:inline-flex; align-items:center; padding:10px 16px; border-radius:10px; background:#F7F7F5;"><img src="assets/logo/BoltPlus.png" style="height:20px; width:auto; display:block;" alt="Bolt+"></span>
+            <p style="margin:0; font-size:14px; line-height:22px; color:#B9BCC4; max-width:44ch;">Experience the future of immersive streaming with chat, shop, rewards and AI.</p>
+          </a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showCompany }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); border-top:8px solid transparent; background-clip:padding-box; z-index:50; box-sizing:border-box; width:min(720px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:26px 28px;">
+          <div style="display:flex; flex-wrap:wrap; gap:26px; align-items:stretch;">
+            <div style="flex:0 0 auto; min-width:150px; display:flex; flex-direction:column; gap:12px; padding-right:26px; border-right:1px solid #23262C;">
+              <div style="font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#7E838C;">COMPANY</div>
+              <a href="BoltOS%20About%20Us.dc.html" style="font-size:15px; line-height:22px; font-weight:600; color:#F7F7F5;" style-hover="color:#C6ABF5;">About Us</a>
+              <a href="https://drive.google.com/drive/folders/1oKsI_NIusj-tBJTO9MDh0SXPuqjZe3g6" target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" style="font-size:15px; line-height:22px; font-weight:600; color:#F7F7F5;" style-hover="color:#C6ABF5;">Brand Assets</a>
+            </div>
+            <div style="flex:1 1 380px; min-width:0; display:flex; flex-wrap:wrap; justify-content:space-around; align-items:flex-start; gap:18px;">
+              <sc-for list="{{ socials }}" as="s" hint-placeholder-count="5">
+                <a href="{{ s.href }}" target="_blank" rel="noopener noreferrer" aria-label="{{ s.aria }}" style="display:flex; flex-direction:column; align-items:center; gap:10px; padding:10px 8px; border-radius:14px; min-width:74px;" style-hover="background:rgba(123,47,226,0.12);">
+                  <span style="display:flex; align-items:center; justify-content:center; height:38px; padding:0 {{ s.pad }}; border-radius:100px; background:#F7F7F5; min-width:38px;">{{ s.glyph }}</span>
+                  <span style="font-size:13px; line-height:18px; color:#C9C9D1;">{{ s.label }}</span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showSolutions }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); margin-top:0; border-top:8px solid transparent; background-clip:padding-box; z-index:50; width:min(640px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:22px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px;">
+            <a href="BoltOS%20Immersive%20Platform.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Immersive Platform</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">A revenue layer for your existing ecosystem</span>
+            </a>
+            <a href="BoltOS%20Custom%20Bolt%20Plus.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Custom Bolt+</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Own the distribution. Own the monetisation. Own the data.</span>
+            </a>
+          </div>
+          <a href="BoltOS%20Solutions.dc.html" style="display:inline-flex; margin-top:14px; font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#C6ABF5;" style-hover="color:#F7F7F5;">All solutions →</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showCases }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); margin-top:0; border-top:8px solid transparent; background-clip:padding-box; z-index:50; width:min(640px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:22px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px;">
+            <a href="BoltOS%20Case%20Study%20Bloomberg.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Bloomberg</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">BoltOS takes Bloomberg's award-winning content to the next level</span>
+            </a>
+            <a href="BoltOS%20Case%20Study%20Hisense.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Hisense</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Bolt+ takes the immersive streaming experience to millions of Hisense TVs globally</span>
+            </a>
+            <a href="BoltOS%20Case%20Study%20Dubai%2024H.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Dubai 24HR Motor Racing</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Racing through a high-octane live event with Dubai 24H Series.</span>
+            </a>
+            <a href="BoltOS%20Case%20Study%20One%20Football.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">One Football</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Powering a global community with the biggest football clubs in the world.</span>
+            </a>
+          </div>
+          <a href="BoltOS%20Case%20Studies.dc.html" style="display:inline-flex; margin-top:14px; font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#C6ABF5;" style-hover="color:#F7F7F5;">See all case studies →</a>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+  <header style="position:relative; overflow:hidden; z-index:10; height:clamp(520px,92vh,1100px);">
+    <video id="cs-hero-video" playsinline="{{ true }}" preload="none" poster="assets/photos/broadcast-still.web.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;"></video>
+    <div style="position:absolute; right:clamp(16px,3vw,32px); top:clamp(80px,10vw,120px); z-index:6; display:flex; gap:10px;">
+      <button id="cs-play" type="button" aria-label="Play or pause the video" style="width:40px; height:40px; border:1px solid rgba(247,247,245,0.28); border-radius:50%; background:rgba(16,16,20,0.6); backdrop-filter:blur(8px); color:#F7F7F5; font-size:14px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0;" style-hover="background:#7B2FE2; border-color:#7B2FE2;"></button>
+      <button id="cs-mute" type="button" aria-label="Mute or unmute the video" style="width:40px; height:40px; border:1px solid rgba(247,247,245,0.28); border-radius:50%; background:rgba(16,16,20,0.6); backdrop-filter:blur(8px); color:#F7F7F5; font-size:14px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0;" style-hover="background:#7B2FE2; border-color:#7B2FE2;"></button>
+    </div>
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg,rgba(11,11,15,0.26) 0%,rgba(11,11,15,0) 22%,rgba(11,11,15,0) 62%,rgba(14,14,18,0.72) 88%,#0E0E12 100%);"></div>
+  </header>
+
+  <div style="position:relative; z-index:12; overflow:hidden; margin-top:clamp(-200px,-18vh,-90px); padding:0 clamp(24px,6vw,80px) clamp(52px,6.4vw,100px);">
+    <div style="position:absolute; right:-12%; top:-22%; width:min(48vw,540px); height:min(28vw,300px); z-index:0; opacity:0.26; pointer-events:none; mask-image:radial-gradient(closest-side,#000,transparent); -webkit-mask-image:radial-gradient(closest-side,#000,transparent);">
+      <x-import component-from-global-scope="bolt-particle-wave" style="position:absolute; inset:0;" hint-size="100%,100%" running="{{ false }}"></x-import>
+    </div>
+    <div style="position:absolute; left:-12%; bottom:-28%; width:min(46vw,520px); height:min(26vw,290px); z-index:0; opacity:0.22; pointer-events:none; mask-image:radial-gradient(closest-side,#000,transparent); -webkit-mask-image:radial-gradient(closest-side,#000,transparent);">
+      <x-import component-from-global-scope="bolt-particle-wave" style="position:absolute; inset:0;" hint-size="100%,100%" running="{{ false }}"></x-import>
+    </div>
+    <div style="position:relative; z-index:2; max-width:1240px; margin:0 auto clamp(30px,4vw,56px); display:flex; flex-direction:column; align-items:center; text-align:center; gap:18px;">
+      <span style="font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#C6ABF5;">Partners</span>
+      <h1 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(38px,6vw,86px); line-height:1.0; font-weight:800; letter-spacing:-0.036em;">Case Studies</h1>
+    </div>
+    <div style="position:relative; z-index:2; max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(16px,2vw,26px); align-items:stretch;">
+      <a href="BoltOS%20Case%20Study%20Hisense.dc.html" style="position:relative; min-width:0; background:#15171B; border:1px solid #23262C; border-radius:22px; padding:clamp(26px,3vw,42px); display:flex; flex-direction:column; gap:16px; overflow:hidden;" style-hover="border-color:#7B2FE2;">
+        <span style="position:absolute; right:-12px; top:-26px; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(84px,10vw,150px); line-height:0.8; font-weight:800; letter-spacing:-0.05em; color:rgba(247,247,245,0.05);">01</span>
+        <img src="assets/logos/hisense.png" alt="Hisense" style="position:relative; width:72px; height:72px; border-radius:14px; object-fit:contain; background:#F7F7F5; padding:6px; box-sizing:border-box; display:block;">
+        <span style="position:relative; width:44px; height:3px; border-radius:3px; background:#7B2FE2;"></span>
+        <h2 style="position:relative; margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(23px,2.8vw,34px); line-height:1.06; font-weight:800; letter-spacing:-0.03em; color:#F7F7F5; text-wrap:pretty;">Hisense</h2>
+        <p style="position:relative; margin:0; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#9CA3AF; text-wrap:pretty;">Bolt+ takes the immersive streaming experience to millions of Hisense TVs globally</p>
+        <span style="position:relative; margin-top:auto; padding-top:14px; font-size:14px; line-height:21px; font-weight:600; color:#F7F7F5;">Read the story →</span>
+      </a>
+      <a href="BoltOS%20Case%20Study%20Bloomberg.dc.html" style="position:relative; min-width:0; background:#15171B; border:1px solid #23262C; border-radius:22px; padding:clamp(26px,3vw,42px); display:flex; flex-direction:column; gap:16px; overflow:hidden;" style-hover="border-color:#D62086;">
+        <span style="position:absolute; right:-12px; top:-26px; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(84px,10vw,150px); line-height:0.8; font-weight:800; letter-spacing:-0.05em; color:rgba(247,247,245,0.05);">02</span>
+        <img src="assets/logos/bloomberg.png" alt="Bloomberg" style="position:relative; width:72px; height:72px; border-radius:14px; object-fit:contain; background:#F7F7F5; padding:6px; box-sizing:border-box; display:block;">
+        <span style="position:relative; width:44px; height:3px; border-radius:3px; background:#D62086;"></span>
+        <h2 style="position:relative; margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(23px,2.8vw,34px); line-height:1.06; font-weight:800; letter-spacing:-0.03em; color:#F7F7F5; text-wrap:pretty;">Bloomberg</h2>
+        <p style="position:relative; margin:0; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#9CA3AF; text-wrap:pretty;">BoltOS takes Bloomberg's award-winning content to the next level.</p>
+        <span style="position:relative; margin-top:auto; padding-top:14px; font-size:14px; line-height:21px; font-weight:600; color:#F7F7F5;">Read the story →</span>
+      </a>
+      <a href="BoltOS%20Case%20Study%20Dubai%2024H.dc.html" style="position:relative; min-width:0; background:#15171B; border:1px solid #23262C; border-radius:22px; padding:clamp(26px,3vw,42px); display:flex; flex-direction:column; gap:16px; overflow:hidden;" style-hover="border-color:#35C7DF;">
+        <span style="position:absolute; right:-12px; top:-26px; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(84px,10vw,150px); line-height:0.8; font-weight:800; letter-spacing:-0.05em; color:rgba(247,247,245,0.05);">03</span>
+        <img src="assets/logos/dubai-24h.png" alt="Dubai 24HR Motor Racing" style="position:relative; width:72px; height:72px; border-radius:14px; object-fit:contain; background:#F7F7F5; padding:6px; box-sizing:border-box; display:block;">
+        <span style="position:relative; width:44px; height:3px; border-radius:3px; background:#35C7DF;"></span>
+        <h2 style="position:relative; margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(23px,2.8vw,34px); line-height:1.06; font-weight:800; letter-spacing:-0.03em; color:#F7F7F5; text-wrap:pretty;">Dubai 24HR Motor Racing</h2>
+        <p style="position:relative; margin:0; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#9CA3AF; text-wrap:pretty;">Racing through a high-octane live event with Dubai 24H Series.</p>
+        <span style="position:relative; margin-top:auto; padding-top:14px; font-size:14px; line-height:21px; font-weight:600; color:#F7F7F5;">Read the story →</span>
+      </a>
+      <a href="BoltOS%20Case%20Study%20One%20Football.dc.html" style="position:relative; min-width:0; background:#15171B; border:1px solid #23262C; border-radius:22px; padding:clamp(26px,3vw,42px); display:flex; flex-direction:column; gap:16px; overflow:hidden;" style-hover="border-color:#7B2FE2;">
+        <span style="position:absolute; right:-12px; top:-26px; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(84px,10vw,150px); line-height:0.8; font-weight:800; letter-spacing:-0.05em; color:rgba(247,247,245,0.05);">04</span>
+        <img src="assets/logos/one-football.webp" alt="One Football" style="position:relative; width:72px; height:72px; border-radius:14px; object-fit:contain; background:#F7F7F5; padding:6px; box-sizing:border-box; display:block;">
+        <span style="position:relative; width:44px; height:3px; border-radius:3px; background:#7B2FE2;"></span>
+        <h2 style="position:relative; margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(23px,2.8vw,34px); line-height:1.06; font-weight:800; letter-spacing:-0.03em; color:#F7F7F5; text-wrap:pretty;">One Football</h2>
+        <p style="position:relative; margin:0; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#9CA3AF; text-wrap:pretty;">Powering a global community with the biggest football clubs in the world.</p>
+        <span style="position:relative; margin-top:auto; padding-top:14px; font-size:14px; line-height:21px; font-weight:600; color:#F7F7F5;">Read the story →</span>
+      </a>
+      <div style="position:relative; min-width:0; background:#15171B; border:1px solid #23262C; border-radius:22px; padding:clamp(26px,3vw,42px); display:flex; flex-direction:column; gap:16px; overflow:hidden;">
+        <span style="position:absolute; right:-12px; top:-26px; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(84px,10vw,150px); line-height:0.8; font-weight:800; letter-spacing:-0.05em; color:rgba(247,247,245,0.05);">05</span>
+        <img src="assets/logos/bridget.png" alt="Bridget's Healthy Kitchen" style="position:relative; width:72px; height:72px; border-radius:14px; object-fit:contain; background:#F7F7F5; padding:6px; box-sizing:border-box; display:block;">
+        <span style="position:relative; width:44px; height:3px; border-radius:3px; background:#C6ABF5;"></span>
+        <h2 style="position:relative; margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(23px,2.8vw,34px); line-height:1.06; font-weight:800; letter-spacing:-0.03em; color:#F7F7F5; text-wrap:pretty;">Bridget's Healthy Kitchen</h2>
+        <p style="position:relative; margin:0; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#9CA3AF; text-wrap:pretty;">A subscriber-only online retreat for health food aficionados, connected through BoltOS.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer style="position:relative; border-top:1px solid #23262C; padding:clamp(40px,5vw,72px) clamp(24px,6vw,80px) 0; display:flex; flex-wrap:wrap; gap:clamp(28px,4vw,56px);">
+    <div style="flex:1.4 1 240px; min-width:0; display:flex; flex-direction:column; gap:12px;">
+      <img src="assets/logo/BoltOS_Primary_RGB.png" style="height:24px; width:auto; align-self:flex-start;" alt="BoltOS logo">
+      <div style="font-family:monospace; font-size:11px; line-height:18px; letter-spacing:0.14em; text-transform:uppercase; color:#9CA3AF;">Audience Revenue Engine</div>
+      <img src="assets/badges/cyber-essentials-plus.png" style="width:63px; height:auto; display:block; margin-top:12px;" alt="Cyber Essentials Certified Plus">
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">COMPANY</div>
+      <a href="BoltOS%20About%20Us.dc.html" style="color:#C9C9D1;">About BoltOS</a>
+      <a href="BoltOS%20Case%20Studies.dc.html" style="color:#C9C9D1;">Case Studies</a>
+      <a href="BoltOS%20Newsroom.dc.html" style="color:#C9C9D1;">Newsroom</a>
+      <a href="https://drive.google.com/drive/folders/1oKsI_NIusj-tBJTO9MDh0SXPuqjZe3g6" target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" style="color:#C9C9D1;">Brand Assets</a>
+      <a href="/book-a-demo/" style="align-self:flex-start; margin-top:4px; font-size:13px; line-height:20px; font-weight:600; color:#FFFFFF; background:#7B2FE2; padding:9px 18px; border-radius:100px;" style-hover="color:#FFFFFF; background:#5F1FBC;">Book a demo</a>
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">SOLUTIONS</div>
+      <a href="BoltOS%20Solutions.dc.html" style="color:#C9C9D1;">All Solutions</a>
+      <a href="BoltOS%20Immersive%20Platform.dc.html" style="color:#C9C9D1;">Immersive Platform</a>
+      <a href="BoltOS%20Custom%20Bolt%20Plus.dc.html" style="color:#C9C9D1;">Custom Bolt+</a>
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">STAY CONNECTED</div>
+      <a href="/contact" style="color:#C9C9D1;">Contact Us</a>
+      <span style="font-size:14px; line-height:21px; color:#C9C9D1;">Monthly Newsletter</span>
+      <a href="/sign-up/" style="align-self:flex-start; margin-top:4px; font-size:13px; line-height:20px; font-weight:600; color:#FFFFFF; background:#7B2FE2; padding:9px 18px; border-radius:100px;" style-hover="color:#FFFFFF; background:#5F1FBC;">Sign up</a>
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">FOLLOW US</div>
+      <sc-for list="{{ socials }}" as="s" hint-placeholder-count="5">
+        <a href="{{ s.href }}" target="_blank" rel="noopener noreferrer" aria-label="{{ s.aria }}" style="color:#C9C9D1;">{{ s.label }}</a>
+      </sc-for>
+    </div>
+  </footer>
+  <div style="border-top:1px dashed #2C3037; margin:clamp(32px,4vw,56px) clamp(24px,6vw,80px) 0; padding:20px 0 28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; font-size:12px; line-height:18px; color:#7E838C;">
+    <div>© 2026 BoltOS, Inc. All rights reserved. Built in Singapore and London.</div>
+    <div style="display:flex; gap:24px;">
+      <a href="https://boltos.ai/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" style="color:#7E838C;">Privacy</a>
+      <a href="https://boltos.ai/legal/cookie-policy/" target="_blank" rel="noopener noreferrer" style="color:#7E838C;">Cookies</a>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { narrow: false, menu: null, menuLeft: 0 };
+
+  openMenu(id, e) {
+    clearTimeout(this._menuTimer);
+    let left = this.state.menuLeft;
+    const t = e && e.currentTarget, wrap = this._navWrap;
+    if (t && wrap && t.getBoundingClientRect) {
+      const r = t.getBoundingClientRect(), b = wrap.getBoundingClientRect();
+      const widths = { Product: 416, Company: 776, Solutions: 696, Cases: 776 };
+      const pw = Math.min(widths[id] || 480, b.width);
+      left = Math.max(0, Math.min(r.left - b.left - 14, b.width - pw));
+    }
+    this.setState({ menu: id, menuLeft: left });
+  }
+
+  scheduleClose = () => {
+    clearTimeout(this._menuTimer);
+    this._menuTimer = setTimeout(() => this.setState({ menu: null }), 320);
+  };
+
+  holdMenu = () => clearTimeout(this._menuTimer);
+
+  initHeroVideo = () => {
+    const el = document.getElementById("cs-hero-video");
+    if (!el || this._vidObs) return;
+    el.muted = true;
+    el.loop = true;
+    el.playsInline = true;
+    const load = () => {
+      if (el.dataset.loaded) return;
+      el.dataset.loaded = "1";
+      const src = document.createElement("source");
+      const R = (typeof window !== "undefined" && window.__resources) || null;
+      src.src = (R && R["case-studies.mp4"]) || "assets/video/case-studies.mp4";
+      src.type = "video/mp4";
+      el.appendChild(src);
+      el.load();
+    };
+    if (typeof IntersectionObserver === "undefined") { load(); return; }
+    const play = document.getElementById("cs-play");
+    const mute = document.getElementById("cs-mute");
+    const sync = () => {
+      if (play) play.innerHTML = el.paused ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>' : '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M7 5h3.2v14H7zM13.8 5H17v14h-3.2z"></path></svg>';
+      if (mute) mute.innerHTML = el.muted ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4z"></path><path d="M15.6 9.6l4.8 4.8M20.4 9.6l-4.8 4.8" fill="none" stroke="#F7F7F5" stroke-width="1.8" stroke-linecap="round"></path></svg>' : '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4z"></path><path d="M15.4 8.4a5 5 0 0 1 0 7.2" fill="none" stroke="#F7F7F5" stroke-width="1.8" stroke-linecap="round"></path><path d="M17.9 6a8.3 8.3 0 0 1 0 12" fill="none" stroke="#F7F7F5" stroke-width="1.8" stroke-linecap="round"></path></svg>';
+    };
+    if (play) play.onclick = () => {
+      load();
+      if (el.paused) { this._userPaused = false; el.play().catch(() => {}); }
+      else { this._userPaused = true; el.pause(); }
+      setTimeout(sync, 60);
+    };
+    if (mute) mute.onclick = () => { el.muted = !el.muted; sync(); };
+    el.addEventListener("play", sync);
+    el.addEventListener("pause", sync);
+    sync();
+
+    this._vidObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { load(); if (!this._userPaused) el.play().catch(() => {}); }
+        else if (el.dataset.loaded) el.pause();
+      });
+    }, { threshold: 0.15 });
+    this._vidObs.observe(el);
+  };
+
+  componentWillUnmount() {
+    if (this._vidObs) this._vidObs.disconnect();
+    if (this.onResize) window.removeEventListener("resize", this.onResize);
+  }
+
+  componentDidMount() {
+    [0, 200, 800].forEach(t => setTimeout(this.initHeroVideo, t));
+    this.onResize = () => {
+      const narrow = window.innerWidth < 1120;
+      if (narrow !== this.state.narrow) this.setState({ narrow });
+    };
+    this.onResize();
+    window.addEventListener("resize", this.onResize);
+    this.patch();
+    [150, 600].forEach(t => setTimeout(() => this.patch(), t));
+  }
+
+  patch() {
+    const R = (typeof window !== "undefined" && window.__resources) || null;
+    if (!R) return;
+    document.querySelectorAll("image-slot[src], img[src]").forEach(el => {
+      const raw = el.getAttribute("src") || "";
+      const key = raw.split("/").pop();
+      if (key && R[key] && raw.indexOf("blob:") !== 0) el.setAttribute("src", R[key]);
+    });
+  }
+
+  renderVals() {
+    const menu = this.state.menu;
+    const svg = (d, extra) => React.createElement("svg", Object.assign({
+      width: 19, height: 19, viewBox: "0 0 24 24", fill: "#101014", "aria-hidden": "true"
+    }, extra || {}), React.createElement("path", { d }));
+    const socials = [
+      { label: "Boltplus.tv", href: "https://boltplus.tv/home", aria: "Bolt+ web app", pad: "18px",
+        glyph: React.createElement("img", { src: "assets/logo/BoltPlus.png", alt: "", style: { height: "20px", width: "auto", display: "block" } }) },
+      { label: "X", href: "https://x.com/boltplus", aria: "BoltOS on X", pad: "0",
+        glyph: svg("M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z") },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/boltos", aria: "BoltOS on LinkedIn", pad: "0",
+        glyph: svg("M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.19 1.46-2.19 2.97V21h-4z") },
+      { label: "Discord", href: "https://discord.gg/boltos-577830719645024278", aria: "BoltOS on Discord", pad: "0",
+        glyph: svg("M20.32 4.94A19.6 19.6 0 0015.44 3.4a13.8 13.8 0 00-.63 1.29 18.2 18.2 0 00-5.44 0 13.6 13.6 0 00-.64-1.29 19.6 19.6 0 00-4.88 1.54C.73 9.6-.45 14.13.14 18.6a19.8 19.8 0 006 3.05c.48-.66.91-1.36 1.28-2.1a12.9 12.9 0 01-2.02-.97c.17-.13.34-.26.5-.4a14.1 14.1 0 0012.2 0c.16.14.33.27.5.4-.64.38-1.32.7-2.02.97.37.74.8 1.44 1.28 2.1a19.7 19.7 0 006-3.05c.7-5.19-1.18-9.68-3.54-13.66zM8.02 15.88c-1.18 0-2.15-1.08-2.15-2.4s.95-2.41 2.15-2.41 2.17 1.09 2.15 2.41c0 1.32-.95 2.4-2.15 2.4zm7.96 0c-1.18 0-2.15-1.08-2.15-2.4s.95-2.41 2.15-2.41 2.17 1.09 2.15 2.41c0 1.32-.95 2.4-2.15 2.4z") },
+      { label: "Instagram", href: "https://www.instagram.com/boltplustv/", aria: "Bolt+ on Instagram", pad: "0",
+        glyph: svg("M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 01-1.38-.9 3.8 3.8 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.18a6.66 6.66 0 100 13.32 6.66 6.66 0 000-13.32zm0 10.98a4.32 4.32 0 110-8.64 4.32 4.32 0 010 8.64zm8.48-11.24a1.56 1.56 0 11-3.11 0 1.56 1.56 0 013.11 0z") }
+    ];
+    const navDefs = [
+      { id: "Product", label: "Product", href: "#", menu: true },
+      { id: "Company", label: "Company", href: "#", menu: true },
+      { id: "Solutions", label: "Solutions", href: "BoltOS%20Solutions.dc.html", menu: true },
+      { id: "Cases", label: "Case Studies", href: "BoltOS%20Case%20Studies.dc.html", menu: true },
+      { id: null, label: "Newsroom", href: "BoltOS%20Newsroom.dc.html", menu: false }
+    ];
+    const navItems = navDefs.map(d => ({
+      label: d.label, href: d.href,
+      isMenu: d.menu, isFlat: !d.menu,
+      expanded: menu === d.id ? "true" : "false",
+      color: menu === d.id && d.id ? "#F7F7F5" : "#C9C9D1",
+      enter: (e) => this.openMenu(d.id, e),
+      key: (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (menu === d.id) this.setState({ menu: null }); else this.openMenu(d.id, e); }
+        if (e.key === "Escape") this.setState({ menu: null });
+      }
+    }));
+
+
+
+
+
+    return { socials, navItems,
+      navWrapRef: (el) => { this._navWrap = el; },
+      closeMenu: this.scheduleClose, holdMenu: this.holdMenu,
+      menuAnchor: this.state.menuLeft + "px",
+      showProduct: menu === "Product", showCompany: menu === "Company",
+      showSolutions: menu === "Solutions", showCases: menu === "Cases",
+    };
+  }
+}
+</script>
+</body>
+</html>

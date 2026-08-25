@@ -1,0 +1,115 @@
+---
+// Roadmap: serpentine gradient rail with icon nodes on desktop, vertical list
+// below 1120px (CSS-only switch, no hydration flash). Shared by / and /solutions/.
+import { steps, nodeAlign } from '../data/steps.js';
+---
+<section id="roadmap" class="road">
+  <div class="road-glow" aria-hidden="true"></div>
+  <div class="road-head">
+    <span class="road-eyebrow">The process</span>
+    <h2>Your roadmap <span class="uv">to success.</span></h2>
+    <p>Five steps from first call to live broadcast, in two to four weeks.</p>
+  </div>
+
+  <!-- Wide: serpentine gradient rail -->
+  <div class="road-wide">
+    <div class="road-grid">
+      <svg viewBox="0 0 1000 96" preserveAspectRatio="none" class="road-rail" aria-hidden="true">
+        <defs>
+          <linearGradient id="railGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#7B2FE2"></stop>
+            <stop offset="45%" stop-color="#D62086"></stop>
+            <stop offset="100%" stop-color="#35C7DF"></stop>
+          </linearGradient>
+        </defs>
+        <path d="M0 48 H70 C160 48 160 78 240 78 C330 78 330 18 420 18 C510 18 510 78 600 78 C690 78 690 18 780 18 C870 18 870 48 930 48 H1000" fill="none" stroke="url(#railGrad)" stroke-width="3" stroke-linecap="round"></path>
+      </svg>
+      {steps.map((s, i) => (
+        <div class="road-node" style={`grid-column:${i + 1}; grid-row:2; align-items:${nodeAlign[i]}; padding:${i % 2 === 0 ? '8px 0 0' : '0 0 8px'};`}>
+          <div class="road-dot">{s.num}</div>
+        </div>
+      ))}
+      {steps.map((s, i) => (
+        <div class="road-cell road-cell-top" style={`grid-column:${i + 1};`}>
+          {i % 2 === 0 && (
+            <div class="road-card">
+              <div class="road-card-icon"><img src={s.icon} alt="" /></div>
+              <div class="road-step">STEP {s.num}</div>
+              <h3>{s.title}</h3>
+              <p>{s.copy}</p>
+            </div>
+          )}
+        </div>
+      ))}
+      {steps.map((s, i) => (
+        <div class="road-cell road-cell-bottom" style={`grid-column:${i + 1};`}>
+          {i % 2 === 1 && (
+            <div class="road-card">
+              <div class="road-card-icon"><img src={s.icon} alt="" /></div>
+              <div class="road-step">STEP {s.num}</div>
+              <h3>{s.title}</h3>
+              <p>{s.copy}</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Narrow: vertical list -->
+  <div class="road-narrow">
+    {steps.map((s, i) => (
+      <div class="road-row">
+        <div class="road-rail-col">
+          <div class="road-dot">{s.num}</div>
+          {i < steps.length - 1 && <div class="road-rail-line"></div>}
+        </div>
+        <div class="road-row-body">
+          <div class="road-card-icon"><img src={s.icon} alt="" /></div>
+          <div class="road-step">STEP {s.num}</div>
+          <h3>{s.title}</h3>
+          <p>{s.copy}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .uv { color: var(--ultra-violet); }
+  .road { position: relative; z-index: 10; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 104px) clamp(20px, 5vw, 80px); }
+  .road-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(760px 420px at 50% 52%, rgba(123,47,226,0.10), transparent 72%), radial-gradient(520px 300px at 88% 12%, rgba(214,32,134,0.07), transparent 72%); }
+  .road-head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 720px; margin: 0 auto clamp(32px, 4vw, 56px); }
+  .road-eyebrow { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ultra-violet); }
+  .road-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.8vw, 50px); line-height: 1.04; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
+  .road-head p { margin: 0; font-size: 15px; line-height: 24px; color: var(--ink-soft); }
+  .road-wide { position: relative; max-width: 1360px; margin: 0 auto; }
+  .road-grid { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: minmax(300px, auto) 96px minmax(300px, auto); column-gap: clamp(10px, 1.4vw, 20px); }
+  .road-rail { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); width: 100%; height: 96px; display: block; pointer-events: none; }
+  .road-node { position: relative; z-index: 2; grid-row: 2; display: flex; justify-content: center; }
+  .road-dot { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(140deg, #7B2FE2, #D62086); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--snow); box-shadow: 0 0 0 6px var(--snow), 0 10px 26px rgba(123,47,226,0.35); }
+  .road-cell-top { grid-row: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 22px; }
+  .road-cell-bottom { grid-row: 3; display: flex; flex-direction: column; justify-content: flex-start; padding: 22px 0 0; }
+  .road-card { height: 100%; background: #FFFFFF; border: 1px solid #E4E1DC; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 44px rgba(16,16,20,0.08); }
+  .road-card:hover { border-color: rgba(123,47,226,0.5); box-shadow: 0 22px 54px rgba(123,47,226,0.16); }
+  .road-card-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; }
+  .road-card-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .road-step { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.16em; color: var(--ultra-violet); }
+  .road-card h3, .road-row-body h3 { margin: 0; font-family: var(--font-display); font-size: clamp(17px, 1.5vw, 21px); line-height: 1.16; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+  .road-card p, .road-row-body p { margin: 0; font-size: 13px; line-height: 21px; color: var(--ink-soft); text-wrap: pretty; }
+
+  .road-narrow { display: none; position: relative; max-width: 720px; margin: 0 auto; flex-direction: column; }
+  .road-row { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 18px; }
+  .road-rail-col { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .road-rail-col .road-dot { box-shadow: 0 10px 26px rgba(123,47,226,0.4); }
+  .road-rail-line { flex: 1; width: 2px; background: linear-gradient(180deg, rgba(123,47,226,0.55), rgba(53,199,223,0.3)); }
+  .road-row-body { padding: 0 0 28px; display: flex; flex-direction: column; gap: 10px; }
+  .road-row-body .road-card-icon { width: 52px; height: 52px; }
+  .road-row-body h3 { font-size: 20px; }
+  .road-row-body p { font-size: 14px; line-height: 23px; }
+
+  @media (max-width: 1119px) {
+    .road-wide { display: none; }
+    .road-narrow { display: flex; }
+  }
+</style>

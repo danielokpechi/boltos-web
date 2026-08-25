@@ -1,0 +1,371 @@
+---
+import Base from '../../layouts/Base.astro';
+import ParticleWave from '../../components/ParticleWave.astro';
+import PlatformCTA from '../../components/PlatformCTA.astro';
+import { routes } from '../../data/nav.js';
+
+const heroPoints = ['No platform migration', 'No disruption', 'Immediate monetisation'];
+
+const consequences = [
+  "Engagement shifts to social platforms you don't control",
+  'Commerce happens outside your environment',
+  'Valuable data never reaches your CRM',
+  'Sponsors measure impressions instead of interaction',
+].map((text, i) => ({ num: '0' + (i + 1), text }));
+
+const twoWays = [
+  { num: '01', text: "Engagement shifts to social platforms you don't control" },
+  { num: '02', text: 'Direct integration into your web or app via code embed' },
+];
+
+const enables = [
+  { num: '01', numColor: '#7B2FE2', title: 'Real-Time Interaction', lead: 'Bring the audience into the action as it unfolds.',
+    items: ['Live chat', 'Polls and predictions', 'Quizzes', 'Campaign activations', 'Community conversations'],
+    close: 'Engagement happens when emotion peaks; that is the moment that matters most.' },
+  { num: '02', numColor: '#D62086', title: 'Commerce Inside the Experience', lead: 'Turn attention into action without driving audiences away from your platform.',
+    items: ['Shoppable moments', 'Sponsor-driven product activations', 'Direct links to checkout'],
+    close: 'You convert interest while attention is highest.' },
+  { num: '03', numColor: '#35C7DF', title: 'AI Stream Companion (IRIS)', lead: 'A real-time assistant to support interactive content.',
+    items: ['Answers viewer questions instantly', 'Surfaces contextual stats and content', 'Enables voice or text interaction', 'Generates measurable behavioural signals'],
+    close: 'It transforms passive viewing into a two-way experience where every interaction becomes a data point.' },
+  { num: '04', numColor: '#F7F7F5', title: 'Sponsor-Ready Activation', lead: 'Move beyond passive ad slots into participation.',
+    items: ['Interactive sponsor campaigns', 'Engagement-led sponsorship packages', 'Measurable participation and performance metrics'],
+    close: 'Shift from CPM to engagement-driven inventory.' },
+];
+
+const outcomes = [
+  { title: 'Commercial Impact', lead: 'A real-time assistant to support interactive content',
+    items: ['Premium interactive sponsor inventory', 'Shoppable content and campaigns', 'First-party data monetisation'] },
+  { title: 'Behavioral Intelligence', lead: 'Understand how fans interact in real time and over time',
+    items: ['Live participation moments', 'Personalised global fan journeys', 'Always-on engagement beyond matchday'] },
+  { title: 'Controlled Ecosystem', lead: 'No disruption, fast time-to-value',
+    items: ['Plug-in, no rip-and-replace', 'Enhanced community governance', 'Reduced dependency risk on external policies'] },
+];
+
+const whyItWorks = ['No app rebuild', 'No broadcast redesign', 'No broadcast redesign', 'Compatible across Web, mobile, CTV, native apps'];
+
+const faqs = [
+  ['Do I need technical expertise to use the Immersive Platform?', 'Not at all. Our solutions are designed for media and entertainment teams with busy schedules. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation and recommendation on the best practices as you start your journey with us.'],
+  ['How long does setup take?', 'Setup typically takes between two to four weeks. Let us know in advance if you have a key date to launch so we can adapt the timeline.'],
+  ['What are the types of integrations you offer?', 'We regularly add new integrations. If a platform is not currently supported, contact our team, we can create custom integrations or connect through alternative methods.'],
+  ['Where can audiences access the Immersive platform?', 'The immersive platform can be accessed from anywhere in the world and is fully optimised for mobile, tablet, and desktop.'],
+  ['Can I customise the look and feel of the Immersive Platform to match my brand?', 'Absolutely. You have full control over the colours, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully bespoke designs.'],
+  ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
+].map(([q, a]) => ({ q, a }));
+
+const POSTER = '/assets/photos/broadcast-still.web.jpg';
+---
+<Base title="Immersive Platform, BoltOS">
+  <div class="ip">
+    <!-- Hero -->
+    <header class="ip-hero">
+      <div class="ip-hero-glow" aria-hidden="true"></div>
+      <div class="ip-hero-wave" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-hero-inner">
+        <div class="ip-hero-copy">
+          <div class="ip-eyebrow"><span class="ip-eyebrow-rule"></span><span class="lilac">Immersive Platform</span></div>
+          <h1>A revenue layer for your <span class="uv">existing ecosystem</span></h1>
+          <p class="ip-hero-lead">Turn passive viewers into measurable revenue and actionable audience data.</p>
+          <div class="ip-hero-points">
+            {heroPoints.map((h) => <span class="ip-pill">{h}</span>)}
+          </div>
+          <div class="ip-hero-cta"><a href={routes.bookDemo} class="btn-snow">Schedule a Tour</a></div>
+        </div>
+        <div class="ip-hero-mockwrap">
+          <div class="ip-mock">
+            <div class="ip-mock-bar">
+              <span class="ip-mock-dot"></span><span class="ip-mock-dot"></span><span class="ip-mock-dot"></span>
+              <span class="ip-mock-url">your player, your domain</span>
+            </div>
+            <div class="ip-mock-body">
+              <div class="ip-mock-panel">
+                <div class="ip-mock-tabs">
+                  <span class="ip-tab active">Chat</span><span class="ip-tab">Shop</span><span class="ip-tab">IRIS</span>
+                </div>
+                <div class="ip-msg">Poll, who takes the next point?</div>
+                <div class="ip-msg accent">68% backed the home side</div>
+                <div class="ip-msg">Shop, matchday kit in one tap</div>
+                <div class="ip-mock-watching">24,801 watching</div>
+              </div>
+              <div class="ip-mock-video">
+                <img src={POSTER} alt="Player still" />
+                <span class="ip-mock-video-scrim"></span>
+                <span class="ip-mock-live">● LIVE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- The Reality -->
+    <section class="ip-reality">
+      <div class="ip-wave ip-wave-a" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-wave ip-wave-b" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-reality-inner">
+        <div class="ip-reality-head">
+          <div class="ip-reality-title">
+            <div class="ip-eyebrow"><span class="ip-eyebrow-rule"></span><span class="uv">The Reality</span></div>
+            <h2>Audiences don't want to just watch anymore.</h2>
+          </div>
+          <div class="ip-reality-intro">
+            <p>They expect to interact, respond, and transact instantly. If they can't do it inside your ecosystem, they do it somewhere else.</p>
+            <p class="ip-strong">The consequences are simple:</p>
+          </div>
+        </div>
+        <div class="ip-conseq">
+          {consequences.map((c) => (
+            <div class="ip-conseq-card">
+              <span class="ip-conseq-num">{c.num}</span>
+              <p>{c.text}</p>
+            </div>
+          ))}
+        </div>
+        <p class="ip-reality-close">BoltOS Immersive Platform brings interaction and the data it generates back under your control.</p>
+      </div>
+    </section>
+
+    <!-- What is the Immersive Platform -->
+    <section class="ip-what">
+      <div class="ip-wave ip-wave-c" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-wave ip-wave-d" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-what-glow" aria-hidden="true"></div>
+      <div class="ip-what-inner">
+        <div class="ip-what-head">
+          <h2>What is the Immersive Platform?</h2>
+          <p>The Immersive Platform is a drop-in interactive overlay that transforms any live or on-demand stream or event into an interactive, monetisable experience.</p>
+          <p class="ip-strong snow">It works in two ways:</p>
+        </div>
+        <div class="ip-twoways">
+          {twoWays.map((w) => (
+            <div class="ip-twoway-card">
+              <span class="ip-twoway-num">{w.num}</span>
+              <p>{w.text}</p>
+            </div>
+          ))}
+        </div>
+        <p class="ip-what-close">Either way, your viewing experience stays intact. The monetisation and intelligence layer activates around it.</p>
+      </div>
+    </section>
+
+    <!-- What it enables -->
+    <section class="ip-enables">
+      <div class="ip-wave ip-wave-e" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-wave ip-wave-f" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-enables-inner">
+        <div class="ip-enables-head">
+          <h2>What it enables</h2>
+          <p>With BoltOS Immersive Panel, you deploy AI-powered engagement and experiences that turn live moments into measurable revenue.</p>
+        </div>
+        <div class="ip-enables-rows">
+          {enables.map((e) => (
+            <div class="ip-enable-row">
+              <div class="ip-enable-left">
+                <span class="ip-enable-num" style={`color:${e.numColor};`}>{e.num}</span>
+                <h3>{e.title}</h3>
+                <p>{e.lead}</p>
+              </div>
+              <div class="ip-enable-right">
+                {e.items.map((i) => (
+                  <div class="ip-enable-item"><span class="ip-bullet"></span><span>{i}</span></div>
+                ))}
+                <p class="ip-enable-close">{e.close}</p>
+              </div>
+            </div>
+          ))}
+          <div class="ip-enable-rule"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section class="ip-outcomes">
+      <div class="ip-wave ip-wave-g" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-wave ip-wave-h" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-outcomes-inner">
+        <div class="ip-outcomes-title"><span class="ip-eyebrow-rule"></span><h2>Outcomes</h2></div>
+        <div class="ip-outcomes-grid">
+          {outcomes.map((o) => (
+            <div class="ip-outcome-card">
+              <h3>{o.title}</h3>
+              <p>{o.lead}</p>
+              <div class="ip-outcome-items">
+                {o.items.map((i) => (
+                  <div class="ip-outcome-item"><span class="ip-bullet"></span><span>{i}</span></div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Why it works -->
+    <section class="ip-why">
+      <div class="ip-wave ip-wave-i" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-why-glow" aria-hidden="true"></div>
+      <div class="ip-why-inner">
+        <div class="ip-why-copy">
+          <h2>Why it works</h2>
+          <p class="ip-why-statement">It adds capability and doesn't require transformation.</p>
+        </div>
+        <div class="ip-why-grid">
+          {whyItWorks.map((w) => <div class="ip-why-tag">{w}</div>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="ip-faq">
+      <div class="ip-wave ip-wave-j" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-wave ip-wave-k" aria-hidden="true"><ParticleWave /></div>
+      <div class="ip-faq-inner">
+        <h2>Frequently Asked Questions</h2>
+        <div class="ip-faq-grid">
+          {faqs.map((f) => (
+            <div class="ip-faq-card"><h3>{f.q}</h3><p>{f.a}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <PlatformCTA line1="Turn Engagement" line2="into Revenue" />
+  </div>
+</Base>
+
+<style>
+  .ip { position: relative; }
+  .uv { color: var(--ultra-violet); }
+  .lilac { color: var(--text-lilac); }
+  .btn-snow { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 15px 30px; border-radius: 100px; }
+  .btn-snow:hover { color: var(--snow); background: var(--ultra-violet); }
+  .ip-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .ip-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
+  .ip-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .ip-strong { font-family: var(--font-display); font-weight: 700; }
+  .ip-bullet { margin-top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--ultra-violet); flex: 0 0 auto; }
+  .ip-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+
+  /* Hero */
+  .ip-hero { position: relative; overflow: hidden; padding: clamp(46px, 6vw, 96px) clamp(24px, 6vw, 80px) clamp(36px, 4.5vw, 68px); }
+  .ip-hero-glow { position: absolute; left: -14%; top: -30%; width: 80%; height: 150%; z-index: 0; pointer-events: none; background: radial-gradient(820px 540px at 24% 30%, rgba(123,47,226,0.26), transparent 70%); }
+  .ip-hero-wave { position: absolute; right: -8%; bottom: -34%; width: min(52vw, 600px); height: min(30vw, 330px); z-index: 0; opacity: 0.32; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .ip-hero-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .ip-hero-copy { min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+  .ip-hero-copy h1 { margin: 0; font-family: var(--font-display); font-size: clamp(30px, 4.2vw, 56px); line-height: 1.04; font-weight: 800; letter-spacing: -0.034em; max-width: 16ch; text-wrap: pretty; }
+  .ip-hero-lead { margin: 0; font-family: var(--font-display); font-size: clamp(18px, 2vw, 24px); line-height: 1.32; font-weight: 700; letter-spacing: -0.02em; color: var(--snow); max-width: 26ch; text-wrap: pretty; }
+  .ip-hero-points { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ip-pill { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); border: 1px solid var(--hairline-dashed); border-radius: 100px; padding: 8px 15px; }
+  .ip-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px; }
+
+  .ip-hero-mockwrap { position: relative; min-width: 0; margin-right: calc(clamp(24px, 6vw, 80px) * -1); }
+  .ip-mock { position: relative; width: calc(100% + clamp(40px, 10vw, 220px)); transform: perspective(1200px) rotateY(-15deg) rotateX(1deg) scale(1.06); transform-origin: left center; border: 1px solid var(--hairline-2); border-radius: 18px 0 0 18px; overflow: hidden; background: var(--night-2); box-shadow: -30px 40px 110px rgba(0,0,0,0.7); }
+  .ip-mock-bar { display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-bottom: 1px solid var(--hairline); background: var(--night); }
+  .ip-mock-dot { width: 9px; height: 9px; border-radius: 50%; background: #3A3E46; }
+  .ip-mock-url { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); }
+  .ip-mock-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); }
+  .ip-mock-panel { min-width: 0; overflow: hidden; border-right: 1px solid var(--hairline); padding: 16px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .ip-mock-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ip-tab { font-size: 11px; line-height: 16px; color: #B9BCC4; background: rgba(247,247,245,0.06); padding: 5px 11px; border-radius: 100px; }
+  .ip-tab.active { font-weight: 600; color: var(--snow); background: var(--ultra-violet); }
+  .ip-msg { background: var(--night-3); border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 18px; color: #D9DBE0; }
+  .ip-msg.accent { background: var(--ultra-violet); color: var(--snow); }
+  .ip-mock-watching { margin-top: auto; font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+  .ip-mock-video { position: relative; min-width: 0; aspect-ratio: 16 / 11; }
+  .ip-mock-video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ip-mock-video-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,15,0.2), rgba(11,11,15,0.55)); }
+  .ip-mock-live { position: absolute; left: 14px; top: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--snow); background: rgba(214,32,134,0.9); padding: 5px 10px; border-radius: 100px; }
+
+  /* The Reality */
+  .ip-reality { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ip-wave-a { left: -14%; top: 32%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.24; }
+  .ip-wave-b { right: -12%; top: -28%; width: min(50vw, 580px); height: min(30vw, 330px); opacity: 0.28; }
+  .ip-reality-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 48px); }
+  .ip-reality-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: clamp(24px, 3.4vw, 56px); align-items: start; }
+  .ip-reality-title { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+  .ip-reality-title h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 50px); line-height: 1.05; font-weight: 800; letter-spacing: -0.032em; max-width: 18ch; text-wrap: pretty; }
+  .ip-reality-intro { min-width: 0; display: flex; flex-direction: column; gap: 16px; border-left: 2px solid var(--ultra-violet); padding-left: clamp(18px, 2vw, 28px); }
+  .ip-reality-intro p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
+  .ip-reality-intro .ip-strong { font-size: 17px; line-height: 26px; color: var(--ink); }
+  .ip-conseq { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(12px, 1.6vw, 18px); }
+  .ip-conseq-card { background: #FFFFFF; border: 1px solid var(--snow-line-3); border-radius: 16px; padding: clamp(20px, 2.2vw, 28px); display: flex; flex-direction: column; gap: 12px; }
+  .ip-conseq-num { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; color: var(--ultra-violet); }
+  .ip-conseq-card p { margin: 0; font-size: 17px; line-height: 27px; color: var(--ink); text-wrap: pretty; }
+  .ip-reality-close { margin: 0; font-family: var(--font-display); font-size: clamp(18px, 2.1vw, 26px); line-height: 1.34; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); max-width: 34ch; text-wrap: pretty; }
+
+  /* What is it */
+  .ip-what { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ip-wave-c { right: -12%; bottom: -24%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.26; }
+  .ip-wave-d { left: -12%; bottom: -30%; width: min(52vw, 600px); height: min(30vw, 330px); opacity: 0.28; }
+  .ip-what-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(760px 420px at 78% 12%, rgba(123,47,226,0.16), transparent 72%); }
+  .ip-what-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .ip-what-head { display: flex; flex-direction: column; gap: 16px; max-width: 860px; }
+  .ip-what-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .ip-what-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--text-muted); text-wrap: pretty; }
+  .ip-strong.snow { font-size: 17px; line-height: 26px; color: var(--snow); }
+  .ip-twoways { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .ip-twoway-card { background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 12px; }
+  .ip-twoway-card:hover { border-color: rgba(123,47,226,0.5); }
+  .ip-twoway-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--text-lilac); }
+  .ip-twoway-card p { margin: 0; font-family: var(--font-display); font-size: 19px; line-height: 1.3; font-weight: 700; color: var(--snow); text-wrap: pretty; }
+  .ip-what-close { margin: 0; font-size: 16px; line-height: 27px; color: var(--text-muted); max-width: 70ch; text-wrap: pretty; }
+
+  /* What it enables */
+  .ip-enables { position: relative; overflow: hidden; background: var(--night-4); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
+  .ip-wave-e { right: -10%; top: -22%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.24; }
+  .ip-wave-f { left: -10%; bottom: -34%; width: min(54vw, 620px); height: min(30vw, 340px); opacity: 0.26; }
+  .ip-enables-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .ip-enables-head { display: flex; flex-direction: column; gap: 16px; max-width: 860px; }
+  .ip-enables-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .ip-enables-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--text-muted); text-wrap: pretty; }
+  .ip-enables-rows { display: flex; flex-direction: column; }
+  .ip-enable-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: clamp(18px, 3vw, 48px); align-items: start; padding: clamp(24px, 3vw, 40px) 0; border-top: 1px solid var(--hairline); }
+  .ip-enable-left { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .ip-enable-num { font-family: var(--font-display); font-size: clamp(30px, 3.6vw, 52px); line-height: 0.9; font-weight: 800; letter-spacing: -0.04em; }
+  .ip-enable-left h3 { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2vw, 26px); line-height: 1.18; font-weight: 700; letter-spacing: -0.022em; color: var(--snow); text-wrap: pretty; }
+  .ip-enable-left p { margin: 0; font-size: 15px; line-height: 25px; color: var(--text-muted); text-wrap: pretty; }
+  .ip-enable-right { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ip-enable-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 24px; color: #D9DBE0; }
+  .ip-enable-close { margin: 8px 0 0; font-size: 15px; line-height: 25px; color: var(--text-lilac); text-wrap: pretty; }
+  .ip-enable-rule { border-top: 1px solid var(--hairline); }
+
+  /* Outcomes */
+  .ip-outcomes { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ip-wave-g { left: -14%; top: 32%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.24; }
+  .ip-wave-h { left: -10%; bottom: -32%; width: min(50vw, 560px); height: min(28vw, 320px); opacity: 0.26; }
+  .ip-outcomes-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .ip-outcomes-title { display: flex; align-items: center; gap: 12px; }
+  .ip-outcomes-title h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .ip-outcomes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .ip-outcome-card { background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 18px; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 14px; }
+  .ip-outcome-card:hover { border-color: var(--ultra-violet); }
+  .ip-outcome-card h3 { margin: 0; font-family: var(--font-display); font-size: 20px; line-height: 1.22; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+  .ip-outcome-card > p { margin: 0; font-size: 15px; line-height: 24px; color: var(--ink-2); text-wrap: pretty; }
+  .ip-outcome-items { display: flex; flex-direction: column; gap: 9px; padding-top: 4px; border-top: 1px solid var(--snow-line-2); }
+  .ip-outcome-item { display: flex; align-items: flex-start; gap: 11px; font-size: 15px; line-height: 24px; color: var(--ink); }
+
+  /* Why it works */
+  .ip-why { position: relative; overflow: hidden; background: var(--night); padding: clamp(56px, 7vw, 96px) clamp(24px, 6vw, 80px); }
+  .ip-wave-i { right: -10%; top: -30%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.26; }
+  .ip-why-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(700px 400px at 18% 20%, rgba(123,47,226,0.20), transparent 72%); }
+  .ip-why-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(24px, 3.4vw, 56px); align-items: center; }
+  .ip-why-copy { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .ip-why-copy h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .ip-why-statement { margin: 0; font-family: var(--font-display); font-size: clamp(18px, 2vw, 24px); line-height: 1.34; font-weight: 700; letter-spacing: -0.02em; color: var(--text-lilac); max-width: 26ch; text-wrap: pretty; }
+  .ip-why-grid { min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; }
+  .ip-why-tag { background: var(--night-2); border: 1px solid var(--hairline); border-radius: 14px; padding: 18px 20px; font-size: 15px; line-height: 23px; color: var(--snow); }
+
+  /* FAQ */
+  .ip-faq { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
+  .ip-wave-j { right: -10%; bottom: -24%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.22; }
+  .ip-wave-k { left: -8%; top: -26%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.24; }
+  .ip-faq-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+  .ip-faq-inner h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .ip-faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .ip-faq-card { background: var(--night-2); border: 1px solid var(--hairline); border-radius: 16px; padding: clamp(20px, 2.2vw, 28px); display: flex; flex-direction: column; gap: 10px; }
+  .ip-faq-card:hover { border-color: rgba(123,47,226,0.5); }
+  .ip-faq-card h3 { margin: 0; font-family: var(--font-display); font-size: 17px; line-height: 1.3; font-weight: 700; color: var(--snow); text-wrap: pretty; }
+  .ip-faq-card p { margin: 0; font-size: 14px; line-height: 23px; color: var(--text-muted); text-wrap: pretty; }
+
+</style>

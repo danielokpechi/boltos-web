@@ -1,0 +1,384 @@
+---
+import Base from '../layouts/Base.astro';
+import ParticleWave from '../components/ParticleWave.astro';
+import { routes } from '../data/nav.js';
+
+const challenge = [
+  { num: '01', numColor: '#7B2FE2', title: 'Hypercompetitive Landscape.', copy: "Media brands are in a tough spot, user churn is up, the old revenue models are broken, and technology is often more barrier than booster. BoltOS has been experimenting and building since 2017 with the objective of solving these challenges. Here's what we did:" },
+  { num: '02', numColor: '#D62086', title: 'The World of Content Is Changing', copy: "And BoltOS is ready for it. We bring together years of pioneering innovation combined with a culture of technical excellence and experimentation. Our passion is taking an over-the-horizon view at what's next in media, content, and entertainment, then finding ways to shape that future." },
+  { num: '03', numColor: '#101014', title: 'Experiential Media For TV', copy: "In today's crowded content landscape, it's harder than ever to keep viewers watching, engaging, and coming back. Production quality, quantity, and investment are no longer enough to retain and monetize audiences sustainably. When you can't compete on volume or spend, you have to compete on the experience you deliver. That's where the BoltOS Immersive Platform comes in." },
+];
+
+const slugOf = (n) => n.toLowerCase().replace(/[^a-z]+/g, '-');
+const teamRaw = [
+  ['Jamal Hassim', 'CEO & Co Founder', 'Jamal is the Co-Founder and CEO of BoltOS, where he leads our corporate functions including regulation, compliance, and finance. A multi-faceted, lifelong entrepreneur, Jamal has invested, restructured, launched, and operated various television and radio networks across the world, including the TV5 Group in the Philippines, Singapore Press Holdings Group in Singapore, JakTV in Indonesia, and the Media Prima Group across Malaysia and Africa. Jamal is based in London.', null],
+  ['John Peterson Clark', 'Chief Technology Officer', 'John is the CTO at BoltOS. Previously, he worked with Boeing Australia and Ford Motor Company on industrial automation projects. John is also an early community member of Switcheo, a blockchain think tank.', null],
+  ['Anwar Arieff', 'Director, Corporate Development', 'Anwar is the Director, Corporate Development at BoltOS. Anwar graduated with a Master of Science in Medical Biotechnology and Business Management from the University of Warwick.', null],
+  ['Sylvia Cebanu', 'Director, Finance', 'Sylvia leads Revenue and Growth at Bolt, turning product innovation into scalable revenue across global markets. As Director Finance, she aligns product, sales, and monetization to drive adoption and unlock new growth engines. She brings a data-driven approach to building sustainable, product-led revenue systems.', 'https://www.linkedin.com/in/sylvia-cebanu-09171b145'],
+  ['Michelle Peterson Clark', 'Director, People, Culture & Special Projects', 'As Dir People, Culture & Special Projects, Michelle drives high-impact initiatives that connect product, partnerships, and marketing, moving from concept to execution. Additionally, she is steer heading our People & Culture initiatives. With 30+ years across media, marketing, and communications, including fractional CMO roles, she brings strategic clarity, sharp messaging, and strong stakeholder management to deliver outcomes that strengthen growth, alignment, and customer experience.', 'https://www.linkedin.com/in/michellepetersonclark/'],
+  ['Jason Nellis', 'Director, Commercial & Innovation', "Jason is a product and go-to-market strategist with deep experience building and scaling media, creator, and platform businesses. He has held product and strategy leadership roles at Hulu, PBS, VIZIO, Packagd (acquired by Meta), and Meta, where he served as Founder in Residence for Meta's internal incubator. His work has spanned product development, monetisation strategy, creator partnerships, and platform innovation. At BoltOS, Jason leads Innovation across creators, platforms, and partners, translating real-world workflows, constraints, and monetisation requirements into clear product direction.", 'https://www.linkedin.com/in/jasonnellis/'],
+  ['Johan Jamal', 'Director, Product & Operations', 'Johan connects the dots across the BoltOS ecosystem, ensuring a great product experience for our ecosystem of users and partners. Johan graduated with a BA in Communications from the University of Wisconsin-Madison.', null],
+  ['Avinash Kannan', 'Head of UX & Design', 'Avinash is Head of UX & Design at BoltOS. Avinash was previously at Playtonia Esports and a Designer for the digital wing of Sun News.', null],
+  ['Zain Bin Kafeel', 'DevOps Lead', 'As a DevOps Lead, Zain develops scalable infrastructure solutions for enterprise applications. With a strong background in full-stack development, he is dedicated to designing robust systems that enhance operational efficiency. Zain is passionate about leveraging technology to drive business success, ensuring seamless integration between development and operations teams to deliver high-performing, scalable solutions.', null],
+];
+const order = ['Jamal Hassim', 'Anwar Arieff', 'Sylvia Cebanu', 'Michelle Peterson Clark', 'Avinash Kannan', 'Johan Jamal', 'Zain Bin Kafeel', 'John Peterson Clark', 'Jason Nellis'];
+const team = [...teamRaw].sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]))
+  .map(([name, role, bio, href]) => ({ name, role, bio, href, src: `/assets/team/${slugOf(name)}.png` }));
+
+const faceFile = { 'Jason Nellis': 'jason-nellis', 'Anwar Arieff': 'anwar-arieff', 'Jamal Hassim': 'jamal-hassim', Zain: 'zain-bin-kafeel', 'Avinash Kannan': 'avinash-kannan' };
+const voices = [
+  ["I've spent my career bridging media, technology, and creators to turn audiences into lasting value.", 'Jason Nellis', 'Director of Innovation', 'Lovers and madmen have such seething brains, such shaping fantasies, that apprehend more than cool reason ever comprehends.'],
+  ['I want to operate at the cutting edge of media and technological advancement.', 'Anwar Arieff', 'VP, Operations', 'For which they gave the last full measure of devotion, Abraham Lincoln'],
+  ['I want to operate at the cutting edge of media and technological advancement.', 'Jamal Hassim', 'CEO & Co Founder', 'We exist to redefine the limits of media-technology and drive transformational change across the industry'],
+  ['Every interaction becomes data, and every data point becomes opportunity inside BoltOS.', 'Zain', 'Head of DevOps', 'I believe in the sector, the high calibre of the management team, and the services we offer.'],
+  ['To be a significant part of a cause by designing an immersive and seamless experience for everyone worldwide.', 'Avinash Kannan', 'VP, User Experience and Design', 'The purpose of life is a life with a purpose.'],
+].map(([head, name, role, quote]) => ({ head, name, role, quote: `“${quote}”`, src: `/assets/team/${faceFile[name]}.png` }));
+
+const heritageBase = ['Hulu', 'PBS', 'VIZIO', 'Meta', 'Bloomberg', 'Media Prima', 'TV5', 'Boeing', 'Ford'];
+const heritage = [...heritageBase, ...heritageBase];
+
+const timeline = [
+  ['2017', 'Founded the company.'],
+  ['2018', 'Bolt+ emerged as a next-generation streaming platform designed to elevate audience engagement and create truly immersive viewing experiences. Initially developed as standalone mobile and web applications, Bolt+ successfully integrated directly into telecommunication networks across Asia-Pacific, establishing a proven foundation for scalable, operator-grade streaming solutions.'],
+  ['2019', 'We debuted our large-scale live sports capabilities through our successful carriage of 2019 Rugby World Cup and Cricket World Cup content, establishing our expertise in delivering premium sporting content to global audiences.'],
+  ['2021', 'We revolutionized the smart TV landscape by launching BoltOS on Hisense and VIDAA devices, catalysing an ecosystem expansion that attracted global media powerhouses including Al Jazeera, Deutsche Welle, Euronews, and One Football.'],
+  ['2022', 'Our reimagined Bolt+ streaming platform delivers breakthrough immersive streaming experiences, creating a unified destination where emerging creators and media giants converge, fundamentally redefining how audiences connect with content.'],
+  ['2023', 'With the release of Immersive Platform 1.0, we set the foundation for next-generation media tools that transform content engagement. This innovation propelled strategic partnerships with Bloomberg and OTTera, who recognised BoltOS as the definitive platform for content delivery and monetisation.'],
+  ['2024', "Our strategic evolution to SaaS delivery has unlocked exponential growth opportunities, while securing transformative partnerships with industry leaders including VIZIO, TheSoul Publishing, Netrange, and TitanOS, positioning BoltOS as the platform powering the future of media. We strengthened our track record in high-stakes sporting event delivery through successful deployments with the Hankook 24 Hours Dubai and the 2024 Women's Baseball and Softball World Cups."],
+].map(([year, copy]) => ({ year, copy }));
+
+const investors = ['Primal Capital', 'Trovio Group'];
+const backers = [
+  { quote: "At BoltOS, we don't just talk about diversity and inclusion, we live and breathe it. We believe that creating a culture where everyone feels valued, respected, and empowered is not only the right thing to do but also the key to driving innovation and success.", by: 'Uzair, Lead, Boltos' },
+  { quote: "At Primal Capital, we pride ourselves on investing in companies leading in technology. We're thrilled to support BoltOS as they deliver innovative AI, blockchain, and immersive streaming solutions.", by: 'Sheikh Mansoor, CEO, Trovio Group' },
+];
+---
+<Base title="About Us, BoltOS">
+  <div class="ab">
+    <!-- Hero -->
+    <header class="ab-hero">
+      <div class="ab-hero-glow" aria-hidden="true"></div>
+      <div class="ab-hero-wave" aria-hidden="true"><ParticleWave /></div>
+      <span class="ab-hero-ghost" aria-hidden="true">2017</span>
+      <div class="ab-hero-inner">
+        <div class="ab-eyebrow"><span class="ab-eyebrow-rule"></span><span class="lilac">About Us</span></div>
+        <h1>The world of content is at a critical juncture and <span class="uv">BoltOS is helping to shape its future.</span></h1>
+        <div class="ab-hero-introwrap">
+          <p class="ab-hero-intro">For sports rights holders and media owners, BoltOS is the audience revenue engine that transforms viewer interaction into measurable sponsorship and advertising revenue. Unlike engagement tools or video platforms, BoltOS integrates seamlessly into existing ecosystems, enabling IP owners to activate, monetize, retain and own their audience without disrupting their current stack.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- The Challenge -->
+    <section class="ab-chal">
+      <div class="ab-wave ab-wave-a" aria-hidden="true"><ParticleWave /></div>
+      <div class="ab-chal-inner">
+        <div class="ab-chal-head">
+          <div class="ab-chal-title">
+            <div class="ab-eyebrow"><span class="ab-eyebrow-rule"></span><span class="uv">The Challenge</span></div>
+            <h2>Hypercompetitive Landscape. Content Fatigue. Declining Revenue.</h2>
+            <p class="ab-chal-q">How do you keep up?</p>
+          </div>
+          <div class="ab-chal-intro">
+            <p>Media brands are in a tough spot, user churn is up, the old revenue models are broken, and technology is often more barrier than booster.</p>
+            <p>BoltOS has been experimenting and building since 2017 with the objective of solving these challenges.</p>
+            <p class="ab-strong">Here's what we did:</p>
+          </div>
+        </div>
+        <div class="ab-chal-rows">
+          {challenge.map((c) => (
+            <div class="ab-chal-row">
+              <div class="ab-chal-row-l">
+                <span class="ab-chal-num" style={`color:${c.numColor};`}>{c.num}</span>
+                <h3>{c.title}</h3>
+              </div>
+              <p>{c.copy}</p>
+            </div>
+          ))}
+          <div class="ab-chal-rule"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="ab-team">
+      <div class="ab-team-grid-bg" aria-hidden="true"></div>
+      <div class="ab-team-inner">
+        <div class="ab-team-head">
+          <div class="ab-mono lilac">Our Team</div>
+          <h2>BoltOS, Powered by a Legacy of Innovation and Real-World Impact</h2>
+          <p>Based in London, United Kingdom with offices in Singapore and Malaysia, BoltOS taps into a global talent pool to bring together the best in engineering, web development, media, content, and more.</p>
+          <p>Together, we push the boundaries of what's possible with media, while remaining grounded in what you need to thrive in the shifting content landscape.</p>
+        </div>
+        <div class="ab-team-grid">
+          {team.map((t) => (
+            <div class="ab-member">
+              <div class="ab-member-photo"><img src={t.src} alt={t.name} /></div>
+              <div class="ab-member-body">
+                <h3>{t.name}</h3>
+                <div class="ab-member-role">{t.role}</div>
+                <p>{t.bio}</p>
+                {t.href && <a href={t.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.name} on LinkedIn`} class="ab-member-link">LinkedIn →</a>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Work / voices carousel -->
+    <section class="ab-work">
+      <div class="ab-wave ab-wave-b" aria-hidden="true"><ParticleWave /></div>
+      <div class="ab-work-inner">
+        <div class="ab-work-head">
+          <div class="ab-mono lilac">Our Work</div>
+          <h2>Media Brands and Content Partners are Already Harnessing BoltOS' Approach to Experiential Media</h2>
+          <p>From publishing content directly on our showcase platform, Bolt+, to partnering with us to distribute our content to a global audience through integrations, these brands have seen up close how experiential media can impact their audiences.</p>
+        </div>
+        <div class="ab-voice" data-voices={JSON.stringify(voices)}>
+          <div class="ab-voice-photo">
+            <img id="ab-voice-img" src={voices[0].src} alt={voices[0].name} />
+            <span class="ab-voice-scrim" aria-hidden="true"></span>
+          </div>
+          <div class="ab-voice-card">
+            <p class="ab-voice-head" id="ab-voice-head">{voices[0].head}</p>
+            <div class="ab-voice-id">
+              <span class="ab-voice-name" id="ab-voice-name">{voices[0].name}</span>
+              <span class="ab-voice-role" id="ab-voice-role">{voices[0].role}</span>
+            </div>
+            <p class="ab-voice-quote" id="ab-voice-quote">{voices[0].quote}</p>
+            <div class="ab-voice-nav">
+              <button type="button" id="ab-voice-prev" aria-label="Previous quote" class="ab-voice-btn">‹</button>
+              <button type="button" id="ab-voice-next" aria-label="Next quote" class="ab-voice-btn">›</button>
+              <span class="ab-voice-count" id="ab-voice-count">1 / {voices.length}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heritage marquee -->
+    <div class="ab-heritage">
+      <div class="ab-heritage-label">Bringing experience from</div>
+      <div class="ab-heritage-track">
+        {heritage.map((h) => <span>{h}</span>)}
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <section class="ab-timeline">
+      <div class="ab-timeline-inner">
+        <div class="ab-timeline-head">
+          <div class="ab-mono uv">Our Timeline</div>
+          <h2>Where We've Been and Where We're Going</h2>
+        </div>
+        <div class="ab-timeline-rows">
+          {timeline.map((t) => (
+            <div class="ab-timeline-row">
+              <div class="ab-timeline-year"><span class="ab-timeline-dot"></span><span>{t.year}</span></div>
+              <p>{t.copy}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Diversity & Inclusion -->
+    <section class="ab-di">
+      <div class="ab-di-glow" aria-hidden="true"></div>
+      <div class="ab-di-inner">
+        <div class="ab-di-head">
+          <div class="ab-mono lilac">Diversity &amp; Inclusion</div>
+          <h2>A Diverse and Inclusive Community</h2>
+          <p>At BoltOS, we don't just talk about diversity and inclusion, we live and breathe it.</p>
+          <p>We believe that creating a culture where everyone feels valued, respected, and empowered is not only the right thing to do but also the key to driving innovation and success.</p>
+        </div>
+        <div class="ab-di-map">
+          <p class="ab-di-map-stat">A globally distributed team across 18+ nationalities, headquartered in London, UK</p>
+          <img src="/assets/photos/world-map-violet.png" alt="BoltOS team locations worldwide" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Backed by -->
+    <section class="ab-backed">
+      <div class="ab-backed-inner">
+        <div class="ab-mono uv">Backed by</div>
+        <div class="ab-investors">{investors.map((i) => <span>{i}</span>)}</div>
+        <div class="ab-backers">
+          {backers.map((b) => (
+            <div class="ab-backer"><p>{b.quote}</p><div class="ab-backer-by">{b.by}</div></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="ab-cta">
+      <div class="ab-cta-glow" aria-hidden="true"></div>
+      <div class="ab-cta-inner">
+        <h2>Let's shape what comes next.</h2>
+        <a href={routes.bookDemo} class="ab-cta-btn">Book a Demo</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  @keyframes aboutMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ab { position: relative; }
+  .uv { color: var(--ultra-violet); }
+  .lilac { color: var(--text-lilac); }
+  .ab-mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .ab-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .ab-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
+  .ab-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .ab-strong { font-family: var(--font-display); font-weight: 700; }
+  .ab-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+
+  /* Hero */
+  .ab-hero { position: relative; overflow: hidden; padding: clamp(46px, 6vw, 96px) clamp(24px, 6vw, 80px) clamp(32px, 4vw, 60px); }
+  .ab-hero-glow { position: absolute; left: -14%; top: -30%; width: 70%; height: 150%; z-index: 0; pointer-events: none; background: radial-gradient(760px 520px at 20% 30%, rgba(123,47,226,0.26), transparent 70%); }
+  .ab-hero-wave { position: absolute; right: -6%; bottom: -30%; width: min(50vw, 560px); height: min(30vw, 320px); z-index: 0; opacity: 0.32; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .ab-hero-ghost { position: absolute; right: clamp(10px, 3vw, 60px); top: clamp(4px, 2vw, 24px); z-index: 1; font-family: var(--font-display); font-size: clamp(90px, 17vw, 240px); line-height: 0.8; font-weight: 800; letter-spacing: -0.06em; color: rgba(247,247,245,0.035); pointer-events: none; }
+  .ab-hero-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+  .ab-hero-inner h1 { margin: 0; font-family: var(--font-display); font-size: clamp(34px, 6.2vw, 86px); line-height: 0.98; font-weight: 800; letter-spacing: -0.042em; max-width: 15ch; text-wrap: pretty; }
+  .ab-hero-introwrap { display: flex; justify-content: flex-end; }
+  .ab-hero-intro { margin: 0; width: min(100%, 560px); font-size: 15px; line-height: 1.75; color: var(--text-muted); border-left: 2px solid var(--ultra-violet); padding: 4px 0 4px clamp(18px, 2vw, 26px); text-wrap: pretty; }
+
+  /* Challenge */
+  .ab-chal { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ab-wave-a { left: -12%; top: -30%; width: min(52vw, 620px); height: min(32vw, 360px); opacity: 0.20; }
+  .ab-chal-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 3.6vw, 52px); }
+  .ab-chal-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: clamp(24px, 3.4vw, 56px); align-items: start; }
+  .ab-chal-title { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  .ab-chal-title .ab-eyebrow span:last-child { color: var(--ultra-violet); }
+  .ab-chal-title h2 { margin: 0; font-family: var(--font-display); font-size: clamp(30px, 3.8vw, 52px); line-height: 1.04; font-weight: 800; letter-spacing: -0.032em; text-wrap: pretty; }
+  .ab-chal-q { margin: 0; font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; color: var(--ultra-violet); }
+  .ab-chal-intro { display: flex; flex-direction: column; gap: 16px; min-width: 0; border-left: 2px solid var(--ultra-violet); padding-left: clamp(18px, 2vw, 28px); }
+  .ab-chal-intro p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
+  .ab-chal-intro .ab-strong { font-size: 18px; line-height: 26px; color: var(--ink); }
+  .ab-chal-rows { display: flex; flex-direction: column; }
+  .ab-chal-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: clamp(16px, 3vw, 48px); align-items: start; padding: clamp(24px, 3vw, 40px) 0; border-top: 1px solid var(--snow-line-3); }
+  .ab-chal-row:hover { background: rgba(123,47,226,0.05); }
+  .ab-chal-row-l { display: flex; align-items: baseline; gap: 16px; min-width: 0; }
+  .ab-chal-num { font-family: var(--font-display); font-size: clamp(36px, 4.4vw, 62px); line-height: 0.9; font-weight: 800; letter-spacing: -0.04em; }
+  .ab-chal-row-l h3 { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2vw, 26px); line-height: 1.16; font-weight: 700; letter-spacing: -0.022em; color: var(--ink); text-wrap: pretty; }
+  .ab-chal-row > p { margin: 0; min-width: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
+
+  /* Team */
+  .ab-team { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ab-team-grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, #1A1D23 1px, transparent 1px); background-size: 110px 110px; opacity: 0.5; }
+  .ab-team-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 3.6vw, 48px); }
+  .ab-team-head { display: flex; flex-direction: column; gap: 16px; max-width: 900px; }
+  .ab-team-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; font-weight: 800; letter-spacing: -0.028em; }
+  .ab-team-head p { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-muted); text-wrap: pretty; }
+  .ab-team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .ab-member { display: flex; flex-direction: column; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; }
+  .ab-member:hover { border-color: rgba(123,47,226,0.5); }
+  .ab-member-photo { position: relative; aspect-ratio: 4 / 5; background: var(--night); }
+  .ab-member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ab-member-body { display: flex; flex-direction: column; gap: 10px; padding: 20px; }
+  .ab-member-body h3 { margin: 0; font-family: var(--font-display); font-size: 18px; line-height: 1.24; font-weight: 700; color: var(--snow); }
+  .ab-member-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lilac); }
+  .ab-member-body p { margin: 0; font-size: 14px; line-height: 23px; color: var(--text-muted); text-wrap: pretty; }
+  .ab-member-link { align-self: flex-start; font-size: 13px; line-height: 20px; color: var(--text-lilac); }
+  .ab-member-link:hover { color: var(--snow); }
+
+  /* Our Work / voices */
+  .ab-work { position: relative; overflow: hidden; background: var(--night-4); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
+  .ab-wave-b { right: -10%; top: -30%; width: min(50vw, 560px); height: min(30vw, 340px); opacity: 0.26; }
+  .ab-work-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); }
+  .ab-work-head { display: flex; flex-direction: column; gap: 16px; max-width: 900px; }
+  .ab-work-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; font-weight: 800; letter-spacing: -0.028em; }
+  .ab-work-head p { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-muted); text-wrap: pretty; }
+  .ab-voice { position: relative; display: flex; flex-wrap: wrap; justify-content: flex-end; min-height: clamp(320px, 38vw, 470px); }
+  .ab-voice-photo { position: relative; margin-left: auto; width: min(100%, 400px); aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; border: 1px solid var(--hairline); background: var(--night-2); }
+  .ab-voice-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ab-voice-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,14,18,0.05), rgba(14,14,18,0.45)); }
+  .ab-voice-card { position: relative; z-index: 2; align-self: flex-end; width: min(100%, 520px); margin: clamp(-120px, -9vw, -40px) auto 0 0; background: var(--snow); color: var(--ink); border-radius: 18px; box-shadow: 0 34px 80px rgba(0,0,0,0.6); padding: clamp(24px, 3vw, 38px); display: flex; flex-direction: column; gap: 16px; }
+  .ab-voice-head { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2.1vw, 26px); line-height: 1.24; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty; }
+  .ab-voice-id { display: flex; flex-direction: column; gap: 2px; }
+  .ab-voice-name { font-family: var(--font-display); font-size: 20px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; }
+  .ab-voice-role { font-size: 14px; line-height: 20px; color: #5A6069; }
+  .ab-voice-quote { margin: 0; font-size: 15px; line-height: 25px; color: var(--ink-2); text-wrap: pretty; }
+  .ab-voice-nav { display: flex; align-items: center; gap: 10px; padding-top: 6px; }
+  .ab-voice-btn { cursor: pointer; width: 38px; height: 38px; border-radius: 50%; border: 1px solid #D8D5D0; background: none; font-size: 15px; color: var(--ink); }
+  .ab-voice-btn:hover { background: var(--ultra-violet); border-color: var(--ultra-violet); color: var(--snow); }
+  .ab-voice-count { margin-left: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-dim); }
+
+  /* Heritage */
+  .ab-heritage { position: relative; overflow: hidden; background: var(--page); padding: clamp(30px, 4vw, 52px) 0; border-top: 1px dashed var(--hairline-dashed); border-bottom: 1px dashed var(--hairline-dashed); }
+  .ab-heritage-label { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); padding-bottom: 20px; }
+  .ab-heritage-track { display: flex; gap: 56px; width: max-content; animation: aboutMarquee 34s linear infinite; align-items: center; font-family: var(--font-display); font-size: clamp(15px, 1.7vw, 20px); font-weight: 700; color: var(--text-dim); }
+
+  /* Timeline */
+  .ab-timeline { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ab-timeline-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); }
+  .ab-timeline-head { display: flex; flex-direction: column; gap: 14px; }
+  .ab-timeline-head .ab-mono { color: var(--ultra-violet); }
+  .ab-timeline-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 46px); line-height: 1.1; font-weight: 800; letter-spacing: -0.028em; }
+  .ab-timeline-rows { display: flex; flex-direction: column; }
+  .ab-timeline-row { display: flex; flex-wrap: wrap; gap: clamp(16px, 3vw, 44px); align-items: flex-start; padding: clamp(20px, 2.4vw, 30px) 0; border-top: 1px solid var(--snow-line-3); }
+  .ab-timeline-year { flex: 0 0 auto; min-width: 110px; display: flex; align-items: center; gap: 12px; }
+  .ab-timeline-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ultra-violet); }
+  .ab-timeline-year span:last-child { font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 34px); line-height: 1; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+  .ab-timeline-row p { flex: 1 1 340px; min-width: 0; margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
+
+  /* Diversity & Inclusion */
+  .ab-di { position: relative; overflow: hidden; background: var(--night); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .ab-di-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(800px 460px at 20% 10%, rgba(123,47,226,0.18), transparent 72%), radial-gradient(600px 380px at 88% 84%, rgba(53,199,223,0.10), transparent 74%); }
+  .ab-di-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3vw, 40px); }
+  .ab-di-head { display: flex; flex-direction: column; gap: 16px; max-width: 820px; }
+  .ab-di-head .ab-mono { color: var(--text-lilac); }
+  .ab-di-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; font-weight: 800; letter-spacing: -0.028em; }
+  .ab-di-head p { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-muted); text-wrap: pretty; }
+  .ab-di-map { position: relative; border: 1px solid var(--hairline); border-radius: 20px; overflow: hidden; background: #08060F; padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px) 0; }
+  .ab-di-map-stat { position: relative; z-index: 2; margin: 0 0 clamp(12px, 2vw, 24px); font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 34px); line-height: 1.14; font-weight: 800; letter-spacing: -0.026em; max-width: 24ch; text-wrap: pretty; }
+  .ab-di-map img { display: block; width: 100%; height: auto; }
+
+  /* Backed by */
+  .ab-backed { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 96px) clamp(24px, 6vw, 80px); }
+  .ab-backed-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+  .ab-backed-inner .ab-mono { color: var(--ultra-violet); }
+  .ab-investors { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 56px); align-items: center; font-family: var(--font-display); font-size: clamp(15px, 1.7vw, 20px); font-weight: 700; color: #8A8E97; }
+  .ab-backers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .ab-backer { display: flex; flex-direction: column; gap: 16px; background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 18px; padding: clamp(22px, 2.4vw, 32px); }
+  .ab-backer p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink); text-wrap: pretty; }
+  .ab-backer-by { margin-top: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ultra-violet); }
+
+  /* CTA */
+  .ab-cta { position: relative; overflow: hidden; background: var(--page); padding: clamp(52px, 6vw, 88px) clamp(24px, 6vw, 80px); text-align: center; }
+  .ab-cta-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(700px 380px at 50% 100%, rgba(123,47,226,0.24), transparent 74%); }
+  .ab-cta-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .ab-cta-inner h2 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 42px); line-height: 1.1; font-weight: 800; letter-spacing: -0.028em; }
+  .ab-cta-btn { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 15px 30px; border-radius: 100px; }
+  .ab-cta-btn:hover { color: var(--snow); background: var(--ultra-violet); }
+</style>
+
+<script>
+  // Voices carousel: swap portrait + quote card content on prev/next.
+  const root = document.querySelector('[data-voices]') as HTMLElement | null;
+  if (root) {
+    let voices: { head: string; name: string; role: string; quote: string; src: string }[] = [];
+    try { voices = JSON.parse(root.dataset.voices!); } catch { voices = []; }
+    if (voices.length) {
+      let i = 0;
+      const img = document.getElementById('ab-voice-img') as HTMLImageElement;
+      const head = document.getElementById('ab-voice-head')!;
+      const name = document.getElementById('ab-voice-name')!;
+      const role = document.getElementById('ab-voice-role')!;
+      const quote = document.getElementById('ab-voice-quote')!;
+      const count = document.getElementById('ab-voice-count')!;
+      const render = () => {
+        const v = voices[((i % voices.length) + voices.length) % voices.length];
+        img.src = v.src; img.alt = v.name;
+        head.textContent = v.head; name.textContent = v.name; role.textContent = v.role;
+        quote.textContent = v.quote;
+        count.textContent = `${(((i % voices.length) + voices.length) % voices.length) + 1} / ${voices.length}`;
+      };
+      document.getElementById('ab-voice-prev')!.addEventListener('click', () => { i--; render(); });
+      document.getElementById('ab-voice-next')!.addEventListener('click', () => { i++; render(); });
+    }
+  }
+</script>

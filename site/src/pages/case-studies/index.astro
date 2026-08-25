@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+import ParticleWave from '../../components/ParticleWave.astro';
+import { routes } from '../../data/nav.js';
+
+const cards = [
+  { num: '01', href: routes.hisense, logo: '/assets/logos/hisense.png', name: 'Hisense', bar: '#7B2FE2', hover: '#7B2FE2',
+    copy: 'Bolt+ takes the immersive streaming experience to millions of Hisense TVs globally' },
+  { num: '02', href: routes.bloomberg, logo: '/assets/logos/bloomberg.png', name: 'Bloomberg', bar: '#D62086', hover: '#D62086',
+    copy: "BoltOS takes Bloomberg's award-winning content to the next level." },
+  { num: '03', href: routes.dubai, logo: '/assets/logos/dubai-24h.png', name: 'Dubai 24HR Motor Racing', bar: '#35C7DF', hover: '#35C7DF',
+    copy: 'Racing through a high-octane live event with Dubai 24H Series.' },
+  { num: '04', href: routes.oneFootball, logo: '/assets/logos/one-football.webp', name: 'One Football', bar: '#7B2FE2', hover: '#7B2FE2',
+    copy: 'Powering a global community with the biggest football clubs in the world.' },
+  { num: '05', href: null, logo: '/assets/logos/bridget.png', name: "Bridget's Healthy Kitchen", bar: '#C6ABF5', hover: null,
+    copy: 'A subscriber-only online retreat for health food aficionados, connected through BoltOS.' },
+];
+---
+<Base title="Case Studies, BoltOS">
+  <div class="csi">
+    <header class="csi-hero">
+      <video id="cs-hero-video" playsinline preload="none" poster="/assets/photos/broadcast-still.web.jpg" data-src="/assets/video/case-studies.mp4" class="csi-hero-video"></video>
+      <div class="csi-hero-controls">
+        <button id="cs-play" type="button" aria-label="Play or pause the video" class="csi-ctrl"></button>
+        <button id="cs-mute" type="button" aria-label="Mute or unmute the video" class="csi-ctrl"></button>
+      </div>
+      <div class="csi-hero-scrim" aria-hidden="true"></div>
+    </header>
+
+    <div class="csi-body">
+      <div class="csi-wave csi-wave-tr" aria-hidden="true"><ParticleWave /></div>
+      <div class="csi-wave csi-wave-bl" aria-hidden="true"><ParticleWave /></div>
+      <div class="csi-head">
+        <span class="csi-eyebrow">Partners</span>
+        <h1>Case Studies</h1>
+      </div>
+      <div class="csi-grid">
+        {cards.map((c) => {
+          const inner = (
+            <>
+              <span class="csi-card-ghost">{c.num}</span>
+              <img src={c.logo} alt={c.name} class="csi-card-logo" />
+              <span class="csi-card-bar" style={`background:${c.bar};`}></span>
+              <h2>{c.name}</h2>
+              <p>{c.copy}</p>
+              {c.href && <span class="csi-card-cta">Read the story →</span>}
+            </>
+          );
+          return c.href
+            ? <a href={c.href} class="csi-card" style={`--hover:${c.hover};`}>{inner}</a>
+            : <div class="csi-card">{inner}</div>;
+        })}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .csi { position: relative; }
+  .csi-hero { position: relative; overflow: hidden; z-index: 10; height: clamp(520px, 92vh, 1100px); }
+  .csi-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .csi-hero-controls { position: absolute; right: clamp(16px, 3vw, 32px); top: clamp(80px, 10vw, 120px); z-index: 6; display: flex; gap: 10px; }
+  .csi-ctrl { width: 40px; height: 40px; border: 1px solid rgba(247,247,245,0.28); border-radius: 50%; background: rgba(16,16,20,0.6); backdrop-filter: blur(8px); color: var(--snow); font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .csi-ctrl:hover { background: var(--ultra-violet); border-color: var(--ultra-violet); }
+  .csi-hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(11,11,15,0.26) 0%, rgba(11,11,15,0) 22%, rgba(11,11,15,0) 62%, rgba(14,14,18,0.72) 88%, #0E0E12 100%); }
+
+  .csi-body { position: relative; z-index: 12; overflow: hidden; margin-top: clamp(-200px, -18vh, -90px); padding: 0 var(--edge) clamp(52px, 6.4vw, 100px); }
+  .csi-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .csi-wave-tr { right: -12%; top: -22%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.26; }
+  .csi-wave-bl { left: -12%; bottom: -28%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.22; }
+  .csi-head { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto clamp(30px, 4vw, 56px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+  .csi-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-lilac); }
+  .csi-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(38px, 6vw, 86px); line-height: 1.0; font-weight: 800; letter-spacing: -0.036em; }
+  .csi-grid { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(16px, 2vw, 26px); align-items: stretch; }
+  .csi-card { position: relative; min-width: 0; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 22px; padding: clamp(26px, 3vw, 42px); display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+  a.csi-card:hover { border-color: var(--hover); }
+  .csi-card-ghost { position: absolute; right: -12px; top: -26px; font-family: var(--font-display); font-size: clamp(84px, 10vw, 150px); line-height: 0.8; font-weight: 800; letter-spacing: -0.05em; color: rgba(247,247,245,0.05); }
+  .csi-card-logo { position: relative; width: 72px; height: 72px; border-radius: 14px; object-fit: contain; background: var(--snow); padding: 6px; box-sizing: border-box; display: block; }
+  .csi-card-bar { position: relative; width: 44px; height: 3px; border-radius: 3px; }
+  .csi-card h2 { position: relative; margin: 0; font-family: var(--font-display); font-size: clamp(23px, 2.8vw, 34px); line-height: 1.06; font-weight: 800; letter-spacing: -0.03em; color: var(--snow); text-wrap: pretty; }
+  .csi-card p { position: relative; margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
+  .csi-card-cta { position: relative; margin-top: auto; padding-top: 14px; font-size: 14px; line-height: 21px; font-weight: 600; color: var(--snow); }
+</style>
+
+<script>
+  const el = document.getElementById('cs-hero-video') as HTMLVideoElement | null;
+  if (el && el.dataset.src) {
+    el.muted = true; el.loop = true; el.playsInline = true;
+    let loaded = false, userPaused = false;
+    const load = () => {
+      if (loaded) return; loaded = true;
+      const src = document.createElement('source');
+      src.src = el.dataset.src!; src.type = 'video/mp4';
+      el.appendChild(src); el.load();
+    };
+    const play = document.getElementById('cs-play');
+    const mute = document.getElementById('cs-mute');
+    const sync = () => {
+      if (play) play.innerHTML = el.paused
+        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>'
+        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M7 5h3.2v14H7zM13.8 5H17v14h-3.2z"></path></svg>';
+      if (mute) mute.innerHTML = el.muted
+        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4z"></path><path d="M15.6 9.6l4.8 4.8M20.4 9.6l-4.8 4.8" fill="none" stroke="#F7F7F5" stroke-width="1.8" stroke-linecap="round"></path></svg>'
+        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="#F7F7F5" aria-hidden="true"><path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4z"></path><path d="M15.4 8.4a5 5 0 0 1 0 7.2" fill="none" stroke="#F7F7F5" stroke-width="1.8" stroke-linecap="round"></path><path d="M17.9 6a8.3 8.3 0 0 1 0 12" fill="none" stroke="#F7F7F5" stroke-width="1.8" stroke-linecap="round"></path></svg>';
+    };
+    if (play) play.addEventListener('click', () => {
+      load();
+      if (el.paused) { userPaused = false; el.play().catch(() => {}); }
+      else { userPaused = true; el.pause(); }
+      setTimeout(sync, 60);
+    });
+    if (mute) mute.addEventListener('click', () => { el.muted = !el.muted; sync(); });
+    el.addEventListener('play', sync);
+    el.addEventListener('pause', sync);
+    sync();
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { load(); if (!userPaused) el.play().catch(() => {}); }
+          else if (loaded) el.pause();
+        });
+      }, { threshold: 0.15 });
+      obs.observe(el);
+    } else { load(); }
+  }
+</script>

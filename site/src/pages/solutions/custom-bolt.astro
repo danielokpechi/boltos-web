@@ -1,0 +1,377 @@
+---
+import Base from '../../layouts/Base.astro';
+import ParticleWave from '../../components/ParticleWave.astro';
+import PlatformCTA from '../../components/PlatformCTA.astro';
+import { routes } from '../../data/nav.js';
+
+const heroPoints = ['No streaming dependency', 'No fragmented digital stack', 'You own the relationship from login to transaction'];
+
+const disconnected = [
+  { text: 'Streaming on one platform', accent: '#7B2FE2' },
+  { text: 'Social engagement on another', accent: '#D62086' },
+  { text: 'Commerce elsewhere', accent: '#35C7DF' },
+  { text: 'Data scattered across systems', accent: '#101014' },
+].map((d, i) => ({ ...d, num: '0' + (i + 1) }));
+
+const costs = ['Revenue', 'Data ownership', 'Sponsor leverage', 'Long-term brand equity'];
+
+const stack = [
+  { text: 'Streaming and distribution', layer: 'Delivery', fill: '88%' },
+  { text: 'Identity and access layer', layer: 'Accounts', fill: '72%' },
+  { text: 'Built-in Immersive Platform', layer: 'Engagement', fill: '60%' },
+  { text: 'Commerce enablement', layer: 'Revenue', fill: '46%' },
+  { text: 'Analytics dashboard', layer: 'Intelligence', fill: '32%' },
+].map((s, i) => ({ ...s, num: '0' + (i + 1) }));
+
+const outcomes = [
+  { num: '01', numColor: '#7B2FE2', title: 'Revenue Expansion',
+    items: ['Interactive advertising', 'Premium sponsor packages', 'Shoppable content'] },
+  { num: '02', numColor: '#D62086', title: 'Data Consolidation',
+    items: ['Centralised behavioural tracking', 'Cross-session user intelligence', 'CRM-ready engagement signals'] },
+  { num: '03', numColor: '#35C7DF', title: 'Brand Equity Protection',
+    items: ['No algorithm dependency', 'No platform risk exposure', 'No content dilution'] },
+];
+
+const audience = [
+  'Do not want to rely on public streaming and social media platforms',
+  'Want a controlled digital ecosystem',
+  'Are launching or relaunching a D2C strategy',
+].map((text, i) => ({ num: '0' + (i + 1), text }));
+
+const faqs = [
+  ['Do I need technical expertise to use Custom Bolt+?', 'Not at all. Custom Bolt+ is designed to make your life easier. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation and recommendation on the best practices as you start your journey with us.'],
+  ["What if my broadcasting platform isn't listed in your integrations?", "We add new integrations regularly. If your platform isn't currently supported, contact our team, we can create custom integrations or use other means of connection."],
+  ['Can audiences access Custom Bolt+ on mobile devices?', 'Yes! Custom Bolt+ is fully optimised for mobile, tablet, and desktop. Your audience can connect and participate regardless of device.'],
+  ['How does BoltOS handle large live audiences?', 'Custom Bolt+ automatically scales to support unlimited concurrent users during live broadcasts. We have successfully supported events with more than 250,000 simultaneous viewers without any loss of performance, while continuous monitoring helps maintain stability as audience demand changes.'],
+  ['Can I customise the look and feel of Custom Bolt+ to match my brand?', 'Absolutely. You have full control over the colours, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully bespoke designs.'],
+  ['What happens if something breaks during a live broadcast?', 'We provide 24/7 support for critical and high priority issues, including weekends and public holidays. If you experience a critical failure during a live broadcast, our team responds within 5 minutes and aims to resolve the issue within one hour. We take your reputation as seriously as you do.'],
+  ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
+].map(([q, a]) => ({ q, a }));
+
+const POSTER = '/assets/photos/broadcast-still.web.jpg';
+const chat = [
+  { name: 'James', text: 'Who’s scoring tonight?', time: '01:00', accent: false },
+  { name: 'Olivia', text: 'After that weird penalty last match, anything can happen', time: '01:01', accent: true },
+  { name: 'Elijah', text: 'I’ve got a feeling it’s going to be a good night', time: '01:01', accent: false },
+  { name: 'Mitch', text: 'Tonight’s the night! Who’s ready?', time: '01:02', accent: false },
+];
+---
+<Base title="Custom Bolt+, BoltOS">
+  <div class="cb">
+    <!-- Hero -->
+    <header class="cb-hero">
+      <div class="cb-hero-glow" aria-hidden="true"></div>
+      <div class="cb-hero-wave" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-hero-inner">
+        <div class="cb-hero-copy">
+          <div class="cb-eyebrow"><span class="cb-eyebrow-rule"></span><span class="lilac">Custom Bolt+</span></div>
+          <h1>Own the distribution. Own the monetisation. <span class="uv">Own the data.</span></h1>
+          <p class="cb-hero-lead">Stop distributing your audience. Start owning the relationship</p>
+          <p class="cb-hero-sub">Custom Bolt+ is a direct-to-consumer streaming and engagement infrastructure designed for IP owners who want to centralize content, community, and commerce inside one controlled ecosystem.</p>
+          <div class="cb-hero-points">{heroPoints.map((h) => <span class="cb-pill">{h}</span>)}</div>
+          <div class="cb-hero-cta"><a href={routes.bookDemo} class="btn-snow">Talk to Our Team</a></div>
+        </div>
+        <div class="cb-mockwrap">
+          <span class="cb-mock-glow" aria-hidden="true"></span>
+          <div class="cb-mock">
+            <div class="cb-mock-grid">
+              <div class="cb-mock-video">
+                <img src={POSTER} alt="Player still" />
+                <span class="cb-mock-video-scrim"></span>
+                <span class="cb-mock-live">● LIVE</span>
+                <span class="cb-mock-play-ring"></span>
+                <span class="cb-mock-play-tri"></span>
+                <div class="cb-mock-video-foot">
+                  <span class="cb-mock-name">Football TV</span>
+                  <span class="cb-mock-age">14+</span>
+                </div>
+              </div>
+              <div class="cb-mock-panel">
+                <div class="cb-mock-tabs">
+                  <span class="cb-tab active">Chat</span><span class="cb-tab">Shop</span><span class="cb-tab">Read</span><span class="cb-tab">Rewards</span>
+                </div>
+                <div class="cb-mock-msgs">
+                  {chat.map((m) => (
+                    <div class={`cb-msg ${m.accent ? 'accent' : ''}`}>
+                      <span class="cb-msg-av"></span>
+                      <span class="cb-msg-text"><strong>{m.name}</strong> {m.text}</span>
+                      <span class="cb-msg-time">{m.time}</span>
+                    </div>
+                  ))}
+                </div>
+                <div class="cb-mock-input"><span>Say something…</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Disconnected systems -->
+    <section class="cb-disc">
+      <div class="cb-wave cb-wave-a" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-wave cb-wave-b" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-disc-inner">
+        <h2 class="cb-disc-title">Today, Most IP owners operate across disconnected systems:</h2>
+        <div class="cb-hub">
+          <div class="cb-hub-node"><span class="cb-hub-glow" aria-hidden="true"></span><span>Most IP owners</span></div>
+          <div class="cb-rail" aria-hidden="true">
+            <span class="cb-rail-v-top"></span>
+            <span class="cb-rail-h"></span>
+            <span class="cb-rail-v" style="left:12.5%;"></span>
+            <span class="cb-rail-v" style="left:37.5%;"></span>
+            <span class="cb-rail-v" style="left:62.5%;"></span>
+            <span class="cb-rail-v" style="left:87.5%;"></span>
+          </div>
+          <div class="cb-spokes">
+            {disconnected.map((d) => (
+              <div class="cb-spoke">
+                <span class="cb-spoke-bar" style={`background:${d.accent};`}></span>
+                <span class="cb-spoke-num">{d.num}</span>
+                <p>{d.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="cb-costs-row">
+          <p class="cb-costs-lead">That fragmentation costs more than convenience. It costs:</p>
+          <div class="cb-costs">{costs.map((c) => <span class="cb-cost">{c}</span>)}</div>
+        </div>
+        <p class="cb-disc-close">BoltOS Full Stack eliminates that fragmentation by bringing everything into a single owned environment.</p>
+      </div>
+    </section>
+
+    <!-- What It Is -->
+    <section class="cb-what">
+      <div class="cb-what-glow" aria-hidden="true"></div>
+      <div class="cb-wave cb-wave-c" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-what-inner">
+        <div class="cb-what-head">
+          <h2>What It Is</h2>
+          <p>A white-label direct-to-consumer infrastructure includes:</p>
+        </div>
+        <div class="cb-stack">
+          <div class="cb-stack-head">
+            <span class="cb-stack-head-l">One owned environment</span>
+            <span class="cb-stack-head-r">yourbrand.com</span>
+          </div>
+          <div class="cb-stack-rows">
+            {stack.map((s) => (
+              <div class="cb-stack-row">
+                <span class="cb-stack-fill" style={`width:${s.fill};`}></span>
+                <span class="cb-stack-num">{s.num}</span>
+                <p>{s.text}</p>
+                <span class="cb-stack-layer">{s.layer}</span>
+              </div>
+            ))}
+          </div>
+          <div class="cb-stack-foot">
+            <span class="cb-stack-foot-rule"></span>
+            <span class="cb-stack-foot-label">first-party data, end to end</span>
+          </div>
+        </div>
+        <p class="cb-what-close">The Engagement is Native, you own the relationship.</p>
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section class="cb-outcomes">
+      <div class="cb-wave cb-wave-d" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-outcomes-inner">
+        <div class="cb-outcomes-head">
+          <h2>Outcomes</h2>
+          <p>Your audience engages inside your controlled environment.</p>
+        </div>
+        <div class="cb-outcomes-grid">
+          {outcomes.map((o) => (
+            <div class="cb-outcome-card">
+              <span class="cb-outcome-num" style={`color:${o.numColor};`}>{o.num}</span>
+              <h3>{o.title}</h3>
+              <div class="cb-outcome-items">
+                {o.items.map((i) => <div class="cb-outcome-item"><span class="cb-bullet"></span><span>{i}</span></div>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Is It For -->
+    <section class="cb-who">
+      <div class="cb-wave cb-wave-e" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-who-inner">
+        <div class="cb-who-head">
+          <h2>Who Is It For</h2>
+          <p>Full Stack is ideal for those who:</p>
+        </div>
+        <div class="cb-who-list">
+          {audience.map((a) => (
+            <div class="cb-who-row"><span class="cb-who-num">{a.num}</span><p>{a.text}</p></div>
+          ))}
+          <div class="cb-who-rule"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="cb-faq">
+      <div class="cb-wave cb-wave-f" aria-hidden="true"><ParticleWave /></div>
+      <div class="cb-faq-inner">
+        <h2>Frequently Asked Questions</h2>
+        <div class="cb-faq-grid">
+          {faqs.map((f) => <div class="cb-faq-card"><h3>{f.q}</h3><p>{f.a}</p></div>)}
+        </div>
+      </div>
+    </section>
+
+    <PlatformCTA line1="Build Your Own" line2="Audience Ecosystem" />
+  </div>
+</Base>
+
+<style>
+  .cb { position: relative; }
+  .uv { color: var(--ultra-violet); }
+  .lilac { color: var(--text-lilac); }
+  .btn-snow { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 15px 30px; border-radius: 100px; }
+  .btn-snow:hover { color: var(--snow); background: var(--ultra-violet); }
+  .cb-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .cb-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
+  .cb-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .cb-bullet { margin-top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--ultra-violet); flex: 0 0 auto; }
+  .cb-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+
+  /* Hero */
+  .cb-hero { position: relative; overflow: hidden; padding: clamp(46px, 6vw, 96px) clamp(24px, 6vw, 80px) clamp(36px, 4.5vw, 68px); }
+  .cb-hero-glow { position: absolute; left: -14%; top: -30%; width: 80%; height: 150%; z-index: 0; pointer-events: none; background: radial-gradient(820px 540px at 24% 30%, rgba(123,47,226,0.26), transparent 70%); }
+  .cb-hero-wave { position: absolute; right: -8%; bottom: -34%; width: min(52vw, 600px); height: min(30vw, 330px); z-index: 0; opacity: 0.30; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .cb-hero-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 52px); }
+  .cb-hero-copy { min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+  .cb-hero-copy h1 { margin: 0; font-family: var(--font-display); font-size: clamp(30px, 4.2vw, 56px); line-height: 1.04; font-weight: 800; letter-spacing: -0.034em; max-width: 20ch; text-wrap: pretty; }
+  .cb-hero-lead { margin: 0; font-family: var(--font-display); font-size: clamp(18px, 2vw, 24px); line-height: 1.32; font-weight: 700; letter-spacing: -0.02em; max-width: 34ch; text-wrap: pretty; }
+  .cb-hero-sub { margin: 0; font-size: 16px; line-height: 1.7; color: var(--text-muted); max-width: 72ch; text-wrap: pretty; }
+  .cb-hero-points { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .cb-pill { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); border: 1px solid var(--hairline-dashed); border-radius: 100px; padding: 8px 15px; }
+  .cb-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px; }
+
+  .cb-mockwrap { position: relative; width: 100%; max-width: 1120px; margin: 0 auto; min-width: 0; }
+  .cb-mock-glow { position: absolute; inset: -8% -6%; z-index: 0; pointer-events: none; background: radial-gradient(closest-side, rgba(123,47,226,0.26), transparent); }
+  .cb-mock { position: relative; z-index: 1; border: 1px solid var(--hairline-2); border-radius: 20px; overflow: hidden; background: var(--night-2); box-shadow: 0 44px 120px rgba(0,0,0,0.65); }
+  .cb-mock-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); }
+  .cb-mock-video { position: relative; min-width: 0; height: 100%; min-height: clamp(280px, 30vw, 430px); }
+  .cb-mock-video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cb-mock-video-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,15,0.18), rgba(11,11,15,0.62)); }
+  .cb-mock-live { position: absolute; left: 16px; top: 16px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--snow); background: rgba(214,32,134,0.9); padding: 5px 11px; border-radius: 100px; }
+  .cb-mock-play-ring { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: clamp(52px, 6vw, 74px); height: clamp(52px, 6vw, 74px); border-radius: 50%; background: rgba(247,247,245,0.16); border: 1px solid rgba(247,247,245,0.5); backdrop-filter: blur(6px); }
+  .cb-mock-play-tri { position: absolute; left: 50%; top: 50%; transform: translate(-42%, -50%); border-left: clamp(14px, 1.6vw, 19px) solid #F7F7F5; border-top: clamp(9px, 1vw, 12px) solid transparent; border-bottom: clamp(9px, 1vw, 12px) solid transparent; }
+  .cb-mock-video-foot { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+  .cb-mock-name { font-family: var(--font-display); font-size: clamp(15px, 1.7vw, 20px); font-weight: 800; letter-spacing: -0.02em; color: var(--snow); }
+  .cb-mock-age { font-family: var(--font-mono); font-size: 10px; color: #D9DBE0; border: 1px solid rgba(247,247,245,0.34); border-radius: 5px; padding: 3px 7px; }
+  .cb-mock-panel { min-width: 0; border-left: 1px solid var(--hairline); background: var(--night); display: flex; flex-direction: column; }
+  .cb-mock-tabs { display: flex; gap: 6px; padding: 12px 12px 10px; border-bottom: 1px solid var(--hairline); overflow: hidden; }
+  .cb-tab { font-size: 11px; line-height: 16px; color: var(--text-muted); padding: 6px 11px; border-radius: 100px; white-space: nowrap; }
+  .cb-tab.active { font-weight: 600; color: var(--snow); background: var(--ultra-violet); }
+  .cb-mock-msgs { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; padding: 12px; }
+  .cb-msg { display: flex; align-items: flex-start; gap: 10px; background: #1A1C22; border: 1px solid var(--hairline); border-radius: 12px; padding: 10px 12px; }
+  .cb-msg.accent { background: rgba(123,47,226,0.16); border-color: rgba(123,47,226,0.42); }
+  .cb-msg-av { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: #2C3037; }
+  .cb-msg-text { flex: 1; min-width: 0; font-size: 12px; line-height: 18px; color: #D9DBE0; }
+  .cb-msg-text strong { color: var(--snow); font-weight: 600; }
+  .cb-msg-time { flex: 0 0 auto; font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+  .cb-mock-input { padding: 0 12px 12px; }
+  .cb-mock-input span { display: block; font-size: 11px; line-height: 17px; color: var(--text-dim); background: #1A1C22; border: 1px solid var(--hairline); border-radius: 100px; padding: 9px 14px; }
+
+  /* Disconnected */
+  .cb-disc { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .cb-wave-a { right: -12%; top: -28%; width: min(50vw, 580px); height: min(30vw, 330px); opacity: 0.28; }
+  .cb-wave-b { left: -14%; bottom: -30%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.24; }
+  .cb-disc-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 48px); }
+  .cb-disc-title { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 46px); line-height: 1.06; font-weight: 800; letter-spacing: -0.032em; max-width: 22ch; text-wrap: pretty; }
+  .cb-hub { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .cb-hub-node { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--night); color: var(--snow); border-radius: 18px; padding: 22px 34px; box-shadow: 0 26px 60px rgba(16,16,20,0.28); }
+  .cb-hub-glow { position: absolute; inset: -14px; border-radius: 26px; background: radial-gradient(closest-side, rgba(123,47,226,0.28), transparent); z-index: -1; }
+  .cb-hub-node span:last-child { font-family: var(--font-display); font-size: clamp(17px, 1.9vw, 22px); line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; }
+  .cb-rail { position: relative; width: 100%; height: clamp(48px, 5vw, 76px); }
+  .cb-rail span { position: absolute; }
+  .cb-rail-v-top { left: 50%; top: 0; width: 1px; height: 44%; background: repeating-linear-gradient(180deg, #B9B4AB 0 5px, transparent 5px 10px); }
+  .cb-rail-h { left: 12.5%; right: 12.5%; top: 44%; height: 1px; background: repeating-linear-gradient(90deg, #B9B4AB 0 5px, transparent 5px 10px); }
+  .cb-rail-v { top: 44%; bottom: 0; width: 1px; background: repeating-linear-gradient(180deg, #B9B4AB 0 5px, transparent 5px 10px); }
+  .cb-spokes { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 18px); align-items: stretch; }
+  .cb-spoke { position: relative; background: #FFFFFF; border: 1px solid var(--snow-line-3); border-radius: 16px; padding: clamp(20px, 2.2vw, 28px); height: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; }
+  .cb-spoke:hover { border-color: var(--ultra-violet); }
+  .cb-spoke-bar { position: absolute; left: 0; top: 22px; width: 3px; height: 26px; border-radius: 0 3px 3px 0; }
+  .cb-spoke-num { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; color: var(--ultra-violet); }
+  .cb-spoke p { margin: 0; font-family: var(--font-display); font-size: clamp(16px, 1.7vw, 19px); line-height: 1.3; font-weight: 700; letter-spacing: -0.016em; color: var(--ink); text-wrap: pretty; }
+  .cb-costs-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(20px, 3vw, 48px); align-items: start; }
+  .cb-costs-lead { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2.2vw, 28px); line-height: 1.24; font-weight: 700; letter-spacing: -0.022em; color: var(--ink); max-width: 20ch; text-wrap: pretty; }
+  .cb-costs { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+  .cb-cost { font-family: var(--font-display); font-size: clamp(15px, 1.7vw, 19px); font-weight: 700; letter-spacing: -0.016em; color: var(--ink); border: 1px solid var(--ink); border-radius: 100px; padding: 10px 20px; }
+  .cb-disc-close { margin: 0; font-size: 17px; line-height: 28px; color: var(--ink-2); max-width: 70ch; text-wrap: pretty; }
+
+  @media (max-width: 1080px) {
+    .cb-rail { display: none; }
+    .cb-spokes { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  }
+
+  /* What It Is */
+  .cb-what { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .cb-what-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(760px 420px at 78% 12%, rgba(123,47,226,0.16), transparent 72%); }
+  .cb-wave-c { left: -12%; bottom: -30%; width: min(52vw, 600px); height: min(30vw, 330px); opacity: 0.28; }
+  .cb-what-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .cb-what-head { display: flex; flex-direction: column; gap: 16px; max-width: 860px; }
+  .cb-what-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .cb-what-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--text-muted); text-wrap: pretty; }
+  .cb-stack { position: relative; border: 1px solid #2A2E36; border-radius: 22px; padding: clamp(16px, 2vw, 26px); background: linear-gradient(180deg, rgba(123,47,226,0.10), rgba(16,16,20,0)); }
+  .cb-stack-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 6px clamp(14px, 1.6vw, 20px); }
+  .cb-stack-head-l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-lilac); }
+  .cb-stack-head-r { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .cb-stack-rows { display: flex; flex-direction: column; gap: 10px; }
+  .cb-stack-row { position: relative; overflow: hidden; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 14px; padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2vw, 26px); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(14px, 2vw, 26px); }
+  .cb-stack-row:hover { border-color: rgba(123,47,226,0.6); background: #191B21; }
+  .cb-stack-fill { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, rgba(123,47,226,0.20), transparent); }
+  .cb-stack-num { position: relative; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: var(--text-lilac); }
+  .cb-stack-row p { position: relative; margin: 0; font-family: var(--font-display); font-size: clamp(17px, 1.9vw, 21px); line-height: 1.26; font-weight: 700; letter-spacing: -0.018em; color: var(--snow); text-wrap: pretty; }
+  .cb-stack-layer { position: relative; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+  .cb-stack-foot { display: flex; align-items: center; gap: 12px; padding: clamp(14px, 1.6vw, 20px) 6px 0; }
+  .cb-stack-foot-rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(123,47,226,0.55), rgba(53,199,223,0.35), transparent); }
+  .cb-stack-foot-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sky-aqua); }
+  .cb-what-close { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2.2vw, 28px); line-height: 1.26; font-weight: 700; letter-spacing: -0.022em; color: var(--text-lilac); max-width: 30ch; text-wrap: pretty; }
+
+  /* Outcomes */
+  .cb-outcomes { position: relative; overflow: hidden; background: var(--night-4); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
+  .cb-wave-d { right: -10%; top: -24%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.26; }
+  .cb-outcomes-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .cb-outcomes-head { display: flex; flex-direction: column; gap: 14px; max-width: 820px; }
+  .cb-outcomes-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .cb-outcomes-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--text-muted); text-wrap: pretty; }
+  .cb-outcomes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .cb-outcome-card { background: var(--page); border: 1px solid var(--hairline); border-radius: 18px; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 14px; }
+  .cb-outcome-card:hover { border-color: rgba(123,47,226,0.55); }
+  .cb-outcome-num { font-family: var(--font-display); font-size: clamp(26px, 3vw, 40px); line-height: 0.9; font-weight: 800; letter-spacing: -0.04em; }
+  .cb-outcome-card h3 { margin: 0; font-family: var(--font-display); font-size: 20px; line-height: 1.22; font-weight: 800; letter-spacing: -0.02em; color: var(--snow); }
+  .cb-outcome-items { display: flex; flex-direction: column; gap: 9px; padding-top: 6px; border-top: 1px solid var(--hairline); }
+  .cb-outcome-item { display: flex; align-items: flex-start; gap: 11px; font-size: 15px; line-height: 24px; color: #D9DBE0; }
+
+  /* Who Is It For */
+  .cb-who { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 96px) clamp(24px, 6vw, 80px); }
+  .cb-wave-e { left: -10%; bottom: -30%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.26; }
+  .cb-who-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(24px, 3.4vw, 56px); align-items: start; }
+  .cb-who-head { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .cb-who-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .cb-who-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); }
+  .cb-who-list { min-width: 0; display: flex; flex-direction: column; }
+  .cb-who-row { display: flex; align-items: flex-start; gap: 16px; padding: clamp(16px, 2vw, 22px) 0; border-top: 1px solid var(--snow-line-3); }
+  .cb-who-num { font-family: var(--font-mono); font-size: 12px; line-height: 26px; letter-spacing: 0.14em; color: var(--ultra-violet); flex: 0 0 auto; }
+  .cb-who-row p { margin: 0; font-size: 17px; line-height: 27px; color: var(--ink); text-wrap: pretty; }
+  .cb-who-rule { border-top: 1px solid var(--snow-line-3); }
+
+  /* FAQ */
+  .cb-faq { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
+  .cb-wave-f { left: -8%; top: -26%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.24; }
+  .cb-faq-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+  .cb-faq-inner h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .cb-faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  .cb-faq-card { background: var(--night-2); border: 1px solid var(--hairline); border-radius: 16px; padding: clamp(20px, 2.2vw, 28px); display: flex; flex-direction: column; gap: 10px; }
+  .cb-faq-card:hover { border-color: rgba(123,47,226,0.5); }
+  .cb-faq-card h3 { margin: 0; font-family: var(--font-display); font-size: 17px; line-height: 1.3; font-weight: 700; color: var(--snow); text-wrap: pretty; }
+  .cb-faq-card p { margin: 0; font-size: 14px; line-height: 23px; color: var(--text-muted); text-wrap: pretty; }
+</style>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ext-resource-dependency" content="assets/photos/broadcast-still.web.jpg" data-resource-id="broadcast-still.web.jpg">
+<meta name="ext-resource-dependency" content="assets/photos/studio.web.jpg" data-resource-id="studio.web.jpg">
+<meta name="ext-resource-dependency" content="assets/photos/event.web.jpg" data-resource-id="event.web.jpg">
+<meta name="ext-resource-dependency" content="assets/panels/pre-match.png" data-resource-id="pre-match.png">
+<meta name="ext-resource-dependency" content="assets/panels/goal-timeline.png" data-resource-id="goal-timeline.png">
+<meta name="ext-resource-dependency" content="assets/panels/full-time-stats.png" data-resource-id="full-time-stats.png">
+<template id="__bundler_thumbnail" data-bg-color="#101014"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#101014"/><text x="100" y="124" text-anchor="middle" font-family="Helvetica,sans-serif" font-size="70" font-weight="700" fill="#F7F7F5">V5</text></svg></template>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>BoltOS, Audience Revenue Engine</title>
+<meta name="description" content="BoltOS turns viewers into revenue: chat, shop, rewards and AI mounted on the player you already own.">
+<meta name="ext-resource-dependency" content="assets/photos/broadcast-still.png" data-resource-id="broadcast-still.png">
+<meta name="ext-resource-dependency" content="assets/photos/studio.png" data-resource-id="studio.png">
+<meta name="ext-resource-dependency" content="assets/photos/event.png" data-resource-id="event.png">
+<meta name="ext-resource-dependency" content="assets/logo/BoltOS_Primary_RGB.png" data-resource-id="BoltOS_White.png">
+<meta name="ext-resource-dependency" content="assets/particle-wave.svg" data-resource-id="particle-wave.svg">
+<meta name="ext-resource-dependency" content="assets/badges/cyber-essentials-plus.png" data-resource-id="cyber-essentials-plus.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-cal.png" data-resource-id="step-cal.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-brief.png" data-resource-id="step-brief.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-settings.png" data-resource-id="step-settings.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-plug.png" data-resource-id="step-plug.png">
+<meta name="ext-resource-dependency" content="assets/icons/step-rocket.png" data-resource-id="step-rocket.png">
+<script>(function(){var need=[['image-slot','./image-slot.js'],['bolt-particle-wave','./particle-wave.js']];need.forEach(function(p){if(!customElements.get(p[0])){var s=document.createElement('script');s.src=p[1];document.head.appendChild(s);}});})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0E0E12; }
+a { color:#F7F7F5; text-decoration:none; }
+a:hover { color:#7B2FE2; }
+@keyframes v5marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes v5marq { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes logoScroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes v5wordmark { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes v5rail { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes v5float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#0E0E12">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0E0E12"></rect>
+    <text x="600" y="430" font-family="Helvetica, sans-serif" font-size="130" font-weight="700" fill="#F7F7F5" text-anchor="middle">BOLTOS</text>
+    <text x="600" y="510" font-family="monospace" font-size="40" fill="#7B2FE2" text-anchor="middle">FINAL LAYOUT</text>
+  </svg>
+</template>
+
+<section data-screen-label="BoltOS.ai Final" style="position:relative; font-family:Geist,Helvetica,sans-serif; background:#0E0E12; color:#F7F7F5; overflow-x:hidden;">
+  <div style="position:sticky; top:0; z-index:40; padding:14px clamp(16px,4vw,40px); background:linear-gradient(180deg,rgba(14,14,18,0.96),rgba(14,14,18,0));">
+    <div ref="{{ navWrapRef }}" onMouseLeave="{{ closeMenu }}" onMouseEnter="{{ holdMenu }}" style="position:relative; max-width:1320px; margin:0 auto;">
+      <nav style="position:relative; z-index:2; background:rgba(16,16,20,0.88); backdrop-filter:blur(14px); border:1px solid #23262C; border-radius:clamp(22px,4vw,100px); box-shadow:0 10px 34px rgba(0,0,0,0.5); padding:12px clamp(16px,2vw,26px); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px 14px;">
+        <img src="assets/logo/BoltOS_Primary_RGB.png" style="height:22px; width:auto;" alt="BoltOS logo">
+        <div style="flex:1 1 auto; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:clamp(10px,1.6vw,22px); font-size:14px; line-height:20px;">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+            <sc-if value="{{ n.isMenu }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onMouseEnter="{{ n.enter }}" onFocus="{{ n.enter }}" onClick="{{ n.enter }}" onKeyDown="{{ n.key }}" aria-haspopup="true" aria-expanded="{{ n.expanded }}" style="display:flex; align-items:center; gap:5px; padding:6px 2px; cursor:pointer; background:none; border:0; font-family:inherit; font-size:14px; line-height:20px; color:{{ n.color }};">{{ n.label }}<span style="font-size:9px; opacity:0.6;">▾</span></button>
+            </sc-if>
+            <sc-if value="{{ n.isFlat }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ n.href }}" onMouseEnter="{{ n.enter }}" onFocus="{{ n.enter }}" style="display:flex; align-items:center; padding:6px 2px; color:{{ n.color }};">{{ n.label }}</a>
+            </sc-if>
+          </sc-for>
+        </div>
+        <div style="margin-left:auto; display:flex; align-items:center; justify-content:flex-end; gap:14px;">
+          <a href="/book-a-demo/" style="font-size:14px; line-height:20px; font-weight:700; color:#FFFFFF; background:#7B2FE2; padding:10px 20px; border-radius:100px;" style-hover="color:#FFFFFF; background:#5F1FBC;">Book a Demo</a>
+        </div>
+      </nav>
+      <sc-if value="{{ showProduct }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); margin-top:0; border-top:8px solid transparent; background-clip:padding-box; z-index:50; width:min(360px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:22px;">
+          <a href="https://boltplus.tv/home" target="_blank" rel="noopener noreferrer" aria-label="Bolt+ web app" style="display:flex; flex-direction:column; gap:14px; align-items:flex-start; padding:14px; margin:-14px; border-radius:14px;" style-hover="background:rgba(123,47,226,0.12);">
+            <span style="display:inline-flex; align-items:center; padding:10px 16px; border-radius:10px; background:#F7F7F5;"><img src="assets/logo/BoltPlus.png" style="height:20px; width:auto; display:block;" alt="Bolt+"></span>
+            <p style="margin:0; font-size:14px; line-height:22px; color:#B9BCC4; max-width:44ch;">Experience the future of immersive streaming with chat, shop, rewards and AI.</p>
+          </a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showCompany }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); border-top:8px solid transparent; background-clip:padding-box; z-index:50; box-sizing:border-box; width:min(720px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:26px 28px;">
+          <div style="display:flex; flex-wrap:wrap; gap:26px; align-items:stretch;">
+            <div style="flex:0 0 auto; min-width:150px; display:flex; flex-direction:column; gap:12px; padding-right:26px; border-right:1px solid #23262C;">
+              <div style="font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#7E838C;">COMPANY</div>
+              <a href="BoltOS%20About%20Us.dc.html" style="font-size:15px; line-height:22px; font-weight:600; color:#F7F7F5;" style-hover="color:#C6ABF5;">About Us</a>
+              <a href="https://drive.google.com/drive/folders/1oKsI_NIusj-tBJTO9MDh0SXPuqjZe3g6" target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" style="font-size:15px; line-height:22px; font-weight:600; color:#F7F7F5;" style-hover="color:#C6ABF5;">Brand Assets</a>
+            </div>
+            <div style="flex:1 1 380px; min-width:0; display:flex; flex-wrap:wrap; justify-content:space-around; align-items:flex-start; gap:18px;">
+              <sc-for list="{{ socials }}" as="s" hint-placeholder-count="5">
+                <a href="{{ s.href }}" target="_blank" rel="noopener noreferrer" aria-label="{{ s.aria }}" style="display:flex; flex-direction:column; align-items:center; gap:10px; padding:10px 8px; border-radius:14px; min-width:74px;" style-hover="background:rgba(123,47,226,0.12);">
+                  <span style="display:flex; align-items:center; justify-content:center; height:38px; padding:0 {{ s.pad }}; border-radius:100px; background:#F7F7F5; min-width:38px;">{{ s.glyph }}</span>
+                  <span style="font-size:13px; line-height:18px; color:#C9C9D1;">{{ s.label }}</span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showSolutions }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); margin-top:0; border-top:8px solid transparent; background-clip:padding-box; z-index:50; width:min(640px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:22px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px;">
+            <a href="BoltOS%20Immersive%20Platform.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Immersive Platform</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">A revenue layer for your existing ecosystem</span>
+            </a>
+            <a href="BoltOS%20Custom%20Bolt%20Plus.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Custom Bolt+</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Own the distribution. Own the monetisation. Own the data.</span>
+            </a>
+          </div>
+          <a href="BoltOS%20Solutions.dc.html" style="display:inline-flex; margin-top:14px; font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#C6ABF5;" style-hover="color:#F7F7F5;">All solutions →</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showCases }}" hint-placeholder-val="{{ false }}">
+        <div onMouseEnter="{{ holdMenu }}" style="position:absolute; left:{{ menuAnchor }}; max-width:calc(100vw - 40px); top:calc(100% + 4px); margin-top:0; border-top:8px solid transparent; background-clip:padding-box; z-index:50; width:min(640px, calc(100vw - 40px)); background:rgba(16,16,20,0.97); border:1px solid #23262C; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,0.6); backdrop-filter:blur(16px); padding:22px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px;">
+            <a href="BoltOS%20Case%20Study%20Bloomberg.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Bloomberg</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">BoltOS takes Bloomberg's award-winning content to the next level</span>
+            </a>
+            <a href="BoltOS%20Case%20Study%20Hisense.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Hisense</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Bolt+ takes the immersive streaming experience to millions of Hisense TVs globally</span>
+            </a>
+            <a href="BoltOS%20Case%20Study%20Dubai%2024H.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">Dubai 24HR Motor Racing</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Racing through a high-octane live event with Dubai 24H Series.</span>
+            </a>
+            <a href="BoltOS%20Case%20Study%20One%20Football.dc.html" style="display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:12px; border:1px solid transparent;" style-hover="background:rgba(123,47,226,0.12); border-color:rgba(123,47,226,0.40);">
+              <span style="font-size:14px; line-height:20px; font-weight:600; color:#F7F7F5;">One Football</span>
+              <span style="font-size:12px; line-height:18px; color:#8A8E97;">Powering a global community with the biggest football clubs in the world.</span>
+            </a>
+          </div>
+          <a href="BoltOS%20Case%20Studies.dc.html" style="display:inline-flex; margin-top:14px; font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#C6ABF5;" style-hover="color:#F7F7F5;">See all case studies →</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- 01 HERO -->
+  <header style="position:relative; overflow:hidden; padding:clamp(48px,6vw,88px) 0 0; text-align:center;">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#101014; font-family:monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>01</span><span>HERO</span></div></sc-if>
+    <div style="position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(90deg,#1D2026 1px,transparent 1px),linear-gradient(#1D2026 1px,transparent 1px); background-size:96px 96px; opacity:0.5;"></div>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(700px 340px at 50% 12%, rgba(123,47,226,0.10), transparent 70%);"></div>
+    <div style="position:relative; padding:0 clamp(24px,6vw,80px); display:flex; flex-direction:column; align-items:center; gap:22px;">
+      <div style="display:flex; align-items:center; gap:10px; border:1px solid #2E323A; background:#15171B; border-radius:100px; padding:7px 16px; font-size:13px; line-height:19px; color:#C9C9D1;"><span style="width:6px; height:6px; border-radius:50%; background:#35C7DF;"></span>Live on 14M+ screens worldwide</div>
+      <h1 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(34px,5.6vw,76px); line-height:1.02; font-weight:500; letter-spacing:-0.032em; max-width:940px;">The interaction layer<br>for live media</h1>
+      <p style="margin:0; font-size:clamp(16px,1.7vw,19px); line-height:1.6; color:#9CA3AF; max-width:600px;">Chat, shop, rewards and AI mounted on the player you already own. Author once, then drive it live on matchday.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+        <a href="/book-a-demo/" style="font-size:16px; line-height:24px; font-weight:600; color:#101014; background:#F7F7F5; padding:15px 30px; border-radius:100px;" style-hover="color:#F7F7F5; background:#7B2FE2;">Book a demo</a>
+      </div>
+    </div>
+    <div style="position:relative; margin-top:clamp(20px,2.6vw,32px); border-bottom:1px dashed #2C3037; padding:0 clamp(24px,6vw,80px) clamp(32px,5vw,64px); overflow:hidden;">
+      <div style="position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(90deg,#1D2026 1px,transparent 1px); background-size:96px 96px; opacity:0.6;"></div>
+      <div style="position:absolute; left:0; right:0; bottom:-60px; height:300px; opacity:0.4; pointer-events:none;">
+        <x-import component-from-global-scope="bolt-particle-wave" style="position:absolute; inset:0;" hint-size="100%,300px" running="{{ false }}"></x-import>
+      </div>
+      <div style="position:relative; display:flex; flex-wrap:wrap; gap:clamp(16px,2.5vw,28px); align-items:center; justify-content:center;">
+        <div style="width:100%; max-width:900px; margin:0 auto; background:#15171B; border:1px solid #2E323A; border-radius:16px; box-shadow:0 28px 60px rgba(0,0,0,0.55); overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9; background:#0B0B0F;">
+            <a href="https://youtu.be/AByOQDvWeIE" target="_blank" rel="noopener noreferrer" style="position:absolute; inset:0; z-index:0; display:flex; align-items:center; justify-content:center;">
+              <image-slot id="v5-hero-player" style="position:absolute; inset:0; display:block;" shape="rect" fit="cover" src="assets/photos/broadcast-still.web.jpg" placeholder="Broadcast still"></image-slot>
+              <span style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,11,15,0.35),rgba(11,11,15,0.65));"></span>
+              <span style="position:relative; white-space:nowrap; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:#101014; background:#F7F7F5; padding:12px 22px; border-radius:100px;">▶ Watch the platform video</span>
+            </a>
+            <iframe src="https://www.youtube-nocookie.com/embed/AByOQDvWeIE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="BoltOS platform video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block;"></iframe>
+          </div>
+          <div style="padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid #23262C; text-align:left;">
+            <div style="font-size:13px; line-height:19px; color:#9CA3AF;">Panel mounted on your player</div>
+            <div style="font-family:monospace; font-size:11px; color:#7E838C;">latency 84ms</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 02 TRUSTED BY -->
+  <div style="position:relative; overflow:hidden; padding:clamp(28px,4vw,48px) 0; border-bottom:1px dashed #2C3037; background:linear-gradient(180deg,rgba(123,47,226,0.05),rgba(251,251,250,0));">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#101014; font-family:monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>02</span><span>TRUSTED BY</span></div></sc-if>
+    <div style="display:flex; gap:64px; width:max-content; animation:v5marquee 38s linear infinite; align-items:center; padding-top:8px; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(16px,1.8vw,22px); font-weight:700; color:#7E838C;">
+      <sc-for list="{{ partners }}" as="p" hint-placeholder-count="18">
+        <span style="flex:0 0 auto; display:flex; align-items:center; justify-content:center; height:clamp(40px,4.4vw,56px); padding:0 4px;">
+          <sc-if value="{{ p.hasLogo }}" hint-placeholder-val="{{ false }}">
+            <image-slot id="{{ p.slotId }}" style="display:block; height:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden;" shape="rect" fit="cover" src="{{ p.src }}" placeholder="{{ p.name }}"></image-slot>
+          </sc-if>
+          <sc-if value="{{ p.isText }}" hint-placeholder-val="{{ true }}">
+            <span style="white-space:nowrap;">{{ p.name }}</span>
+          </sc-if>
+        </span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- 03 PRODUCT SUITE -->
+  <div id="suite" style="position:relative; overflow:hidden; background:#F7F7F5; color:#101014; padding:clamp(56px,7vw,104px) clamp(24px,6vw,80px);">
+    <div style="position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(90deg,#E7E7E4 1px,transparent 1px); background-size:96px 96px; opacity:0.4;"></div>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(560px 320px at 88% 76%, rgba(53,199,223,0.10), transparent 70%);"></div>
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#F7F7F5; font-family:monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>03</span><span>PRODUCT SUITE</span></div></sc-if>
+    <div style="position:relative; display:flex; flex-direction:column; gap:12px; max-width:640px;">
+      <div style="font-size:14px; line-height:21px; color:#6B7280;">Get to know BoltOS</div>
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(28px,3.6vw,46px); line-height:1.08; font-weight:700; letter-spacing:-0.025em;">The Immersive Platform</h2>
+      <p style="margin:0; font-size:16px; line-height:26px; color:#6B7280;">The all-in-one interactive tool that drives results.</p>
+    </div>
+    <div style="position:relative; margin-top:clamp(32px,4vw,56px); border:1px solid #E7E7E4; border-radius:14px; background:rgba(255,255,255,0.88); backdrop-filter:blur(6px); box-shadow:0 20px 50px rgba(16,16,20,0.08); display:flex; flex-wrap:wrap; overflow:hidden;">
+      <sc-for list="{{ modules }}" as="m" hint-placeholder-count="6">
+        <div style="flex:1 1 260px; min-width:0; padding:24px; box-shadow:inset -1px 0 0 #E7E7E4, inset 0 -1px 0 #E7E7E4; display:flex; flex-direction:column; gap:10px;" style-hover="background:rgba(123,47,226,0.10);">
+          <div style="width:34px; height:34px; border-radius:10px; background:rgba(123,47,226,0.10); border:1px solid rgba(123,47,226,0.14); color:#5F1FBC; font-family:monospace; font-size:11px; display:flex; align-items:center; justify-content:center;">{{ m.num }}</div>
+          <h3 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:18px; line-height:1.2; font-weight:700;">{{ m.name }}</h3>
+          <p style="margin:0; font-size:14px; line-height:22px; color:#6B7280; text-wrap:pretty;">{{ m.copy }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+
+  <div style="position:relative; overflow:hidden; background:#101014; color:#F7F7F5; padding:clamp(48px,6vw,88px) clamp(24px,6vw,88px);">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#F7F7F5; font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>04</span><span>STATS</span></div></sc-if>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(700px 380px at 20% 10%, rgba(123,47,226,0.22), transparent 70%);"></div>
+    <div style="position:absolute; left:0; right:0; bottom:-40px; height:300px; opacity:0.22; pointer-events:none;">
+      <x-import component-from-global-scope="bolt-particle-wave" style="position:absolute; inset:0;" hint-size="100%,100%" running="{{ animateWave }}"></x-import>
+    </div>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; max-width:760px; margin:0 auto clamp(28px,3.4vw,44px);">
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(26px,3.4vw,44px); line-height:1.06; font-weight:700; letter-spacing:-0.03em;">Real tools. Real results.</h2>
+      <p style="margin:0; font-size:16px; line-height:26px; color:#9CA3AF; text-wrap:pretty;">In a crowded world of tech, BoltOS has exceeded expectations time and time again</p>
+    </div>
+    <div style="position:relative; display:flex; flex-wrap:wrap; gap:clamp(28px,5vw,72px); justify-content:center; align-items:flex-end; text-align:center;">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="flex:0 1 240px; min-width:0; display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <div style="font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(34px,5vw,68px); line-height:0.92; font-weight:800; letter-spacing:-0.04em; color:{{ s.color }};">{{ s.value }}</div>
+          <div style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.12em; color:#9CA3AF;">{{ s.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- 07 WHY BOLTOS -->
+  <div id="why" style="position:relative; overflow:hidden; background:#141418; padding:clamp(56px,7vw,112px) clamp(20px,5vw,64px);">
+    <div style="position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(90deg,#23262C 1px,transparent 1px),linear-gradient(#23262C 1px,transparent 1px); background-size:72px 72px; opacity:0.6;"></div>
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#FFFFFF; font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; border-radius:0 0 8px 0; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>05</span><span>WHY BOLTOS</span></div></sc-if>
+    <div style="position:relative; max-width:900px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:18px;">
+      <div style="display:flex; align-items:center; gap:10px; font-family:'Geist Mono',monospace; font-size:12px; line-height:16px; letter-spacing:0.16em; text-transform:uppercase; color:#7B2FE2;"><span style="width:7px; height:7px; border-radius:50%; background:#7B2FE2;"></span>Why BoltOS</div>
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(28px,4vw,52px); line-height:1.06; font-weight:700; letter-spacing:-0.03em;">Why modern media platforms need BoltOS</h2>
+      <p style="margin:0; font-size:clamp(15px,1.6vw,17px); line-height:1.7; color:#CFC9C0; max-width:720px; text-wrap:pretty;">Most content keeps audiences passive. They watch, but they never participate, never buy, never truly engage. Every broadcast without interaction is money left on the table.</p>
+    </div>
+    <div style="position:relative; max-width:1320px; margin:clamp(36px,4vw,56px) auto 0; display:flex; flex-wrap:wrap; gap:16px;">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+        <div style="flex:1 1 260px; min-width:0; background:#18161C; border:1px solid #2A2D34; border-radius:18px; padding:26px; display:flex; flex-direction:column; gap:12px;">
+          <span style="width:38px; height:38px; border-radius:11px; background:#2A1C42; color:#7B2FE2; display:flex; align-items:center; justify-content:center; font-size:15px;">{{ p.icon }}</span>
+          <h3 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:19px; line-height:1.2; font-weight:700;">{{ p.title }}</h3>
+          <p style="margin:0; font-size:15px; line-height:23px; color:#CFC9C0; text-wrap:pretty;">{{ p.copy }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div id="roadmap" style="position:relative; z-index:10; overflow:hidden; background:#F7F7F5; color:#101014; padding:clamp(56px,7vw,104px) clamp(20px,5vw,80px);">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#F7F7F5; font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>06</span><span>ROADMAP</span></div></sc-if>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(760px 420px at 50% 52%, rgba(123,47,226,0.10), transparent 72%), radial-gradient(520px 300px at 88% 12%, rgba(214,32,134,0.07), transparent 72%);"></div>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; max-width:720px; margin:0 auto clamp(32px,4vw,56px);">
+      <span style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.16em; text-transform:uppercase; color:#7B2FE2;">The process</span>
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(28px,3.8vw,50px); line-height:1.04; font-weight:700; letter-spacing:-0.03em; color:#101014;">Your roadmap <span style="color:#7B2FE2;">to success.</span></h2>
+      <p style="margin:0; font-size:15px; line-height:24px; color:#5C5F66;">Five steps from first call to live broadcast, in two to four weeks.</p>
+    </div>
+
+    <sc-if value="{{ wideRoad }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative; max-width:1360px; margin:0 auto;">
+      <div style="position:relative; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:minmax(300px,auto) 96px minmax(300px,auto); column-gap:clamp(10px,1.4vw,20px);">
+        <svg viewBox="0 0 1000 96" preserveAspectRatio="none" style="position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); width:100%; height:96px; display:block; pointer-events:none;">
+          <defs>
+            <linearGradient id="railGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#7B2FE2"></stop>
+              <stop offset="45%" stop-color="#D62086"></stop>
+              <stop offset="100%" stop-color="#35C7DF"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M0 48 H70 C160 48 160 78 240 78 C330 78 330 18 420 18 C510 18 510 78 600 78 C690 78 690 18 780 18 C870 18 870 48 930 48 H1000" fill="none" stroke="url(#railGrad)" stroke-width="3" stroke-linecap="round"></path>
+        </svg>
+        <sc-for list="{{ roadSteps }}" as="s" hint-placeholder-count="5">
+          <div style="position:relative; z-index:2; grid-column:{{ s.col }}; grid-row:2; display:flex; align-items:{{ s.align }}; justify-content:center; padding:{{ s.pad }};">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(140deg,#7B2FE2,#D62086); display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:12px; font-weight:600; color:#F7F7F5; box-shadow:0 0 0 6px #F7F7F5, 0 10px 26px rgba(123,47,226,0.35);">{{ s.num }}</div>
+          </div>
+        </sc-for>
+        <sc-for list="{{ roadTop }}" as="s" hint-placeholder-count="5">
+          <div style="grid-row:1; display:flex; flex-direction:column; justify-content:flex-end; padding:0 0 22px;">
+            <sc-if value="{{ s.show }}" hint-placeholder-val="{{ true }}">
+              <div style="height:100%; background:#FFFFFF; border:1px solid #E4E1DC; border-radius:18px; padding:20px; display:flex; flex-direction:column; gap:10px; box-shadow:0 18px 44px rgba(16,16,20,0.08);" style-hover="border-color:rgba(123,47,226,0.5); box-shadow:0 22px 54px rgba(123,47,226,0.16);">
+              <div style="width:56px; height:56px; display:flex; align-items:center; justify-content:center;">{{ s.icon }}</div>
+              <div style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.16em; color:#7B2FE2;">STEP {{ s.num }}</div>
+              <h3 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(17px,1.5vw,21px); line-height:1.16; font-weight:700; letter-spacing:-0.02em; color:#101014;">{{ s.title }}</h3>
+              <p style="margin:0; font-size:13px; line-height:21px; color:#5C5F66; text-wrap:pretty;">{{ s.copy }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <sc-for list="{{ roadBottom }}" as="s" hint-placeholder-count="5">
+          <div style="grid-row:3; display:flex; flex-direction:column; justify-content:flex-start; padding:22px 0 0;">
+            <sc-if value="{{ s.show }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; background:#FFFFFF; border:1px solid #E4E1DC; border-radius:18px; padding:20px; display:flex; flex-direction:column; gap:10px; box-shadow:0 18px 44px rgba(16,16,20,0.08);" style-hover="border-color:rgba(123,47,226,0.5); box-shadow:0 22px 54px rgba(123,47,226,0.16);">
+              <div style="width:56px; height:56px; display:flex; align-items:center; justify-content:center;">{{ s.icon }}</div>
+              <div style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.16em; color:#7B2FE2;">STEP {{ s.num }}</div>
+              <h3 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(17px,1.5vw,21px); line-height:1.16; font-weight:700; letter-spacing:-0.02em; color:#101014;">{{ s.title }}</h3>
+              <p style="margin:0; font-size:13px; line-height:21px; color:#5C5F66; text-wrap:pretty;">{{ s.copy }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ narrowRoad }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative; max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:0;">
+      <sc-for list="{{ roadList }}" as="s" hint-placeholder-count="5">
+        <div style="position:relative; display:grid; grid-template-columns:56px minmax(0,1fr); column-gap:18px;">
+          <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(140deg,#7B2FE2,#D62086); display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:12px; font-weight:600; color:#F7F7F5; box-shadow:0 10px 26px rgba(123,47,226,0.4);">{{ s.num }}</div>
+            <sc-if value="{{ s.hasRail }}" hint-placeholder-val="{{ true }}">
+              <div style="flex:1; width:2px; background:linear-gradient(180deg,rgba(123,47,226,0.55),rgba(53,199,223,0.3));"></div>
+            </sc-if>
+          </div>
+          <div style="padding:0 0 28px; display:flex; flex-direction:column; gap:10px;">
+            <div style="width:52px; height:52px; display:flex; align-items:center; justify-content:center;">{{ s.icon }}</div>
+            <div style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.16em; color:#7B2FE2;">STEP {{ s.num }}</div>
+            <h3 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:20px; line-height:1.16; font-weight:700; letter-spacing:-0.02em; color:#101014;">{{ s.title }}</h3>
+            <p style="margin:0; font-size:14px; line-height:23px; color:#5C5F66; text-wrap:pretty;">{{ s.copy }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+  </div>
+
+  <div id="partners" style="position:relative; overflow:hidden; border-bottom:1px solid #232323; padding:clamp(48px,6vw,88px) 0;">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#F7F7F5; font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>07</span><span>PARTNERS</span></div></sc-if>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(680px 360px at 50% 0%, rgba(123,47,226,0.18), transparent 70%);"></div>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; max-width:760px; margin:0 auto clamp(28px,3.4vw,44px); padding:0 clamp(24px,6vw,88px);">
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(28px,3.8vw,48px); line-height:1.04; font-weight:700; letter-spacing:-0.03em;">In their own words</h2>
+      <p style="margin:0; font-size:16px; line-height:26px; color:#B9BCC4;">Broadcasters, TV platforms and rights holders running live audiences on BoltOS.</p>
+    </div>
+    <div style="position:relative; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);">
+      <div style="display:flex; gap:16px; width:max-content; animation:v5rail 46s linear infinite;">
+        <sc-for list="{{ casesLoop }}" as="c" hint-placeholder-count="8">
+          <div style="width:min(78vw,420px); flex-shrink:0; background:linear-gradient(165deg,rgba(123,47,226,0.16),rgba(21,23,27,0.95) 58%); border:1px solid #2A2D34; border-radius:18px; padding:clamp(22px,2.4vw,30px); display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+              <span style="font-family:'Host Grotesk',Helvetica,sans-serif; font-size:22px; line-height:1.1; font-weight:700; letter-spacing:-0.02em;">{{ c.name }}</span>
+              <span style="font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#C6ABF5;">{{ c.tag }}</span>
+            </div>
+            <p style="margin:0; flex:1; font-size:16px; line-height:26px; color:#E4E6EC; text-wrap:pretty;">“{{ c.quote }}”</p>
+            <div style="border-top:1px solid #2A2D34; padding-top:12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; color:#8A8E97;">
+              <span>{{ c.person }}</span><span style="color:#35C7DF;">{{ c.stat }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="faq" style="position:relative; overflow:hidden; background:#F7F7F5; color:#101014; padding:clamp(48px,6vw,88px) clamp(24px,6vw,88px);">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#F7F7F5; font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>08</span><span>FAQ</span></div></sc-if>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(600px 340px at 12% 0%, rgba(123,47,226,0.10), transparent 70%);"></div>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; max-width:720px; margin:0 auto clamp(28px,3.4vw,44px);">
+      <span style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.12em; text-transform:uppercase; color:#7B2FE2;">Good to know</span>
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(26px,3.4vw,44px); line-height:1.06; font-weight:700; letter-spacing:-0.03em;">Frequently Asked Questions</h2>
+    </div>
+    <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
+      <sc-for list="{{ faqCards }}" as="f" hint-placeholder-count="6">
+        <div style="background:#FFFFFF; border:1px solid #E4E2DC; border-radius:16px; padding:22px 24px; display:flex; flex-direction:column; gap:10px; box-shadow:0 12px 30px rgba(16,16,20,0.05);" style-hover="border-color:#7B2FE2; box-shadow:0 16px 38px rgba(123,47,226,0.14);">
+          <span style="font-family:'Geist Mono',monospace; font-size:11px; line-height:16px; letter-spacing:0.12em; color:#7B2FE2;">{{ f.num }}</span>
+          <h3 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:17px; line-height:1.25; font-weight:700; color:#101014; text-wrap:pretty;">{{ f.q }}</h3>
+          <p style="margin:0; font-size:15px; line-height:24px; color:#5C5F66; text-wrap:pretty;">{{ f.a }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+
+  <!-- 11 CLOSING CTA -->
+  <div style="position:relative; overflow:hidden; border-top:1px dashed #2C3037; padding:clamp(64px,8vw,128px) clamp(24px,6vw,80px); text-align:center; background:linear-gradient(180deg,#15171B,#0C0A12);">
+    <div style="position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(90deg,#1D2026 1px,transparent 1px),linear-gradient(#1D2026 1px,transparent 1px); background-size:96px 96px; opacity:0.45;"></div>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(640px 340px at 50% 108%, rgba(123,47,226,0.22), transparent 68%), radial-gradient(420px 260px at 14% 8%, rgba(53,199,223,0.14), transparent 72%);"></div>
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#101014; font-family:monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>09</span><span>CLOSING CTA</span></div></sc-if>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:20px;">
+      <h2 style="margin:0; font-family:'Host Grotesk',Helvetica,sans-serif; font-size:clamp(28px,4.4vw,60px); line-height:1.04; font-weight:500; letter-spacing:-0.03em; max-width:840px;">Your next broadcast shouldn't leave money on the table.</h2>
+      <p style="margin:0; font-size:16px; line-height:26px; color:#9CA3AF; max-width:560px;">Join over 50 media brands already using our tools to transform passive viewers into active, valuable audience members.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+        <a href="/book-a-demo/" style="font-size:16px; line-height:24px; font-weight:600; color:#101014; background:#F7F7F5; padding:15px 30px; border-radius:100px;" style-hover="color:#F7F7F5; background:#7B2FE2;">Book a demo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 FOOTER -->
+  <footer style="position:relative; border-top:1px solid #23262C; padding:clamp(40px,5vw,72px) clamp(24px,6vw,80px) 0; display:flex; flex-wrap:wrap; gap:clamp(28px,4vw,56px);">
+    <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="position:absolute; left:0; top:0; z-index:25; display:flex; gap:8px; background:#7B2FE2; color:#101014; font-family:monospace; font-size:11px; line-height:16px; letter-spacing:0.06em; padding:5px 10px; pointer-events:none;"><span style="opacity:0.75;">FINAL</span><span>10</span><span>FOOTER</span></div></sc-if>
+    <div style="flex:1.4 1 240px; min-width:0; display:flex; flex-direction:column; gap:12px;">
+      <img src="assets/logo/BoltOS_Primary_RGB.png" style="height:24px; width:auto; align-self:flex-start;" alt="BoltOS logo">
+      <div style="font-family:monospace; font-size:11px; line-height:18px; letter-spacing:0.14em; text-transform:uppercase; color:#9CA3AF;">Audience Revenue Engine</div>
+      <img src="assets/badges/cyber-essentials-plus.png" style="width:63px; height:auto; display:block; margin-top:12px;" alt="Cyber Essentials Certified Plus">
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">COMPANY</div>
+      <a href="BoltOS%20About%20Us.dc.html" style="color:#C9C9D1;">About BoltOS</a>
+      <a href="BoltOS%20Case%20Studies.dc.html" style="color:#C9C9D1;">Case Studies</a>
+      <a href="BoltOS%20Newsroom.dc.html" style="color:#C9C9D1;">Newsroom</a>
+      <a href="https://drive.google.com/drive/folders/1oKsI_NIusj-tBJTO9MDh0SXPuqjZe3g6" target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" style="color:#C9C9D1;">Brand Assets</a>
+      <a href="/book-a-demo/" style="align-self:flex-start; margin-top:4px; font-size:13px; line-height:20px; font-weight:600; color:#FFFFFF; background:#7B2FE2; padding:9px 18px; border-radius:100px;" style-hover="color:#FFFFFF; background:#5F1FBC;">Book a demo</a>
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">SOLUTIONS</div>
+      <a href="BoltOS%20Solutions.dc.html" style="color:#C9C9D1;">All Solutions</a>
+      <a href="BoltOS%20Immersive%20Platform.dc.html" style="color:#C9C9D1;">Immersive Platform</a>
+      <a href="BoltOS%20Custom%20Bolt%20Plus.dc.html" style="color:#C9C9D1;">Custom Bolt+</a>
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">STAY CONNECTED</div>
+      <a href="/contact" style="color:#C9C9D1;">Contact Us</a>
+      <span style="font-size:14px; line-height:21px; color:#C9C9D1;">Monthly Newsletter</span>
+      <a href="/sign-up/" style="align-self:flex-start; margin-top:4px; font-size:13px; line-height:20px; font-weight:600; color:#FFFFFF; background:#7B2FE2; padding:9px 18px; border-radius:100px;" style-hover="color:#FFFFFF; background:#5F1FBC;">Sign up</a>
+    </div>
+    <div style="flex:0 1 170px; min-width:0; max-width:210px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:21px;">
+      <div style="font-family:monospace; font-size:11px; letter-spacing:0.1em; color:#7E838C; margin-bottom:4px;">FOLLOW US</div>
+      <sc-for list="{{ socials }}" as="s" hint-placeholder-count="5">
+        <a href="{{ s.href }}" target="_blank" rel="noopener noreferrer" aria-label="{{ s.aria }}" style="color:#C9C9D1;">{{ s.label }}</a>
+      </sc-for>
+    </div>
+  </footer>
+  <div style="border-top:1px dashed #2C3037; margin:clamp(32px,4vw,56px) clamp(24px,6vw,80px) 0; padding:20px 0 28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; font-size:12px; line-height:18px; color:#7E838C;">
+    <div>© 2026 BoltOS, Inc. All rights reserved. Built in Singapore and London.</div>
+    <div style="display:flex; gap:24px;">
+      <a href="https://boltos.ai/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" style="color:#7E838C;">Privacy</a>
+      <a href="https://boltos.ai/legal/cookie-policy/" target="_blank" rel="noopener noreferrer" style="color:#7E838C;">Cookies</a>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animateWave&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showLabels&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+class Component extends DCLogic {
+  state = { labels: null, menu: null, narrow: false, menuLeft: 0 };
+
+  openMenu(id, e) {
+    clearTimeout(this._menuTimer);
+    let left = this.state.menuLeft;
+    const t = e && e.currentTarget;
+    const wrap = this._navWrap;
+    if (t && wrap && t.getBoundingClientRect) {
+      const a = t.getBoundingClientRect(), b = wrap.getBoundingClientRect();
+      const widths = { Product: 416, Company: 776, Solutions: 696, Cases: 776 };
+      const pw = Math.min(widths[id] || 480, b.width);
+      left = Math.max(0, Math.min(a.left - b.left - 14, b.width - pw));
+    }
+    this.setState({ menu: id, menuLeft: left });
+  }
+
+  scheduleClose = () => {
+    clearTimeout(this._menuTimer);
+    this._menuTimer = setTimeout(() => this.setState({ menu: null }), 320);
+  };
+
+  holdMenu = () => clearTimeout(this._menuTimer);
+
+  componentDidMount() {
+    this.patch();
+    [150, 600].forEach(t => setTimeout(() => this.patch(), t));
+    this.onResize = () => {
+      const narrow = window.innerWidth < 1120;
+      if (narrow !== this.state.narrow) this.setState({ narrow });
+    };
+    this.onResize();
+    window.addEventListener("resize", this.onResize);
+  }
+
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); }
+
+  icon(kind) {
+    const g = "url(#bIcon)";
+    const defs = React.createElement("defs", null,
+      React.createElement("linearGradient", { id: "bIcon", x1: "0", y1: "0", x2: "1", y2: "1" },
+        React.createElement("stop", { offset: "0%", stopColor: "#C6ABF5" }),
+        React.createElement("stop", { offset: "55%", stopColor: "#D62086" }),
+        React.createElement("stop", { offset: "100%", stopColor: "#35C7DF" })));
+    const wrap = children => React.createElement("svg", { viewBox: "0 0 48 48", width: "48", height: "48", fill: "none" }, defs, children);
+    const st = { stroke: g, strokeWidth: 2.6, strokeLinecap: "round", strokeLinejoin: "round" };
+    if (kind === "demo") return wrap([
+      React.createElement("rect", { key: 1, x: 6, y: 9, width: 36, height: 25, rx: 4, ...st }),
+      React.createElement("path", { key: 2, d: "M18 41h12M24 34v7", ...st })
+    ]);
+    if (kind === "brief") return wrap([
+      React.createElement("path", { key: 1, d: "M12 6h16l8 8v28H12z", ...st }),
+      React.createElement("path", { key: 2, d: "M28 6v8h8", ...st }),
+      React.createElement("path", { key: 3, d: "M18 25h12M18 32h8", ...st })
+    ]);
+    if (kind === "lifting") return wrap([
+      React.createElement("circle", { key: 1, cx: 24, cy: 24, r: 7, ...st }),
+      React.createElement("path", { key: 2, d: "M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4", ...st })
+    ]);
+    if (kind === "plug") return wrap([
+      React.createElement("path", { key: 1, d: "M6 24h10M32 24h10", ...st }),
+      React.createElement("path", { key: 2, d: "M16 15h9a9 9 0 0 1 0 18h-9z", ...st }),
+      React.createElement("path", { key: 3, d: "M32 18v12", ...st })
+    ]);
+    return wrap([
+      React.createElement("path", { key: 1, d: "M24 5c7 6 10 13 10 21l-10 8-10-8c0-8 3-15 10-21z", ...st }),
+      React.createElement("circle", { key: 2, cx: 24, cy: 20, r: 4, ...st }),
+      React.createElement("path", { key: 3, d: "M17 38l-3 6 7-3M31 38l3 6-7-3", ...st })
+    ]);
+  }
+
+  patch() {
+    const R = (typeof window !== "undefined" && window.__resources) || null;
+    if (!R) return;
+    document.querySelectorAll("image-slot[src], img[src]").forEach(el => {
+      const raw = el.getAttribute("src") || "";
+      const key = raw.split("/").pop();
+      if (key && R[key] && raw.indexOf("blob:") !== 0) el.setAttribute("src", R[key]);
+    });
+  }
+
+  renderVals() {
+    const partnerDefs = [
+      ["Hisense", "assets/logos/hisense.png"],
+      ["Bloomberg", "assets/logos/bloomberg-cut.png"],
+      ["OneFootball", "assets/logos/one-football.webp"],
+      ["Dubai 24H Series", "assets/logos/dubai-24h.png"],
+      ["Bridget's Healthy Kitchen", "assets/logos/bridget.png"],
+      ["Bolt+", "assets/logos/boltos-app-cut.png"],
+      ["VIDAA", "assets/logos/vidaa.jpeg"],
+      ["Binance Pay", "assets/logos/binance-pay-cut.png"],
+      ["Olympusat", ""],
+      ["Dooya Media Group", "assets/logos/dooya-cut.png"],
+      ["TheSoul Publishing", ""]
+    ];
+    const base = partnerDefs.map(([name, src], i) => ({
+      name, src, hasLogo: !!src, isText: !src, slotId: "partner-" + (i + 1)
+    }));
+    const partners = base.concat(base.map(p => ({ ...p, slotId: p.slotId + "b" })));
+    const chat = [
+      { name: "LUCY_C", text: "Twenty more minutes like that and we are in Munich" },
+      { name: "MARCUS_92", text: "Etihad is loud tonight. Genuinely loud." },
+      { name: "PRIYA_S", text: "Foden on the left again? Interesting call" }
+    ];
+    const modules = [
+      { num: "01", name: "Chat", copy: "Real-time conversations, quizzes and ad banners, keep viewers glued to their screens for 3x longer. When audiences interact, they stay engaged." },
+      { num: "02", name: "Shop", copy: "Take advantage of personalized shopping integration. Host your merch store at the heart of where your community is engaging, bumping up your conversion numbers." },
+      { num: "03", name: "Read", copy: "For brands with premium reading material, why not organize your thought pieces to complement your content? Increasing click-throughs and ensuring your audience is interacting with your wider ecosystem." },
+      { num: "04", name: "AI", copy: "Turn your panel into a two-way interaction. Our AI companion is there to engage with your audience, learn from them and deliver an even more curated panel experience. All while supplying you with the data to make smarter decisions around your content and advertising." },
+      { num: "05", name: "Rewards", copy: "Host giveaways, competitions or sponsored campaigns in the panel itself. Don't just make it a social experience, make it an event. Use this module for building retention and for giving back to your community." },
+      { num: "06", name: "Analytics and Control", copy: "Every Immersive Platform is accompanied with a state-of-the-art control panel, delivering real-time analytics showing engagement metrics, sentiment analysis, demographic breakdown, and behavior patterns as they happen. Understand what resonates and optimize content on the fly. Make data-driven decisions during the broadcast, not days later." }
+    ];
+    const stats = [
+      { value: "3×", label: "Longer watch time", color: "#F7F7F5" },
+      { value: "1M+", label: "Interactions served", color: "#C6ABF5" },
+      { value: "50+", label: "Media brands", color: "#35C7DF" }
+    ];
+    const pillars = [
+      { icon: "⚯", title: "Seamless Integration", copy: "Mounted on the player you already own. No third-party app, no lost immersion, no audience sent elsewhere to buy." },
+      { icon: "✦", title: "Real-time Intelligence", copy: "Engagement, sentiment and behaviour as they happen, so you adapt during the broadcast instead of days later." },
+      { icon: "⛨", title: "Enterprise-Grade Reliability", copy: "99.9% uptime, 250,000+ concurrent viewers and GDPR compliance end to end." },
+      { icon: "◷", title: "100+ Years of Experience", copy: "A team that has spent a century in media between them, building live products for broadcasters and rights holders." }
+    ];
+    const stepData = [
+      ["01", "Book a demo", "Use a demo with our Sales team so they give you the grand tour and flesh out how we typically work with partners."],
+      ["02", "Agree on the brief", "The final details of your custom platform with our product team."],
+      ["03", "Let us do the heavy lifting", "Sit back and relax while our team takes on the heavy lifting. The next time you hear from us, we will have your interactive tools ready for your approval."],
+      ["04", "Implementation", "We will need your technical team's help mounting it onto the endpoint hosting your content. But not to worry, we will be there with them the entire way."],
+      ["05", "Go for Launch", "Once your platform is mounted and your control panel is completely setup, you are off to the races."]
+    ];
+    const steps = stepData.map(([num, title, copy], i) => ({ num, title, copy, hasRail: i < stepData.length - 1 }));
+    const iconSrcs = ["assets/icons/step-cal.png", "assets/icons/step-brief.png", "assets/icons/step-settings.png", "assets/icons/step-plug.png", "assets/icons/step-rocket.png"];
+    const R = (typeof window !== "undefined" && window.__resources) || null;
+    const icons = iconSrcs.map(src => React.createElement("img", {
+      src: (R && R[src.split("/").pop()]) || src,
+      alt: "",
+      style: { width: "100%", height: "100%", objectFit: "contain", display: "block" }
+    }));
+    const nodeY = ["flex-start", "flex-end", "flex-start", "flex-end", "flex-start"];
+    const roadSteps = stepData.map(([num], i) => ({
+      num, col: i + 1, align: nodeY[i], pad: i % 2 === 0 ? "8px 0 0" : "0 0 8px"
+    }));
+    const roadTop = stepData.map(([num, title, copy], i) => ({ num, title, copy, icon: icons[i], show: i % 2 === 0 }));
+    const roadBottom = stepData.map(([num, title, copy], i) => ({ num, title, copy, icon: icons[i], show: i % 2 === 1 }));
+    const cases = [
+      { name: "Hisense", tag: "Smart TV", quote: "We view our partnership with BoltOS as strategic and valuable for building and maintaining viewer loyalty.", person: "Jerry Liu · VP, Hisense International", stat: "14M TVs · 80 countries" },
+      { name: "VIDAA", tag: "TV OS", quote: "A powerful example of social TV, enabling real interaction on live and VOD content. They're set for great success.", person: "Guy Edri · CEO, VIDAA International", stat: "World's leading TV OS" },
+      { name: "24H Series", tag: "Motorsport", quote: "Interactive features, moderated feeds and car POV feeds, the highlight of the entire Hankook Endurance Season.", person: "Erik Naeser · Sports Advantage", stat: "150K interactions" },
+      { name: "Binance Pay", tag: "Payments", quote: "Creators and brands can easily earn and engage fans using the secure Binance ecosystem through TVs for the first time.", person: "Jonathan Lim · Global Head, Binance Pay", stat: "$12B processed" }
+    ];
+    const faqData = [
+      ["Do I need technical expertise to use BoltOS products?", "Not at all. Our products are designed for media teams, not developers. The control panel designed to manage them is also intuitive, and we provide guidance and workshops to educate your teams on best practices."],
+      ["How long does setup take?", "Setup once the brief is finalized can take anywhere from two to four weeks, depending on our workload at the time. However, we always endeavor to deliver in the shortest time frame possible while not compromising on quality."],
+      ["What if my broadcasting platform isn't listed in your integrations?", "We add new integrations regularly based on customer demand. If your platform isn't currently supported, contact our team. We can often create custom integrations or use other means of connection."],
+      ["Can viewers access interactive features on mobile devices?", "Yes. All our interactive features are fully optimized for mobile, tablet, and desktop. Your audience can participate regardless of device."],
+      ["How many concurrent viewers can your system handle?", "Our infrastructure auto-scales to handle unlimited concurrent users. We've successfully supported broadcasts with 250,000+ simultaneous viewers without performance degradation."],
+      ["Can I customize the look and feel to match my brand?", "Absolutely. You have complete control over colors, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully custom designs. Enterprise plans include white-label options with custom domains."],
+      ["How does monetization work?", "Panels contain banner ads that will generate ad dollars. Viewers can also make purchases or unlock premium content directly within your panel. We will work with you to ensure your preferred major payment gateways are added."],
+      ["What happens if something breaks during a live broadcast?", "We provide 24/7 support for Critical and High priority issues, including weekends and holidays. If you experience a critical failure during a live broadcast, our team responds within 5 minutes and aims for resolution within 1 hour. We take your reputation as seriously as you do."],
+      ["What's your uptime guarantee?", "We maintain 99.9% uptime backed by redundant infrastructure and continuous monitoring. Our status page provides real-time system health updates."],
+      ["How do you handle data privacy and security?", "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."]
+    ];
+    const faqCards = faqData.map(([q, a], i) => ({ q, a, num: String(i + 1).padStart(2, "0") }));
+    const showLabels = this.state.labels === null ? (this.props.showLabels ?? true) : this.state.labels;
+    const roadList = stepData.map(([num, title, copy], i) => ({ num, title, copy, icon: icons[i], hasRail: i < stepData.length - 1 }));
+    const menu = this.state.menu;
+    const svg = (d, extra) => React.createElement("svg", Object.assign({
+      width: 19, height: 19, viewBox: "0 0 24 24", fill: "#101014", "aria-hidden": "true"
+    }, extra || {}), React.createElement("path", { d }));
+    const socials = [
+      { label: "Boltplus.tv", href: "https://boltplus.tv/home", aria: "Bolt+ web app", pad: "18px",
+        glyph: React.createElement("img", { src: "assets/logo/BoltPlus.png", alt: "", style: { height: "20px", width: "auto", display: "block" } }) },
+      { label: "X", href: "https://x.com/boltplus", aria: "BoltOS on X", pad: "0",
+        glyph: svg("M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z") },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/boltos", aria: "BoltOS on LinkedIn", pad: "0",
+        glyph: svg("M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.19 1.46-2.19 2.97V21h-4z") },
+      { label: "Discord", href: "https://discord.gg/boltos-577830719645024278", aria: "BoltOS on Discord", pad: "0",
+        glyph: svg("M20.32 4.94A19.6 19.6 0 0015.44 3.4a13.8 13.8 0 00-.63 1.29 18.2 18.2 0 00-5.44 0 13.6 13.6 0 00-.64-1.29 19.6 19.6 0 00-4.88 1.54C.73 9.6-.45 14.13.14 18.6a19.8 19.8 0 006 3.05c.48-.66.91-1.36 1.28-2.1a12.9 12.9 0 01-2.02-.97c.17-.13.34-.26.5-.4a14.1 14.1 0 0012.2 0c.16.14.33.27.5.4-.64.38-1.32.7-2.02.97.37.74.8 1.44 1.28 2.1a19.7 19.7 0 006-3.05c.7-5.19-1.18-9.68-3.54-13.66zM8.02 15.88c-1.18 0-2.15-1.08-2.15-2.4s.95-2.41 2.15-2.41 2.17 1.09 2.15 2.41c0 1.32-.95 2.4-2.15 2.4zm7.96 0c-1.18 0-2.15-1.08-2.15-2.4s.95-2.41 2.15-2.41 2.17 1.09 2.15 2.41c0 1.32-.95 2.4-2.15 2.4z") },
+      { label: "Instagram", href: "https://www.instagram.com/boltplustv/", aria: "Bolt+ on Instagram", pad: "0",
+        glyph: svg("M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 01-1.38-.9 3.8 3.8 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.18a6.66 6.66 0 100 13.32 6.66 6.66 0 000-13.32zm0 10.98a4.32 4.32 0 110-8.64 4.32 4.32 0 010 8.64zm8.48-11.24a1.56 1.56 0 11-3.11 0 1.56 1.56 0 013.11 0z") }
+    ];
+    const navDefs = [
+      { id: "Product", label: "Product", href: "#", menu: true },
+      { id: "Company", label: "Company", href: "#", menu: true },
+      { id: "Solutions", label: "Solutions", href: "BoltOS%20Solutions.dc.html", menu: true },
+      { id: "Cases", label: "Case Studies", href: "BoltOS%20Case%20Studies.dc.html", menu: true },
+      { id: null, label: "Newsroom", href: "BoltOS%20Newsroom.dc.html", menu: false }
+    ];
+    const navItems = navDefs.map(d => ({
+      label: d.label, href: d.href,
+      isMenu: d.menu, isFlat: !d.menu,
+      expanded: menu === d.id ? "true" : "false",
+      color: menu === d.id && d.id ? "#F7F7F5" : "#C9C9D1",
+      enter: (e) => this.openMenu(d.id, e),
+      key: (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (menu === d.id) this.setState({ menu: null }); else this.openMenu(d.id, e); }
+        if (e.key === "Escape") this.setState({ menu: null });
+      }
+    }));
+    return { socials, navItems,
+      navWrapRef: (el) => { this._navWrap = el; },
+      closeMenu: this.scheduleClose, holdMenu: this.holdMenu,
+      menuAnchor: this.state.menuLeft + "px",
+      showProduct: menu === "Product", showCompany: menu === "Company",
+      showSolutions: menu === "Solutions", showCases: menu === "Cases",
+      wideRoad: !this.state.narrow, narrowRoad: this.state.narrow, roadList,
+      partners, chat, modules, stats, pillars, steps, roadSteps, roadTop, roadBottom, cases, casesLoop: cases.concat(cases), faqCards,
+      animateWave: this.props.animateWave ?? true, showLabels,
+      labelBtnText: showLabels ? "LABELS: ON" : "LABELS: OFF",
+      toggleLabels: () => this.setState({ labels: !showLabels }) };
+  }
+}
+</script>
+</body>
+</html>

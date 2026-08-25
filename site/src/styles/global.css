@@ -1,0 +1,81 @@
+/* BoltOS design tokens + global base. Source of truth: design-system/BoltOS Design System.md
+   plus the values locked in the prototype .dc.html files. */
+:root {
+  /* Brand palette (60/20/15/3/2) */
+  --night: #101014;
+  --snow: #F7F7F5;
+  --ultra-violet: #7B2FE2;
+  --ultra-violet-hover: #6424D9;   /* book hover */
+  --ultra-violet-press: #5F1FBC;   /* prototype nav/cta press */
+  --hot-rose: #D62086;
+  --sky-aqua: #35C7DF;
+
+  /* Night tonal scale + surfaces used across the prototype */
+  --page: #0E0E12;
+  --night-2: #15171B;
+  --night-3: #1F2126;
+  --night-4: #141418;
+  --surface-1: #18161C;
+  --hairline: #23262C;
+  --hairline-2: #2E323A;
+  --hairline-dashed: #2C3037;
+
+  /* Text tones */
+  --text: #F7F7F5;
+  --text-muted: #9CA3AF;
+  --text-soft: #C9C9D1;
+  --text-dim: #7E838C;
+  --text-lilac: #C6ABF5;
+  --ink: #101014;          /* text on Snow */
+  --ink-muted: #6B7280;
+  --ink-soft: #5C5F66;
+  --ink-2: #4A4F58;
+
+  /* Snow surfaces */
+  --snow-2: #F2F0EC;
+  --snow-line: #E7E7E4;
+  --snow-line-2: #E4E2DC;
+  --snow-line-3: #DDDAD4;
+
+  /* Type */
+  --font-display: 'Host Grotesk', Helvetica, sans-serif;
+  --font-body: 'Geist', Helvetica, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* Signature gradients */
+  --grad-cta: linear-gradient(180deg, #7B2FE2 0%, #D62086 100%);
+  --grad-rail: linear-gradient(90deg, #7B2FE2 0%, #D62086 45%, #35C7DF 100%);
+
+  /* Layout */
+  --edge: clamp(24px, 6vw, 80px);
+  --maxw: 1320px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+img, video, svg, image-slot { max-width: 100%; }
+
+a { color: var(--snow); text-decoration: none; }
+a:hover { color: var(--ultra-violet); }
+
+/* Shared marquee / motion keyframes ported from the prototype */
+@keyframes v5marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes v5rail { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes logoScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes v5float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}
+
+bolt-particle-wave { display: block; }

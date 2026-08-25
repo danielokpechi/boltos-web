@@ -1,0 +1,239 @@
+---
+// Sticky pill nav with four dropdown panels left-aligned to their triggers.
+// ~320ms cancellable close, keyboard reachable (Enter/Space toggle, Escape close).
+import { navItems, solutionsPanel, casesPanel, socials, routes, external } from '../data/nav.js';
+---
+<div class="nav-shell">
+  <div class="nav-wrap" data-nav-wrap>
+    <nav class="nav-pill" aria-label="Primary">
+      <a href={routes.home} aria-label="BoltOS home" class="nav-logo">
+        <img src="/assets/logo/BoltOS_Primary_RGB.png" alt="BoltOS logo" />
+      </a>
+      <div class="nav-center">
+        {navItems.map((n) => (
+          n.menu ? (
+            <button
+              type="button"
+              class="nav-trigger"
+              data-menu={n.id}
+              aria-haspopup="true"
+              aria-expanded="false"
+            >{n.label}<span class="nav-caret" aria-hidden="true">▾</span></button>
+          ) : (
+            <a href={n.href} class="nav-flat">{n.label}</a>
+          )
+        ))}
+      </div>
+      <div class="nav-cta-wrap">
+        <a href={routes.bookDemo} class="nav-cta">Book a Demo</a>
+      </div>
+    </nav>
+
+    <!-- Product panel -->
+    <div class="nav-panel" data-panel="Product" hidden>
+      <a href={external.boltplus} target="_blank" rel="noopener noreferrer" aria-label="Bolt+ web app" class="np-product">
+        <span class="np-product-badge"><img src="/assets/logo/BoltPlus.png" alt="Bolt+" /></span>
+        <p>Experience the future of immersive streaming with chat, shop, rewards and AI.</p>
+      </a>
+    </div>
+
+    <!-- Company panel -->
+    <div class="nav-panel" data-panel="Company" hidden>
+      <div class="np-company">
+        <div class="np-company-col">
+          <div class="np-eyebrow">COMPANY</div>
+          <a href={routes.about} class="np-company-link">About Us</a>
+          <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" class="np-company-link">Brand Assets</a>
+        </div>
+        <div class="np-socials">
+          {socials.map((s) => (
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.aria} class="np-social">
+              <span class="np-social-badge" style={`padding:0 ${s.pad};`}>
+                {s.img
+                  ? <img src={s.img} alt="" style="height:20px; width:auto; display:block;" />
+                  : <svg width="19" height="19" viewBox="0 0 24 24" fill="#101014" aria-hidden="true"><path d={s.path}></path></svg>}
+              </span>
+              <span class="np-social-label">{s.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Solutions panel -->
+    <div class="nav-panel" data-panel="Solutions" hidden>
+      <div class="np-grid">
+        {solutionsPanel.map((s) => (
+          <a href={s.href} class="np-card">
+            <span class="np-card-title">{s.label}</span>
+            <span class="np-card-sub">{s.sub}</span>
+          </a>
+        ))}
+      </div>
+      <a href={routes.solutions} class="np-all">All solutions →</a>
+    </div>
+
+    <!-- Cases panel -->
+    <div class="nav-panel" data-panel="Cases" hidden>
+      <div class="np-grid">
+        {casesPanel.map((s) => (
+          <a href={s.href} class="np-card">
+            <span class="np-card-title">{s.label}</span>
+            <span class="np-card-sub">{s.sub}</span>
+          </a>
+        ))}
+      </div>
+      <a href={routes.cases} class="np-all">See all case studies →</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nav-shell {
+    position: sticky; top: 0; z-index: 40;
+    padding: 14px clamp(16px, 4vw, 40px);
+    background: linear-gradient(180deg, rgba(14,14,18,0.96), rgba(14,14,18,0));
+  }
+  .nav-wrap { position: relative; max-width: var(--maxw); margin: 0 auto; }
+  .nav-pill {
+    position: relative; z-index: 2;
+    background: rgba(16,16,20,0.88);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--hairline);
+    border-radius: clamp(22px, 4vw, 100px);
+    box-shadow: 0 10px 34px rgba(0,0,0,0.5);
+    padding: 12px clamp(16px, 2vw, 26px);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px 14px;
+  }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { height: 22px; width: auto; display: block; }
+  .nav-center {
+    flex: 1 1 auto; display: flex; flex-wrap: wrap;
+    justify-content: center; align-items: center;
+    gap: clamp(10px, 1.6vw, 22px); font-size: 14px; line-height: 20px;
+  }
+  .nav-trigger {
+    display: flex; align-items: center; gap: 5px; padding: 6px 2px;
+    cursor: pointer; background: none; border: 0; font-family: inherit;
+    font-size: 14px; line-height: 20px; color: var(--text-soft);
+  }
+  .nav-trigger[aria-expanded='true'] { color: var(--snow); }
+  .nav-caret { font-size: 9px; opacity: 0.6; }
+  .nav-flat { display: flex; align-items: center; padding: 6px 2px; color: var(--text-soft); }
+  .nav-flat:hover { color: var(--snow); }
+  .nav-cta-wrap { margin-left: auto; display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
+  .nav-cta {
+    font-size: 14px; line-height: 20px; font-weight: 700; color: #FFFFFF;
+    background: var(--ultra-violet); padding: 10px 20px; border-radius: 100px;
+  }
+  .nav-cta:hover { color: #FFFFFF; background: var(--ultra-violet-press); }
+
+  .nav-panel {
+    position: absolute; left: 0; top: calc(100% + 4px);
+    max-width: calc(100vw - 40px);
+    border-top: 8px solid transparent; background-clip: padding-box;
+    z-index: 50; box-sizing: border-box;
+    background: rgba(16,16,20,0.97);
+    border: 1px solid var(--hairline); border-radius: 20px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6); backdrop-filter: blur(16px);
+    padding: 22px;
+  }
+  .nav-panel[data-panel='Product'] { width: min(360px, calc(100vw - 40px)); }
+  .nav-panel[data-panel='Company'] { width: min(720px, calc(100vw - 40px)); padding: 26px 28px; }
+  .nav-panel[data-panel='Solutions'] { width: min(640px, calc(100vw - 40px)); }
+  .nav-panel[data-panel='Cases'] { width: min(640px, calc(100vw - 40px)); }
+
+  /* Product */
+  .np-product { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding: 14px; margin: -14px; border-radius: 14px; }
+  .np-product:hover { background: rgba(123,47,226,0.12); }
+  .np-product-badge { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: 10px; background: var(--snow); }
+  .np-product-badge img { height: 20px; width: auto; display: block; }
+  .np-product p { margin: 0; font-size: 14px; line-height: 22px; color: #B9BCC4; max-width: 44ch; }
+
+  /* Company */
+  .np-company { display: flex; flex-wrap: wrap; gap: 26px; align-items: stretch; }
+  .np-company-col { flex: 0 0 auto; min-width: 150px; display: flex; flex-direction: column; gap: 12px; padding-right: 26px; border-right: 1px solid var(--hairline); }
+  .np-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--text-dim); }
+  .np-company-link { font-size: 15px; line-height: 22px; font-weight: 600; color: var(--snow); }
+  .np-company-link:hover { color: var(--text-lilac); }
+  .np-socials { flex: 1 1 380px; min-width: 0; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; gap: 18px; }
+  .np-social { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 8px; border-radius: 14px; min-width: 74px; }
+  .np-social:hover { background: rgba(123,47,226,0.12); }
+  .np-social-badge { display: flex; align-items: center; justify-content: center; height: 38px; border-radius: 100px; background: var(--snow); min-width: 38px; }
+  .np-social-label { font-size: 13px; line-height: 18px; color: var(--text-soft); }
+
+  /* Solutions + Cases cards */
+  .np-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+  .np-card { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 12px; border: 1px solid transparent; }
+  .np-card:hover { background: rgba(123,47,226,0.12); border-color: rgba(123,47,226,0.40); }
+  .np-card-title { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--snow); }
+  .np-card-sub { font-size: 12px; line-height: 18px; color: #8A8E97; }
+  .np-all { display: inline-flex; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lilac); }
+  .np-all:hover { color: var(--snow); }
+</style>
+
+<script>
+  // Dropdown behaviour: hover/focus/click opens; ~320ms cancellable close on leave.
+  const PANEL_WIDTHS: Record<string, number> = { Product: 416, Company: 776, Solutions: 696, Cases: 776 };
+
+  document.querySelectorAll<HTMLElement>('[data-nav-wrap]').forEach((wrap) => {
+    const triggers = Array.from(wrap.querySelectorAll<HTMLButtonElement>('.nav-trigger'));
+    const panels = new Map<string, HTMLElement>();
+    wrap.querySelectorAll<HTMLElement>('.nav-panel').forEach((p) => panels.set(p.dataset.panel!, p));
+    let closeTimer: number | undefined;
+    let current: string | null = null;
+
+    function position(id: string, trigger: HTMLElement) {
+      const panel = panels.get(id);
+      if (!panel) return;
+      const a = trigger.getBoundingClientRect();
+      const b = wrap.getBoundingClientRect();
+      const pw = Math.min(PANEL_WIDTHS[id] || 480, b.width);
+      const left = Math.max(0, Math.min(a.left - b.left - 14, b.width - pw));
+      panel.style.left = left + 'px';
+    }
+
+    function open(id: string, trigger: HTMLElement) {
+      window.clearTimeout(closeTimer);
+      if (current && current !== id) close(false);
+      current = id;
+      const panel = panels.get(id);
+      if (!panel) return;
+      position(id, trigger);
+      panel.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function close(all = true) {
+      if (current) {
+        panels.get(current)!.hidden = true;
+        triggers.find((t) => t.dataset.menu === current)?.setAttribute('aria-expanded', 'false');
+      }
+      if (all) current = null;
+    }
+
+    function scheduleClose() {
+      window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(() => close(true), 320);
+    }
+    function hold() { window.clearTimeout(closeTimer); }
+
+    triggers.forEach((t) => {
+      const id = t.dataset.menu!;
+      t.addEventListener('mouseenter', () => open(id, t));
+      t.addEventListener('focus', () => open(id, t));
+      t.addEventListener('click', () => (current === id ? close(true) : open(id, t)));
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); current === id ? close(true) : open(id, t); }
+        if (e.key === 'Escape') { close(true); t.blur(); }
+      });
+    });
+    panels.forEach((p) => p.addEventListener('mouseenter', hold));
+    wrap.addEventListener('mouseleave', scheduleClose);
+    wrap.addEventListener('mouseenter', hold);
+    window.addEventListener('resize', () => {
+      if (current) { const t = triggers.find((x) => x.dataset.menu === current); if (t) position(current, t); }
+    });
+  });
+</script>

@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  bodyBackground?: string;
+}
+const { title, description, bodyBackground = '#0E0E12' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline src="/particle-wave.js"></script>
+  </head>
+  <body style={`background:${bodyBackground};`}>
+    <div class="page-root">
+      <Nav />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  .page-root {
+    position: relative;
+    font-family: var(--font-body);
+    background: var(--page);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+</style>
