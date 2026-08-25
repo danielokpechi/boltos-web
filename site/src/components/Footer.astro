@@ -1,10 +1,11 @@
 ---
 // Four-column footer. Social list shared with the Company dropdown from one source.
-import { socials, routes, external } from '../data/nav.js';
+import { routes, external } from '../data/nav.js';
+import SocialLinks from './SocialLinks.astro';
 ---
 <footer class="ft">
   <div class="ft-brand">
-    <img src="/assets/logo/BoltOS_Primary_RGB.png" alt="BoltOS logo" class="ft-logo" />
+    <img src="/assets/logo/BoltOS_Primary_RGB.svg" alt="BoltOS logo" class="ft-logo" />
     <div class="ft-tag">Audience Revenue Engine</div>
     <img src="/assets/badges/cyber-essentials-plus.png" alt="Cyber Essentials Certified Plus" class="ft-badge" />
   </div>
@@ -30,9 +31,7 @@ import { socials, routes, external } from '../data/nav.js';
   </div>
   <div class="ft-col">
     <div class="ft-head">FOLLOW US</div>
-    {socials.map((s) => (
-      <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.aria}>{s.label}</a>
-    ))}
+    <SocialLinks />
   </div>
 </footer>
 <div class="ft-legal">

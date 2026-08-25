@@ -1,0 +1,32 @@
+---
+// Shared social links, used by both the nav Company dropdown and the footer,
+// from the single `socials` array in nav.js (no duplication).
+import { socials } from '../data/nav.js';
+interface Props { showLabels?: boolean; class?: string; }
+const { showLabels = false, class: className } = Astro.props;
+---
+<div class:list={['social-links', { labeled: showLabels }, className]}>
+  {socials.map((s) => (
+    <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.aria} class="social-link">
+      <span class="social-badge">
+        {s.img
+          ? <img src={s.img} alt="" />
+          : <svg viewBox="0 0 24 24" fill="#101014" aria-hidden="true"><path d={s.path}></path></svg>}
+      </span>
+      {showLabels && <span class="social-label">{s.label}</span>}
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .social-links.labeled { gap: 18px; justify-content: space-around; }
+  .social-link { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; border-radius: 14px; padding: 3px; color: var(--text-soft); }
+  .social-links.labeled .social-link { padding: 10px 8px; min-width: 74px; }
+  .social-link:hover, .social-link:focus-visible { background: rgba(123,47,226,0.14); color: var(--snow); outline: none; }
+  .social-link:focus-visible { box-shadow: 0 0 0 2px var(--ultra-violet); }
+  .social-badge { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 100px; background: var(--snow); }
+  .social-badge svg { width: 19px; height: 19px; display: block; }
+  .social-badge img { height: 20px; width: auto; display: block; }
+  .social-label { font-size: 13px; line-height: 18px; color: inherit; }
+</style>

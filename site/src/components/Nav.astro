@@ -1,24 +1,20 @@
 ---
-// Sticky pill nav with four dropdown panels left-aligned to their triggers.
-// ~320ms cancellable close, keyboard reachable (Enter/Space toggle, Escape close).
-import { navItems, solutionsPanel, casesPanel, socials, routes, external } from '../data/nav.js';
+// Sticky pill nav. Desktop: four hover/click dropdown panels left-aligned to their
+// triggers. Mobile (<900px): a hamburger opens a full-height slide-out drawer with
+// the dropdowns as accordions, body-scroll lock, focus trap, and Escape/overlay close.
+import { navItems, solutionsPanel, casesPanel, routes, external } from '../data/nav.js';
+import SocialLinks from './SocialLinks.astro';
 ---
 <div class="nav-shell">
   <div class="nav-wrap" data-nav-wrap>
     <nav class="nav-pill" aria-label="Primary">
       <a href={routes.home} aria-label="BoltOS home" class="nav-logo">
-        <img src="/assets/logo/BoltOS_Primary_RGB.png" alt="BoltOS logo" />
+        <img src="/assets/logo/BoltOS_Primary_RGB.svg" alt="BoltOS logo" />
       </a>
       <div class="nav-center">
         {navItems.map((n) => (
           n.menu ? (
-            <button
-              type="button"
-              class="nav-trigger"
-              data-menu={n.id}
-              aria-haspopup="true"
-              aria-expanded="false"
-            >{n.label}<span class="nav-caret" aria-hidden="true">▾</span></button>
+            <button type="button" class="nav-trigger" data-menu={n.id} aria-haspopup="true" aria-expanded="false">{n.label}<span class="nav-caret" aria-hidden="true">▾</span></button>
           ) : (
             <a href={n.href} class="nav-flat">{n.label}</a>
           )
@@ -27,17 +23,18 @@ import { navItems, solutionsPanel, casesPanel, socials, routes, external } from 
       <div class="nav-cta-wrap">
         <a href={routes.bookDemo} class="nav-cta">Book a Demo</a>
       </div>
+      <button type="button" class="nav-burger" aria-label="Open menu" aria-controls="nav-drawer" aria-expanded="false" data-drawer-open>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
     </nav>
 
-    <!-- Product panel -->
+    <!-- Desktop dropdown panels -->
     <div class="nav-panel" data-panel="Product" hidden>
       <a href={external.boltplus} target="_blank" rel="noopener noreferrer" aria-label="Bolt+ web app" class="np-product">
-        <span class="np-product-badge"><img src="/assets/logo/BoltPlus.png" alt="Bolt+" /></span>
+        <span class="np-product-badge"><img src="/assets/logo/BoltPlus_Secondary_RGB.svg" alt="Bolt+" /></span>
         <p>Experience the future of immersive streaming with chat, shop, rewards and AI.</p>
       </a>
     </div>
-
-    <!-- Company panel -->
     <div class="nav-panel" data-panel="Company" hidden>
       <div class="np-company">
         <div class="np-company-col">
@@ -45,42 +42,21 @@ import { navItems, solutionsPanel, casesPanel, socials, routes, external } from 
           <a href={routes.about} class="np-company-link">About Us</a>
           <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" class="np-company-link">Brand Assets</a>
         </div>
-        <div class="np-socials">
-          {socials.map((s) => (
-            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.aria} class="np-social">
-              <span class="np-social-badge" style={`padding:0 ${s.pad};`}>
-                {s.img
-                  ? <img src={s.img} alt="" style="height:20px; width:auto; display:block;" />
-                  : <svg width="19" height="19" viewBox="0 0 24 24" fill="#101014" aria-hidden="true"><path d={s.path}></path></svg>}
-              </span>
-              <span class="np-social-label">{s.label}</span>
-            </a>
-          ))}
-        </div>
+        <SocialLinks showLabels class="np-socials" />
       </div>
     </div>
-
-    <!-- Solutions panel -->
     <div class="nav-panel" data-panel="Solutions" hidden>
       <div class="np-grid">
         {solutionsPanel.map((s) => (
-          <a href={s.href} class="np-card">
-            <span class="np-card-title">{s.label}</span>
-            <span class="np-card-sub">{s.sub}</span>
-          </a>
+          <a href={s.href} class="np-card"><span class="np-card-title">{s.label}</span><span class="np-card-sub">{s.sub}</span></a>
         ))}
       </div>
       <a href={routes.solutions} class="np-all">All solutions →</a>
     </div>
-
-    <!-- Cases panel -->
     <div class="nav-panel" data-panel="Cases" hidden>
       <div class="np-grid">
         {casesPanel.map((s) => (
-          <a href={s.href} class="np-card">
-            <span class="np-card-title">{s.label}</span>
-            <span class="np-card-sub">{s.sub}</span>
-          </a>
+          <a href={s.href} class="np-card"><span class="np-card-title">{s.label}</span><span class="np-card-sub">{s.sub}</span></a>
         ))}
       </div>
       <a href={routes.cases} class="np-all">See all case studies →</a>
@@ -88,82 +64,95 @@ import { navItems, solutionsPanel, casesPanel, socials, routes, external } from 
   </div>
 </div>
 
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer" data-drawer hidden>
+  <div class="nav-drawer-overlay" data-drawer-close tabindex="-1" aria-hidden="true"></div>
+  <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="nav-drawer-head">
+      <a href={routes.home} class="nav-logo" aria-label="BoltOS home" data-drawer-nav><img src="/assets/logo/BoltOS_Primary_RGB.svg" alt="BoltOS logo" /></a>
+      <button type="button" class="nav-drawer-close" aria-label="Close menu" data-drawer-close>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="nav-drawer-body">
+      <!-- Product -->
+      <div class="nav-acc">
+        <button type="button" class="nav-acc-trigger" aria-expanded="false">Product<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
+        <div class="nav-acc-panel" hidden>
+          <a href={external.boltplus} target="_blank" rel="noopener noreferrer" class="nav-acc-link" data-drawer-nav>Bolt+ <span class="nav-acc-sub">Immersive streaming web app</span></a>
+        </div>
+      </div>
+      <!-- Company -->
+      <div class="nav-acc">
+        <button type="button" class="nav-acc-trigger" aria-expanded="false">Company<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
+        <div class="nav-acc-panel" hidden>
+          <a href={routes.about} class="nav-acc-link" data-drawer-nav>About Us</a>
+          <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" class="nav-acc-link" data-drawer-nav>Brand Assets</a>
+          <div class="nav-acc-social"><SocialLinks /></div>
+        </div>
+      </div>
+      <!-- Solutions -->
+      <div class="nav-acc">
+        <button type="button" class="nav-acc-trigger" aria-expanded="false">Solutions<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
+        <div class="nav-acc-panel" hidden>
+          {solutionsPanel.map((s) => <a href={s.href} class="nav-acc-link" data-drawer-nav>{s.label}</a>)}
+          <a href={routes.solutions} class="nav-acc-link muted" data-drawer-nav>All solutions →</a>
+        </div>
+      </div>
+      <!-- Cases -->
+      <div class="nav-acc">
+        <button type="button" class="nav-acc-trigger" aria-expanded="false">Case Studies<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
+        <div class="nav-acc-panel" hidden>
+          {casesPanel.map((s) => <a href={s.href} class="nav-acc-link" data-drawer-nav>{s.label}</a>)}
+          <a href={routes.cases} class="nav-acc-link muted" data-drawer-nav>See all case studies →</a>
+        </div>
+      </div>
+      <!-- Newsroom (flat) -->
+      <a href={routes.newsroom} class="nav-acc-flat" data-drawer-nav>Newsroom</a>
+    </div>
+    <div class="nav-drawer-foot">
+      <a href={routes.bookDemo} class="nav-drawer-cta" data-drawer-nav>Book a Demo</a>
+    </div>
+  </aside>
+</div>
+
 <style>
-  .nav-shell {
-    position: sticky; top: 0; z-index: 40;
-    padding: 14px clamp(16px, 4vw, 40px);
-    background: linear-gradient(180deg, rgba(14,14,18,0.96), rgba(14,14,18,0));
-  }
+  .nav-shell { position: sticky; top: 0; z-index: 40; padding: 14px clamp(16px, 4vw, 40px); background: linear-gradient(180deg, rgba(14,14,18,0.96), rgba(14,14,18,0)); }
   .nav-wrap { position: relative; max-width: var(--maxw); margin: 0 auto; }
-  .nav-pill {
-    position: relative; z-index: 2;
-    background: rgba(16,16,20,0.88);
-    backdrop-filter: blur(14px);
-    border: 1px solid var(--hairline);
-    border-radius: clamp(22px, 4vw, 100px);
-    box-shadow: 0 10px 34px rgba(0,0,0,0.5);
-    padding: 12px clamp(16px, 2vw, 26px);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px 14px;
-  }
+  .nav-pill { position: relative; z-index: 2; background: rgba(16,16,20,0.88); backdrop-filter: blur(14px); border: 1px solid var(--hairline); border-radius: clamp(22px, 4vw, 100px); box-shadow: 0 10px 34px rgba(0,0,0,0.5); padding: 12px clamp(16px, 2vw, 26px); display: flex; align-items: center; justify-content: space-between; gap: 12px 14px; }
   .nav-logo { display: flex; align-items: center; }
   .nav-logo img { height: 22px; width: auto; display: block; }
-  .nav-center {
-    flex: 1 1 auto; display: flex; flex-wrap: wrap;
-    justify-content: center; align-items: center;
-    gap: clamp(10px, 1.6vw, 22px); font-size: 14px; line-height: 20px;
-  }
-  .nav-trigger {
-    display: flex; align-items: center; gap: 5px; padding: 6px 2px;
-    cursor: pointer; background: none; border: 0; font-family: inherit;
-    font-size: 14px; line-height: 20px; color: var(--text-soft);
-  }
+  .nav-center { flex: 1 1 auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(10px, 1.6vw, 22px); font-size: 14px; line-height: 20px; }
+  .nav-trigger { display: flex; align-items: center; gap: 5px; padding: 6px 2px; cursor: pointer; background: none; border: 0; font-family: inherit; font-size: 14px; line-height: 20px; color: var(--text-soft); }
   .nav-trigger[aria-expanded='true'] { color: var(--snow); }
   .nav-caret { font-size: 9px; opacity: 0.6; }
   .nav-flat { display: flex; align-items: center; padding: 6px 2px; color: var(--text-soft); }
   .nav-flat:hover { color: var(--snow); }
   .nav-cta-wrap { margin-left: auto; display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
-  .nav-cta {
-    font-size: 14px; line-height: 20px; font-weight: 700; color: #FFFFFF;
-    background: var(--ultra-violet); padding: 10px 20px; border-radius: 100px;
-  }
+  .nav-cta { font-size: 14px; line-height: 20px; font-weight: 700; color: #FFFFFF; background: var(--ultra-violet); padding: 10px 20px; border-radius: 100px; }
   .nav-cta:hover { color: #FFFFFF; background: var(--ultra-violet-press); }
 
-  .nav-panel {
-    position: absolute; left: 0; top: calc(100% + 4px);
-    max-width: calc(100vw - 40px);
-    border-top: 8px solid transparent; background-clip: padding-box;
-    z-index: 50; box-sizing: border-box;
-    background: rgba(16,16,20,0.97);
-    border: 1px solid var(--hairline); border-radius: 20px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.6); backdrop-filter: blur(16px);
-    padding: 22px;
-  }
+  /* Hamburger (mobile only) */
+  .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; margin-left: auto; padding: 0; background: none; border: 0; cursor: pointer; }
+  .nav-burger span { display: block; width: 22px; height: 2px; border-radius: 2px; background: var(--snow); margin: 0 auto; }
+  .nav-burger:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--ultra-violet); border-radius: 10px; }
+
+  .nav-panel { position: absolute; left: 0; top: calc(100% + 4px); max-width: calc(100vw - 40px); border-top: 8px solid transparent; background-clip: padding-box; z-index: 50; box-sizing: border-box; background: rgba(16,16,20,0.97); border: 1px solid var(--hairline); border-radius: 20px; box-shadow: 0 30px 70px rgba(0,0,0,0.6); backdrop-filter: blur(16px); padding: 22px; }
   .nav-panel[data-panel='Product'] { width: min(360px, calc(100vw - 40px)); }
   .nav-panel[data-panel='Company'] { width: min(720px, calc(100vw - 40px)); padding: 26px 28px; }
   .nav-panel[data-panel='Solutions'] { width: min(640px, calc(100vw - 40px)); }
   .nav-panel[data-panel='Cases'] { width: min(640px, calc(100vw - 40px)); }
-
-  /* Product */
   .np-product { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding: 14px; margin: -14px; border-radius: 14px; }
   .np-product:hover { background: rgba(123,47,226,0.12); }
   .np-product-badge { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: 10px; background: var(--snow); }
   .np-product-badge img { height: 20px; width: auto; display: block; }
   .np-product p { margin: 0; font-size: 14px; line-height: 22px; color: #B9BCC4; max-width: 44ch; }
-
-  /* Company */
   .np-company { display: flex; flex-wrap: wrap; gap: 26px; align-items: stretch; }
   .np-company-col { flex: 0 0 auto; min-width: 150px; display: flex; flex-direction: column; gap: 12px; padding-right: 26px; border-right: 1px solid var(--hairline); }
   .np-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--text-dim); }
   .np-company-link { font-size: 15px; line-height: 22px; font-weight: 600; color: var(--snow); }
   .np-company-link:hover { color: var(--text-lilac); }
-  .np-socials { flex: 1 1 380px; min-width: 0; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; gap: 18px; }
-  .np-social { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 8px; border-radius: 14px; min-width: 74px; }
-  .np-social:hover { background: rgba(123,47,226,0.12); }
-  .np-social-badge { display: flex; align-items: center; justify-content: center; height: 38px; border-radius: 100px; background: var(--snow); min-width: 38px; }
-  .np-social-label { font-size: 13px; line-height: 18px; color: var(--text-soft); }
-
-  /* Solutions + Cases cards */
+  .nav-panel :global(.np-socials) { flex: 1 1 380px; min-width: 0; }
   .np-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
   .np-card { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 12px; border: 1px solid transparent; }
   .np-card:hover { background: rgba(123,47,226,0.12); border-color: rgba(123,47,226,0.40); }
@@ -171,69 +160,123 @@ import { navItems, solutionsPanel, casesPanel, socials, routes, external } from 
   .np-card-sub { font-size: 12px; line-height: 18px; color: #8A8E97; }
   .np-all { display: inline-flex; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lilac); }
   .np-all:hover { color: var(--snow); }
+
+  /* Drawer */
+  .nav-drawer { position: fixed; inset: 0; z-index: 60; }
+  .nav-drawer[hidden] { display: none; }
+  .nav-drawer-overlay { position: absolute; inset: 0; background: rgba(8,8,12,0.6); backdrop-filter: blur(2px); opacity: 0; transition: opacity 0.2s ease; }
+  .nav-drawer.open .nav-drawer-overlay { opacity: 1; }
+  .nav-drawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: min(360px, 88vw); background: #101014; border-left: 1px solid var(--hairline); box-shadow: -20px 0 60px rgba(0,0,0,0.6); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.24s ease; }
+  .nav-drawer.open .nav-drawer-panel { transform: translateX(0); }
+  .nav-drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--hairline); }
+  .nav-drawer-close { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: none; border: 0; color: var(--snow); cursor: pointer; border-radius: 10px; }
+  .nav-drawer-close:hover, .nav-drawer-close:focus-visible { background: rgba(123,47,226,0.14); outline: none; }
+  .nav-drawer-close:focus-visible { box-shadow: 0 0 0 2px var(--ultra-violet); }
+  .nav-drawer-body { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 12px 20px; }
+  .nav-acc { border-bottom: 1px solid var(--hairline); }
+  .nav-acc-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 8px; background: none; border: 0; font-family: inherit; font-size: 17px; font-weight: 600; color: var(--snow); cursor: pointer; }
+  .nav-acc-trigger:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--ultra-violet); border-radius: 8px; }
+  .nav-acc-chev { font-size: 12px; color: var(--text-dim); transition: transform 0.2s ease; }
+  .nav-acc-trigger[aria-expanded='true'] .nav-acc-chev { transform: rotate(180deg); color: var(--ultra-violet); }
+  .nav-acc-panel { display: flex; flex-direction: column; gap: 2px; padding: 0 8px 14px; }
+  .nav-acc-panel[hidden] { display: none; }
+  .nav-acc-link { display: flex; flex-direction: column; gap: 2px; padding: 11px 12px; border-radius: 10px; font-size: 15px; color: var(--text-soft); }
+  .nav-acc-link:hover, .nav-acc-link:focus-visible { background: rgba(123,47,226,0.12); color: var(--snow); outline: none; }
+  .nav-acc-link.muted { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-lilac); }
+  .nav-acc-sub { font-size: 12px; color: var(--text-dim); }
+  .nav-acc-social { padding: 8px 4px 4px; }
+  .nav-acc-flat { display: block; padding: 16px 8px; font-size: 17px; font-weight: 600; color: var(--snow); border-bottom: 1px solid var(--hairline); }
+  .nav-acc-flat:hover, .nav-acc-flat:focus-visible { color: var(--text-lilac); outline: none; }
+  .nav-drawer-foot { padding: 16px 20px; border-top: 1px solid var(--hairline); }
+  .nav-drawer-cta { display: block; text-align: center; font-size: 16px; font-weight: 700; color: #FFFFFF; background: var(--ultra-violet); padding: 14px 20px; border-radius: 100px; }
+  .nav-drawer-cta:hover { background: var(--ultra-violet-press); }
+
+  @media (max-width: 899px) {
+    .nav-center, .nav-cta-wrap { display: none; }
+    .nav-burger { display: flex; }
+    .nav-panel { display: none; }
+  }
+  @media (min-width: 900px) {
+    .nav-drawer { display: none !important; }
+  }
 </style>
 
 <script>
-  // Dropdown behaviour: hover/focus/click opens; ~320ms cancellable close on leave.
+  // Desktop dropdowns: hover/focus/click open; ~320ms cancellable close.
   const PANEL_WIDTHS: Record<string, number> = { Product: 416, Company: 776, Solutions: 696, Cases: 776 };
-
   document.querySelectorAll<HTMLElement>('[data-nav-wrap]').forEach((wrap) => {
     const triggers = Array.from(wrap.querySelectorAll<HTMLButtonElement>('.nav-trigger'));
     const panels = new Map<string, HTMLElement>();
     wrap.querySelectorAll<HTMLElement>('.nav-panel').forEach((p) => panels.set(p.dataset.panel!, p));
     let closeTimer: number | undefined;
     let current: string | null = null;
-
     function position(id: string, trigger: HTMLElement) {
-      const panel = panels.get(id);
-      if (!panel) return;
-      const a = trigger.getBoundingClientRect();
-      const b = wrap.getBoundingClientRect();
+      const panel = panels.get(id); if (!panel) return;
+      const a = trigger.getBoundingClientRect(), b = wrap.getBoundingClientRect();
       const pw = Math.min(PANEL_WIDTHS[id] || 480, b.width);
-      const left = Math.max(0, Math.min(a.left - b.left - 14, b.width - pw));
-      panel.style.left = left + 'px';
+      panel.style.left = Math.max(0, Math.min(a.left - b.left - 14, b.width - pw)) + 'px';
     }
-
-    function open(id: string, trigger: HTMLElement) {
-      window.clearTimeout(closeTimer);
-      if (current && current !== id) close(false);
-      current = id;
-      const panel = panels.get(id);
-      if (!panel) return;
-      position(id, trigger);
-      panel.hidden = false;
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-
-    function close(all = true) {
-      if (current) {
-        panels.get(current)!.hidden = true;
-        triggers.find((t) => t.dataset.menu === current)?.setAttribute('aria-expanded', 'false');
-      }
-      if (all) current = null;
-    }
-
-    function scheduleClose() {
-      window.clearTimeout(closeTimer);
-      closeTimer = window.setTimeout(() => close(true), 320);
-    }
+    function open(id: string, t: HTMLElement) { window.clearTimeout(closeTimer); if (current && current !== id) close(false); current = id; const p = panels.get(id); if (!p) return; position(id, t); p.hidden = false; t.setAttribute('aria-expanded', 'true'); }
+    function close(all = true) { if (current) { panels.get(current)!.hidden = true; triggers.find((t) => t.dataset.menu === current)?.setAttribute('aria-expanded', 'false'); } if (all) current = null; }
+    function scheduleClose() { window.clearTimeout(closeTimer); closeTimer = window.setTimeout(() => close(true), 320); }
     function hold() { window.clearTimeout(closeTimer); }
-
     triggers.forEach((t) => {
       const id = t.dataset.menu!;
       t.addEventListener('mouseenter', () => open(id, t));
       t.addEventListener('focus', () => open(id, t));
       t.addEventListener('click', () => (current === id ? close(true) : open(id, t)));
-      t.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); current === id ? close(true) : open(id, t); }
-        if (e.key === 'Escape') { close(true); t.blur(); }
-      });
+      t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); current === id ? close(true) : open(id, t); } if (e.key === 'Escape') { close(true); t.blur(); } });
     });
     panels.forEach((p) => p.addEventListener('mouseenter', hold));
     wrap.addEventListener('mouseleave', scheduleClose);
     wrap.addEventListener('mouseenter', hold);
-    window.addEventListener('resize', () => {
-      if (current) { const t = triggers.find((x) => x.dataset.menu === current); if (t) position(current, t); }
-    });
+    window.addEventListener('resize', () => { if (current) { const t = triggers.find((x) => x.dataset.menu === current); if (t) position(current, t); } });
   });
+
+  // Mobile drawer
+  const drawer = document.querySelector<HTMLElement>('[data-drawer]');
+  const burger = document.querySelector<HTMLButtonElement>('[data-drawer-open]');
+  if (drawer && burger) {
+    const panel = drawer.querySelector<HTMLElement>('.nav-drawer-panel')!;
+    const focusables = () => Array.from(panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')).filter((el) => el.offsetParent !== null);
+    let lastFocus: HTMLElement | null = null;
+    const openDrawer = () => {
+      lastFocus = document.activeElement as HTMLElement;
+      drawer.hidden = false;
+      void drawer.offsetWidth; // force reflow so the slide transition runs
+      drawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      burger.setAttribute('aria-expanded', 'true');
+      const f = focusables(); if (f[0]) f[0].focus();
+    };
+    const closeDrawer = () => {
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+      burger.setAttribute('aria-expanded', 'false');
+      setTimeout(() => { drawer.hidden = true; }, 240);
+      (lastFocus || burger).focus();
+    };
+    burger.addEventListener('click', openDrawer);
+    drawer.querySelectorAll('[data-drawer-close]').forEach((el) => el.addEventListener('click', closeDrawer));
+    drawer.querySelectorAll('[data-drawer-nav]').forEach((el) => el.addEventListener('click', closeDrawer));
+    document.addEventListener('keydown', (e) => {
+      if (drawer.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); closeDrawer(); }
+      if (e.key === 'Tab') {
+        const f = focusables(); if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+    // Accordions
+    panel.querySelectorAll<HTMLButtonElement>('.nav-acc-trigger').forEach((btn) => {
+      const p = btn.nextElementSibling as HTMLElement;
+      btn.addEventListener('click', () => {
+        const openNow = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!openNow));
+        p.hidden = openNow;
+      });
+    });
+  }
 </script>
