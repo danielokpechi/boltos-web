@@ -16,7 +16,13 @@ export const routes = {
   bookDemo: '/book-a-demo/',
   signup: '/sign-up/',
   contact: '/contact/',
+  privacy: '/privacy-policy/',
+  cookies: '/cookie-policy/',
 };
+
+// Destination for the Contact + Book a Demo fallback forms (mailto).
+// From the BoltOS privacy policy (sections 9 & 12).
+export const contactEmail = 'contact@bolt.global';
 
 export const external = {
   boltplus: 'https://boltplus.tv/home',

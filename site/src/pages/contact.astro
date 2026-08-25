@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import ParticleWave from '../components/ParticleWave.astro';
+import { socials, external, routes, contactEmail } from '../data/nav.js';
+
+const offices = ['London, United Kingdom', 'Singapore', 'Malaysia'];
+---
+<Base title="Contact, BoltOS" description="Get in touch with the BoltOS team.">
+  <div class="ct">
+    <div class="ct-glow" aria-hidden="true"></div>
+    <div class="ct-wave" aria-hidden="true"><ParticleWave /></div>
+    <div class="ct-inner">
+      <div class="ct-head">
+        <div class="ct-eyebrow"><span class="ct-eyebrow-rule"></span><span class="lilac">Contact</span></div>
+        <h1>Get in touch</h1>
+        <p>Tell us about your audience and what you want to build, and we'll get back to you.</p>
+      </div>
+
+      <div class="ct-grid">
+        <!-- Message form -->
+        <form class="ct-form" data-mailto={contactEmail} data-subject="Contact enquiry">
+          <div class="ct-field">
+            <label for="ct-name">Name <span class="ct-req">*</span></label>
+            <input id="ct-name" name="Name" type="text" required autocomplete="name" />
+          </div>
+          <div class="ct-field">
+            <label for="ct-email">Email <span class="ct-req">*</span></label>
+            <input id="ct-email" name="Email" type="email" required autocomplete="email" />
+          </div>
+          <div class="ct-field">
+            <label for="ct-org">Organisation <span class="ct-opt">(optional)</span></label>
+            <input id="ct-org" name="Organisation" type="text" autocomplete="organization" />
+          </div>
+          <div class="ct-field">
+            <label for="ct-msg">Message <span class="ct-req">*</span></label>
+            <textarea id="ct-msg" name="Message" rows="5" required></textarea>
+          </div>
+          <div class="ct-actions">
+            <button type="submit" class="ct-submit">Send message</button>
+            <span class="ct-note" data-form-note role="status" aria-live="polite"></span>
+          </div>
+        </form>
+
+        <!-- Reach-us panel -->
+        <aside class="ct-aside">
+          <div class="ct-block">
+            <div class="ct-block-label">Book a demo</div>
+            <p>See the Immersive Platform in action and grab a slot with our team.</p>
+            <a href={routes.bookDemo} class="ct-cta">Book a demo</a>
+          </div>
+          <div class="ct-block">
+            <div class="ct-block-label">Follow us</div>
+            <div class="ct-socials">
+              {socials.map((s) => (
+                <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.aria}>{s.label}</a>
+              ))}
+            </div>
+          </div>
+          <div class="ct-block">
+            <div class="ct-block-label">Brand assets</div>
+            <a href={external.brandAssets} target="_blank" rel="noopener noreferrer" aria-label="Brand book on Google Drive" class="ct-link">Brand book on Google Drive →</a>
+          </div>
+          <div class="ct-block">
+            <div class="ct-block-label">Offices</div>
+            <ul class="ct-offices">
+              {offices.map((o) => <li>{o}</li>)}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .ct { position: relative; overflow: hidden; padding: clamp(48px, 6vw, 100px) clamp(24px, 6vw, 80px) clamp(64px, 8vw, 120px); }
+  .lilac { color: var(--text-lilac); }
+  .ct-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(820px 520px at 20% 0%, rgba(123,47,226,0.18), transparent 72%); }
+  .ct-wave { position: absolute; right: -10%; top: -20%; width: min(50vw, 560px); height: min(30vw, 320px); z-index: 0; opacity: 0.26; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .ct-inner { position: relative; z-index: 2; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 56px); }
+  .ct-head { display: flex; flex-direction: column; gap: 16px; max-width: 720px; }
+  .ct-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .ct-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
+  .ct-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .ct-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(38px, 5.6vw, 80px); line-height: 1.0; font-weight: 800; letter-spacing: -0.04em; }
+  .ct-head p { margin: 0; font-size: clamp(16px, 1.7vw, 18px); line-height: 1.7; color: var(--text-muted); text-wrap: pretty; }
+
+  .ct-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(24px, 3.4vw, 56px); align-items: start; }
+
+  .ct-form { min-width: 0; display: flex; flex-direction: column; gap: clamp(16px, 2vw, 20px); }
+  .ct-field { display: flex; flex-direction: column; gap: 8px; }
+  .ct-field label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); }
+  .ct-req { color: var(--hot-rose); }
+  .ct-opt { color: var(--text-dim); }
+  .ct-field input, .ct-field textarea { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--snow); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px 14px; width: 100%; box-sizing: border-box; resize: vertical; }
+  .ct-field input:focus, .ct-field textarea:focus { outline: none; border-color: var(--ultra-violet); box-shadow: 0 0 0 3px rgba(123,47,226,0.22); }
+  .ct-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .ct-submit { font-size: 16px; line-height: 24px; font-weight: 600; color: #FFFFFF; background: var(--ultra-violet); border: 0; padding: 14px 30px; border-radius: 100px; cursor: pointer; }
+  .ct-submit:hover { background: var(--ultra-violet-press); }
+  .ct-note { font-size: 14px; line-height: 20px; color: var(--text-muted); }
+
+  .ct-aside { min-width: 0; display: flex; flex-direction: column; gap: clamp(20px, 2.4vw, 28px); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 20px; padding: clamp(24px, 3vw, 36px); }
+  .ct-block { display: flex; flex-direction: column; gap: 10px; }
+  .ct-block-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lilac); }
+  .ct-block p { margin: 0; font-size: 14px; line-height: 22px; color: var(--text-muted); text-wrap: pretty; }
+  .ct-cta { align-self: flex-start; margin-top: 4px; font-size: 14px; line-height: 20px; font-weight: 600; color: #FFFFFF !important; background: var(--ultra-violet); padding: 10px 20px; border-radius: 100px; }
+  .ct-cta:hover { background: var(--ultra-violet-press); }
+  .ct-socials { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .ct-socials a, .ct-link { font-size: 14px; line-height: 21px; color: var(--text-soft); }
+  .ct-socials a:hover, .ct-link:hover { color: var(--ultra-violet); }
+  .ct-offices { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 22px; color: var(--text-soft); }
+</style>
+
+<script>
+  const form = document.querySelector('.ct-form') as HTMLFormElement | null;
+  if (form) {
+    const note = form.querySelector('[data-form-note]') as HTMLElement | null;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const to = form.dataset.mailto || '';
+      if (!to) { if (note) note.textContent = 'Please reach us via the channels listed.'; return; }
+      const data = new FormData(form);
+      const lines: string[] = [];
+      for (const [k, v] of data.entries()) if (String(v).trim()) lines.push(`${k}: ${v}`);
+      const subject = encodeURIComponent(form.dataset.subject || 'Contact enquiry');
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      if (note) note.textContent = 'Opening your email app…';
+    });
+  }
+</script>

@@ -1,0 +1,212 @@
+---
+import Base from '../layouts/Base.astro';
+import { routes } from '../data/nav.js';
+
+const toc = [
+  { id: 'definitions', n: '1', t: 'Definitions' },
+  { id: 'collection', n: '2', t: 'Collection of your Personal Information' },
+  { id: 'how-we-collect', n: '3', t: 'How we collect your Personal Information' },
+  { id: 'use', n: '4', t: 'Use of your Personal Information' },
+  { id: 'retention', n: '5', t: 'How long do we keep your information?' },
+  { id: 'disclosure', n: '6', t: 'Personal Information Access And Disclosure' },
+  { id: 'security', n: '7', t: 'Data Security & Integrity' },
+  { id: 'ai', n: '8', t: 'Data Collection and Use of AI' },
+  { id: 'rights', n: '9', t: 'Your Rights' },
+  { id: 'cookies', n: '10', t: 'Use of Cookies' },
+  { id: 'changes', n: '11', t: 'Changes to this Policy' },
+  { id: 'contact', n: '12', t: 'Contact' },
+];
+---
+<Base title="Privacy Policy, BoltOS" description="How BoltOS collects, uses and protects your personal information.">
+  <div class="pp">
+    <div class="pp-inner">
+      <header class="pp-header">
+        <div class="pp-eyebrow"><span class="pp-eyebrow-rule"></span><span>Legal</span></div>
+        <h1>Privacy Policy</h1>
+        <p class="pp-updated">Last updated: <strong>12th November, 2025</strong></p>
+      </header>
+
+      <div class="pp-layout">
+        <aside class="pp-toc" aria-label="Contents">
+          <div class="pp-toc-label">Contents</div>
+          <nav>
+            <ol>
+              {toc.map((s) => <li><a href={`#${s.id}`}>{s.n}. {s.t}</a></li>)}
+              <li class="pp-toc-extra"><a href={routes.cookies}>Cookie Policy</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <article class="pp-body">
+          <section id="definitions">
+            <h2>1. Definitions</h2>
+            <p><strong>BoltOS LTD</strong> and its affiliates ("we", "us" or "BoltOS") are technology-based companies that build web powered platforms and services for the next generation of the internet. BoltOS is a global social media ecosystem comprising Bolt+, and several other supported products.</p>
+            <p>1.2 We are pleased to provide you with our Services which are accessible through our Platforms.</p>
+            <p><strong>Platforms</strong> Means any and all platforms offered by BoltOS, including but not limited to: <strong>Bolt+</strong>, <strong>BoltX</strong>, <strong>boltplus.tv</strong> and <strong>Pivotal</strong> (as currently called). Any subsequent website, mobile application or software published by BoltOS will also fall within this definition. Please note that this is not an exhaustive summary and the Platforms may be added or suspended at the discretion of BoltOS.</p>
+            <p><strong>Services</strong> means the services offered to you by BoltOS on our Platforms. This includes Content, media and entertainment, digital asset wallet management, commerce marketplace, media campaigns, competitions, quizzes and any other services published by BoltOS including those by third parties. Please note that this is not an exhaustive list and the Services may be added or suspended at the discretion of BoltOS.</p>
+            <p><strong>Content</strong> means all audio, audio-visual (including live streams), videos, entertainment or informational programming, music, games, chats, texts, posts, comments, messages, articles, photographs, images, graphics, creative works and all other content, information, and materials available on or through the Services, whether posted, uploaded, transmitted, shared, sent or otherwise made available by us, our licensors, vendors, and/or service providers, or by you, and/or other users or third parties, including any such content uploaded manually or bookmarked by you and/or other users. Some Content may be free or paid, depending on the Service options selected or subscribed by you. The term "User-Generated Content" shall refer to the Content posted, submitted, uploaded, transmitted, shared, communicated, sent or otherwise made available by you on our Platforms.</p>
+            <p>1.3 At BoltOS, your privacy maintains our priority. BoltOS is committed to protecting your data on our platforms whilst allowing you to enjoy your experience with us. Our privacy policy provides more information about what private data we collect and how we use it. This Privacy Policy does not apply to websites, apps, destinations, or other offerings that we do not own or control, including those linked to or from the Services.</p>
+            <p>1.4 On our platforms, we use a variety of partnered third party websites, apps, destinations and other offerings so that you can enjoy a seamless experience. The data collection from these external parties may differ from Bolt's, including payment gateways, and partners listed on our platforms. Upon interaction with these services, users will be subject to the privacy policies of these third-party entities and should read and agree to them independent of this agreement.</p>
+            <p><strong>Legal Provisions</strong></p>
+            <p>By registering for our Services or otherwise accessing, visiting or using the Services or any part thereof, you consent and agree to be bound by the terms of this Privacy Policy.</p>
+            <p>For the purposes of the applicable data protection laws (the General Data Protection Regulation (Regulation (EU) 2016/679) (<strong>GDPR</strong>), the Data Services Act Package (Regulation (EU) 2022/2065), together with any implementing legislation, in particular, the Data Protection Act 2018), <strong>BoltOS Holding LTD</strong> is the 'data controller' of your personal information so collected by us or provided by you.</p>
+            <p><strong>This Privacy Policy explains what information we collect about you and why, what we do with that information, and how we handle that information.</strong></p>
+          </section>
+
+          <section id="collection">
+            <h2>2. Collection of your Personal Information</h2>
+            <p>2.1 We have collected and may be collecting the following information:-</p>
+            <ul>
+              <li><strong>Personal information:</strong> This may include your first and last name, postal address, email address, telephone number, user ID, and payment processing information (if relevant), gender, nationality and country of origin;</li>
+              <li><strong>User Generated content:</strong> All information that you upload to Bolt platforms and/or contribute through other activities is collected for the benefit of creating the ultimate user experience.</li>
+              <li><strong>Cookies Policy:</strong> Activity used by you (users) on our platforms will be automatically collected. For more information about cookie preferences and activity usage, you can access our Cookie Policy <a href={routes.cookies}>here</a>.</li>
+              <li>Information that we obtain from third parties and sources such as social media networks (when you access our Services through these platforms), where information such as your preferences of content viewed/uploaded on our Services may be collected;</li>
+              <li>Some of the payment information you provide through our platform will be saved for analytics and regulatory compliance. Any cryptoasset payment information may also be saved in order to comply with regulatory KYC/AML requirements; and</li>
+              <li>Any and all KYC you provide to us will be retained for regulatory purposes.</li>
+            </ul>
+            <p>(All such information shall be collectively referred to as "<strong>Personal Information</strong>").</p>
+            <h3>2.2 Child Protection</h3>
+            <p>Bolt Global's platform content may not always be suitable for the viewing of children under the age of 18. Therefore, it is imperative that we do not collect the data of underaged users. If you have any reason to believe that a user is underaged on our platform without prior consent of a parent/guardian, please use the report function here to alert us of this so we may proceed with both deleting their data and ensuring their online safety. In the absence of this information, we at Bolt Global will assume that users above 18.</p>
+          </section>
+
+          <section id="how-we-collect">
+            <h2>3. How we collect your Personal Information</h2>
+            <p>3.1 Your Personal Information are collected in several ways, including:-</p>
+            <ul>
+              <li>when you register for our Services, create a profile or account with us;</li>
+              <li>when you access and use our Services including the features and functionality thereof;</li>
+              <li>when you participate in the activities on our Services;</li>
+              <li>when you complete KYC procedures; and</li>
+              <li>when you contact us.</li>
+            </ul>
+          </section>
+
+          <section id="use">
+            <h2>4. Use of your Personal Information</h2>
+            <p>4.1 The Personal Information and other information which you provide or have provided for the use of the Services including any additional information you may subsequently provide, may be used and processed by us for the following purposes:-</p>
+            <ul>
+              <li>to assess and process your requests for and use of our Services;</li>
+              <li>to operate our Services and conduct the activities therein;</li>
+              <li>to communicate with you about our Services as well as products and services of our business partners;</li>
+              <li>to respond to your inquiries and requests for assistance, including account verification support, send our Services information and updates;</li>
+              <li>to process or verify your payment transactions, if relevant;</li>
+              <li>for the conduct of internal activities including any investigations, compliance or security purposes such as fraud, market manipulation/cheating, crime detection and prevention;</li>
+              <li>to comply with any regulatory, statutory or legal obligation imposed on us by any relevant authority (including for KYC/AML regulations);</li>
+              <li>For market research or analytics, so that we can improve our services to you; and</li>
+              <li>for such other purposes as set out in our <strong>Terms of Service</strong>.</li>
+            </ul>
+            <p>4.2 We also use Personal Information in particular, those automatically collected ones to analyse and use the information so that we can better understand how our users use or interact with our Services, to maintain and improve our Services, source potential customer leads and disclose aggregated statistics, analysis and trends regarding our Services. Such use includes:</p>
+            <ul>
+              <li>to remember your information for your future visits to or access to our services;</li>
+              <li>to monitor the effectiveness of advertising and marketing campaigns so that we can endeavour to provide you with more relevant and customised content, advertising and information;</li>
+              <li>to track your activities on our Services; and</li>
+              <li>to update our apps on your system automatically.</li>
+            </ul>
+            <p>In line with legal regulations, your personal information about protected characteristics will not be used for actions such as (but not limited to) targeted advertising or marketing distribution.</p>
+            <p>(collectively "<strong>Purposes</strong>")</p>
+          </section>
+
+          <section id="retention">
+            <h2>5. How long do we keep your information?</h2>
+            <p>5.1 Unless a longer retention period is permitted or required by law, we will only hold your Personal Information in our systems for the period necessary to fulfil the purposes outlined in this Privacy Policy, or until you request that the information be deleted in accordance with your right of erasure.</p>
+          </section>
+
+          <section id="disclosure">
+            <h2>6. Personal Information Access And Disclosure</h2>
+            <p>6.1 We may share your Personal Information within our group of companies and advisers, such as lawyers and accountants for the Purposes set out in Clause 4 above.</p>
+            <p>6.2 We may also disclose your Personal Information:-</p>
+            <ul>
+              <li>to third parties for the Purposes set out in Clause 4 above such as our business partners and/or service providers, vendors and advisers (collectively "Service Providers") to assist us in our business or operating needs. Such needs include hosting and maintenance of our website and app, communication with users, delivery/transmission of our Services and processing of payments (if any), customer support services.</li>
+              <li>to ensure smooth operation in the delivery/transmission of our services via third party organisations, data sharing may be necessary for this to be carried out. For the hosting and maintenance of our platform and our operating needs such as payment processing, delivery/transmission necessities and communication with users as well as analytics data, third parties may need to store and process your information.</li>
+              <li>to prospective investors or buyers of any part of our business or assets.</li>
+              <li>for the purposes of due diligence exercises (but we will not sell nor trade your Personal Information); and</li>
+              <li>to government and law enforcement authorities.</li>
+              <li>if required by law or for health, safety and public interest reasons.</li>
+            </ul>
+            <p>6.3 Further, please be informed that if required for any of the foregoing Purposes, your Personal Information may be transferred to locations outside the United Kingdom or disclosed to our group of companies, Service Providers and other permitted persons, who may be located within or outside the United Kingdom.</p>
+            <p>6.4 We will employ appropriate safeguards and procedures with the third parties we share your Personal Information, to ensure that your Personal Information is treated by those third parties in a way that is consistent with data protection laws.</p>
+          </section>
+
+          <section id="security">
+            <h2>7. Data Security & Integrity</h2>
+            <p>7.1 We are committed to taking reasonable and appropriate steps to protect the Personal Information that we hold from misuse, loss, or unauthorised access. We do this by using technical and organisational measures. These measures may vary based on the sensitivity of your Personal Information.</p>
+            <p>7.2 Personal Information that we collect from you will be stored and backed up securely in an environmentally-controlled location. Only authorised people with user ID and password from BOLT Global have access to the information.</p>
+            <p>7.3 You must remember to log off after accessing and/or using our Services and/or close the browser window after use so that no unauthorised party can have access. You must not, at any time, divulge your Personal Information (in particular your password and private keys) to any third party.</p>
+            <p>7.4 However, while we do our best to protect your Personal Information, we cannot guarantee the security of information you provide to us over the internet or similar connection as the internet is not a secure medium, and communications over the internet may be subject to third-party interception. We also cannot guarantee that such information may not be accessed, disclosed, altered, or destroyed by breach of any of our technical or organisational safeguards and measures.</p>
+          </section>
+
+          <section id="ai">
+            <h2>8. Data Collection and Use of AI</h2>
+            <p>8.1 We may collect, use and process Personal Information through automated means and artificial intelligence ("AI") technologies for the Purposes set out in Clause [4] above. Such collection and processing enable us to operate, maintain and improve our media platform, analyse user interaction, and enhance the functionality and personalisation of our Services.</p>
+            <p>8.2 The types of data collected through such automated means may include, without limitation, technical information (such as IP address, device identifiers, browser type, operating system, and connection information), interaction data (such as content viewed, features used, time spent, clickstream data, and engagement metrics), and analytical or behavioural insights derived therefrom.</p>
+            <p>8.3 We may utilise cookies, analytics tools, and AI-driven systems to analyse patterns, preferences and engagement trends in order to optimise the user experience, develop new features, and tailor the content and recommendations displayed to you.</p>
+            <p>8.4 For the foregoing Purposes, such automated collection and AI processing activities may be undertaken directly by us or by our group of companies, business partners, and/or third-party service providers (collectively referred to as "Service Providers") who assist us with data analytics, hosting, maintenance, performance monitoring, and product enhancement.</p>
+            <p>8.5 All collection, processing and sharing of Personal Information through automated means or AI technologies shall be carried out in a manner that conceals or anonymises protected information where applicable, and shall at all times comply with applicable data protection and data sharing laws governing the handling of Personal Information.</p>
+            <p>8.6 In all instances, we will implement appropriate safeguards and contractual measures with our Service Providers and other permitted persons to ensure that your Personal Information is processed in a manner consistent with applicable data protection and privacy laws</p>
+          </section>
+
+          <section id="rights">
+            <h2>9. Your Rights</h2>
+            <p>9.1 <strong>How To Update Your Personal Information.</strong> If you have registered or created an account on any part of our Services, you may be able to access, review, update, rectify, delete/erase your information or preferences, disable your account, or otherwise limit our use of information under the Settings page, if available. If no such mechanism is available, please contact us at <a href="mailto:contact@bolt.global">contact@bolt.global</a>. You will be required to provide your name, address and telephone number and specify the relevant changes you wish to make. Before making any changes, we may need to verify your identity before granting you access or making corrections to your information. Please note that where you have requested for deletion of any of the Personal Information, you may no longer be able to access or use our Services or certain features and functionality thereof.</p>
+            <p>9.2 <strong>How to Opt-Out of Marketing Messages from Us.</strong> If you do not wish to receive future marketing materials from us, simply follow the unsubscribe instructions contained within the message you received, select your preferences under the Settings page, if available or contact us at the Contact details below. However, please note that you may continue to receive certain communications from us that are necessary for the Services, such as technical notices, updates, security alerts, and support and administrative service bulletins.</p>
+            <p>9.3 If you are a past user who has registered for our Services or any part thereof, please be informed that we will continue to process your Personal Information in accordance with this Privacy Policy unless we hear otherwise from you. You may exercise your rights in respect of your Personal Information in the manner described above.</p>
+          </section>
+
+          <section id="cookies">
+            <h2>10. Use of Cookies</h2>
+            <p>For information about tracing and data collection pertaining to your online activity on our platforms, please visit our <a href={routes.cookies}><strong>Cookies Policy</strong></a> which applies.</p>
+          </section>
+
+          <section id="changes">
+            <h2>11. Changes to this Policy</h2>
+            <p>11.1 We may change or update this Privacy Policy from time to time, to comply with applicable laws, or to reflect users' feedback. We encourage you to periodically review this Privacy Policy to be informed of how we are protecting your Personal Information.</p>
+          </section>
+
+          <section id="contact">
+            <h2>12. Contact</h2>
+            <p>12.1 If you have any queries and complaints regarding this Privacy Policy or your data protection rights, please contact us at <a href="mailto:contact@bolt.global">contact@bolt.global</a>, or write to us at <em>c/o BoltOS, Venture X White City, One Ariel Way, London, W12 7SL</em></p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .pp { position: relative; background: var(--snow); color: var(--ink); padding: clamp(48px, 6vw, 96px) clamp(24px, 6vw, 80px) clamp(64px, 8vw, 120px); }
+  .pp-inner { max-width: 1160px; margin: 0 auto; }
+  .pp-header { display: flex; flex-direction: column; gap: 14px; padding-bottom: clamp(28px, 3.4vw, 44px); border-bottom: 1px solid var(--snow-line-3); }
+  .pp-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .pp-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); }
+  .pp-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ultra-violet); }
+  .pp-header h1 { margin: 0; font-family: var(--font-display); font-size: clamp(36px, 5vw, 68px); line-height: 1.0; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); }
+  .pp-updated { margin: 0; font-size: 15px; line-height: 22px; color: var(--ink-soft); }
+
+  .pp-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); margin-top: clamp(28px, 3.4vw, 44px); align-items: start; }
+  .pp-toc { position: sticky; top: 96px; }
+  .pp-toc-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ultra-violet); margin-bottom: 14px; }
+  .pp-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .pp-toc a { font-size: 13.5px; line-height: 19px; color: var(--ink-2); }
+  .pp-toc a:hover { color: var(--ultra-violet); }
+  .pp-toc-extra { margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--snow-line-3); }
+  .pp-toc-extra a { font-weight: 600; }
+
+  .pp-body { min-width: 0; }
+  .pp-body section { scroll-margin-top: 92px; padding-bottom: clamp(28px, 3vw, 40px); }
+  .pp-body section + section { padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--snow-line-3); }
+  .pp-body h2 { margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 32px); line-height: 1.12; font-weight: 800; letter-spacing: -0.026em; color: var(--ink); }
+  .pp-body h3 { margin: 22px 0 10px; font-family: var(--font-display); font-size: clamp(17px, 1.9vw, 21px); line-height: 1.2; font-weight: 700; letter-spacing: -0.018em; color: var(--ink); }
+  .pp-body p { margin: 0 0 14px; font-size: 15px; line-height: 26px; color: var(--ink-2); text-wrap: pretty; }
+  .pp-body ul { margin: 0 0 14px; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .pp-body li { font-size: 15px; line-height: 25px; color: var(--ink-2); text-wrap: pretty; }
+  .pp-body li::marker { color: var(--ultra-violet); }
+  .pp-body strong { color: var(--ink); font-weight: 600; }
+  .pp-body a { color: var(--ultra-violet); text-decoration: underline; text-underline-offset: 2px; }
+  .pp-body a:hover { color: var(--ultra-violet-press); }
+  .pp-body em { font-style: italic; }
+
+  @media (max-width: 880px) {
+    .pp-layout { grid-template-columns: 1fr; gap: 28px; }
+    .pp-toc { position: static; padding: 20px 22px; background: #FFFFFF; border: 1px solid var(--snow-line-3); border-radius: 16px; }
+  }
+</style>
