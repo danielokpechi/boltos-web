@@ -1,7 +1,7 @@
 ---
 // Roadmap: serpentine gradient rail with icon nodes on desktop, vertical list
 // below 1120px (CSS-only switch, no hydration flash). Shared by / and /solutions/.
-import { steps, nodeAlign } from '../data/steps.js';
+import { steps } from '../data/steps.js';
 ---
 <section id="roadmap" class="road">
   <div class="road-glow" aria-hidden="true"></div>
@@ -16,16 +16,16 @@ import { steps, nodeAlign } from '../data/steps.js';
     <div class="road-grid">
       <svg viewBox="0 0 1000 96" preserveAspectRatio="none" class="road-rail" aria-hidden="true">
         <defs>
-          <linearGradient id="railGrad" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="railGrad" gradientUnits="userSpaceOnUse" x1="0" y1="48" x2="1000" y2="48">
             <stop offset="0%" stop-color="#7B2FE2"></stop>
             <stop offset="45%" stop-color="#D62086"></stop>
             <stop offset="100%" stop-color="#35C7DF"></stop>
           </linearGradient>
         </defs>
-        <path d="M0 48 H70 C160 48 160 78 240 78 C330 78 330 18 420 18 C510 18 510 78 600 78 C690 78 690 18 780 18 C870 18 870 48 930 48 H1000" fill="none" stroke="url(#railGrad)" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M0 48 H1000" fill="none" stroke="url(#railGrad)" stroke-width="3" stroke-linecap="round"></path>
       </svg>
       {steps.map((s, i) => (
-        <div class="road-node" style={`grid-column:${i + 1}; grid-row:2; align-items:${nodeAlign[i]}; padding:${i % 2 === 0 ? '8px 0 0' : '0 0 8px'};`}>
+        <div class="road-node" style={`grid-column:${i + 1}; grid-row:2;`}>
           <div class="road-dot">{s.num}</div>
         </div>
       ))}
@@ -85,8 +85,8 @@ import { steps, nodeAlign } from '../data/steps.js';
   .road-head p { margin: 0; font-size: 15px; line-height: 24px; color: var(--ink-soft); }
   .road-wide { position: relative; max-width: 1360px; margin: 0 auto; }
   .road-grid { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: minmax(300px, auto) 96px minmax(300px, auto); column-gap: clamp(10px, 1.4vw, 20px); }
-  .road-rail { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); width: 100%; height: 96px; display: block; pointer-events: none; }
-  .road-node { position: relative; z-index: 2; grid-row: 2; display: flex; justify-content: center; }
+  .road-rail { grid-column: 1 / -1; grid-row: 2; align-self: center; z-index: 1; width: 100%; height: 96px; display: block; pointer-events: none; }
+  .road-node { position: relative; z-index: 2; grid-row: 2; display: flex; justify-content: center; align-items: center; }
   .road-dot { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(140deg, #7B2FE2, #D62086); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--snow); box-shadow: 0 0 0 6px var(--snow), 0 10px 26px rgba(123,47,226,0.35); }
   .road-cell-top { grid-row: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 22px; }
   .road-cell-bottom { grid-row: 3; display: flex; flex-direction: column; justify-content: flex-start; padding: 22px 0 0; }

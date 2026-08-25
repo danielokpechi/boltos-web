@@ -6,6 +6,3 @@ export const steps = [
   { num: '04', icon: '/assets/icons/step-plug.png', title: 'Implementation', copy: "We will need your technical team's help mounting it onto the endpoint hosting your content. But not to worry, we will be there with them the entire way." },
   { num: '05', icon: '/assets/icons/step-rocket.png', title: 'Go for Launch', copy: 'Once your platform is mounted and your control panel is completely setup, you are off to the races.' },
 ];
-
-// Node vertical alignment on the serpentine rail (wide layout).
-export const nodeAlign = ['flex-start', 'flex-end', 'flex-start', 'flex-end', 'flex-start'];
