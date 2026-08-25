@@ -206,10 +206,13 @@ const backers = [
     <section class="ab-backed">
       <div class="ab-backed-inner">
         <div class="ab-mono uv">Backed by</div>
-        <div class="ab-investors">{investors.map((i) => <LogoSlot name={i} h={30} onLight />)}</div>
         <div class="ab-backers">
-          {backers.map((b) => (
-            <div class="ab-backer"><p>{b.quote}</p><div class="ab-backer-by">{b.by}</div></div>
+          {backers.map((b, i) => (
+            <div class="ab-backer">
+              <div class="ab-backer-logo"><LogoSlot name={investors[i]} h={28} onLight /></div>
+              <p>{b.quote}</p>
+              <div class="ab-backer-by">{b.by}</div>
+            </div>
           ))}
         </div>
       </div>
@@ -337,9 +340,9 @@ const backers = [
   .ab-backed { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 96px) clamp(24px, 6vw, 80px); }
   .ab-backed-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
   .ab-backed-inner .ab-mono { color: var(--ultra-violet); }
-  .ab-investors { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 56px); align-items: center; font-family: var(--font-display); font-size: clamp(15px, 1.7vw, 20px); font-weight: 700; color: #8A8E97; }
   .ab-backers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
   .ab-backer { display: flex; flex-direction: column; gap: 16px; background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 18px; padding: clamp(22px, 2.4vw, 32px); }
+  .ab-backer-logo { display: flex; align-items: center; min-height: 30px; padding-bottom: 4px; }
   .ab-backer p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink); text-wrap: pretty; }
   .ab-backer-by { margin-top: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ultra-violet); }
 
