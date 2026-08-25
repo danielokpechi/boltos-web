@@ -6,18 +6,20 @@ import ClosingCTA from '../components/ClosingCTA.astro';
 import LogoSlot from '../components/LogoSlot.astro';
 import { routes } from '../data/nav.js';
 
+// src is the official horizontal logo (own aspect ratio); null → placeholder
+// until the partner's file is supplied. Bolt+ uses our own delivered SVG.
 const partners = [
-  { name: 'Hisense', src: '/assets/logos/hisense.png' },
-  { name: 'Bloomberg', src: '/assets/logos/bloomberg-cut.png' },
-  { name: 'OneFootball', src: '/assets/logos/one-football.webp' },
-  { name: 'Dubai 24H Series', src: '/assets/logos/dubai-24h.png' },
-  { name: "Bridget's Healthy Kitchen", src: '/assets/logos/bridget.png' },
-  { name: 'Bolt+', src: '/assets/logos/boltos-app-cut.png' },
-  { name: 'VIDAA', src: '/assets/logos/vidaa.jpeg' },
-  { name: 'Binance Pay', src: '/assets/logos/binance-pay-cut.png' },
-  { name: 'Olympusat', src: '' },
-  { name: 'Dooya Media Group', src: '/assets/logos/dooya-cut.png' },
-  { name: 'TheSoul Publishing', src: '' },
+  { name: 'Hisense', src: null },
+  { name: 'Bloomberg', src: null },
+  { name: 'OneFootball', src: null },
+  { name: 'Dubai 24H Series', src: null },
+  { name: "Bridget's Healthy Kitchen", src: null },
+  { name: 'Bolt+', src: '/assets/logo/BoltPlus_White.svg' },
+  { name: 'VIDAA', src: null },
+  { name: 'Binance Pay', src: null },
+  { name: 'Olympusat', src: null },
+  { name: 'Dooya Media Group', src: null },
+  { name: 'TheSoul Publishing', src: null },
 ];
 
 const modules = [
@@ -106,7 +108,7 @@ const faqs = [
     <div class="trusted">
       <div class="trusted-track">
         {[...partners, ...partners].map((p) => (
-          <span class="trusted-item"><LogoSlot name={p.name} h={30} /></span>
+          <span class="trusted-item"><LogoSlot name={p.name} src={p.src} h={30} /></span>
         ))}
       </div>
     </div>
