@@ -19,3 +19,12 @@ export function logoFor(name) {
   // Kitchen, Dooya Media Group. These fall through to a placeholder.
   return null;
 }
+
+// Some logos are full-colour badges with knockout text inside a coloured box
+// (e.g. the 24H Series "powered by Hankook" mark). The monochrome tint used on
+// wordmark logos would flatten these into a solid blob, so they must render in
+// their own colours on every ground.
+export function logoKeepColor(name) {
+  const n = String(name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  return n.includes('24h') || n.includes('dubai') || n.includes('hankook');
+}

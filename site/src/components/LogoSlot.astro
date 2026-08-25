@@ -4,7 +4,7 @@
 // site has both dark and light grounds, real logos are tinted monochrome to the
 // ground (white on dark, ink on light) so every one stays legible. Falls back to
 // a correctly-proportioned horizontal placeholder when no file exists yet.
-import { logoFor } from '../data/partnerLogos.js';
+import { logoFor, logoKeepColor } from '../data/partnerLogos.js';
 interface Props {
   name: string;
   src?: string | null;
@@ -14,13 +14,17 @@ interface Props {
 }
 const { name, src, h = 34, onLight = false, class: className } = Astro.props;
 const resolved = src ?? logoFor(name);
+// Full-colour badge logos keep their own colours (no monochrome tint).
+const keepColor = logoKeepColor(name);
 ---
 {resolved ? (
   <img
     src={resolved}
     alt={name}
     class:list={['logo-real', className]}
-    style={`height:${h}px; width:auto; filter:${onLight ? 'brightness(0)' : 'brightness(0) invert(1)'}; opacity:${onLight ? 0.82 : 0.9};`}
+    style={keepColor
+      ? `height:${h}px; width:auto; filter:none; opacity:1;`
+      : `height:${h}px; width:auto; filter:${onLight ? 'brightness(0)' : 'brightness(0) invert(1)'}; opacity:${onLight ? 0.82 : 0.9};`}
   />
 ) : (
   <span
@@ -33,10 +37,9 @@ const resolved = src ?? logoFor(name);
 )}
 
 <style>
+  /* Tint (or full-colour, for badge logos) is applied inline per instance so
+     it always wins over the cascade. */
   .logo-real { display: block; }
-  /* dark ground → render the logo white; light ground → render it ink. */
-  .logo-real:not(.on-light) { filter: brightness(0) saturate(100%) invert(1); opacity: 0.9; }
-  .logo-real.on-light { filter: brightness(0) saturate(100%); opacity: 0.82; }
 
   .logo-slot {
     display: inline-flex; align-items: center; justify-content: center;
