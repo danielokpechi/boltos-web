@@ -88,9 +88,11 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
       <div class="cs-why-inner">
         <div class="cs-why-copy">
           <div class="cs-why-logos">
-            <img src="/assets/logo/BoltOS_Secondary_RGB.svg" alt="BoltOS" style="height:26px; width:auto; display:block;" />
-            <span class="cs-why-x">&times;</span>
-            <LogoSlot name={study.eyebrow} h={30} onLight />
+            <img src="/assets/logo/BoltOS_Secondary_RGB.svg" alt="BoltOS" class="cs-why-bolt" />
+            <span class="cs-why-pair">
+              <span class="cs-why-x">&times;</span>
+              <LogoSlot name={study.eyebrow} h={30} onLight />
+            </span>
           </div>
           <h2 class="cs-h2 ink">Why BoltOS?</h2>
           {study.why.map((p) => <p>{p}</p>)}
@@ -193,7 +195,18 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
   .cs-why-inner { position: relative; z-index: 2; max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(28px, 3.6vw, 56px); align-items: start; }
   .cs-why-copy { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
   .cs-why-copy p { margin: 0; font-size: 17px; line-height: 29px; color: var(--ink-2); text-wrap: pretty; }
-  .cs-why-logos { display: flex; align-items: center; gap: 16px; }
+  .cs-why-logos { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 16px; }
+  .cs-why-bolt { height: 26px; width: auto; display: block; }
+  /* Keep the × attached to the partner logo so the lockup wraps as a clean
+     two-line unit on narrow screens instead of overflowing off the edge. */
+  .cs-why-pair { display: inline-flex; align-items: center; gap: 16px; min-width: 0; max-width: 100%; }
+  .cs-why-pair :global(.logo-real) { max-width: 100%; }
+  /* On phones, scale the lockup down so even a very wide partner wordmark
+     (e.g. OneFootball, ~10:1) fits its line proportionally, no clipping. */
+  @media (max-width: 520px) {
+    .cs-why-bolt { height: 22px; }
+    .cs-why-pair :global(.logo-real) { height: 24px !important; }
+  }
   .cs-why-logo { width: 64px; height: 64px; border-radius: 16px; display: block; }
   .cs-why-logo.cover { object-fit: cover; }
   .cs-why-logo.contain { object-fit: contain; background: var(--snow); padding: 6px; box-sizing: border-box; }
