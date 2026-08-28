@@ -1,4 +1,6 @@
-// BoltOS kinetic particle wave: dotted sine field in brand gradient (violet -> pink -> aqua)
+// BoltOS kinetic particle wave: a flowing dotted ribbon that undulates like a
+// sine wave, violet with brighter magenta highlights along its leading edge.
+// Matches the brand pattern-v2 artwork.
 if (!window.__boltWaveGuard) { window.__boltWaveGuard = 1;
 class BoltParticleWave extends HTMLElement {
   connectedCallback() {
@@ -30,43 +32,58 @@ class BoltParticleWave extends HTMLElement {
     this.h = this.canvas.height = Math.max(120, r.height) * devicePixelRatio;
     this.draw();
   }
-  color(f) { // 0..1 across width: violet -> pink -> aqua
-    const stops = [[123,47,226],[214,32,134],[53,199,223]];
-    const p = f < 0.5 ? f * 2 : (f - 0.5) * 2, [a, b] = f < 0.5 ? [stops[0], stops[1]] : [stops[1], stops[2]];
-    return [0,1,2].map(i => Math.round(a[i] + (b[i] - a[i]) * p));
-  }
   tick() {
     if (!this.isConnected) { this.raf = 0; return; }
     this.raf = requestAnimationFrame(this.tick);
     if (!this.running) return;
-    this.t += 0.004;
+    this.t += 0.0032;
     this.draw();
   }
   draw() {
     if (!this.canvas) return;
     if (!this.w || !this.h) this.resize();
-    const ctx = this.canvas.getContext('2d'), w = this.w, h = this.h, dpr = devicePixelRatio;
+    const ctx = this.canvas.getContext('2d'), w = this.w, h = this.h, dpr = devicePixelRatio, t = this.t;
     ctx.clearRect(0, 0, w, h);
-    const rows = 34, cols = Math.floor(w / (11 * dpr));
-    const band = Math.max(h, 900 * dpr); // fan the wave over a tall virtual band so short hosts stay dense
-    const yTop = (h - band) / 2;
-    for (let c = 0; c <= cols; c++) {
-      const fx = c / cols, x = fx * w;
-      const [r, g, b] = this.color(fx);
-      for (let rI = 0; rI < rows; rI++) {
-        const fr = rI / rows;
-        const yBase = yTop + band * 0.42 + Math.sin(fx * 4.5 + this.t * 3 + fr * 0.7) * band * 0.16 * (0.4 + fr * 0.6)
-          + Math.sin(fx * 9 - this.t * 2) * band * 0.05;
-        const y = yBase + fr * band * 0.34;
-        const fade = (1 - fr) * 0.75 + 0.08;
-        const twinkle = 0.6 + 0.4 * Math.sin(this.t * 6 + c * 0.35 + rI);
-        ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(1, fade * twinkle * 1.15).toFixed(3)})`;
-        const size = (2.0 - fr * 1.2) * dpr * (0.8 + 0.4 * Math.sin(fx * 6 + this.t * 4));
+    ctx.globalCompositeOperation = 'lighter'; // dots add up into a soft glow where they overlap
+
+    // Ribbon colours: violet base, magenta highlight (no aqua, matching the artwork).
+    const violet = [122, 58, 232], magenta = [214, 60, 190];
+
+    const S = 48;                          // streamlines stacked into the ribbon
+    const dx = 6.5 * dpr;                  // dot spacing along the flow
+    const cols = Math.floor(w / dx) + 2;
+    const band = Math.max(h, 720 * dpr);   // virtual height the ribbon fans over
+    const midY = h * 0.54;
+    const amp = band * 0.19;               // primary wave amplitude
+    const gap = band * 0.30 / S;           // vertical spacing between streamlines
+
+    for (let s = 0; s < S; s++) {
+      const fs = s / (S - 1);              // 0 = back/top, 1 = front/bottom
+      const phase = fs * 2.6;              // shear the streamlines so the ribbon twists as it flows
+      const yOff = (fs - 0.5) * gap * S;
+      const lineBright = Math.pow(fs, 1.5) * 0.92 + 0.05; // front streamlines are brightest
+      for (let c = 0; c < cols; c++) {
+        const fx = c / (cols - 1), x = fx * w;
+        const primary = fx * 6.3 + t * 2 + phase;
+        const wave = Math.sin(primary) * amp + Math.sin(fx * 12.5 - t * 1.1 + phase * 0.6) * amp * 0.22;
+        const y = midY + yOff + wave;
+        if (y < -20 || y > h + 20) continue;
+        // Leading edge: brightest just past the wave crest as the ribbon turns over.
+        const edge = 0.5 + 0.5 * Math.sin(primary - 1.4);
+        const a = lineBright * (0.28 + 0.72 * edge);
+        if (a < 0.02) continue;
+        const m = Math.min(1, edge * 0.85 + fx * 0.12); // colour mix toward magenta at bright spots
+        const r = (violet[0] + (magenta[0] - violet[0]) * m) | 0;
+        const g = (violet[1] + (magenta[1] - violet[1]) * m) | 0;
+        const b = (violet[2] + (magenta[2] - violet[2]) * m) | 0;
+        const size = Math.max(0.5, (0.8 + 1.15 * fs) * dpr * (0.65 + 0.55 * edge));
+        ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(1, a).toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(x, y, Math.max(0.4, size), 0, 6.2832);
+        ctx.arc(x, y, size, 0, 6.2832);
         ctx.fill();
       }
     }
+    ctx.globalCompositeOperation = 'source-over';
   }
 }
 customElements.define('bolt-particle-wave', BoltParticleWave);
