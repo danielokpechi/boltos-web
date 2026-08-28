@@ -1,9 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import ParticleWave from '../../components/ParticleWave.astro';
 import ClosingCTA from '../../components/ClosingCTA.astro';
 import { articles, hrefFor, isExternal, keyFor } from '../../data/articles.js';
-import { external, routes } from '../../data/nav.js';
+import { external, socials } from '../../data/nav.js';
 
 export function getStaticPaths() {
   return articles
@@ -12,32 +11,23 @@ export function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const related = articles.filter((a) => keyFor(a) !== keyFor(article)).slice(0, 6);
+const related = articles.filter((a) => keyFor(a) !== keyFor(article)).slice(0, 3);
 
+const iconOf = (label) => (socials.find((s) => s.label === label) || {}).path;
 const socialCards = [
-  { label: '@boltplus on X', tag: 'Announcements', href: external.x },
-  { label: 'Discord', tag: 'Creator Community', href: external.discord },
-  { label: 'LinkedIn', tag: 'Ecosystem Updates', href: external.linkedin },
-  { label: 'Bolt+', tag: 'AMAs', href: external.boltplus },
+  { label: '@boltplus on X', tag: 'Announcements', href: external.x, path: iconOf('X'), color: '#101014' },
+  { label: 'Discord', tag: 'Creator Community', href: external.discord, path: iconOf('Discord'), color: '#5865F2' },
+  { label: 'LinkedIn', tag: 'Ecosystem Updates', href: external.linkedin, path: iconOf('LinkedIn'), color: '#0A66C2' },
+  { label: 'Bolt+', tag: 'AMAs', href: external.boltplus, img: '/assets/logo/BoltPlus_Secondary_RGB.svg' },
 ];
 ---
 <Base title={`${article.title}, BoltOS`} description={article.excerpt || `${article.title} — BoltOS Newsroom.`}>
   <article class="ar">
-    <div class="ar-hero-glow" aria-hidden="true"></div>
-    <div class="ar-wave" aria-hidden="true"><ParticleWave /></div>
-
     <header class="ar-head">
-      <div class="ar-meta">
-        <a href={routes.newsroom} class="ar-back">Newsroom</a>
-        <span class="ar-meta-sep" aria-hidden="true">·</span>
-        {article.categories.map((c) => <span class="ar-cat">{c}</span>)}
-        <span class="ar-meta-sep" aria-hidden="true">·</span>
-        <time class="ar-date">{article.date}</time>
-      </div>
+      <time class="ar-date">{article.date}</time>
       <h1>{article.title}</h1>
-      <div class="ar-byline">
-        <span class="ar-avatar" aria-hidden="true">B</span>
-        <span class="ar-byline-text">By <strong>{article.author}</strong></span>
+      <div class="ar-tags">
+        {article.categories.map((c) => <span class="ar-tag">{c}</span>)}
       </div>
     </header>
 
@@ -48,120 +38,124 @@ const socialCards = [
       </figure>
     )}
 
+    <div class="ar-byline">
+      <span class="ar-avatar" aria-hidden="true">B</span>
+      <span class="ar-byline-text"><strong>{article.author}</strong></span>
+    </div>
+
     <div class="ar-body">
       {article.body.map((b) => (
         b.type === 'ul'
           ? <ul>{b.items.map((i) => <li set:html={i} />)}</ul>
           : b.type === 'quote'
             ? <blockquote set:html={b.html} />
-            : <p set:html={b.html} />
+            : b.type === 'img'
+              ? <figure class="ar-fig"><img src={b.src} alt={b.alt} loading="lazy" /></figure>
+              : b.type === 'h'
+                ? <h2 set:html={b.text} />
+                : <p set:html={b.html} />
       ))}
     </div>
 
-    <!-- Related posts (no raw URLs, no comment counts) -->
-    <section class="ar-related">
-      <h2>More from the Newsroom</h2>
-      <div class="ar-related-grid">
-        {related.map((r) => (
-          <a
-            href={hrefFor(r)}
-            {...(isExternal(r) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            class="ar-card"
-          >
-            <div class="ar-card-media"><img src={r.image} alt={r.title} /></div>
-            <div class="ar-card-body">
-              <span class="ar-card-date">{r.date}</span>
-              <h3>{r.title}</h3>
-            </div>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <!-- Author card (deliberately not linked to any profile route) -->
-    <section class="ar-author">
-      <span class="ar-avatar lg" aria-hidden="true">B</span>
-      <div class="ar-author-text">
-        <div class="ar-author-name">{article.author}</div>
-        <p>News and announcements from the BoltOS team.</p>
-      </div>
-    </section>
-
     <!-- Social -->
     <section class="ar-social">
-      <div class="ar-social-head">
-        <h2>Innovate. Inspire. Include.</h2>
-      </div>
+      <h2 class="ar-social-head">Innovate. Inspire. Include.</h2>
       <div class="ar-social-grid">
         {socialCards.map((s) => (
           <a href={s.href} target="_blank" rel="noopener noreferrer" class="ar-social-card">
-            <span class="ar-social-tag">{s.tag}</span>
+            <span class="ar-social-icon">
+              {s.img
+                ? <img src={s.img} alt="" />
+                : <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={s.path} fill={s.color} /></svg>}
+            </span>
             <span class="ar-social-label">{s.label}</span>
-            <span class="ar-social-arrow" aria-hidden="true">&rarr;</span>
+            <span class="ar-social-tag">{s.tag}</span>
           </a>
         ))}
       </div>
     </section>
+
+    {related.length > 0 && (
+      <section class="ar-related">
+        <h2>More from the Newsroom</h2>
+        <div class="ar-related-grid">
+          {related.map((r) => (
+            <a
+              href={hrefFor(r)}
+              {...(isExternal(r) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              class="ar-card"
+            >
+              <div class="ar-card-media"><img src={r.image} alt={r.title} /></div>
+              <div class="ar-card-body">
+                <span class="ar-card-date">{r.date}</span>
+                <h3>{r.title}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
   </article>
 
   <ClosingCTA />
 </Base>
 
 <style>
-  .ar { position: relative; overflow: hidden; padding: clamp(40px, 5vw, 80px) clamp(24px, 6vw, 80px) clamp(64px, 8vw, 120px); }
-  .ar-hero-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(900px 520px at 50% 0%, rgba(123,47,226,0.16), transparent 74%); }
-  .ar-wave { position: absolute; right: -10%; top: -18%; width: min(48vw, 540px); height: min(28vw, 300px); z-index: 0; opacity: 0.24; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .ar { position: relative; background: var(--snow); color: var(--ink); padding: clamp(32px, 4.5vw, 64px) clamp(20px, 6vw, 80px) clamp(56px, 7vw, 104px); }
 
-  .ar-avatar { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(140deg, #7B2FE2, #D62086); color: #FFFFFF; font-family: var(--font-display); font-weight: 800; font-size: 15px; flex: 0 0 auto; }
-  .ar-avatar.lg { width: 48px; height: 48px; font-size: 20px; }
+  .ar-head { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+  .ar-date { font-family: var(--font-body); font-size: 15px; color: var(--ink-soft); }
+  .ar-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(30px, 4.4vw, 54px); line-height: 1.05; font-weight: 800; letter-spacing: -0.032em; color: var(--ink); text-wrap: pretty; }
+  .ar-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ar-tag { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--snow); background: var(--ink); border-radius: 100px; padding: 6px 14px; }
 
-  .ar-head { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; text-align: center; align-items: center; }
-  .ar-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
-  .ar-back { color: var(--text-lilac); }
-  .ar-back:hover { color: var(--snow); }
-  .ar-meta-sep { color: var(--hairline-2); }
-  .ar-cat { color: var(--text-lilac); background: rgba(123,47,226,0.12); border: 1px solid rgba(123,47,226,0.30); border-radius: 100px; padding: 4px 11px; }
-  .ar-date { color: var(--text-dim); }
-  .ar-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); line-height: 1.08; font-weight: 800; letter-spacing: -0.032em; max-width: 20ch; text-wrap: balance; }
-  .ar-byline { display: flex; align-items: center; gap: 12px; }
-  .ar-byline-text { font-size: 14px; line-height: 20px; color: var(--text-muted); }
-  .ar-byline-text strong { color: var(--snow); font-weight: 600; }
-
-  .ar-hero { position: relative; z-index: 2; max-width: 980px; margin: clamp(32px, 4vw, 56px) auto 0; }
-  .ar-hero-frame { border-radius: 20px; overflow: hidden; border: 1px solid var(--hairline); background: var(--night-2); aspect-ratio: 16 / 9; }
+  .ar-hero { max-width: 860px; margin: clamp(28px, 3.4vw, 44px) auto 0; }
+  .ar-hero-frame { border-radius: 20px; overflow: hidden; border: 1px solid var(--snow-line-2); background: #FFFFFF; aspect-ratio: 16 / 9; }
   .ar-hero-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ar-hero figcaption { margin-top: 12px; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-dim); }
+  .ar-hero figcaption { margin-top: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-soft); }
 
-  .ar-body { position: relative; z-index: 2; max-width: 720px; margin: clamp(36px, 4.4vw, 60px) auto 0; }
-  .ar-body p { margin: 0 0 22px; font-size: clamp(16px, 1.7vw, 18px); line-height: 1.75; color: var(--text-soft); text-wrap: pretty; }
-  .ar-body strong { color: var(--snow); font-weight: 600; }
-  .ar-body blockquote { margin: 0 0 22px; padding: 4px 0 4px 22px; border-left: 3px solid var(--ultra-violet); font-family: var(--font-display); font-size: clamp(19px, 2.1vw, 24px); line-height: 1.4; font-weight: 700; letter-spacing: -0.018em; color: var(--snow); }
+  .ar-byline { max-width: 860px; margin: clamp(24px, 3vw, 36px) auto 0; display: flex; align-items: center; gap: 12px; }
+  .ar-avatar { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(140deg, #7B2FE2, #D62086); color: #FFFFFF; font-family: var(--font-display); font-weight: 800; font-size: 17px; flex: 0 0 auto; }
+  .ar-byline-text { font-size: 16px; color: var(--ink); }
+  .ar-byline-text strong { font-weight: 700; }
+
+  .ar-body { max-width: 860px; margin: clamp(20px, 2.4vw, 32px) auto 0; background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 24px; padding: clamp(26px, 4vw, 56px); }
+  .ar-body p { margin: 0 0 22px; font-size: clamp(16px, 1.6vw, 18px); line-height: 1.75; color: var(--ink-2); text-wrap: pretty; }
+  .ar-body p:last-child { margin-bottom: 0; }
+  .ar-body strong { color: var(--ink); font-weight: 700; }
+  .ar-body em { color: var(--ink-2); }
+  /* Pink keyword highlight and links, matching the reference. */
+  .ar-body a, .ar-body :global(.kw) { color: var(--hot-rose); }
+  .ar-body a { text-decoration: none; border-bottom: 1px solid rgba(214,32,134,0.35); }
+  .ar-body a:hover { border-bottom-color: var(--hot-rose); }
+  .ar-body h2 { margin: clamp(28px, 3.4vw, 40px) 0 16px; font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 32px); line-height: 1.12; font-weight: 800; letter-spacing: -0.026em; color: var(--ink); }
+  .ar-body blockquote { margin: 0 0 22px; padding: 4px 0 4px 22px; border-left: 3px solid var(--ultra-violet); font-family: var(--font-display); font-size: clamp(19px, 2.1vw, 24px); line-height: 1.4; font-weight: 700; letter-spacing: -0.018em; color: var(--ink); }
   .ar-body ul { margin: 0 0 22px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
-  .ar-body li { position: relative; padding-left: 26px; font-size: clamp(16px, 1.7vw, 18px); line-height: 1.7; color: var(--text-soft); text-wrap: pretty; }
+  .ar-body li { position: relative; padding-left: 26px; font-size: clamp(16px, 1.6vw, 18px); line-height: 1.7; color: var(--ink-2); text-wrap: pretty; }
   .ar-body li::before { content: ''; position: absolute; left: 4px; top: 12px; width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(140deg, #7B2FE2, #D62086); }
+  .ar-fig { margin: clamp(22px, 3vw, 34px) 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--snow-line-2); }
+  .ar-fig img { width: 100%; height: auto; display: block; }
 
-  .ar-related { position: relative; z-index: 2; max-width: 1160px; margin: clamp(52px, 6vw, 88px) auto 0; padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--hairline); }
-  .ar-related h2 { margin: 0 0 clamp(20px, 2.4vw, 28px); font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 34px); line-height: 1.1; font-weight: 800; letter-spacing: -0.026em; }
+  /* Social */
+  .ar-social { max-width: 1160px; margin: clamp(48px, 6vw, 84px) auto 0; }
+  .ar-social-head { margin: 0 0 clamp(20px, 2.6vw, 32px); text-align: center; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 44px); line-height: 1.06; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
+  .ar-social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: clamp(14px, 1.8vw, 18px); }
+  .ar-social-card { display: flex; flex-direction: column; gap: 10px; min-height: 150px; background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 18px; padding: clamp(20px, 2.2vw, 26px); box-shadow: 0 10px 26px rgba(16,16,20,0.05); transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease; }
+  .ar-social-card:hover { border-color: rgba(123,47,226,0.5); box-shadow: 0 16px 36px rgba(123,47,226,0.14); transform: translateY(-2px); }
+  .ar-social-icon { display: flex; align-items: center; height: 30px; }
+  .ar-social-icon img { height: 24px; width: auto; display: block; }
+  .ar-social-label { margin-top: 8px; font-family: var(--font-display); font-size: clamp(18px, 2vw, 22px); line-height: 1.16; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+  .ar-social-tag { margin-top: auto; font-size: 14px; color: var(--ink-soft); }
+
+  /* Related */
+  .ar-related { max-width: 1160px; margin: clamp(48px, 6vw, 84px) auto 0; padding-top: clamp(36px, 4.6vw, 60px); border-top: 1px solid var(--snow-line-2); }
+  .ar-related h2 { margin: 0 0 clamp(20px, 2.4vw, 28px); font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 34px); line-height: 1.1; font-weight: 800; letter-spacing: -0.026em; color: var(--ink); }
   .ar-related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
-  .ar-card { display: flex; flex-direction: column; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; }
-  .ar-card:hover { border-color: rgba(123,47,226,0.55); background: #191B21; }
-  .ar-card-media { position: relative; aspect-ratio: 16 / 9; background: var(--night); border-bottom: 1px solid var(--hairline); }
+  .ar-card { display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid var(--snow-line-2); border-radius: 18px; overflow: hidden; box-shadow: 0 10px 26px rgba(16,16,20,0.05); transition: border-color 0.16s ease, box-shadow 0.16s ease; }
+  .ar-card:hover { border-color: rgba(123,47,226,0.5); box-shadow: 0 16px 36px rgba(123,47,226,0.14); }
+  .ar-card-media { position: relative; aspect-ratio: 16 / 9; background: var(--snow); border-bottom: 1px solid var(--snow-line-2); }
   .ar-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
   .ar-card-body { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px; }
-  .ar-card-date { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lilac); }
-  .ar-card h3 { margin: 0; font-family: var(--font-display); font-size: 16px; line-height: 1.28; font-weight: 700; letter-spacing: -0.016em; color: var(--snow); text-wrap: pretty; }
-
-  .ar-author { position: relative; z-index: 2; max-width: 720px; margin: clamp(40px, 5vw, 64px) auto 0; display: flex; align-items: center; gap: 16px; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; padding: 22px 24px; }
-  .ar-author-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--snow); }
-  .ar-author-text p { margin: 4px 0 0; font-size: 14px; line-height: 21px; color: var(--text-muted); }
-
-  .ar-social { position: relative; z-index: 2; max-width: 1160px; margin: clamp(52px, 6vw, 88px) auto 0; }
-  .ar-social-head { text-align: center; margin-bottom: clamp(24px, 3vw, 36px); }
-  .ar-social-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 44px); line-height: 1.06; font-weight: 800; letter-spacing: -0.03em; }
-  .ar-social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(14px, 1.8vw, 18px); }
-  .ar-social-card { position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 140px; background: linear-gradient(165deg, rgba(123,47,226,0.16), rgba(21,23,27,0.95) 60%); border: 1px solid var(--hairline); border-radius: 18px; padding: clamp(20px, 2.2vw, 26px); }
-  .ar-social-card:hover { border-color: rgba(123,47,226,0.6); }
-  .ar-social-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lilac); }
-  .ar-social-label { font-family: var(--font-display); font-size: clamp(19px, 2.1vw, 24px); line-height: 1.16; font-weight: 800; letter-spacing: -0.02em; color: var(--snow); }
-  .ar-social-arrow { margin-top: auto; font-size: 18px; color: var(--sky-aqua); }
+  .ar-card-date { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ultra-violet); }
+  .ar-card h3 { margin: 0; font-family: var(--font-display); font-size: 16px; line-height: 1.28; font-weight: 700; letter-spacing: -0.016em; color: var(--ink); text-wrap: pretty; }
 </style>
