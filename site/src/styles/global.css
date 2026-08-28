@@ -67,6 +67,15 @@ body {
 
 img, video, svg, image-slot { max-width: 100%; }
 
+/* Gradient keyword highlight for headings (aqua to violet to rose). */
+.hl {
+  background: linear-gradient(100deg, #35C7DF 0%, #7B2FE2 52%, #D62086 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 a { color: var(--snow); text-decoration: none; }
 a:hover { color: var(--ultra-violet); }
 
