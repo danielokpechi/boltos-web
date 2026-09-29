@@ -19,7 +19,7 @@ const costs = ['Revenue', 'Data ownership', 'Sponsor leverage', 'Long-term brand
 const stack = [
   { text: 'Streaming and distribution', layer: 'Delivery', fill: '88%' },
   { text: 'Identity and access layer', layer: 'Accounts', fill: '72%' },
-  { text: 'Built-in Immersive Platform', layer: 'Engagement', fill: '60%' },
+  { text: 'Built-in Connect', layer: 'Engagement', fill: '60%' },
   { text: 'Commerce enablement', layer: 'Revenue', fill: '46%' },
   { text: 'Analytics dashboard', layer: 'Intelligence', fill: '32%' },
 ].map((s, i) => ({ ...s, num: '0' + (i + 1) }));
@@ -33,6 +33,27 @@ const outcomes = [
     items: ['No algorithm dependency', 'No platform risk exposure', 'No content dilution'] },
 ];
 
+const layers = [
+  {
+    name: 'Core', desc: 'Digital Experience Infrastructure', accent: '#35C7DF',
+    copy: 'The foundation for branded digital experiences. Flexible, secure and scalable infrastructure.',
+    items: ['White-label / branded platforms', 'Web & app experiences', 'Streaming infrastructure', 'Content management', 'Configuration & APIs'],
+    icon: '/assets/icons/layers/core.png',
+  },
+  {
+    name: 'Connect', eyebrow: 'Engage', desc: 'Audience Engagement & Monetisation', accent: '#D62086', href: routes.connect,
+    copy: 'Interactive features and monetisation tools that turn passive viewers into active, loyal and valuable audiences.',
+    items: ['Read', 'Chat', 'Rewards', 'Commerce'],
+    icon: '/assets/icons/layers/engage.png',
+  },
+  {
+    name: 'Intelligence', desc: 'Audience Intelligence & AI', accent: '#7B2FE2', href: routes.intelligence,
+    copy: 'AI-powered intelligence to understand audiences, generate insights and drive monetisation.',
+    items: ['IRIS: AI-driven interaction & intelligence', 'PULSE: Audience intelligence & activation'],
+    icon: '/assets/icons/layers/intelligence.png',
+  },
+];
+
 const audience = [
   'Do not want to rely on public streaming and social media platforms',
   'Want a controlled digital ecosystem',
@@ -40,11 +61,11 @@ const audience = [
 ].map((text, i) => ({ num: '0' + (i + 1), text }));
 
 const faqs = [
-  ['Do I need technical expertise to use Custom Bolt+?', 'Not at all. Custom Bolt+ is designed to make your life easier. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation and recommendation on the best practices as you start your journey with us.'],
+  ['Do I need technical expertise to use Bolt One?', 'Not at all. Bolt One is designed to make your life easier. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation and recommendation on the best practices as you start your journey with us.'],
   ["What if my broadcasting platform isn't listed in your integrations?", "We add new integrations regularly. If your platform isn't currently supported, contact our team, we can create custom integrations or use other means of connection."],
-  ['Can audiences access Custom Bolt+ on mobile devices?', 'Yes! Custom Bolt+ is fully optimised for mobile, tablet, and desktop. Your audience can connect and participate regardless of device.'],
-  ['How does BoltOS handle large live audiences?', 'Custom Bolt+ automatically scales to support unlimited concurrent users during live broadcasts. We have successfully supported events with more than 250,000 simultaneous viewers without any loss of performance, while continuous monitoring helps maintain stability as audience demand changes.'],
-  ['Can I customise the look and feel of Custom Bolt+ to match my brand?', 'Absolutely. You have full control over the colours, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully bespoke designs.'],
+  ['Can audiences access Bolt One on mobile devices?', 'Yes! Bolt One is fully optimised for mobile, tablet, and desktop. Your audience can connect and participate regardless of device.'],
+  ['How does BoltOS handle large live audiences?', 'Bolt One automatically scales to support unlimited concurrent users during live broadcasts. We have successfully supported events with more than 250,000 simultaneous viewers without any loss of performance, while continuous monitoring helps maintain stability as audience demand changes.'],
+  ['Can I customise the look and feel of Bolt One to match my brand?', 'Absolutely. You have full control over the colours, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully bespoke designs.'],
   ['What happens if something breaks during a live broadcast?', 'We provide 24/7 support for critical and high priority issues, including weekends and public holidays. If you experience a critical failure during a live broadcast, our team responds within 5 minutes and aims to resolve the issue within one hour. We take your reputation as seriously as you do.'],
   ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
 ].map(([q, a]) => ({ q, a }));
@@ -57,7 +78,7 @@ const chat = [
   { name: 'Mitch', text: 'Tonight’s the night! Who’s ready?', time: '01:02', accent: false },
 ];
 ---
-<Base title="Custom Bolt+, BoltOS">
+<Base title="Bolt One, Enterprise Audience Platform, BoltOS" description="Bolt One is the BoltOS enterprise audience platform, deployed in your own digital environments to build, engage, understand and monetise audiences.">
   <div class="cb">
     <!-- Hero -->
     <header class="cb-hero">
@@ -65,10 +86,11 @@ const chat = [
       <div class="cb-hero-wave" aria-hidden="true"><ParticleWave /></div>
       <div class="cb-hero-inner">
         <div class="cb-hero-copy">
-          <div class="cb-eyebrow"><span class="cb-eyebrow-rule"></span><span class="lilac">Custom Bolt+</span></div>
+          <img src="/assets/logo/BoltOne_Primary.png" alt="Bolt One" class="cb-hero-logo" />
+          <div class="cb-eyebrow"><span class="cb-eyebrow-rule"></span><span class="lilac">Enterprise Audience Platform</span></div>
           <h1>Own the distribution. Own the monetisation. <span class="hl">Own the data.</span></h1>
           <p class="cb-hero-lead">Stop distributing your audience. Start owning the relationship</p>
-          <p class="cb-hero-sub">Custom Bolt+ is a direct-to-consumer streaming and engagement infrastructure designed for IP owners who want to centralize content, community, and commerce inside one controlled ecosystem.</p>
+          <p class="cb-hero-sub">Bolt One is a technology platform deployed in your own digital environments to build, engage, understand and monetise audiences, centralising content, community and commerce inside one controlled ecosystem.</p>
           <div class="cb-hero-points">{heroPoints.map((h) => <span class="cb-pill">{h}</span>)}</div>
           <div class="cb-hero-cta"><a href={routes.bookDemo} class="btn-snow">Talk to Our Team</a></div>
         </div>
@@ -138,7 +160,7 @@ const chat = [
           <p class="cb-costs-lead">That fragmentation costs more than convenience. It costs:</p>
           <div class="cb-costs">{costs.map((c) => <span class="cb-cost">{c}</span>)}</div>
         </div>
-        <p class="cb-disc-close">BoltOS Full Stack eliminates that fragmentation by bringing everything into a single owned environment.</p>
+        <p class="cb-disc-close">Bolt One eliminates that fragmentation by bringing everything into a single owned environment.</p>
       </div>
     </section>
 
@@ -175,6 +197,31 @@ const chat = [
       </div>
     </section>
 
+    <!-- Three layers -->
+    <section class="cb-layers" id="layers">
+      <div class="cb-layers-inner">
+        <div class="cb-layers-head">
+          <div class="cb-eyebrow"><span class="cb-eyebrow-rule"></span><span class="uv">How Bolt One is built</span></div>
+          <h2>Three layers, one platform</h2>
+          <p>Every Bolt One deployment runs on Core, with Connect and Intelligence layered on top to engage, understand and monetise your audience.</p>
+        </div>
+        <div class="cb-layers-grid">
+          {layers.map((l) => (
+            <article class="cb-layer" style={`--accent:${l.accent};`}>
+              <img src={l.icon} alt="" class="cb-layer-icon" />
+              <div class="cb-layer-titles">
+                <h3>{l.name}{l.eyebrow && <span class="cb-layer-alias"> ({l.eyebrow})</span>}</h3>
+                <div class="cb-layer-desc">{l.desc}</div>
+              </div>
+              <p>{l.copy}</p>
+              <ul>{l.items.map((i) => <li>{i}</li>)}</ul>
+              {l.href && <a href={l.href} class="cb-layer-link">Explore {l.name} →</a>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Outcomes -->
     <section class="cb-outcomes">
       <div class="cb-wave cb-wave-d" aria-hidden="true"><ParticleWave /></div>
@@ -203,7 +250,7 @@ const chat = [
       <div class="cb-who-inner">
         <div class="cb-who-head">
           <h2>Who Is It For</h2>
-          <p>Full Stack is ideal for those who:</p>
+          <p>Bolt One is ideal for those who:</p>
         </div>
         <div class="cb-who-list">
           {audience.map((a) => (
@@ -338,6 +385,30 @@ const chat = [
   .cb-stack-foot-rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(123,47,226,0.55), rgba(53,199,223,0.35), transparent); }
   .cb-stack-foot-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sky-aqua); }
   .cb-what-close { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2.2vw, 28px); line-height: 1.26; font-weight: 700; letter-spacing: -0.022em; color: var(--text-lilac); max-width: 30ch; text-wrap: pretty; }
+
+  /* Three layers */
+  .cb-layers { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .cb-layers-inner { position: relative; z-index: 2; max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .cb-layers-head { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+  .cb-layers-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .cb-layers-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
+  .cb-layers-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+  @media (max-width: 900px) {
+    .cb-layers-grid { grid-template-columns: 1fr; }
+  }
+  .cb-layer { position: relative; background: #FFFFFF; border: 1px solid var(--snow-line-3); border-top: 3px solid var(--accent); border-radius: 18px; padding: clamp(22px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 16px; }
+  .cb-layer-icon { display: block; width: 56px; height: 56px; }
+  .cb-hero-logo { display: block; height: clamp(34px, 4vw, 52px); width: auto; }
+  .cb-layer-titles { display: flex; flex-direction: column; gap: 6px; }
+  .cb-layer h3 { margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+  .cb-layer-alias { font-weight: 600; color: var(--ink-2); font-size: 17px; }
+  .cb-layer-desc { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .cb-layer p { margin: 0; font-size: 15px; line-height: 24px; color: var(--ink-2); text-wrap: pretty; }
+  .cb-layer ul { margin: 0; padding: 14px 0 0; list-style: none; border-top: 1px solid var(--snow-line-3); display: flex; flex-direction: column; gap: 8px; }
+  .cb-layer li { position: relative; padding-left: 16px; font-size: 14px; line-height: 22px; color: var(--ink); }
+  .cb-layer li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .cb-layer-link { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--ultra-violet); }
+  .cb-layer-link:hover { color: var(--ink); }
 
   /* Outcomes */
   .cb-outcomes { position: relative; overflow: hidden; background: var(--night-4); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }

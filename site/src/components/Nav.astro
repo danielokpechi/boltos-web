@@ -2,7 +2,7 @@
 // Sticky pill nav. Desktop: four hover/click dropdown panels left-aligned to their
 // triggers. Mobile (<900px): a hamburger opens a full-height slide-out drawer with
 // the dropdowns as accordions, body-scroll lock, focus trap, and Escape/overlay close.
-import { navItems, solutionsPanel, casesPanel, routes, external } from '../data/nav.js';
+import { navItems, productsPanel, solutionsPanel, casesPanel, routes, external } from '../data/nav.js';
 import SocialLinks from './SocialLinks.astro';
 ---
 <div class="nav-shell">
@@ -21,7 +21,7 @@ import SocialLinks from './SocialLinks.astro';
         ))}
       </div>
       <div class="nav-cta-wrap">
-        <a href={routes.bookDemo} class="nav-cta">Book a Demo</a>
+        <a href={routes.bookDemo} class="nav-cta">Take a Tour</a>
       </div>
       <button type="button" class="nav-burger" aria-label="Open menu" aria-controls="nav-drawer" aria-expanded="false" data-drawer-open>
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -29,17 +29,26 @@ import SocialLinks from './SocialLinks.astro';
     </nav>
 
     <!-- Desktop dropdown panels -->
-    <div class="nav-panel" data-panel="Product" hidden>
-      <a href={external.boltplus} target="_blank" rel="noopener noreferrer" aria-label="Bolt+ web app" class="np-product">
-        <span class="np-product-badge"><img src="/assets/logo/BoltPlus_Secondary_RGB.svg" alt="Bolt+" /></span>
-        <p>Experience the future of immersive streaming with chat, shop, rewards and AI.</p>
-      </a>
+    <div class="nav-panel" data-panel="Products" hidden>
+      <div class="np-grid">
+        {productsPanel.map((p) => (
+          <a href={p.href} class="np-card" {...(p.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+            <span class="np-card-tag">{p.tag}</span>
+            <span class="np-card-title">
+              {p.logo ? <img src={p.logo} alt={p.label} class="np-card-logo" /> : p.label}
+              {p.external && <span class="np-ext" aria-label="(opens boltplus.tv)"> ↗</span>}
+            </span>
+            <span class="np-card-sub">{p.sub}</span>
+          </a>
+        ))}
+      </div>
     </div>
     <div class="nav-panel" data-panel="Company" hidden>
       <div class="np-company">
         <div class="np-company-col">
           <div class="np-eyebrow">COMPANY</div>
           <a href={routes.about} class="np-company-link">About Us</a>
+          <a href={routes.newsroom} class="np-company-link">Newsroom</a>
           <a href={external.brandAssets} download aria-label="Download the BoltOS brand guidelines (PDF)" class="np-company-link">Brand Assets</a>
         </div>
         <SocialLinks showLabels class="np-socials" />
@@ -48,7 +57,10 @@ import SocialLinks from './SocialLinks.astro';
     <div class="nav-panel" data-panel="Solutions" hidden>
       <div class="np-grid">
         {solutionsPanel.map((s) => (
-          <a href={s.href} class="np-card"><span class="np-card-title">{s.label}</span><span class="np-card-sub">{s.sub}</span></a>
+          <a href={s.href} class="np-card np-card-iconed">
+            <img src={s.icon} alt="" class="np-card-icon" />
+            <span class="np-card-text"><span class="np-card-title">{s.label}</span><span class="np-card-sub">{s.sub}</span></span>
+          </a>
         ))}
       </div>
       <a href={routes.solutions} class="np-all">All solutions →</a>
@@ -75,27 +87,23 @@ import SocialLinks from './SocialLinks.astro';
       </button>
     </div>
     <div class="nav-drawer-body">
-      <!-- Product -->
+      <!-- Products -->
       <div class="nav-acc">
-        <button type="button" class="nav-acc-trigger" aria-expanded="false">Product<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="nav-acc-trigger" aria-expanded="false">Products<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
         <div class="nav-acc-panel" hidden>
-          <a href={external.boltplus} target="_blank" rel="noopener noreferrer" class="nav-acc-link" data-drawer-nav>Bolt+ <span class="nav-acc-sub">Immersive streaming web app</span></a>
-        </div>
-      </div>
-      <!-- Company -->
-      <div class="nav-acc">
-        <button type="button" class="nav-acc-trigger" aria-expanded="false">Company<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
-        <div class="nav-acc-panel" hidden>
-          <a href={routes.about} class="nav-acc-link" data-drawer-nav>About Us</a>
-          <a href={external.brandAssets} download class="nav-acc-link" data-drawer-nav>Brand Assets</a>
-          <div class="nav-acc-social"><SocialLinks /></div>
+          {productsPanel.map((p) => (
+            <a href={p.href} class="nav-acc-link" data-drawer-nav {...(p.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+              <span>{p.logo ? <img src={p.logo} alt={p.label} class="nav-acc-logo" /> : p.label}{p.external && ' ↗'}</span>
+              <span class="nav-acc-sub">{p.tag}</span>
+            </a>
+          ))}
         </div>
       </div>
       <!-- Solutions -->
       <div class="nav-acc">
         <button type="button" class="nav-acc-trigger" aria-expanded="false">Solutions<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
         <div class="nav-acc-panel" hidden>
-          {solutionsPanel.map((s) => <a href={s.href} class="nav-acc-link" data-drawer-nav>{s.label}</a>)}
+          {solutionsPanel.map((s) => <a href={s.href} class="nav-acc-link nav-acc-iconed" data-drawer-nav><img src={s.icon} alt="" class="nav-acc-icon" />{s.label}</a>)}
           <a href={routes.solutions} class="nav-acc-link muted" data-drawer-nav>All solutions →</a>
         </div>
       </div>
@@ -107,11 +115,19 @@ import SocialLinks from './SocialLinks.astro';
           <a href={routes.cases} class="nav-acc-link muted" data-drawer-nav>See all case studies →</a>
         </div>
       </div>
-      <!-- Newsroom (flat) -->
-      <a href={routes.newsroom} class="nav-acc-flat" data-drawer-nav>Newsroom</a>
+      <!-- Company -->
+      <div class="nav-acc">
+        <button type="button" class="nav-acc-trigger" aria-expanded="false">Company<span class="nav-acc-chev" aria-hidden="true">▾</span></button>
+        <div class="nav-acc-panel" hidden>
+          <a href={routes.about} class="nav-acc-link" data-drawer-nav>About Us</a>
+          <a href={routes.newsroom} class="nav-acc-link" data-drawer-nav>Newsroom</a>
+          <a href={external.brandAssets} download class="nav-acc-link" data-drawer-nav>Brand Assets</a>
+          <div class="nav-acc-social"><SocialLinks /></div>
+        </div>
+      </div>
     </div>
     <div class="nav-drawer-foot">
-      <a href={routes.bookDemo} class="nav-drawer-cta" data-drawer-nav>Book a Demo</a>
+      <a href={routes.bookDemo} class="nav-drawer-cta" data-drawer-nav>Take a Tour</a>
     </div>
   </aside>
 </div>
@@ -138,15 +154,10 @@ import SocialLinks from './SocialLinks.astro';
   .nav-burger:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--ultra-violet); border-radius: 10px; }
 
   .nav-panel { position: absolute; left: 0; top: calc(100% + 4px); max-width: calc(100vw - 40px); border-top: 8px solid transparent; background-clip: padding-box; z-index: 50; box-sizing: border-box; background: rgba(16,16,20,0.97); border: 1px solid var(--hairline); border-radius: 20px; box-shadow: 0 30px 70px rgba(0,0,0,0.6); backdrop-filter: blur(16px); padding: 22px; }
-  .nav-panel[data-panel='Product'] { width: min(360px, calc(100vw - 40px)); }
+  .nav-panel[data-panel='Products'] { width: min(640px, calc(100vw - 40px)); }
   .nav-panel[data-panel='Company'] { width: min(720px, calc(100vw - 40px)); padding: 26px 28px; }
   .nav-panel[data-panel='Solutions'] { width: min(640px, calc(100vw - 40px)); }
   .nav-panel[data-panel='Cases'] { width: min(640px, calc(100vw - 40px)); }
-  .np-product { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding: 14px; margin: -14px; border-radius: 14px; }
-  .np-product:hover { background: rgba(123,47,226,0.12); }
-  .np-product-badge { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: 10px; background: var(--snow); }
-  .np-product-badge img { height: 20px; width: auto; display: block; }
-  .np-product p { margin: 0; font-size: 14px; line-height: 22px; color: #B9BCC4; max-width: 44ch; }
   .np-company { display: flex; flex-wrap: wrap; gap: 26px; align-items: stretch; }
   .np-company-col { flex: 0 0 auto; min-width: 150px; display: flex; flex-direction: column; gap: 12px; padding-right: 26px; border-right: 1px solid var(--hairline); }
   .np-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--text-dim); }
@@ -158,6 +169,15 @@ import SocialLinks from './SocialLinks.astro';
   .np-card:hover { background: rgba(123,47,226,0.12); border-color: rgba(123,47,226,0.40); }
   .np-card-title { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--snow); }
   .np-card-sub { font-size: 12px; line-height: 18px; color: #8A8E97; }
+  .np-card-tag { font-family: var(--font-mono); font-size: 10px; line-height: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lilac); }
+  .np-ext { color: #8A8E97; font-weight: 400; }
+  .np-card-iconed { flex-direction: row; align-items: flex-start; gap: 12px; }
+  .np-card-icon { flex: 0 0 auto; width: 36px; height: 36px; display: block; }
+  .np-card-text { display: flex; flex-direction: column; gap: 4px; }
+  .nav-acc-iconed { flex-direction: row; align-items: center; gap: 10px; }
+  .nav-acc-icon { flex: 0 0 auto; width: 24px; height: 24px; display: block; }
+  .np-card-logo { display: inline-block; vertical-align: middle; height: 16px; width: auto; }
+  .nav-acc-logo { display: inline-block; vertical-align: middle; height: 18px; width: auto; }
   .np-all { display: inline-flex; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lilac); }
   .np-all:hover { color: var(--snow); }
 
@@ -185,8 +205,6 @@ import SocialLinks from './SocialLinks.astro';
   .nav-acc-link.muted { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-lilac); }
   .nav-acc-sub { font-size: 12px; color: var(--text-dim); }
   .nav-acc-social { padding: 8px 4px 4px; }
-  .nav-acc-flat { display: block; padding: 16px 8px; font-size: 17px; font-weight: 600; color: var(--snow); border-bottom: 1px solid var(--hairline); }
-  .nav-acc-flat:hover, .nav-acc-flat:focus-visible { color: var(--text-lilac); outline: none; }
   .nav-drawer-foot { padding: 16px 20px; border-top: 1px solid var(--hairline); }
   .nav-drawer-cta { display: block; text-align: center; font-size: 16px; font-weight: 700; color: #FFFFFF; background: var(--ultra-violet); padding: 14px 20px; border-radius: 100px; }
   .nav-drawer-cta:hover { background: var(--ultra-violet-press); }

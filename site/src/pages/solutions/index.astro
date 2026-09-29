@@ -3,11 +3,11 @@ import Base from '../../layouts/Base.astro';
 import Roadmap from '../../components/Roadmap.astro';
 import ClosingCTA from '../../components/ClosingCTA.astro';
 import Faq from '../../components/Faq.astro';
-import { routes } from '../../data/nav.js';
+import { routes, external } from '../../data/nav.js';
 
 const solutions = [
-  { num: '01', name: 'Immersive Platform', copy: 'A revenue layer for your existing ecosystem', href: routes.immersive, accent: '#7B2FE2', offset: false },
-  { num: '02', name: 'Custom Bolt+', copy: 'Own the distribution. Own the monetisation. Own the data.', href: routes.customBolt, accent: '#D62086', offset: true },
+  { num: '01', icon: '/assets/icons/layers/engage.png', name: 'Connect', tag: 'Engage · Audience Engagement & Monetisation', copy: 'Interactive features and monetisation tools that turn passive viewers into active, loyal and valuable audiences.', points: ['Read', 'Chat', 'Rewards', 'Commerce'], href: routes.connect, accent: '#D62086', offset: false },
+  { num: '02', icon: '/assets/icons/layers/intelligence.png', name: 'Intelligence', tag: 'Audience Intelligence & AI', copy: 'AI-powered intelligence to understand audiences, generate insights and drive monetisation.', points: ['IRIS', 'PULSE'], href: routes.intelligence, accent: '#7B2FE2', offset: true },
 ];
 
 const faqs = [
@@ -21,7 +21,7 @@ const faqs = [
   ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
 ].map(([q, a]) => ({ q, a }));
 ---
-<Base title="Solutions, BoltOS">
+<Base title="Solutions, BoltOS" description="BoltOS solutions: Connect for audience engagement and monetisation, and Intelligence for audience insight and AI.">
   <div class="sol">
     <header class="sol-hero">
       <div class="sol-hero-head">
@@ -32,12 +32,19 @@ const faqs = [
         {solutions.map((s) => (
           <div class={`sol-card ${s.offset ? 'offset' : ''}`} style={`--accent:${s.accent};`}>
             <span class="sol-card-ghost">{s.num}</span>
-            <span class="sol-card-bar"></span>
+            <img src={s.icon} alt="" class="sol-card-icon" />
+            <div class="sol-card-tag">{s.tag}</div>
             <h2>{s.name}</h2>
             <p>{s.copy}</p>
+            <div class="sol-card-points">{s.points.map((p) => <span>{p}</span>)}</div>
             <a href={s.href} class="sol-card-link">Learn More →</a>
           </div>
         ))}
+      </div>
+      <div class="sol-products">
+        <span class="sol-products-label">Delivered through our products</span>
+        <a href={external.boltplus} target="_blank" rel="noopener noreferrer"><img src="/assets/logo/BoltPlus_Primary_RGB.svg" alt="Bolt+" class="sol-products-logo" /> BoltOS-operated ↗</a>
+        <a href={routes.boltOne}><img src="/assets/logo/BoltOne_Primary.png" alt="Bolt One" class="sol-products-logo" /> Customer-operated →</a>
       </div>
     </header>
 
@@ -70,5 +77,17 @@ const faqs = [
   .sol-card p { position: relative; margin: 0; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55; color: var(--text-muted); max-width: 32ch; text-wrap: pretty; }
   .sol-card-link { position: relative; align-self: flex-start; margin-top: 8px; font-size: 15px; line-height: 22px; font-weight: 600; color: var(--snow); border-bottom: 1px solid var(--accent); padding-bottom: 4px; }
   .sol-card-link:hover { color: var(--accent); }
+  .sol-card-icon { position: relative; width: 52px; height: 52px; display: block; }
+  .sol-card-tag { position: relative; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lilac); }
+  .sol-card-points { position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
+  .sol-card-points span { font-size: 13px; line-height: 1; padding: 7px 12px; border-radius: 100px; border: 1px solid var(--hairline); color: var(--text-soft); }
+
+  .sol-products { position: relative; max-width: 1160px; margin: clamp(32px, 4vw, 56px) auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 18px 22px; border: 1px dashed var(--hairline-dashed); border-radius: 16px; }
+  .sol-products-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-right: auto; }
+  .sol-products a { font-size: 14px; line-height: 20px; color: var(--text-muted); }
+  .sol-products a { display: inline-flex; align-items: center; gap: 8px; }
+  .sol-products a strong { color: var(--snow); font-weight: 700; }
+  .sol-products-logo { height: 15px; width: auto; display: block; }
+  .sol-products a:hover { color: var(--text-lilac); }
 
 </style>

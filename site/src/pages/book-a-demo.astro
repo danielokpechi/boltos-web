@@ -2,39 +2,30 @@
 import Base from '../layouts/Base.astro';
 import ParticleWave from '../components/ParticleWave.astro';
 
-const modules = ['Rewards', 'AI', 'Read', 'Shop', 'Chat', 'Analytics'];
 // Google Calendar appointment scheduling embed (provided by client).
 const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2kzx7II1jUDcxpjYKzTDqUVw1FqGxNIdWfR8CudnCVnHlaOdr_cD1n0dtzPD5Se5NH0v6kb9ay?gv=true';
 ---
-<Base title="Book a Demo, BoltOS" description="See the BoltOS Immersive Platform in action on Bolt+, then book a demo slot.">
+<Base title="Take a Tour, BoltOS" description="See the BoltOS Connect in action on Bolt+, then book a demo slot.">
   <div class="bd">
     <!-- Hero -->
     <header class="bd-hero">
       <div class="bd-hero-glow" aria-hidden="true"></div>
       <div class="bd-wave bd-wave-a" aria-hidden="true"><ParticleWave /></div>
       <div class="bd-hero-inner">
-        <div class="bd-eyebrow"><span class="bd-eyebrow-rule"></span><span class="lilac">Book A Demo</span></div>
+        <div class="bd-eyebrow"><span class="bd-eyebrow-rule"></span><span class="lilac">Take a Tour</span></div>
         <h1>See for Yourself</h1>
         <div class="bd-body">
-          <p>We built the BoltOS Immersive Platform to elevate your content into an experience that keeps viewers engaged, fans loyal, and revenue flowing. But we want you to see it before you believe it. That's where Bolt+ comes in.</p>
-          <p>On Bolt+, our own proprietary viewing platform, you can watch the Immersive Platform in action as fans engage with their favourite content channels.</p>
+          <p>We built the BoltOS Connect to elevate your content into an experience that keeps viewers engaged, fans loyal, and revenue flowing. But we want you to see it before you believe it. That's where Bolt+ comes in.</p>
+          <p>On Bolt+, our own proprietary viewing platform, you can watch the Connect in action as fans engage with their favourite content channels.</p>
           <p>We use Bolt+ as a sandbox to test new features before deploying them for you, and we'd like to invite you behind the scenes to see for yourself how it works.</p>
         </div>
       </div>
     </header>
 
-    <!-- Module strip -->
-    <div class="bd-strip" aria-label="Immersive Platform modules">
-      <div class="bd-strip-track">
-        {[...modules, ...modules, ...modules].map((m) => (
-          <span class="bd-chip"><span class="bd-chip-dot" aria-hidden="true"></span>{m}</span>
-        ))}
-      </div>
-    </div>
-
     <!-- Calendar booking -->
     <section class="bd-cal">
       <div class="bd-cal-inner">
+        <p class="bd-cal-caption">Just book a demo slot in the calendar below.</p>
         <div class="bd-cal-frame">
           <iframe
             src={CALENDAR}
@@ -43,7 +34,6 @@ const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/Ac
             style="border:0;"
           ></iframe>
         </div>
-        <p class="bd-cal-caption">Just book a demo slot in the calendar above.</p>
       </div>
     </section>
 
@@ -66,12 +56,6 @@ const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/Ac
   .bd-hero-inner h1 { margin: 0; font-family: var(--font-display); font-size: clamp(38px, 6vw, 82px); line-height: 1.0; font-weight: 800; letter-spacing: -0.04em; }
   .bd-body { display: flex; flex-direction: column; gap: 18px; max-width: 680px; }
   .bd-body p { margin: 0; font-size: clamp(16px, 1.7vw, 18px); line-height: 1.7; color: var(--text-muted); text-wrap: pretty; }
-
-  /* Module strip */
-  .bd-strip { position: relative; overflow: hidden; padding: clamp(20px, 3vw, 34px) 0; border-top: 1px dashed var(--hairline-dashed); border-bottom: 1px dashed var(--hairline-dashed); background: linear-gradient(180deg, rgba(123,47,226,0.06), rgba(14,14,18,0)); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-  .bd-strip-track { display: flex; gap: clamp(14px, 2vw, 26px); width: max-content; animation: v5marquee 30s linear infinite; align-items: center; }
-  .bd-chip { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: clamp(16px, 1.8vw, 22px); font-weight: 700; letter-spacing: -0.01em; color: var(--snow); background: rgba(123,47,226,0.10); border: 1px solid rgba(123,47,226,0.28); border-radius: 100px; padding: 10px 22px; }
-  .bd-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(140deg, #7B2FE2, #D62086); }
 
   /* Calendar */
   .bd-cal { position: relative; overflow: hidden; padding: clamp(40px, 5vw, 72px) clamp(24px, 6vw, 80px); }

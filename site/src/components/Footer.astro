@@ -6,8 +6,19 @@ import SocialLinks from './SocialLinks.astro';
 <footer class="ft">
   <div class="ft-brand">
     <img src="/assets/logo/BoltOS_Primary_RGB.svg" alt="BoltOS logo" class="ft-logo" />
-    <div class="ft-tag">Audience Revenue Engine</div>
+    <div class="ft-tag">Media Technology Group</div>
     <img src="/assets/badges/cyber-essentials-plus.png" alt="Cyber Essentials Certified Plus" class="ft-badge" />
+  </div>
+  <div class="ft-col">
+    <div class="ft-head">PRODUCTS</div>
+    <a href={external.boltplus} target="_blank" rel="noopener noreferrer">Bolt+ ↗</a>
+    <a href={routes.boltOne}>Bolt One</a>
+  </div>
+  <div class="ft-col">
+    <div class="ft-head">SOLUTIONS</div>
+    <a href={routes.solutions}>All Solutions</a>
+    <a href={routes.connect}>Connect</a>
+    <a href={routes.intelligence}>Intelligence</a>
   </div>
   <div class="ft-col">
     <div class="ft-head">COMPANY</div>
@@ -15,23 +26,14 @@ import SocialLinks from './SocialLinks.astro';
     <a href={routes.cases}>Case Studies</a>
     <a href={routes.newsroom}>Newsroom</a>
     <a href={external.brandAssets} download aria-label="Download the BoltOS brand guidelines (PDF)">Brand Assets</a>
-    <a href={routes.bookDemo} class="ft-btn">Book a demo</a>
-  </div>
-  <div class="ft-col">
-    <div class="ft-head">SOLUTIONS</div>
-    <a href={routes.solutions}>All Solutions</a>
-    <a href={routes.immersive}>Immersive Platform</a>
-    <a href={routes.customBolt}>Custom Bolt+</a>
+    <a href={routes.bookDemo} class="ft-btn">Take a Tour</a>
   </div>
   <div class="ft-col">
     <div class="ft-head">STAY CONNECTED</div>
-    <a href={routes.bookDemo}>Contact Us</a>
+    <a href={routes.contact}>Contact Us</a>
     <span class="ft-plain">Monthly Newsletter</span>
     <a href={routes.signup} class="ft-btn">Sign up</a>
-  </div>
-  <div class="ft-col">
-    <div class="ft-head">FOLLOW US</div>
-    <SocialLinks />
+    <div class="ft-social"><SocialLinks /></div>
   </div>
 </footer>
 <div class="ft-legal">
@@ -57,6 +59,7 @@ import SocialLinks from './SocialLinks.astro';
   .ft-col { flex: 0 1 170px; min-width: 0; max-width: 210px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 21px; }
   .ft-head { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 4px; }
   .ft-plain { font-size: 14px; line-height: 21px; color: var(--text-soft); }
+  .ft-social { margin-top: 10px; }
   .ft-btn {
     align-self: flex-start; margin-top: 4px; font-size: 13px; line-height: 20px; font-weight: 600;
     color: #FFFFFF !important; background: var(--ultra-violet); padding: 9px 18px; border-radius: 100px;

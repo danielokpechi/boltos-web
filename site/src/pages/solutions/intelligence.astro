@@ -1,0 +1,170 @@
+---
+import Base from '../../layouts/Base.astro';
+import ParticleWave from '../../components/ParticleWave.astro';
+import ClosingCTA from '../../components/ClosingCTA.astro';
+import Faq from '../../components/Faq.astro';
+import { routes } from '../../data/nav.js';
+
+const engines = [
+  {
+    id: 'iris', name: 'IRIS', desc: 'AI-driven interaction & intelligence', accent: '#35C7DF', theme: 'dark',
+    lead: 'Turn your panel into a two-way interaction.',
+    copy: 'IRIS is an AI companion that engages with your audience, learns from them and delivers an ever more curated experience, while supplying you with the data to make smarter decisions around your content and advertising.',
+    items: ['Answers viewer questions instantly', 'Surfaces contextual stats and content', 'Enables voice or text interaction', 'Generates measurable behavioural signals'],
+    logo: '/assets/logo/IRIS_Primary.svg', chipLogo: '/assets/logo/IRIS_Primary.svg',
+  },
+  {
+    id: 'pulse', name: 'PULSE', desc: 'Audience intelligence & activation', accent: '#D62086', theme: 'light',
+    lead: 'Understand what resonates, then act on it.',
+    copy: 'PULSE brings real-time analytics into a single control panel: engagement metrics, sentiment analysis, demographic breakdown and behaviour patterns as they happen. Optimise content on the fly and make data-driven decisions during the broadcast, not days later.',
+    items: ['Real-time engagement metrics', 'Sentiment analysis', 'Demographic breakdown', 'Behaviour patterns', 'Personalisation and automation'],
+    logo: '/assets/logo/Pulse_Secondary.png', chipLogo: '/assets/logo/Pulse_Primary.png',
+  },
+];
+
+const flow = [
+  { step: 'Understand', copy: 'Generate first-party audience intelligence.' },
+  { step: 'Activate', copy: 'Personalise and automate the experience.' },
+  { step: 'Monetise', copy: 'Maximise audience economic value.' },
+];
+
+const faqs = [
+  ['Do I need technical expertise to use Intelligence?', 'Not at all. Our solutions are designed for media and entertainment teams with busy schedules. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation.'],
+  ['What analytics and audience insights do we receive?', 'The reporting available depends on the solution, integration and project requirements. We work with you to determine which audience insights are most relevant to your objectives and set up your dashboard accordingly.'],
+  ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
+].map(([q, a]) => ({ q, a }));
+---
+<Base title="Intelligence, Audience Intelligence & AI, BoltOS" description="BoltOS Intelligence: AI-powered audience intelligence with IRIS and PULSE to understand audiences, generate insights and drive monetisation.">
+  <div class="in">
+    <!-- Hero -->
+    <header class="in-hero">
+      <div class="in-hero-glow" aria-hidden="true"></div>
+      <div class="in-hero-wave" aria-hidden="true"><ParticleWave /></div>
+      <div class="in-hero-inner">
+        <img src="/assets/icons/layers/intelligence.png" alt="" class="in-hero-icon" />
+        <div class="in-eyebrow"><span class="in-eyebrow-rule"></span><span class="lilac">Intelligence · Audience Intelligence &amp; AI</span></div>
+        <h1>Understand every audience. <span class="hl">Act on every signal.</span></h1>
+        <p class="in-hero-lead">AI-powered intelligence to understand audiences, generate insights and drive monetisation.</p>
+        <div class="in-hero-engines">
+          {engines.map((e) => (
+            <a href={`#${e.id}`} class="in-engine-chip" style={`--accent:${e.accent};`}><img src={e.chipLogo} alt={e.name} class={`in-chip-logo in-chip-logo-${e.id}`} /><span>{e.desc}</span></a>
+          ))}
+        </div>
+        <div class="in-hero-cta">
+          <a href={routes.bookDemo} class="btn-snow">Take a Tour</a>
+          <a href={routes.boltOne} class="in-partof">Part of <strong>Bolt One</strong> →</a>
+        </div>
+      </div>
+    </header>
+
+    {engines.map((e) => (
+      <section id={e.id} class={`in-engine ${e.theme}`} style={`--accent:${e.accent};`}>
+        <div class="in-engine-inner">
+          <div class="in-engine-copy">
+            <h2><img src={e.logo} alt={e.name} class={`in-engine-logo in-engine-logo-${e.id}`} /></h2>
+            <div class="in-engine-desc">{e.desc}</div>
+            <p class="in-engine-lead">{e.lead}</p>
+            <p>{e.copy}</p>
+          </div>
+          <ul class="in-engine-list">
+            {e.items.map((i, n) => (
+              <li><span class="in-engine-num">{String(n + 1).padStart(2, '0')}</span>{i}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <!-- From data to revenue -->
+    <section class="in-flow">
+      <div class="in-flow-inner">
+        <div class="in-flow-head">
+          <h2>From data to revenue</h2>
+          <p>Intelligence closes the loop in the BoltOS ecosystem, turning every interaction into insight and every insight into value.</p>
+        </div>
+        <ol class="in-flow-steps">
+          {flow.map((f, n) => (
+            <li>
+              <span class="in-flow-num">{String(n + 1).padStart(2, '0')}</span>
+              <h3>{f.step}</h3>
+              <p>{f.copy}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <Faq items={faqs} />
+
+    <ClosingCTA />
+  </div>
+</Base>
+
+<style>
+  .in { position: relative; }
+  .lilac { color: var(--text-lilac); }
+  .btn-snow { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 15px 30px; border-radius: 100px; }
+  .btn-snow:hover { color: var(--snow); background: var(--ultra-violet); }
+  .in-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .in-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
+  .in-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* Hero */
+  .in-hero { position: relative; overflow: hidden; padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 80px) clamp(56px, 6vw, 96px); }
+  .in-hero-glow { position: absolute; inset: -30% -10% auto; height: 150%; pointer-events: none; background: radial-gradient(760px 520px at 30% 30%, rgba(123,47,226,0.26), transparent 70%), radial-gradient(560px 420px at 80% 70%, rgba(53,199,223,0.10), transparent 72%); }
+  .in-hero-wave { position: absolute; right: -8%; bottom: -34%; width: min(52vw, 600px); height: min(30vw, 330px); opacity: 0.3; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+  .in-hero-inner { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+  .in-hero-inner h1 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 4.6vw, 62px); line-height: 1.03; font-weight: 800; letter-spacing: -0.034em; max-width: 18ch; text-wrap: pretty; }
+  .in-hero-lead { margin: 0; font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-muted); max-width: 52ch; text-wrap: pretty; }
+  .in-hero-engines { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .in-engine-chip { display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 100px; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); background: color-mix(in srgb, var(--accent) 10%, transparent); font-size: 14px; line-height: 20px; color: var(--text-soft); }
+  .in-engine-chip strong { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.02em; color: var(--snow); }
+  .in-engine-chip:hover { border-color: var(--accent); }
+  .in-hero-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; padding-top: 6px; }
+  .in-partof { font-size: 14px; line-height: 22px; color: var(--text-muted); }
+  .in-partof strong { color: var(--snow); font-weight: 600; }
+  .in-partof:hover { color: var(--text-lilac); }
+
+  /* IRIS / PULSE */
+  .in-engine { position: relative; overflow: hidden; scroll-margin-top: 90px; padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
+  .in-engine.dark { background: var(--night-4); border-top: 1px solid var(--hairline); }
+  .in-engine.light { background: var(--snow); color: var(--ink); }
+  .in-engine-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .in-engine-copy { display: flex; flex-direction: column; gap: 14px; }
+  .in-engine-logo { display: block; width: auto; }
+  .in-engine-logo-iris { height: clamp(40px, 4.2vw, 54px); }
+  .in-engine-logo-pulse { height: clamp(74px, 7.8vw, 100px); }
+  .in-hero-icon { width: 64px; height: 64px; display: block; }
+  .in-chip-logo { display: block; width: auto; }
+  .in-chip-logo-iris { height: 18px; }
+  .in-chip-logo-pulse { height: 30px; margin: -6px 0; }
+  .in-engine-desc { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .in-engine h2 { margin: 0; font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); line-height: 1; font-weight: 800; letter-spacing: -0.03em; }
+  .in-engine-lead { margin: 0; font-family: var(--font-display); font-size: clamp(18px, 2vw, 24px); line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; }
+  .in-engine-copy p:last-child { margin: 0; font-size: 16px; line-height: 27px; text-wrap: pretty; }
+  .in-engine.dark .in-engine-copy p:last-child { color: var(--text-muted); }
+  .in-engine.light .in-engine-copy p:last-child { color: var(--ink-2); }
+  .in-engine-list { list-style: none; margin: 0; padding: clamp(10px, 1.4vw, 16px) clamp(20px, 2.4vw, 30px); border-radius: 20px; }
+  .in-engine.dark .in-engine-list { background: var(--night-2); border: 1px solid var(--hairline); }
+  .in-engine.light .in-engine-list { background: #FFFFFF; border: 1px solid var(--snow-line-3); }
+  .in-engine-list li { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; font-family: var(--font-display); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.3; font-weight: 700; letter-spacing: -0.012em; }
+  .in-engine-list li + li { border-top: 1px solid var(--hairline); }
+  .in-engine.light .in-engine-list li + li { border-top-color: var(--snow-line-3); }
+  .in-engine-num { font-family: var(--font-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.14em; color: var(--accent); }
+
+  /* Flow */
+  .in-flow { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); border-top: 1px solid var(--hairline); }
+  .in-flow-inner { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+  .in-flow-head { display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+  .in-flow-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; }
+  .in-flow-head p { margin: 0; font-size: 16px; line-height: 27px; color: var(--text-muted); text-wrap: pretty; }
+  .in-flow-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(14px, 1.8vw, 20px); counter-reset: step; }
+  .in-flow-steps li { position: relative; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; padding: clamp(22px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 10px; }
+  .in-flow-steps li:not(:last-child)::after { content: '→'; position: absolute; right: -16px; top: 50%; transform: translateY(-50%); z-index: 2; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; color: var(--snow); background: var(--ultra-violet); }
+  .in-flow-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: var(--text-lilac); }
+  .in-flow-steps h3 { margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; }
+  .in-flow-steps p { margin: 0; font-size: 15px; line-height: 24px; color: var(--text-muted); }
+  @media (max-width: 800px) {
+    .in-flow-steps li:not(:last-child)::after { display: none; }
+  }
+</style>

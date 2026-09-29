@@ -7,7 +7,6 @@ export function logoFor(name) {
   if (n.includes('hisense')) return P + 'hisense.png';
   if (n.includes('bloomberg')) return P + 'bloomberg.svg';
   if (n.includes('onefootball')) return P + 'onefootball.svg';
-  if (n.includes('binance')) return P + 'binance.svg';
   if (n.includes('olympusat')) return P + 'olympusat.png';
   if (n.includes('vidaa')) return P + 'vidaa.png';
   if (n.includes('24h') || n.includes('dubai')) return P + '24h-series.png';
@@ -17,7 +16,7 @@ export function logoFor(name) {
   // Bridget's: colour badge icon (magenta ground, white wordmark) used on the
   // Bridget's case-study card only.
   if (n.includes('bridget')) return '/assets/logos/bridget.png';
-  if (n.includes('bolt')) return '/assets/logo/BoltPlus_Primary_RGB.svg';
+  if (n.includes('bolt')) return '/assets/logo/BoltPlus_White.svg';
   // Dooya Media Group has no supplied logo yet; falls through to a placeholder.
   return null;
 }

@@ -7,4 +7,8 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  redirects: {
+    '/solutions/custom-bolt/': '/products/bolt-one/',
+    '/solutions/immersive-platform/': '/solutions/connect/',
+  },
 });

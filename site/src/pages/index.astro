@@ -5,7 +5,7 @@ import Roadmap from '../components/Roadmap.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 import Faq from '../components/Faq.astro';
 import LogoSlot from '../components/LogoSlot.astro';
-import { routes } from '../data/nav.js';
+import { routes, external } from '../data/nav.js';
 
 // src is the official horizontal logo (own aspect ratio); null → placeholder
 // until the partner's file is supplied. Bolt+ uses our own delivered SVG.
@@ -16,38 +16,62 @@ const partners = [
   { name: 'Dubai 24H Series', src: null },
   { name: 'Bolt+', src: null },
   { name: 'VIDAA', src: null },
-  { name: 'Binance Pay', src: null },
   { name: 'Olympusat', src: null },
   { name: 'TheSoul Publishing', src: null },
 ];
 
+const products = [
+  {
+    name: 'Bolt+', logo: '/assets/logo/BoltPlus_Primary_RGB.svg', tag: 'BoltOS-operated', kind: 'Interactive Distribution Platform', variant: 'plus',
+    copy: 'BoltOS-operated platform for globally accessible content distribution, interactive audience experiences and monetisation.',
+    points: ['Streaming & content delivery', 'Content availability across screens', 'Interactive audience experience', 'Advertising monetisation', 'Audience intelligence'],
+    cta: { href: external.boltplus, label: 'Visit boltplus.tv ↗', external: true },
+  },
+  {
+    name: 'Bolt One', logo: '/assets/logo/BoltOne_Primary.png', tag: 'Customer-operated', kind: 'Enterprise Audience Platform', variant: 'one',
+    copy: "Technology platform deployed in customers' own digital environments to build, engage, understand and monetise audiences.",
+    points: ['Core: digital experience infrastructure', 'Connect: audience engagement & monetisation', 'Intelligence: audience intelligence & AI'],
+    cta: { href: routes.boltOne, label: 'Explore Bolt One →' },
+  },
+];
+
+const ecosystem = [
+  { step: 'Distribute', copy: 'Make content globally accessible', icon: '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>' },
+  { step: 'Engage', copy: 'Create meaningful interactions', icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+  { step: 'Understand', copy: 'Generate first-party audience intelligence', icon: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>' },
+  { step: 'Activate', copy: 'Personalise and automate', icon: '<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>' },
+  { step: 'Monetise', copy: 'Maximise audience economic value', icon: '<circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/>' },
+];
+
 const modules = [
   { num: '01', name: 'Chat', copy: 'Real-time conversations, quizzes and ad banners, keep viewers glued to their screens for 3x longer. When audiences interact, they stay engaged.' },
-  { num: '02', name: 'Shop', copy: 'Take advantage of personalized shopping integration. Host your merch store at the heart of where your community is engaging, bumping up your conversion numbers.' },
+  { num: '02', name: 'Commerce', copy: 'Take advantage of personalized shopping integration. Host your merch store at the heart of where your community is engaging, bumping up your conversion numbers.' },
   { num: '03', name: 'Read', copy: 'For brands with premium reading material, why not organize your thought pieces to complement your content? Increasing click-throughs and ensuring your audience is interacting with your wider ecosystem.' },
-  { num: '04', name: 'AI', copy: 'Turn your panel into a two-way interaction. Our AI companion is there to engage with your audience, learn from them and deliver an even more curated panel experience. All while supplying you with the data to make smarter decisions around your content and advertising.' },
-  { num: '05', name: 'Rewards', copy: "Host giveaways, competitions or sponsored campaigns in the panel itself. Don't just make it a social experience, make it an event. Use this module for building retention and for giving back to your community." },
-  { num: '06', name: 'Analytics and Control', copy: 'Every Immersive Platform is accompanied with a state-of-the-art control panel, delivering real-time analytics showing engagement metrics, sentiment analysis, demographic breakdown, and behavior patterns as they happen. Understand what resonates and optimize content on the fly. Make data-driven decisions during the broadcast, not days later.' },
+  { num: '04', name: 'Rewards', copy: "Host giveaways, competitions or sponsored campaigns in the panel itself. Don't just make it a social experience, make it an event. Use this module for building retention and for giving back to your community." },
+];
+
+const intelligenceModules = [
+  { num: 'IRIS', logo: '/assets/logo/IRIS_Secondary.svg', name: 'AI-driven interaction & intelligence', href: `${routes.intelligence}#iris`, copy: 'Turn your panel into a two-way interaction. Our AI companion is there to engage with your audience, learn from them and deliver an even more curated panel experience. All while supplying you with the data to make smarter decisions around your content and advertising.' },
+  { num: 'PULSE', logo: '/assets/logo/Pulse_Secondary.png', name: 'Audience intelligence & activation', href: `${routes.intelligence}#pulse`, copy: 'Real-time analytics showing engagement metrics, sentiment analysis, demographic breakdown, and behavior patterns as they happen. Understand what resonates, optimize content on the fly, and make data-driven decisions during the broadcast, not days later.' },
 ];
 
 const stats = [
   { value: '3×', label: 'Longer watch time', color: '#F7F7F5' },
   { value: '1M+', label: 'Interactions served', color: '#C6ABF5' },
-  { value: '50+', label: 'Media brands', color: '#35C7DF' },
+  { value: '800+', label: 'Media brands', color: '#35C7DF' },
 ];
 
 const pillars = [
-  { icon: '⚯', title: 'Seamless Integration', copy: 'Mounted on the player you already own. No third-party app, no lost immersion, no audience sent elsewhere to buy.' },
-  { icon: '✦', title: 'Real-time Intelligence', copy: 'Engagement, sentiment and behaviour as they happen, so you adapt during the broadcast instead of days later.' },
-  { icon: '⛨', title: 'Enterprise-Grade Reliability', copy: '99.9% uptime, 250,000+ concurrent viewers and GDPR compliance end to end.' },
-  { icon: '◷', title: '100+ Years of Experience', copy: 'A team that has spent a century in media between them, building live products for broadcasters and rights holders.' },
+  { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>', title: 'Seamless Integration', copy: 'Mounted on the player you already own, or run it your way. BoltOS-operated on Bolt+, or customer-operated on Bolt One.' },
+  { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>', title: 'Increase Audience Value', copy: 'Maximise engagement, data and monetisation potential.' },
+  { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>', title: 'Scalable & Secure', copy: 'Enterprise-grade infrastructure built for scale.' },
+  { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>', title: 'Future-Ready', copy: 'AI-powered intelligence layer driving continuous improvement.' },
 ];
 
 const cases = [
   { name: 'Hisense', tag: 'Smart TV', quote: 'We view our partnership with BoltOS as strategic and valuable for building and maintaining viewer loyalty.', person: 'Jerry Liu · VP, Hisense International', stat: '14M TVs · 80 countries' },
   { name: 'VIDAA', tag: 'TV OS', quote: "A powerful example of social TV, enabling real interaction on live and VOD content. They're set for great success.", person: 'Guy Edri · CEO, VIDAA International', stat: "World's leading TV OS" },
   { name: '24H Series', tag: 'Motorsport', quote: 'Interactive features, moderated feeds and car POV feeds, the highlight of the entire Hankook Endurance Season.', person: 'Erik Naeser · Sports Advantage', stat: '150K interactions' },
-  { name: 'Binance Pay', tag: 'Payments', quote: 'Creators and brands can easily earn and engage fans using the secure Binance ecosystem through TVs for the first time.', person: 'Jonathan Lim · Global Head, Binance Pay', stat: '$12B processed' },
 ];
 
 const faqs = [
@@ -57,13 +81,10 @@ const faqs = [
   ['Can viewers access interactive features on mobile devices?', 'Yes. All our interactive features are fully optimized for mobile, tablet, and desktop. Your audience can participate regardless of device.'],
   ['How many concurrent viewers can your system handle?', "Our infrastructure auto-scales to handle unlimited concurrent users. We've successfully supported broadcasts with 250,000+ simultaneous viewers without performance degradation."],
   ['Can I customize the look and feel to match my brand?', 'Absolutely. You have complete control over colors, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully custom designs. Enterprise plans include white-label options with custom domains.'],
-  ['How does monetization work?', 'Panels contain banner ads that will generate ad dollars. Viewers can also make purchases or unlock premium content directly within your panel. We will work with you to ensure your preferred major payment gateways are added.'],
-  ['What happens if something breaks during a live broadcast?', 'We provide 24/7 support for Critical and High priority issues, including weekends and holidays. If you experience a critical failure during a live broadcast, our team responds within 5 minutes and aims for resolution within 1 hour. We take your reputation as seriously as you do.'],
-  ["What's your uptime guarantee?", 'We maintain 99.9% uptime backed by redundant infrastructure and continuous monitoring. Our status page provides real-time system health updates.'],
   ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
 ].map(([q, a], i) => ({ q, a, num: String(i + 1).padStart(2, '0') }));
 ---
-<Base title="BoltOS, Audience Revenue Engine" description="BoltOS turns viewers into revenue: chat, shop, rewards and AI mounted on the player you already own.">
+<Base title="BoltOS, Media Technology Group" description="BoltOS builds the technology that enables media companies to distribute content, engage, understand and monetise digital audiences.">
   <div class="hp">
     <!-- 01 HERO -->
     <header class="hero">
@@ -71,9 +92,9 @@ const faqs = [
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-top">
         <div class="hero-badge"><span class="hero-badge-emoji" aria-hidden="true">🚀</span>New: AI-Powered Analytics</div>
-        <h1 class="hero-h1">The <span class="hl">interaction</span> layer<br />for live media</h1>
-        <p class="hero-sub">Chat, shop, rewards and AI mounted on the player you already own. Author once, then drive it live on matchday.</p>
-        <div class="hero-cta"><a href={routes.bookDemo} class="btn-snow">Book a demo</a></div>
+        <h1 class="hero-h1">The Enterprise Operating Infrastructure for<br> <span class="hl">Engagement-Driven Media</span></h1>
+        <p class="hero-sub">Building the technology that enables media companies to distribute content, engage, understand and monetise digital audiences.</p>
+        <div class="hero-cta"><a href={routes.bookDemo} class="btn-snow">Take a Tour</a></div>
       </div>
       <div class="hero-player-wrap">
         <div class="hero-grid-v" aria-hidden="true"></div>
@@ -111,14 +132,55 @@ const faqs = [
       </div>
     </div>
 
-    <!-- 03 PRODUCT SUITE -->
+    <!-- 03 PRODUCTS -->
+    <section id="products" class="models">
+      <div class="models-head">
+        <div class="models-eyebrow">Our products</div>
+        <h2>Two complementary models. <span class="hl">One mission.</span></h2>
+        <p>Build stronger audiences. Drive deeper engagement. Deliver greater returns.</p>
+      </div>
+      <div class="models-grid">
+        {products.map((p) => (
+          <article class={`model model-${p.variant}`}>
+            <div class="model-tag">{p.tag}</div>
+            <h3>{p.logo ? <img src={p.logo} alt={p.name} class="model-logo" /> : p.name}</h3>
+            <div class="model-kind">{p.kind}</div>
+            <p>{p.copy}</p>
+            <ul>{p.points.map((pt) => <li>{pt}</li>)}</ul>
+            <a href={p.cta.href} class="model-cta" {...(p.cta.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{p.cta.label}</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 04 ONE ECOSYSTEM -->
+    <section id="ecosystem" class="eco">
+      <div class="eco-head">
+        <div class="eco-eyebrow">One ecosystem</div>
+        <h2>From first view to lasting value</h2>
+      </div>
+      <ol class="eco-steps">
+        {ecosystem.map((e) => (
+          <li class="eco-step">
+            <span class="eco-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={e.icon} /></span>
+            <h3>{e.step}</h3>
+            <p>{e.copy}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="eco-foot">Shared technology · Data · AI · Monetisation capabilities</div>
+    </section>
+
+    <!-- 05 CONNECT -->
     <section id="suite" class="suite">
       <div class="suite-grid" aria-hidden="true"></div>
       <div class="suite-glow" aria-hidden="true"></div>
       <div class="suite-head">
-        <div class="suite-eyebrow">Get to know BoltOS</div>
-        <h2 class="suite-h2">The Immersive Platform</h2>
-        <p class="suite-sub">The all-in-one interactive tool that drives results.</p>
+        <img src="/assets/icons/layers/engage.png" alt="" class="suite-icon" />
+        <div class="suite-eyebrow">Solutions · Engage</div>
+        <h2 class="suite-h2">Connect</h2>
+        <p class="suite-sub">Interactive features and monetisation tools that turn passive viewers into active, loyal and valuable audiences.</p>
+        <a href={routes.connect} class="suite-link">Explore Connect →</a>
       </div>
       <div class="suite-modules">
         {modules.map((m) => (
@@ -127,6 +189,28 @@ const faqs = [
             <h3>{m.name}</h3>
             <p>{m.copy}</p>
           </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 06 INTELLIGENCE -->
+    <section id="intelligence" class="suite">
+      <div class="suite-grid" aria-hidden="true"></div>
+      <div class="suite-glow" aria-hidden="true"></div>
+      <div class="suite-head">
+        <img src="/assets/icons/layers/intelligence.png" alt="" class="suite-icon" />
+        <div class="suite-eyebrow">Solutions · Audience Intelligence &amp; AI</div>
+        <h2 class="suite-h2">Intelligence</h2>
+        <p class="suite-sub">AI-powered intelligence to understand audiences, generate insights and drive monetisation.</p>
+        <a href={routes.intelligence} class="suite-link">Explore Intelligence →</a>
+      </div>
+      <div class="suite-modules">
+        {intelligenceModules.map((m) => (
+          <a href={m.href} class="module module-link">
+            <img src={m.logo} alt={m.num} class={`module-logo module-logo-${m.num.toLowerCase()}`} />
+            <h3>{m.name}</h3>
+            <p>{m.copy}</p>
+          </a>
         ))}
       </div>
     </section>
@@ -154,13 +238,13 @@ const faqs = [
       <div class="why-grid" aria-hidden="true"></div>
       <div class="why-head">
         <div class="why-eyebrow"><span class="dot dot-uv"></span>Why BoltOS</div>
-        <h2>Why modern media platforms need BoltOS</h2>
+        <h2>Why modern digital platforms need BoltOS</h2>
         <p>Most content keeps audiences passive. They watch, but they never participate, never buy, never truly engage. Every broadcast without interaction is money left on the table.</p>
       </div>
       <div class="why-pillars">
         {pillars.map((p) => (
           <div class="pillar">
-            <span class="pillar-icon">{p.icon}</span>
+            <span class="pillar-icon" set:html={p.icon} />
             <h3>{p.title}</h3>
             <p>{p.copy}</p>
           </div>
@@ -257,6 +341,52 @@ const faqs = [
   .module-num { width: 34px; height: 34px; border-radius: 10px; background: rgba(123,47,226,0.10); border: 1px solid rgba(123,47,226,0.14); color: var(--ultra-violet-press); font-family: var(--font-mono); font-size: 11px; display: flex; align-items: center; justify-content: center; }
   .module h3 { margin: 0; font-family: var(--font-display); font-size: 18px; line-height: 1.2; font-weight: 700; }
   .module p { margin: 0; font-size: 14px; line-height: 22px; color: var(--ink-muted); text-wrap: pretty; }
+  .module-link { color: inherit; }
+  .module-logo { align-self: flex-start; display: block; height: 30px; width: auto; margin-bottom: 4px; }
+  .module-logo-pulse { height: 54px; margin: -12px 0 -8px; }
+  .suite-icon { width: 44px; height: 44px; display: block; margin-bottom: 2px; }
+  .suite-link { align-self: flex-start; margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--ultra-violet); }
+  .suite-link:hover { color: var(--ink); }
+  .suite + .suite { padding-top: 0; }
+
+  /* PRODUCTS */
+  .models { position: relative; overflow: hidden; background: var(--page); padding: clamp(56px, 7vw, 104px) clamp(24px, 6vw, 80px); }
+  .models-head { max-width: 820px; margin: 0 auto clamp(32px, 4vw, 56px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .models-eyebrow, .eco-eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lilac); }
+  .models-head h2, .eco-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; text-wrap: balance; }
+  .models-head p { margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; color: #CFC9C0; }
+  .models-grid { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; }
+  .model { position: relative; overflow: hidden; border-radius: 22px; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 14px; border: 1px solid var(--hairline); }
+  .model-plus { background: linear-gradient(160deg, #13224A 0%, #0E1530 60%, #101014 100%); }
+  .model-one { background: radial-gradient(520px 360px at 100% 0%, rgba(123,47,226,0.38), transparent 70%), linear-gradient(160deg, #1E1238 0%, #150D28 55%, #101014 100%); border-color: rgba(123,47,226,0.5); }
+  .model-tag { align-self: flex-start; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--snow); padding: 6px 12px; border-radius: 100px; background: rgba(247,247,245,0.1); border: 1px solid rgba(247,247,245,0.2); }
+  .model h3 { margin: 6px 0 0; font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1; font-weight: 800; letter-spacing: -0.035em; }
+  .model-logo { display: block; height: clamp(34px, 3.8vw, 50px); width: auto; }
+  .model-kind { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #C6ABF5; }
+  .model-plus .model-kind { color: var(--sky-aqua); }
+  .model p { margin: 0; font-size: 16px; line-height: 26px; color: #D9DBE0; max-width: 46ch; text-wrap: pretty; }
+  .model ul { list-style: none; margin: 6px 0 0; padding: 16px 0 0; border-top: 1px solid rgba(247,247,245,0.14); display: flex; flex-direction: column; gap: 10px; }
+  .model li { position: relative; padding-left: 18px; font-size: 15px; line-height: 22px; color: var(--snow); }
+  .model li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--sky-aqua); }
+  .model-one li::before { background: #F25BAE; }
+  .model-cta { align-self: flex-start; margin-top: auto; padding-top: 10px; font-size: 15px; font-weight: 600; color: var(--snow); border-bottom: 1px solid rgba(247,247,245,0.4); }
+  .model-cta:hover { border-color: var(--snow); }
+
+  /* ONE ECOSYSTEM */
+  .eco { position: relative; overflow: hidden; background: var(--night-4); border-top: 1px solid var(--hairline); padding: clamp(56px, 7vw, 96px) clamp(24px, 6vw, 80px); }
+  .eco-head { max-width: 820px; margin: 0 auto clamp(30px, 4vw, 52px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .eco-steps { list-style: none; margin: 0 auto; padding: 0; max-width: var(--maxw); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+  .eco-step { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 24px 14px; border-radius: 18px; background: var(--surface-1); border: 1px solid #2A2D34; }
+  .eco-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50px; z-index: 2; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; color: var(--snow); background: var(--ultra-violet); }
+  .eco-icon { width: 52px; height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: #2A1C42; color: var(--ultra-violet); }
+  .eco-icon svg { display: block; width: 22px; height: 22px; }
+  .eco-step h3 { margin: 4px 0 0; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: var(--snow); }
+  .eco-step p { margin: 0; font-size: 14px; line-height: 21px; color: #CFC9C0; text-wrap: pretty; }
+  .eco-foot { max-width: var(--maxw); margin: 16px auto 0; padding: 14px 20px; border: 1px dashed var(--hairline-dashed); border-radius: 14px; text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lilac); }
+  @media (max-width: 960px) {
+    .eco-steps { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+    .eco-step:not(:last-child)::after { display: none; }
+  }
 
   /* STATS */
   .stats { position: relative; overflow: hidden; background: var(--night); color: var(--snow); padding: clamp(48px, 6vw, 88px) clamp(24px, 6vw, 88px); }
@@ -277,11 +407,24 @@ const faqs = [
   .why-eyebrow { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; line-height: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ultra-violet); }
   .why-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; }
   .why-head p { margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; color: #CFC9C0; max-width: 720px; text-wrap: pretty; }
-  .why-pillars { position: relative; max-width: var(--maxw); margin: clamp(36px, 4vw, 56px) auto 0; display: flex; flex-wrap: wrap; gap: 16px; }
-  .pillar { flex: 1 1 260px; min-width: 0; background: var(--surface-1); border: 1px solid #2A2D34; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px; }
-  .pillar-icon { width: 58px; height: 58px; border-radius: 15px; background: #2A1C42; color: var(--ultra-violet); display: flex; align-items: center; justify-content: center; font-size: 30px; line-height: 1; }
+  .why-pillars { position: relative; max-width: var(--maxw); margin: clamp(36px, 4vw, 56px) auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .pillar { min-width: 0; background: var(--surface-1); border: 1px solid #2A2D34; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+  .pillar-icon { flex: 0 0 auto; width: 58px; height: 58px; border-radius: 15px; background: #2A1C42; color: var(--ultra-violet); display: flex; align-items: center; justify-content: center; }
+  .pillar-icon :global(svg) { display: block; width: 22px; height: 22px; }
   .pillar h3 { margin: 0; font-family: var(--font-display); font-size: 19px; line-height: 1.2; font-weight: 700; }
   .pillar p { margin: 0; font-size: 15px; line-height: 23px; color: #CFC9C0; text-wrap: pretty; }
+
+  /* Below ~660px: card width in the 2-col grid drops under a comfortable
+     minimum, so collapse to a single column instead. */
+  @media (max-width: 660px) {
+    .why-pillars { grid-template-columns: 1fr; }
+  }
+  /* .why is full-bleed (width = viewport), so its own width is a reliable
+     stand-in for the grid's width. Once that's wide enough that a 2-col
+     card would exceed 650px, switch to a single 4-up row. */
+  @media (min-width: 1444px) {
+    .why-pillars { grid-template-columns: repeat(4, 1fr); }
+  }
 
   /* TESTIMONIALS */
   .tst { position: relative; overflow: hidden; border-bottom: 1px solid #232323; padding: clamp(48px, 6vw, 88px) 0; }

@@ -8,7 +8,7 @@ import { routes } from '../data/nav.js';
 const challenge = [
   { num: '01', numColor: '#7B2FE2', title: 'Hypercompetitive Landscape.', copy: "Media brands are in a tough spot, user churn is up, the old revenue models are broken, and technology is often more barrier than booster. BoltOS has been experimenting and building since 2017 with the objective of solving these challenges. Here's what we did:" },
   { num: '02', numColor: '#D62086', title: 'The World of Content Is Changing', copy: "And BoltOS is ready for it. We bring together years of pioneering innovation combined with a culture of technical excellence and experimentation. Our passion is taking an over-the-horizon view at what's next in media, content, and entertainment, then finding ways to shape that future." },
-  { num: '03', numColor: '#101014', title: 'Experiential Media For TV', copy: "In today's crowded content landscape, it's harder than ever to keep viewers watching, engaging, and coming back. Production quality, quantity, and investment are no longer enough to retain and monetize audiences sustainably. When you can't compete on volume or spend, you have to compete on the experience you deliver. That's where the BoltOS Immersive Platform comes in." },
+  { num: '03', numColor: '#101014', title: 'Experiential Media For TV', copy: "In today's crowded content landscape, it's harder than ever to keep viewers watching, engaging, and coming back. Production quality, quantity, and investment are no longer enough to retain and monetize audiences sustainably. When you can't compete on volume or spend, you have to compete on the experience you deliver. That's where the BoltOS Connect comes in." },
 ];
 
 const slugOf = (n) => n.toLowerCase().replace(/[^a-z]+/g, '-');
@@ -23,9 +23,10 @@ const teamRaw = [
   ['Avinash Kannan', 'Head of UX & Design', 'Avinash is Head of UX & Design at BoltOS. Avinash was previously at Playtonia Esports and a Designer for the digital wing of Sun News.', null],
   ['Zain Bin Kafeel', 'DevOps Lead', 'As a DevOps Lead, Zain develops scalable infrastructure solutions for enterprise applications. With a strong background in full-stack development, he is dedicated to designing robust systems that enhance operational efficiency. Zain is passionate about leveraging technology to drive business success, ensuring seamless integration between development and operations teams to deliver high-performing, scalable solutions.', null],
 ];
-const order = ['Jamal Hassim', 'Anwar Arieff', 'Sylvia Cebanu', 'Michelle Peterson Clark', 'Avinash Kannan', 'Johan Jamal', 'Zain Bin Kafeel', 'John Peterson Clark', 'Jason Nellis'];
+const order = ['Jamal Hassim', 'John Peterson Clark', 'Jason Nellis', 'Sylvia Cebanu', 'Anwar Arieff', 'Michelle Peterson Clark', 'Johan Jamal', 'Zain Bin Kafeel', 'Avinash Kannan'];
 const team = [...teamRaw].sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]))
   .map(([name, role, bio, href]) => ({ name, role, bio, href, src: `/assets/team/${slugOf(name)}.png` }));
+const [lead, ...members] = team;
 
 const faceFile = { 'Jason Nellis': 'jason-nellis', 'Anwar Arieff': 'anwar-arieff', 'Jamal Hassim': 'jamal-hassim', Zain: 'zain-bin-kafeel', 'Avinash Kannan': 'avinash-kannan' };
 const voices = [
@@ -39,15 +40,21 @@ const voices = [
 const heritageBase = ['Hulu', 'PBS', 'VIZIO', 'Meta', 'Bloomberg', 'Media Prima', 'TV5', 'Boeing', 'Ford'];
 const heritage = [...heritageBase, ...heritageBase];
 
+const globeTeam = [
+  { name: 'UAE', lat: 25.2048, lon: 55.2708, side: 'left' },
+  { name: 'Pakistan', lat: 30.3753, lon: 69.3451, side: 'top' },
+  { name: 'India', lat: 20.5937, lon: 78.9629, side: 'right' },
+  { name: 'Malaysia', lat: 3.139, lon: 101.6869, side: 'right' },
+  { name: 'Australia', lat: -25.2744, lon: 133.7751, side: 'right' },
+];
+
 const timeline = [
-  ['2017', 'Founded the company.'],
-  ['2018', 'Bolt+ emerged as a next-generation streaming platform designed to elevate audience engagement and create truly immersive viewing experiences. Initially developed as standalone mobile and web applications, Bolt+ successfully integrated directly into telecommunication networks across Asia-Pacific, establishing a proven foundation for scalable, operator-grade streaming solutions.'],
-  ['2019', 'We debuted our large-scale live sports capabilities through our successful carriage of 2019 Rugby World Cup and Cricket World Cup content, establishing our expertise in delivering premium sporting content to global audiences.'],
-  ['2021', 'We revolutionized the smart TV landscape by launching BoltOS on Hisense and VIDAA devices, catalysing an ecosystem expansion that attracted global media powerhouses including Al Jazeera, Deutsche Welle, Euronews, and One Football.'],
-  ['2022', 'Our reimagined Bolt+ streaming platform delivers breakthrough immersive streaming experiences, creating a unified destination where emerging creators and media giants converge, fundamentally redefining how audiences connect with content.'],
-  ['2023', 'With the release of Immersive Platform 1.0, we set the foundation for next-generation media tools that transform content engagement. This innovation propelled strategic partnerships with Bloomberg and OTTera, who recognised BoltOS as the definitive platform for content delivery and monetisation.'],
-  ['2024', "Our strategic evolution to SaaS delivery has unlocked exponential growth opportunities, while securing transformative partnerships with industry leaders including VIZIO, TheSoul Publishing, Netrange, and TitanOS, positioning BoltOS as the platform powering the future of media. We strengthened our track record in high-stakes sporting event delivery through successful deployments with the Hankook 24 Hours Dubai and the 2024 Women's Baseball and Softball World Cups."],
-].map(([year, copy]) => ({ year, copy }));
+  ['2017', 'Foundation', 'Founded BoltOS to enable content owners to own distribution, audiences, and monetisation across digital ecosystems.'],
+  ['2021', 'Bolt+ | Embedded Distribution Infrastructure', 'Established embedded distribution infrastructure through Smart TV and media ecosystem integrations including Hisense, VIDAA, Euronews, and OneFootball, creating scalable distribution across TV, web, mobile, and OTT environments.'],
+  ['2023', 'Connect | Engagement & Monetisation Infrastructure', 'Launched Connect, enabling interactive engagement, sponsorship activation, commerce, and monetisation across enterprise media environments.'],
+  ['2025', 'White-label Platform | Recurring Enterprise Revenue Expansion', 'Scaled recurring enterprise revenue through white-label deployments, enterprise licensing growth, and expanding operating footprint across sports and media ecosystems.'],
+  ['2026+', 'IRIS | Intelligence & Optimisation Infrastructure', 'Scaling IRIS to power behavioural intelligence, personalisation, optimisation, and monetisation efficiency across global enterprise environments.'],
+].map(([year, title, copy]) => ({ year, title, copy }));
 
 const investors = ['Primal Capital', 'Trovio Group'];
 const backers = [
@@ -112,21 +119,51 @@ const backers = [
           <p>Based in London, United Kingdom with offices in Singapore and Malaysia, BoltOS taps into a global talent pool to bring together the best in engineering, web development, media, content, and more.</p>
           <p>Together, we push the boundaries of what's possible with media, while remaining grounded in what you need to thrive in the shifting content landscape.</p>
         </div>
+        <div class="ab-member ab-member-lead">
+          <div class="ab-member-photo"><img src={lead.src} alt={lead.name} /></div>
+          <div class="ab-member-body">
+            <h3>{lead.name}</h3>
+            <div class="ab-member-role">{lead.role}</div>
+            <p>{lead.bio}</p>
+            {lead.href && <a href={lead.href} target="_blank" rel="noopener noreferrer" aria-label={`${lead.name} on LinkedIn`} class="ab-member-link">LinkedIn →</a>}
+          </div>
+        </div>
         <div class="ab-team-grid">
-          {team.map((t) => (
-            <div class="ab-member">
+          {members.map((t) => (
+            <div class="ab-member ab-member-fold" tabindex="0" role="button" aria-expanded="false">
               <div class="ab-member-photo"><img src={t.src} alt={t.name} /></div>
               <div class="ab-member-body">
                 <h3>{t.name}</h3>
                 <div class="ab-member-role">{t.role}</div>
-                <p>{t.bio}</p>
-                {t.href && <a href={t.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.name} on LinkedIn`} class="ab-member-link">LinkedIn →</a>}
+                <div class="ab-member-more">
+                  <div class="ab-member-more-inner">
+                    <p>{t.bio}</p>
+                    {t.href && <a href={t.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.name} on LinkedIn`} class="ab-member-link">LinkedIn →</a>}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
+
+    <script>
+      document.querySelectorAll('.ab-member-fold').forEach((card) => {
+        const toggle = () => {
+          const open = card.classList.toggle('is-open');
+          card.setAttribute('aria-expanded', String(open));
+        };
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          toggle();
+        });
+        card.addEventListener('keydown', (e) => {
+          if (e.target !== card) return;
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+    </script>
 
     <!-- Our Work / voices carousel -->
     <section class="ab-work">
@@ -173,12 +210,16 @@ const backers = [
         <div class="ab-timeline-head">
           <div class="ab-mono uv">Our Timeline</div>
           <h2>Where We've Been and Where We're Going</h2>
+          <p class="ab-timeline-sub">BoltOS has evolved from embedded distribution infrastructure into an AI-powered enterprise operating platform for engagement-driven media.</p>
         </div>
         <div class="ab-timeline-rows">
           {timeline.map((t) => (
             <div class="ab-timeline-row">
               <div class="ab-timeline-year"><span class="ab-timeline-dot"></span><span>{t.year}</span></div>
-              <p>{t.copy}</p>
+              <div class="ab-timeline-body">
+                <h3>{t.title}</h3>
+                <p>{t.copy}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -196,11 +237,168 @@ const backers = [
           <p>We believe that creating a culture where everyone feels valued, respected, and empowered is not only the right thing to do but also the key to driving innovation and success.</p>
         </div>
         <div class="ab-di-map">
-          <p class="ab-di-map-stat">A globally distributed team across 18+ nationalities, headquartered in London, UK</p>
-          <img src="/assets/photos/world-map-violet.png" alt="BoltOS team locations worldwide" />
+          <div class="ab-di-map-copy">
+            <p class="ab-di-map-stat">A globally distributed team across 18+ nationalities, headquartered in London, UK</p>
+            <ul class="ab-di-legend">
+              <li class="is-hq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>London, UK <span>HQ</span></li>
+              {globeTeam.map((p) => <li><i aria-hidden="true"></i>{p.name}</li>)}
+            </ul>
+            <p class="ab-di-hint">Drag the globe to explore</p>
+          </div>
+          <div class="ab-globe" aria-label="Globe showing BoltOS headquarters in London and team locations in India, Pakistan, the UAE, Malaysia and Australia" role="img">
+            <canvas class="ab-globe-canvas"></canvas>
+            <div class="ab-globe-labels" aria-hidden="true">
+              <span class="ab-globe-label is-hq" data-lat="51.5072" data-lon="-0.1276"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>London HQ</span>
+              {globeTeam.map((p) => <span class="ab-globe-label" data-lat={p.lat} data-lon={p.lon} data-side={p.side}>{p.name}</span>)}
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <script>
+      import createGlobe from 'cobe';
+
+      const root = document.querySelector('.ab-globe');
+      const canvas = root?.querySelector('canvas');
+      if (root && canvas) {
+        const RADIUS = 0.8;
+        const HQ = [51.5072, -0.1276];
+        const OFFSETS = {
+          top: 'translate(-50%, calc(-100% - 10px))',
+          left: 'translate(calc(-100% - 10px), -50%)',
+          right: 'translate(10px, -50%)',
+        };
+        const labels = [...root.querySelectorAll('.ab-globe-label')].map((el) => ({
+          el,
+          loc: [Number(el.dataset.lat), Number(el.dataset.lon)],
+          offset: OFFSETS[el.dataset.side] || OFFSETS.top,
+        }));
+        const others = labels.filter((l) => !l.el.classList.contains('is-hq')).map((l) => l.loc);
+
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Start centred on ~70°E so London and the Asia-Pacific markers are both in view.
+        let phi = (3 * Math.PI) / 2 - (70 * Math.PI) / 180;
+        let theta = 0.28;
+        let velocity = 0;
+        let dragging = false;
+        let lastX = 0;
+        let lastY = 0;
+        let size = 0;
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const globe = createGlobe(canvas, {
+          devicePixelRatio: dpr,
+          width: 600,
+          height: 600,
+          phi,
+          theta,
+          dark: 1,
+          diffuse: 1.4,
+          mapSamples: 18000,
+          mapBrightness: 5,
+          mapBaseBrightness: 0.02,
+          baseColor: [0.32, 0.22, 0.56],
+          markerColor: [0.78, 0.67, 0.96],
+          glowColor: [0.28, 0.14, 0.5],
+          arcColor: [0.78, 0.67, 0.96],
+          arcWidth: 0.6,
+          arcHeight: 0.28,
+          markers: [
+            { location: HQ, size: 0.1, color: [0.95, 0.36, 0.68] },
+            ...others.map((location) => ({ location, size: 0.05 })),
+          ],
+          arcs: others.map((to) => ({ from: HQ, to })),
+        });
+
+        const resize = () => {
+          size = canvas.offsetWidth;
+          globe.update({ width: size, height: size });
+        };
+        new ResizeObserver(resize).observe(canvas);
+        resize();
+
+        // Mirrors cobe's internal projection so labels stay pinned to their markers.
+        const project = ([lat, lon]) => {
+          const r = (lat * Math.PI) / 180;
+          const a = (lon * Math.PI) / 180 - Math.PI;
+          const X = -Math.cos(r) * Math.cos(a) * RADIUS;
+          const Y = Math.sin(r) * RADIUS;
+          const Z = Math.cos(r) * Math.sin(a) * RADIUS;
+          const cT = Math.cos(theta), sT = Math.sin(theta), cP = Math.cos(phi), sP = Math.sin(phi);
+          const x = cP * X + sP * Z;
+          const y = sP * sT * X + cT * Y - cP * sT * Z;
+          const depth = -sP * cT * X + sT * Y + cP * cT * Z;
+          return { x: (x + 1) / 2, y: (-y + 1) / 2, depth };
+        };
+
+        const placeLabels = () => {
+          for (const { el, loc, offset } of labels) {
+            const p = project(loc);
+            const alpha = Math.max(0, Math.min(1, p.depth / 0.25));
+            el.style.opacity = String(alpha);
+            el.style.transform = `translate(${p.x * size}px, ${p.y * size}px) ${offset} scale(${0.9 + alpha * 0.1})`;
+          }
+        };
+
+        // Increasing phi turns the surface west-to-east, like the real Earth.
+        const SPIN = 0.08;
+        let last = performance.now();
+        let visible = true;
+        let frame = 0;
+        const tick = (now) => {
+          const dt = Math.min(0.05, (now - last) / 1000);
+          last = now;
+          if (!dragging) {
+            if (Math.abs(velocity) > 0.0001) {
+              phi += velocity;
+              velocity *= 0.94;
+            } else if (!reduceMotion) {
+              phi += SPIN * dt;
+            }
+          }
+          globe.update({ phi, theta });
+          placeLabels();
+          frame = visible ? requestAnimationFrame(tick) : 0;
+        };
+        frame = requestAnimationFrame(tick);
+
+        new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          if (visible && !frame) {
+            last = performance.now();
+            frame = requestAnimationFrame(tick);
+          }
+        }).observe(root);
+
+        root.addEventListener('pointerdown', (e) => {
+          dragging = true;
+          velocity = 0;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          root.classList.add('is-dragging');
+          root.setPointerCapture(e.pointerId);
+        });
+        root.addEventListener('pointermove', (e) => {
+          if (!dragging) return;
+          const dx = e.clientX - lastX;
+          const dy = e.clientY - lastY;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          velocity = (dx / (size || 1)) * 3;
+          phi += velocity;
+          theta = Math.max(-0.6, Math.min(0.9, theta + (dy / (size || 1)) * 2));
+        });
+        const release = () => {
+          dragging = false;
+          root.classList.remove('is-dragging');
+        };
+        root.addEventListener('pointerup', release);
+        root.addEventListener('pointercancel', release);
+
+        requestAnimationFrame(() => root.classList.add('is-ready'));
+      }
+    </script>
 
     <!-- Backed by -->
     <section class="ab-backed">
@@ -275,8 +473,24 @@ const backers = [
   .ab-team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: clamp(14px, 1.8vw, 20px); }
   .ab-member { display: flex; flex-direction: column; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; }
   .ab-member:hover { border-color: rgba(123,47,226,0.5); }
+  .ab-member-lead { flex-direction: row; align-items: stretch; }
+  .ab-member-lead .ab-member-photo { flex: 0 0 min(34%, 340px); aspect-ratio: auto; min-height: 340px; }
+  .ab-member-lead .ab-member-body { flex: 1; justify-content: center; padding: clamp(20px, 3vw, 40px); gap: 12px; }
+  .ab-member-lead .ab-member-body h3 { font-size: clamp(22px, 2.4vw, 30px); }
+  .ab-member-lead .ab-member-body p { font-size: 15px; line-height: 25px; }
+  @media (max-width: 720px) {
+    .ab-member-lead { flex-direction: column; }
+    .ab-member-lead .ab-member-photo { flex: none; aspect-ratio: 4 / 5; min-height: 0; }
+  }
   .ab-member-photo { position: relative; aspect-ratio: 4 / 5; background: var(--night); }
-  .ab-member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ab-member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .ab-team-grid { align-items: start; }
+  .ab-member-fold { cursor: pointer; transition: border-color 0.2s; }
+  .ab-member-fold:focus-visible { outline: 2px solid var(--ultra-violet); outline-offset: 2px; }
+  .ab-member-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+  .ab-member-more-inner { overflow: hidden; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ab-member-fold:hover .ab-member-more, .ab-member-fold.is-open .ab-member-more { grid-template-rows: 1fr; }
+  @media (prefers-reduced-motion: reduce) { .ab-member-more { transition: none; } }
   .ab-member-body { display: flex; flex-direction: column; gap: 10px; padding: 20px; }
   .ab-member-body h3 { margin: 0; font-family: var(--font-display); font-size: 18px; line-height: 1.24; font-weight: 700; color: var(--snow); }
   .ab-member-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lilac); }
@@ -322,7 +536,10 @@ const backers = [
   .ab-timeline-year { flex: 0 0 auto; min-width: 110px; display: flex; align-items: center; gap: 12px; }
   .ab-timeline-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ultra-violet); }
   .ab-timeline-year span:last-child { font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 34px); line-height: 1; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
-  .ab-timeline-row p { flex: 1 1 340px; min-width: 0; margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
+  .ab-timeline-sub { margin: 0; max-width: 760px; font-size: 16px; line-height: 26px; color: var(--ink-2); text-wrap: pretty; }
+  .ab-timeline-body { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .ab-timeline-body h3 { margin: 0; font-family: var(--font-display); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+  .ab-timeline-body p { margin: 0; font-size: 16px; line-height: 27px; color: var(--ink-2); text-wrap: pretty; }
 
   /* Diversity & Inclusion */
   .ab-di { position: relative; overflow: hidden; background: var(--night); padding: clamp(56px, 7vw, 100px) clamp(24px, 6vw, 80px); }
@@ -332,9 +549,32 @@ const backers = [
   .ab-di-head .ab-mono { color: var(--text-lilac); }
   .ab-di-head h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; font-weight: 800; letter-spacing: -0.028em; }
   .ab-di-head p { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-muted); text-wrap: pretty; }
-  .ab-di-map { position: relative; border: 1px solid var(--hairline); border-radius: 20px; overflow: hidden; background: #08060F; padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px) 0; }
-  .ab-di-map-stat { position: relative; z-index: 2; margin: 0 0 clamp(12px, 2vw, 24px); font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 34px); line-height: 1.14; font-weight: 800; letter-spacing: -0.026em; max-width: 24ch; text-wrap: pretty; }
-  .ab-di-map img { display: block; width: 100%; height: auto; }
+  .ab-di-map { position: relative; border: 1px solid var(--hairline); border-radius: 20px; overflow: hidden; background: radial-gradient(520px 420px at 70% 50%, rgba(123,47,226,0.16), transparent 70%), #08060F; padding: clamp(24px, 3vw, 48px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(20px, 3vw, 40px); align-items: center; }
+  .ab-di-map-copy { display: flex; flex-direction: column; gap: 22px; }
+  .ab-di-map-stat { margin: 0; font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 34px); line-height: 1.14; font-weight: 800; letter-spacing: -0.026em; max-width: 24ch; text-wrap: pretty; }
+  .ab-di-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ab-di-legend li { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border: 1px solid var(--hairline); border-radius: 100px; font-size: 13px; line-height: 1; color: var(--text-muted); }
+  .ab-di-legend li i { width: 7px; height: 7px; border-radius: 50%; background: #C6ABF5; }
+  .ab-di-legend li.is-hq { color: var(--snow); border-color: rgba(214,32,134,0.5); background: rgba(214,32,134,0.1); }
+  .ab-di-legend li.is-hq svg { width: 15px; height: 15px; color: #F25BAE; }
+  .ab-di-legend li.is-hq span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: #F25BAE; }
+  .ab-di-hint { margin: 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .ab-globe { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; justify-self: center; cursor: grab; touch-action: pan-y; }
+  .ab-globe.is-dragging { cursor: grabbing; }
+  .ab-globe-canvas { width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 0.8s ease; }
+  .ab-globe.is-ready .ab-globe-canvas { opacity: 1; }
+  .ab-globe-labels { position: absolute; inset: 0; pointer-events: none; }
+  .ab-globe-label { position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 100px; background: rgba(16,12,28,0.82); border: 1px solid rgba(198,171,245,0.35); font-size: 12px; line-height: 1; white-space: nowrap; color: var(--snow); opacity: 0; will-change: transform, opacity; }
+  .ab-globe-label.is-hq { padding: 6px 12px 6px 8px; font-weight: 600; border-color: rgba(242,91,174,0.7); background: rgba(58,14,40,0.9); box-shadow: 0 0 24px rgba(214,32,134,0.45); }
+  .ab-globe-label.is-hq svg { width: 15px; height: 15px; color: #F25BAE; }
+  @media (max-width: 820px) {
+    .ab-di-map { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .ab-globe-label { font-size: 10px; padding: 4px 8px; }
+    .ab-globe-label.is-hq { padding: 5px 10px 5px 7px; }
+    .ab-globe-label.is-hq svg { width: 12px; height: 12px; }
+  }
 
   /* Backed by */
   .ab-backed { position: relative; overflow: hidden; background: var(--snow); color: var(--ink); padding: clamp(56px, 7vw, 96px) clamp(24px, 6vw, 80px); }

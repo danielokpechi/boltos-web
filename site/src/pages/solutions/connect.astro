@@ -28,7 +28,8 @@ const enables = [
     close: 'You convert interest while attention is highest.' },
   { num: '03', numColor: '#35C7DF', title: 'AI Stream Companion (IRIS)', lead: 'A real-time assistant to support interactive content.',
     items: ['Answers viewer questions instantly', 'Surfaces contextual stats and content', 'Enables voice or text interaction', 'Generates measurable behavioural signals'],
-    close: 'It transforms passive viewing into a two-way experience where every interaction becomes a data point.' },
+    close: 'It transforms passive viewing into a two-way experience where every interaction becomes a data point.',
+    link: { href: `${routes.intelligence}#iris`, label: 'IRIS is part of Intelligence →' } },
   { num: '04', numColor: '#F7F7F5', title: 'Sponsor-Ready Activation', lead: 'Move beyond passive ad slots into participation.',
     items: ['Interactive sponsor campaigns', 'Engagement-led sponsorship packages', 'Measurable participation and performance metrics'],
     close: 'Shift from CPM to engagement-driven inventory.' },
@@ -46,17 +47,17 @@ const outcomes = [
 const whyItWorks = ['No app rebuild', 'No broadcast redesign', 'No broadcast redesign', 'Compatible across Web, mobile, CTV, native apps'];
 
 const faqs = [
-  ['Do I need technical expertise to use the Immersive Platform?', 'Not at all. Our solutions are designed for media and entertainment teams with busy schedules. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation and recommendation on the best practices as you start your journey with us.'],
+  ['Do I need technical expertise to use the Connect?', 'Not at all. Our solutions are designed for media and entertainment teams with busy schedules. You get access to an intuitive and user-friendly control panel, and we provide guidance every step of the way during implementation and recommendation on the best practices as you start your journey with us.'],
   ['How long does setup take?', 'Setup typically takes between two to four weeks. Let us know in advance if you have a key date to launch so we can adapt the timeline.'],
   ['What are the types of integrations you offer?', 'We regularly add new integrations. If a platform is not currently supported, contact our team, we can create custom integrations or connect through alternative methods.'],
-  ['Where can audiences access the Immersive platform?', 'The immersive platform can be accessed from anywhere in the world and is fully optimised for mobile, tablet, and desktop.'],
-  ['Can I customise the look and feel of the Immersive Platform to match my brand?', 'Absolutely. You have full control over the colours, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully bespoke designs.'],
+  ['Where can audiences access the Connect?', 'The Connect can be accessed from anywhere in the world and is fully optimised for mobile, tablet, and desktop.'],
+  ['Can I customise the look and feel of the Connect to match my brand?', 'Absolutely. You have full control over the colours, fonts, layouts, and branding. We offer templates for quick setup, or you can create fully bespoke designs.'],
   ['How do you handle data privacy and security?', "We're GDPR compliant and use end-to-end encryption. Your data and your audience's data are protected with enterprise-grade security."],
 ].map(([q, a]) => ({ q, a }));
 
 const POSTER = '/assets/photos/broadcast-still.web.jpg';
 ---
-<Base title="Immersive Platform, BoltOS">
+<Base title="Connect, Audience Engagement & Monetisation, BoltOS" description="Connect is the BoltOS engagement layer: interactive features and monetisation tools that turn passive viewers into active, loyal and valuable audiences.">
   <div class="ip">
     <!-- Hero -->
     <header class="ip-hero">
@@ -64,9 +65,11 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
       <div class="ip-hero-wave" aria-hidden="true"><ParticleWave /></div>
       <div class="ip-hero-inner">
         <div class="ip-hero-copy">
-          <div class="ip-eyebrow"><span class="ip-eyebrow-rule"></span><span class="lilac">Immersive Platform</span></div>
+          <img src="/assets/icons/layers/engage.png" alt="" class="ip-hero-icon" />
+          <div class="ip-eyebrow"><span class="ip-eyebrow-rule"></span><span class="lilac">Connect · Engage</span></div>
           <h1>A revenue layer for your <span class="hl">existing ecosystem</span></h1>
           <p class="ip-hero-lead">Turn passive viewers into measurable revenue and actionable audience data.</p>
+          <a href={routes.boltOne} class="ip-partof">Part of <strong>Bolt One</strong>, our enterprise audience platform →</a>
           <div class="ip-hero-points">
             {heroPoints.map((h) => <span class="ip-pill">{h}</span>)}
           </div>
@@ -122,19 +125,19 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
             </div>
           ))}
         </div>
-        <p class="ip-reality-close">BoltOS Immersive Platform brings interaction and the data it generates back under your control.</p>
+        <p class="ip-reality-close">BoltOS Connect brings interaction and the data it generates back under your control.</p>
       </div>
     </section>
 
-    <!-- What is the Immersive Platform -->
+    <!-- What is the Connect -->
     <section class="ip-what">
       <div class="ip-wave ip-wave-c" aria-hidden="true"><ParticleWave /></div>
       <div class="ip-wave ip-wave-d" aria-hidden="true"><ParticleWave /></div>
       <div class="ip-what-glow" aria-hidden="true"></div>
       <div class="ip-what-inner">
         <div class="ip-what-head">
-          <h2>What is the Immersive Platform?</h2>
-          <p>The Immersive Platform is a drop-in interactive overlay that transforms any live or on-demand stream or event into an interactive, monetisable experience.</p>
+          <h2>What is the Connect?</h2>
+          <p>The Connect is a drop-in interactive overlay that transforms any live or on-demand stream or event into an interactive, monetisable experience.</p>
           <p class="ip-strong snow">It works in two ways:</p>
         </div>
         <div class="ip-twoways">
@@ -156,7 +159,7 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
       <div class="ip-enables-inner">
         <div class="ip-enables-head">
           <h2>What it enables</h2>
-          <p>With BoltOS Immersive Panel, you deploy AI-powered engagement and experiences that turn live moments into measurable revenue.</p>
+          <p>With BoltOS Connect, you deploy AI-powered engagement and experiences that turn live moments into measurable revenue.</p>
         </div>
         <div class="ip-enables-rows">
           {enables.map((e) => (
@@ -171,6 +174,7 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
                   <div class="ip-enable-item"><span class="ip-bullet"></span><span>{i}</span></div>
                 ))}
                 <p class="ip-enable-close">{e.close}</p>
+                {e.link && <a href={e.link.href} class="ip-enable-link">{e.link.label}</a>}
               </div>
             </div>
           ))}
@@ -231,6 +235,7 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
   .btn-snow { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--ink); background: var(--snow); padding: 15px 30px; border-radius: 100px; }
   .btn-snow:hover { color: var(--snow); background: var(--ultra-violet); }
   .ip-eyebrow { display: flex; align-items: center; gap: 12px; }
+  .ip-hero-icon { width: 64px; height: 64px; display: block; }
   .ip-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
   .ip-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
   .ip-strong { font-family: var(--font-display); font-weight: 700; }
@@ -330,6 +335,11 @@ const POSTER = '/assets/photos/broadcast-still.web.jpg';
   .ip-enable-right { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
   .ip-enable-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 24px; color: #D9DBE0; }
   .ip-enable-close { margin: 8px 0 0; font-size: 15px; line-height: 25px; color: var(--text-lilac); text-wrap: pretty; }
+  .ip-enable-link { align-self: flex-start; font-size: 14px; font-weight: 600; color: var(--sky-aqua); }
+  .ip-enable-link:hover { color: var(--snow); }
+  .ip-partof { font-size: 14px; line-height: 22px; color: var(--text-muted); }
+  .ip-partof strong { color: var(--snow); font-weight: 600; }
+  .ip-partof:hover { color: var(--text-lilac); }
   .ip-enable-rule { border-top: 1px solid var(--hairline); }
 
   /* Outcomes */

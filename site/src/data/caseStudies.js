@@ -1,14 +1,11 @@
 // Data for the shared CaseStudy layout. One entry per study; the layout renders
 // every section from this. Copy carried verbatim from the prototype .dc.html files.
 //
-// NOTE (copy audit): the three "What they needed" cards and the three "The BoltOS
-// Solution" card blurbs are byte-identical across all four studies in the prototype
-// (they still say "Hisense TVs" / "Hisense's content offerings" on the non-Hisense
-// pages). Reproduced verbatim per the "character for character" rule (flagged, not
-// rewritten). Per client direction, Bloomberg's headline em dash was changed to a
-// colon and its intro en dash to a comma (no dash punctuation on the site).
+// Bloomberg and Hankook 24H Dubai are rewritten from the 2026 case-study decks.
+// Hisense and One Football still use the prototype's shared NEEDS / SOLUTION_COPY,
+// which mention Hisense on the One Football page. No dash punctuation on the site.
 
-// Shared across all four studies (identical in the prototype).
+// Shared by the studies not yet rewritten from the decks.
 const NEEDS = [
   'A way to stand out in a crowded streaming market',
   'A way to expand diversity and immersiveness of streaming for users',
@@ -64,14 +61,20 @@ export const caseStudies = {
     title: 'Bloomberg, BoltOS',
     brandmark: '/assets/logos/bloomberg.png',
     eyebrow: 'Bloomberg',
-    headline: 'Innovation in Streaming: A New Way to Deliver the News',
-    headlineMax: '22ch',
+    headline: 'Bloomberg had reach and trust. BoltOS helped turn that attention into participation.',
+    headlineMax: '24ch',
     video: '/assets/video/boltvideo-bloomberg.mp4',
     intro: [
-      'Bloomberg, a global leader in business and financial information, utilises BoltOS technology to launch dedicated streaming channels with immersive features for each of its shows, covering over 14,000 minutes of daily streaming on Bolt+. This move further elevates the award-winning repertoire of content that Bloomberg is renowned for, significantly increasing viewer engagement and expanding audience reach.',
+      'Bloomberg, a global leader in news and business information, had a large, long-standing audience consuming high-frequency business and financial content.',
+      'The challenge was no longer simply reaching viewers. Bloomberg wanted to deepen engagement with its content and create a clearer pathway from audience attention towards subscription.',
     ],
-    needLead: 'Bloomberg is exploring innovative ways to enhance its news delivery and audience engagement on modern media platforms.',
-    needs: NEEDS,
+    needLead: 'Three gaps stood between Bloomberg’s daily reach and a deeper audience relationship.',
+    needs: [
+      { title: 'Passive consumption', copy: 'Viewers consumed content without a structured way to interact in real time.' },
+      { title: 'Limited behavioural insight', copy: 'View data alone could not show which content generated deeper audience interest.' },
+      { title: 'Subscription gap', copy: 'Passive viewing created a weaker path to subscription than active engagement.' },
+    ],
+    objective: 'Transform daily reach into an active audience relationship that could support subscription behaviour.',
     whyBrandmark: '/assets/logos/bloomberg.png',
     why: [
       "Bloomberg partnered with BoltOS due to its ability to integrate live streaming with enhanced interactivity, allowing it to not just reach, but actively engage a global audience in real-time, for the first time. BoltOS's innovative approach to immersive streaming was perfectly aligned with Bloomberg's goal to transform how they wanted to elevate the Bloomberg viewing experience.",
@@ -79,27 +82,58 @@ export const caseStudies = {
     quote: '"The partnership with Bolt+ marks a significant milestone in our mission to bring high-quality, reliable news to viewers worldwide. Through the innovative features on Bolt+ and BoltChain, we\'re not just sharing content. We\'re directly engaging with our audience in a way that\'s both meaningful and rewarding. This partnership represents a leap forward in news dissemination and audience engagement."',
     quoteBy: 'Sophia Yuen, Head of Video and Audio at Bloomberg',
     solutionTheme: 'dark',
-    solution: withImages([
-      { img: '/assets/case/bloomberg-stand-out.png', alt: 'Bloomberg presenter on set' },
-      { img: '/assets/case/bloomberg-billion.png', alt: 'The $13 Billion AI Bet on Bolt+' },
-      { img: '/assets/case/bloomberg-studio.png', alt: 'BoltOS and Bloomberg teams in the Daybreak Europe studio' },
-    ]),
-    resultLead: "The collaboration with Bolt+ is revolutionising Bloomberg's approach to news delivery, and elevating the immersive viewing experience for more viewers globally.",
-    resultNote: 'By offering dynamic, interactive, and personalised viewing options, Bloomberg is not only expanding its audience but also setting a new standard in news broadcasting, positioning itself at the forefront of media innovation.',
+    solutionLead: 'BoltOS layered real-time engagement and subscription pathways on top of Bloomberg’s content. Bloomberg also helped shape the early use case for IRIS, exploring how the conversational layer could support complex financial information.',
+    solution: [
+      { num: '01', bar: '#7B2FE2', title: 'Content', copy: 'Bloomberg’s existing show portfolio remained the core content asset.', imgOrder: 1,
+        img: '/assets/case/bloomberg-stand-out.png', alt: 'Bloomberg presenter on set' },
+      { num: '02', bar: '#D62086', title: 'Engagement', copy: 'Connect introduced real-time interaction around Bloomberg content.', imgOrder: 2,
+        img: '/assets/case/bloomberg-billion.png', alt: 'The $13 Billion AI Bet on Bolt+' },
+      { num: '03', bar: '#35C7DF', title: 'Conversion', copy: 'Direct redirects connected audience engagement to the Bloomberg subscription journey.', imgOrder: 1,
+        img: '/assets/case/bloomberg-studio.png', alt: 'BoltOS and Bloomberg teams in the Daybreak Europe studio' },
+    ],
+    beforeAfter: {
+      before: ['High-volume content', 'Passive viewing', 'Limited real-time interaction', 'No direct in-content subscription pathway'],
+      after: ['Content + interaction', 'Real-time participation', 'Behaviour becomes measurable', 'Engagement connects to subscription'],
+    },
+    resultLead: 'A year of engagement data shows that business-news audiences will participate.',
+    metrics: [
+      { value: '11,136', label: 'Views' },
+      { value: '898', label: 'Monthly unique active users' },
+      { value: '35m', label: 'Average session length' },
+      { value: '30,545', label: 'Chat messages' },
+      { value: '632', label: 'Click-throughs to subscription page' },
+    ],
+    signalTitle: '30,545 chat messages demonstrate substantial audience participation around high-value financial content.',
+    resultNote: 'With an average session length of 35 minutes, the experience moved beyond passive consumption towards sustained interaction. The 632 subscription-page click-throughs created a measurable path from engagement towards subscription intent.',
+    proves: {
+      lead: 'Engagement can work even with complex, high-frequency information content. Bloomberg demonstrates that BoltOS is not limited to sports or entertainment.',
+      points: [
+        { title: 'Engagement', copy: 'Audiences will actively participate around dense financial and business content when given a structured way to do so.' },
+        { title: 'Conversion', copy: 'Real-time engagement can connect directly to a subscription pathway.' },
+        { title: 'Product evolution', copy: 'A long-term partner can also help shape new capabilities such as IRIS around real-world content needs.' },
+      ],
+      takeaway: 'Bloomberg is proof that BoltOS can convert high-frequency audience reach into an ongoing engagement relationship, while creating measurable commercial intent and informing product development over time.',
+    },
   },
 
   'dubai-hankook-24hr-race': {
     title: 'Dubai Hankook 24HR Race, BoltOS',
     brandmark: '/assets/logos/dubai-24h.png',
     eyebrow: 'Dubai Hankook 24HR Race',
-    headline: 'Accelerating Race Day Engagement',
-    headlineMax: '18ch',
+    headline: 'A global race audience was watching, but not participating.',
+    headlineMax: '20ch',
     video: '/assets/video/boltvideo-dubai-24h.mp4',
     intro: [
-      'In the competitive world of endurance racing, Sports Advantage, a new market leader in connecting sports teams with potential sponsors, has partnered with BoltOS to elevate the viewing experience of the Dubai Hankook 24H Race. Utilising innovative multistreaming services, this collaboration effectively showcased the FACH AUTO TECH motorsports racing team, offering unprecedented interactive access for fans worldwide.',
+      'The Hankook 24H Dubai endurance race had strong global fan interest and was broadcast through the Bolt+ world feed.',
+      'The race needed a way to move beyond passive viewing: giving fans access to more perspectives, direct interaction with teams and a pathway towards merchandise.',
     ],
-    needLead: 'Sports Advantage was looking to maximise brand exposure for FACH AUTO TECH in a cost-effective manner, overcoming the limited coverage typically available at the Dubai 24H Race through official coverage.',
-    needs: NEEDS,
+    needLead: 'Three gaps stood between a watching audience and a participating one.',
+    needs: [
+      { title: 'One-way viewing', copy: 'The world feed provided a single perspective.' },
+      { title: 'No direct team interaction', copy: 'Fans could not participate with the teams they followed.' },
+      { title: 'Disconnected commerce', copy: 'Merchandise existed, but there was no direct path from viewing to purchase.' },
+    ],
+    objective: 'Turn the live broadcast into an interactive experience where audience attention could become measurable participation and commercial action.',
     whyBrandmark: '/assets/logos/dubai-24h.png',
     why: [
       "Sports Advantage chose BoltOS for its ability to offer multistreaming capabilities and immersive features, enabling FACH AUTO TECH to create a unique and engaging viewing experience that was not possible through traditional race coverage. Bolt+ provided the perfect platform to showcase its team's prowess and behind-the-scenes action, all without the high costs and limited features associated with traditional media broadcasting.",
@@ -107,13 +141,101 @@ export const caseStudies = {
     quote: '"The pilot race showcased interactive features, moderated feeds, behind-the-scenes content from FACH AUTO TECH, and car POV feeds incredibly well. This approach would be the highlight of the entire Hankook Endurance Season."',
     quoteBy: 'Erik Naeser, Head of Operations and Legal, Sports Advantage',
     solutionTheme: 'dark',
-    solution: withImages([
-      { img: '/assets/case/dubai-fach-car.webp', alt: 'FACH AUTO TECH Porsche at 24H Dubai' },
-      { img: '/assets/case/dubai-grid.webp', alt: '24 Hours of Dubai 2024 grid' },
-      { img: '/assets/case/dubai-crowd.webp', alt: 'Grandstand crowd at Hankook 24H Dubai' },
-    ]),
-    resultLead: 'This collaboration not only increased the team\'s visibility and fan engagement, but also demonstrated a scalable, cost-effective model for sports broadcasting that could significantly impact future sports marketing and sponsorship strategies.',
-    resultNote: 'The innovative approach provided by Bolt+ positioned FACH AUTO TECH as a forward-thinking brand in motorsports, attracting new fans and potential sponsors.',
+    solutionLead: 'BoltOS turned the race into a two-way fan experience, combining additional race perspectives, live interaction and commerce into one experience.',
+    solution: [
+      { num: '01', bar: '#7B2FE2', title: 'Streaming', copy: 'Bolt+ carried the world feed alongside two dedicated in-car feeds, giving fans more ways to experience the race.', imgOrder: 1,
+        img: '/assets/case/dubai-fach-car.webp', alt: 'FACH AUTO TECH Porsche at 24H Dubai' },
+      { num: '02', bar: '#D62086', title: 'Engagement', copy: 'Live chat, hosted by team ambassadors, became the primary activity centre.', imgOrder: 2,
+        img: '/assets/case/dubai-crowd.webp', alt: 'Grandstand crowd at Hankook 24H Dubai' },
+      { num: '03', bar: '#35C7DF', title: 'Commerce', copy: 'A shop module connected fans directly from the experience to team merchandise pages.', imgOrder: 1,
+        img: '/assets/case/dubai-grid.webp', alt: '24 Hours of Dubai 2024 grid' },
+    ],
+    beforeAfter: {
+      before: ['One world feed', 'No team interaction', 'No additional perspectives', 'No direct path from viewing to purchase'],
+      after: ['Multiple race perspectives', 'Ambassador-led live chat', 'Direct team interaction', 'Chat-to-shop pathway'],
+    },
+    resultLead: 'The first interactive experience generated deep engagement and strong commercial action.',
+    metrics: [
+      { value: '477', label: 'Views' },
+      { value: '222', label: 'Unique active users' },
+      { value: '29m 06s', label: 'Average session length' },
+      { value: '601', label: 'Chat messages' },
+      { value: '259', label: 'Click-throughs' },
+      { value: '54%', label: 'Click-through rate on total views' },
+    ],
+    signalTitle: 'Chat messages exceeded total views.',
+    resultNote: 'The experience generated repeated participation rather than simply one-off viewing, while the shop pathway created a direct connection between fan engagement and merchandise. A 54% click-through rate on total views provides a strong commercial proof point from a single live event.',
+    proves: {
+      lead: 'Live sport can connect fan participation directly to commercial action.',
+      points: [
+        { title: 'Deeper engagement', copy: 'Additional perspectives and live interaction gave fans reasons to stay and participate.' },
+        { title: 'Repeat participation', copy: '601 chat messages from 477 views demonstrate engagement beyond passive viewing.' },
+        { title: 'Commercial action', copy: 'The shop pathway created a direct route from fan interaction to team merchandise.' },
+      ],
+      takeaway: 'BoltOS can turn live sports broadcasts into interactive, sponsor-ready and revenue-connected experiences, without requiring the broadcast itself to become the destination for every commercial action.',
+    },
+  },
+
+  'bridgets-healthy-kitchen': {
+    title: "Bridget's Healthy Kitchen, BoltOS",
+    brandmark: '/assets/logos/bridget.png',
+    eyebrow: "Bridget's Healthy Kitchen",
+    headline: 'A global live audience needed one place to participate and act.',
+    headlineMax: '20ch',
+    video: null,
+    plainHero: true,
+    intro: [
+      "Bridget's Healthy Kitchen, led by Bridget Folaki-Davis, ran a 3-day live bootcamp that brought together a globally distributed audience watching from around the world.",
+      'The event needed one destination where viewers could participate throughout the live experience and easily find information about future events.',
+    ],
+    needLead: 'Three gaps stood between a global live audience and lasting participation.',
+    needs: [
+      { title: 'Audience fragmentation', copy: 'Viewers were distributed across time zones and platforms.' },
+      { title: 'Engagement gap', copy: 'The live feed alone could not capture the depth of audience participation.' },
+      { title: 'Conversion friction', copy: 'Interest in future events existed, but booking information was not embedded directly into the experience.' },
+    ],
+    objective: 'Create a single live destination that could hold audience attention, encourage participation and convert interest into future-event bookings.',
+    whyBrandmark: '/assets/logos/bridget.png',
+    why: [
+      "Bridget's audience was spread across time zones and platforms, and the live feed alone could not hold their participation or point them towards what came next.",
+      "BoltOS placed Connect alongside Bridget's existing live feed for all three days, giving the audience one destination to watch, take part and find the next event.",
+    ],
+    facts: [
+      { label: 'Client', value: "Bridget's Healthy Kitchen" },
+      { label: 'Creator', value: 'Bridget Folaki-Davis' },
+      { label: 'Format', value: '3-day creator-led live bootcamp' },
+      { label: 'Category', value: 'Health & wellness' },
+    ],
+    solutionTheme: 'dark',
+    solutionLead: "BoltOS made Connect the event's activity and information centre, sitting alongside Bridget's existing live feed throughout the three-day event.",
+    solution: [
+      { num: '01', bar: '#7B2FE2', title: 'Content', copy: 'The live broadcast connected Bridget with a global audience.', imgOrder: 1 },
+      { num: '02', bar: '#D62086', title: 'Engagement', copy: 'Live chat became the primary way for the audience to participate throughout the event.', imgOrder: 2 },
+      { num: '03', bar: '#35C7DF', title: 'Commerce', copy: 'Booking information for the next event was embedded directly alongside the live experience.', imgOrder: 1 },
+    ],
+    beforeAfter: {
+      before: ['Live feed', 'Fragmented audience', 'No structured participation', 'Future-event information harder to find'],
+      after: ['Live feed + Connect', 'Central audience destination', 'Continuous live chat', 'Immediate access to next-event information'],
+    },
+    resultLead: 'The event generated deep participation and same-day commercial action.',
+    metrics: [
+      { value: '823', label: 'Views' },
+      { value: '250', label: 'Unique active users' },
+      { value: '1h 50m', label: 'Average session length' },
+      { value: '2,813', label: 'Chat messages' },
+      { value: '213', label: 'Click-throughs' },
+    ],
+    signalTitle: 'The 1h 50m average session was the longest recorded across our case studies.',
+    resultNote: "Audience members didn't simply watch the bootcamp. They spent extended periods participating in the experience. The embedded pathway also supported same-day pre-bookings for the next event, directly connecting live engagement to future-event demand.",
+    proves: {
+      lead: 'Live creator events can become both communities and conversion channels. A live event can create value beyond the broadcast itself.',
+      points: [
+        { title: 'Engage', copy: 'Live chat creates a persistent participation layer around the event.' },
+        { title: 'Retain', copy: 'Long sessions indicate the platform can hold audience attention across multi-day programming.' },
+        { title: 'Convert', copy: 'Embedded information can turn live-event interest into action on the next event.' },
+      ],
+      takeaway: 'BoltOS can support creator and influencer-led live formats where the commercial opportunity depends on community participation, sustained attention and follow-on purchases.',
+    },
   },
 
   'one-football': {
