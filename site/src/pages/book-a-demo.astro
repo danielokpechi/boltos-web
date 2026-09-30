@@ -22,6 +22,22 @@ const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/Ac
       </div>
     </header>
 
+    <!-- Connect live demo (ported from demo/product-embed) -->
+    <section id="connect-demo" class="demo">
+      <div class="demo-glow" aria-hidden="true"></div>
+      <div class="demo-inner">
+        <div class="demo-eyebrow"><span class="demo-dot"></span>Live demo</div>
+        <h2 class="demo-h2">Meet Connect. Live matchday, in the browser.</h2>
+        <p class="demo-sub">Two sides of the same moment &mdash; the club runs the panel on the operator console, fans live inside it on Bolt+. Both driving themselves. Tap in and take over.</p>
+        <div class="demo-frame">
+          <div class="demo-bar" aria-hidden="true"><span class="demo-tl"></span><span class="demo-tl"></span><span class="demo-tl"></span><span class="demo-url">connect.boltos.ai</span></div>
+          <iframe class="demo-iframe" title="Connect &mdash; live operator and fan demo" loading="lazy" allow="autoplay"
+            src="https://danielokpechi.github.io/matchday-operator-demo/"></iframe>
+        </div>
+        <p class="demo-caption">This is a live embed. Tap to take over.</p>
+      </div>
+    </section>
+
     <!-- Calendar booking -->
     <section class="bd-cal">
       <div class="bd-cal-inner">
@@ -63,4 +79,21 @@ const CALENDAR = 'https://calendar.google.com/calendar/appointments/schedules/Ac
   .bd-cal-frame { width: 100%; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; box-shadow: 0 28px 70px rgba(0,0,0,0.5); }
   .bd-cal-frame iframe { display: block; width: 100%; height: clamp(620px, 78vh, 760px); background: #FFFFFF; }
   .bd-cal-caption { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: center; }
+
+  /* Connect live demo (ported from demo/product-embed) */
+  .demo { position: relative; overflow: hidden; background: #0A0F1C; padding: clamp(64px, 10vw, 120px) var(--edge); }
+  .demo-glow { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 46% at 50% 0%, rgba(123, 47, 226, .22), transparent 70%),
+                radial-gradient(46% 40% at 50% 100%, rgba(53, 199, 223, .12), transparent 70%); }
+  .demo-inner { position: relative; max-width: var(--maxw); margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .demo-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-lilac); }
+  .demo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sky-aqua); box-shadow: 0 0 10px var(--sky-aqua); }
+  .demo-h2 { font-family: var(--font-display); font-weight: 500; color: var(--snow); font-size: clamp(30px, 4.4vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin: 16px 0 0; max-width: 640px; }
+  .demo-sub { font-family: var(--font-body); color: var(--text-soft); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; margin: 16px 0 0; max-width: 52ch; }
+  .demo-frame { position: relative; width: 100%; max-width: 1200px; margin: clamp(36px, 5vw, 56px) auto 0; border-radius: 16px; overflow: hidden; background: #0A1420; box-shadow: 0 0 0 1px var(--hairline), 0 44px 100px -34px rgba(0, 0, 0, .85); }
+  .demo-bar { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; background: rgba(255, 255, 255, .03); border-bottom: 1px solid var(--hairline); }
+  .demo-tl { width: 10px; height: 10px; border-radius: 50%; background: rgba(247, 247, 245, .16); }
+  .demo-url { margin-left: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+  .demo-iframe { width: 100%; height: clamp(560px, 70vh, 780px); border: 0; display: block; background: #0A1420; }
+  .demo-caption { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .04em; color: var(--text-dim); margin: 18px 0 0; }
 </style>
