@@ -1,14 +1,15 @@
 # BoltOS website (Next.js)
 
-The boltos.ai marketing site, rebuilt in Next.js (App Router) from the Astro
-site in `../site/`. Every page renders the same as the Astro version (checked
-page by page with full-page screenshots at desktop and phone widths).
+The boltos.ai marketing site, built with Next.js (App Router) as a static
+export. It was ported from an earlier Astro build (see git history before
+a92d41b); every page renders the same as that version, checked page by page
+with full-page screenshots at desktop and phone widths.
 
 ```bash
-cd site-next
+cd site
 npm install
 npm run dev      # http://localhost:4322
-npm run build    # static export to site-next/out/
+npm run build    # static export to site/out/
 BASE_PATH=/boltos-web npm run build   # GitHub Project Pages sub-path
 ```
 
@@ -27,7 +28,6 @@ BASE_PATH=/boltos-web npm run build   # GitHub Project Pages sub-path
   `src/lib/cx.ts` keeps the original class names in the markup, and the local
   PostCSS plugin in `postcss/` reproduces Astro's selector specificity, so the
   cascade resolves exactly as it did on the Astro site.
-- `public/` is a symlink to `../site/public` while both versions live side by
-  side; move the folder here when the Astro site is retired.
+- `public/` — images, video, PDFs and `particle-wave.js`, served at the site root.
 - Old URLs `/solutions/custom-bolt/` and `/solutions/immersive-platform/`
   redirect with static meta-refresh pages (a static export has no server).

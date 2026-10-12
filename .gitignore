@@ -1,6 +1,7 @@
 # Dependencies & build output (regenerable)
 site/node_modules/
-site/dist/
+site/out/
+site/.next/
 
 # Redundant / historical material — preserved locally, intentionally not tracked
 archive/

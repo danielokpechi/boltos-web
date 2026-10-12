@@ -1,30 +1,32 @@
 # BoltOS Website (boltos.ai)
 
-Production marketing site for BoltOS, built with [Astro](https://astro.build) as a
-static site. It is a faithful reimplementation of the delivered design prototypes.
+Production marketing site for BoltOS, built with [Next.js](https://nextjs.org)
+(App Router) as a static export. It is a faithful reimplementation of the
+delivered design prototypes. (It was first built in Astro; see `site/README.md`.)
 
 ## Getting started
 
 ```bash
 cd site
 npm install
-npm run dev      # local dev server at http://localhost:4321
-npm run build    # static output to site/dist/
-npm run preview  # serve the built site
+npm run dev      # local dev server at http://localhost:4322
+npm run build    # static output to site/out/
+BASE_PATH=/boltos-web npm run build   # build for the GitHub Pages sub-path
 ```
 
-The build is fully static — `site/dist/` can be deployed to any static host.
+The build is fully static — `site/out/` can be deployed to any static host.
 
 ## Structure
 
 ```
 site/
   src/
-    components/   Nav, Footer, ParticleWave, Roadmap, PlatformCTA
-    layouts/      Base, CaseStudy (data-driven)
-    pages/        one file per route
-    data/         nav, caseStudies, steps  (shared content/config)
+    app/          one folder per route (page.tsx + page.module.css)
+    components/   Nav, Footer, ParticleWave, Roadmap, Faq, ClosingCTA, LazyVideo…
+    data/         nav, caseStudies, articles, steps  (shared content/config)
+    lib/          base path + class-name helpers
     styles/       global.css  (brand design tokens)
+  postcss/        local plugin keeping the original selector specificity
   public/         assets/ + particle-wave.js  (served at site root)
 design-system/    BoltOS brand reference (tokens, type, spacing, logo rules)
 *.dc.html         original design prototypes (design source of truth, see note below)
@@ -32,10 +34,12 @@ design-system/    BoltOS brand reference (tokens, type, spacing, logo rules)
 
 ## Routes
 
-`/` · `/about-us/` · `/solutions/` · `/solutions/immersive-platform/` ·
-`/solutions/custom-bolt/` · `/case-studies/` · `/case-studies/hisense/` ·
-`/case-studies/bloomberg/` · `/case-studies/dubai-hankook-24hr-race/` ·
-`/case-studies/one-football/` · `/newsroom/`
+`/` · `/about-us/` · `/solutions/` · `/solutions/connect/` · `/solutions/intelligence/` ·
+`/products/bolt-one/` · `/case-studies/` · `/case-studies/<slug>/` (hisense, bloomberg,
+dubai-hankook-24hr-race, one-football, bridgets-healthy-kitchen) · `/newsroom/` ·
+`/newsroom/<slug>/` · `/book-a-demo/` · `/contact/` · `/sign-up/` · `/privacy-policy/` ·
+`/cookie-policy/`. Legacy `/solutions/custom-bolt/` and `/solutions/immersive-platform/`
+redirect to Bolt One and Connect.
 
 ## Design system
 

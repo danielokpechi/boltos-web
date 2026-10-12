@@ -25,28 +25,28 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: site-next/package-lock.json
+          cache-dependency-path: site/package-lock.json
 
       - name: Install dependencies
-        working-directory: site-next
+        working-directory: site
         run: npm ci
 
-      # Next.js static export to site-next/out/. BASE_PATH makes every page link
+      # Next.js static export to site/out/. BASE_PATH makes every page link
       # and asset path include the /boltos-web/ sub-path (no post-build rewrite).
       - name: Build (Next.js static export)
-        working-directory: site-next
+        working-directory: site
         run: npm run build
         env:
           BASE_PATH: /boltos-web
 
       - name: Disable Jekyll (serve _next/ dir)
-        run: touch site-next/out/.nojekyll
+        run: touch site/out/.nojekyll
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site-next/out
+          path: site/out
 
   deploy:
     needs: build
