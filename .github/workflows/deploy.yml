@@ -23,32 +23,30 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
-          cache-dependency-path: site/package-lock.json
+          cache-dependency-path: site-next/package-lock.json
 
       - name: Install dependencies
-        working-directory: site
+        working-directory: site-next
         run: npm ci
 
-      - name: Build (Astro static)
-        working-directory: site
+      # Next.js static export to site-next/out/. BASE_PATH makes every page link
+      # and asset path include the /boltos-web/ sub-path (no post-build rewrite).
+      - name: Build (Next.js static export)
+        working-directory: site-next
         run: npm run build
-
-      - name: Rewrite paths for the /boltos-web/ subpath
-        run: node scripts/pages-base.mjs
         env:
-          PAGES_BASE: /boltos-web
-          DIST_DIR: site/dist
+          BASE_PATH: /boltos-web
 
-      - name: Disable Jekyll (serve _astro/ dir)
-        run: touch site/dist/.nojekyll
+      - name: Disable Jekyll (serve _next/ dir)
+        run: touch site-next/out/.nojekyll
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site/dist
+          path: site-next/out
 
   deploy:
     needs: build

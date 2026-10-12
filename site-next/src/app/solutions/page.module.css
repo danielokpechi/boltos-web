@@ -1,0 +1,32 @@
+.uv { color: var(--ultra-violet); }
+.sol { position: relative; }
+
+.sol-hero { position: relative; overflow: hidden; padding: clamp(56px, 7vw, 104px) clamp(24px, 6vw, 80px) clamp(56px, 7vw, 100px); }
+.sol-hero-head { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto clamp(38px, 4.6vw, 68px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+.sol-eyebrow { display: flex; align-items: center; gap: 12px; }
+.sol-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); }
+.sol-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-lilac); }
+.sol-hero-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 4.6vw, 62px); line-height: 1.03; font-weight: 800; letter-spacing: -0.034em; max-width: 18ch; text-wrap: pretty; }
+
+.sol-cards { position: relative; max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(18px, 2.4vw, 32px); align-items: start; }
+.sol-card { position: relative; min-width: 0; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 22px; padding: clamp(30px, 3.6vw, 52px); display: flex; flex-direction: column; gap: 18px; overflow: hidden; }
+.sol-card.offset { margin-top: clamp(0px, 4vw, 56px); }
+.sol-card:hover { border-color: var(--accent); }
+.sol-card-ghost { position: absolute; right: -14px; top: -28px; font-family: var(--font-display); font-size: clamp(96px, 12vw, 170px); line-height: 0.8; font-weight: 800; letter-spacing: -0.05em; color: rgba(247,247,245,0.05); }
+.sol-card-bar { position: relative; width: 44px; height: 3px; border-radius: 3px; background: var(--accent); }
+.sol-card h2 { position: relative; margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 44px); line-height: 1.04; font-weight: 800; letter-spacing: -0.032em; }
+.sol-card p { position: relative; margin: 0; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55; color: var(--text-muted); max-width: 32ch; text-wrap: pretty; }
+.sol-card-link { position: relative; align-self: flex-start; margin-top: 8px; font-size: 15px; line-height: 22px; font-weight: 600; color: var(--snow); border-bottom: 1px solid var(--accent); padding-bottom: 4px; }
+.sol-card-link:hover { color: var(--accent); }
+.sol-card-icon { position: relative; width: 52px; height: 52px; display: block; }
+.sol-card-tag { position: relative; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lilac); }
+.sol-card-points { position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
+.sol-card-points span { font-size: 13px; line-height: 1; padding: 7px 12px; border-radius: 100px; border: 1px solid var(--hairline); color: var(--text-soft); }
+
+.sol-products { position: relative; max-width: 1160px; margin: clamp(32px, 4vw, 56px) auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 18px 22px; border: 1px dashed var(--hairline-dashed); border-radius: 16px; }
+.sol-products-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-right: auto; }
+.sol-products a { font-size: 14px; line-height: 20px; color: var(--text-muted); }
+.sol-products a { display: inline-flex; align-items: center; gap: 8px; }
+.sol-products a strong { color: var(--snow); font-weight: 700; }
+.sol-products-logo { height: 15px; width: auto; display: block; }
+.sol-products a:hover { color: var(--text-lilac); }

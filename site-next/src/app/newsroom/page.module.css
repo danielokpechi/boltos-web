@@ -1,0 +1,44 @@
+.nr { position: relative; }
+.nr-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+
+.nr-hero { position: relative; overflow: hidden; z-index: 10; padding: clamp(56px, 8vw, 120px) clamp(24px, 6vw, 80px) clamp(36px, 4.4vw, 64px); }
+.nr-hero-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(900px 520px at 50% 0%, rgba(123,47,226,0.16), transparent 74%); }
+.nr-wave-a { left: -10%; top: -20%; width: min(52vw, 600px); height: min(30vw, 330px); opacity: 0.28; }
+.nr-hero-inner { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+.nr-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-lilac); }
+.nr-hero-inner h1 { margin: 0; font-family: var(--font-display); font-size: clamp(36px, 5.4vw, 76px); line-height: 1.0; font-weight: 800; letter-spacing: -0.036em; }
+.nr-toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(18px, 2.4vw, 36px); align-items: end; margin-top: clamp(10px, 1.6vw, 20px); padding-top: clamp(20px, 2.4vw, 30px); border-top: 1px solid var(--hairline); }
+.nr-cats { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.nr-cats-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lilac); }
+.nr-cats-list { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.nr-cat { font-size: 14px; line-height: 21px; color: var(--text-muted); cursor: default; }
+.nr-cat:hover { color: var(--snow); }
+.nr-controls { min-width: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; }
+.nr-sort { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; line-height: 21px; color: var(--text-soft); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 10px; padding: 11px 16px; }
+.nr-caret { color: var(--text-dim); }
+.nr-search { flex: 1 1 180px; min-width: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; line-height: 21px; color: var(--text-dim); background: var(--night-2); border: 1px solid var(--hairline); border-radius: 10px; padding: 11px 16px; }
+.nr-count { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+.nr-list-wrap { position: relative; overflow: hidden; padding: 0 clamp(24px, 6vw, 80px) clamp(56px, 7vw, 104px); }
+.nr-wave-b { right: -12%; top: 6%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.22; }
+.nr-list { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: clamp(16px, 2vw, 24px); align-items: stretch; }
+.nr-post { position: relative; display: flex; flex-direction: column; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 20px; overflow: hidden; color: var(--snow); }
+.nr-post:hover { border-color: rgba(123,47,226,0.65); background: #191B21; }
+/* 16:9 image container; the image is contained (never cropped) so the odd
+   portrait letterboxes instead of being cut off. Landscape 16:9 fills exactly.
+   Card height follows: same-row cards align via the grid + flex-grow body. */
+.nr-post-media { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--night); border-bottom: 1px solid var(--hairline); }
+.nr-post-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+.nr-post-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; padding: clamp(22px, 2.4vw, 30px); }
+.nr-post-date { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lilac); }
+.nr-post-body h2 { margin: 0; font-family: var(--font-display); font-size: clamp(19px, 2.2vw, 28px); line-height: 1.2; font-weight: 800; letter-spacing: -0.024em; overflow-wrap: break-word; text-wrap: pretty; }
+.nr-post-body p { margin: 0; font-size: 15px; line-height: 25px; color: var(--text-muted); max-width: 62ch; text-wrap: pretty; }
+.nr-post-cta { padding-top: 8px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; line-height: 21px; font-weight: 600; color: var(--snow); }
+.nr-arrow { color: var(--text-lilac); }
+
+.nr-pager { position: relative; z-index: 2; max-width: 1240px; margin: clamp(30px, 3.6vw, 48px) auto 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.nr-pager-nums { display: flex; gap: 8px; }
+.nr-pager-arrow, .nr-pager-num { min-width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--night-2); color: var(--text-soft); font: inherit; font-size: 15px; cursor: pointer; }
+.nr-pager-arrow:hover:not(:disabled), .nr-pager-num:hover:not([aria-current]) { border-color: rgba(123,47,226,0.65); color: var(--snow); }
+.nr-pager-arrow:disabled { opacity: 0.4; cursor: default; }
+.nr-pager-num[aria-current="page"] { background: var(--ultra-violet); border-color: var(--ultra-violet); color: #FFFFFF; cursor: default; }

@@ -1,0 +1,26 @@
+.csi { position: relative; }
+.csi-hero { position: relative; overflow: hidden; z-index: 10; height: clamp(520px, 92vh, 1100px); }
+.csi-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.csi-hero-controls { position: absolute; right: clamp(16px, 3vw, 32px); top: clamp(80px, 10vw, 120px); z-index: 6; display: flex; gap: 10px; }
+.csi-ctrl { width: 40px; height: 40px; border: 1px solid rgba(247,247,245,0.28); border-radius: 50%; background: rgba(16,16,20,0.6); backdrop-filter: blur(8px); color: var(--snow); font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.csi-ctrl:hover { background: var(--ultra-violet); border-color: var(--ultra-violet); }
+.csi-hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(11,11,15,0.26) 0%, rgba(11,11,15,0) 22%, rgba(11,11,15,0) 62%, rgba(14,14,18,0.72) 88%, #0E0E12 100%); }
+
+.csi-body { position: relative; z-index: 12; overflow: hidden; margin-top: clamp(-200px, -18vh, -90px); padding: 0 var(--edge) clamp(52px, 6.4vw, 100px); }
+.csi-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+.csi-wave-tr { right: -12%; top: -22%; width: min(48vw, 540px); height: min(28vw, 300px); opacity: 0.26; }
+.csi-wave-bl { left: -12%; bottom: -28%; width: min(46vw, 520px); height: min(26vw, 290px); opacity: 0.22; }
+.csi-head { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto clamp(30px, 4vw, 56px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+.csi-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-lilac); }
+.csi-head h1 { margin: 0; font-family: var(--font-display); font-size: clamp(38px, 6vw, 86px); line-height: 1.0; font-weight: 800; letter-spacing: -0.036em; }
+.csi-grid { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(16px, 2vw, 26px); align-items: stretch; }
+.csi-card { position: relative; min-width: 0; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 22px; padding: clamp(26px, 3vw, 42px); display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+a.csi-card:hover { border-color: var(--hover); }
+.csi-card-ghost { position: absolute; right: -12px; top: -26px; font-family: var(--font-display); font-size: clamp(84px, 10vw, 150px); line-height: 0.8; font-weight: 800; letter-spacing: -0.05em; color: rgba(247,247,245,0.05); }
+/* Keep card logos at their own aspect ratio: the card is a flex column, which
+   would otherwise stretch a logo to the full card width. */
+.csi-card :global(.logo-real) { position: relative; align-self: flex-start; }
+.csi-card-bar { position: relative; width: 44px; height: 3px; border-radius: 3px; }
+.csi-card h2 { position: relative; margin: 0; font-family: var(--font-display); font-size: clamp(23px, 2.8vw, 34px); line-height: 1.06; font-weight: 800; letter-spacing: -0.03em; color: var(--snow); text-wrap: pretty; }
+.csi-card p { position: relative; margin: 0; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
+.csi-card-cta { position: relative; margin-top: auto; padding-top: 14px; font-size: 14px; line-height: 21px; font-weight: 600; color: var(--snow); }

@@ -1,0 +1,39 @@
+.bd { position: relative; }
+.lilac { color: var(--text-lilac); }
+.bd-wave { position: absolute; z-index: 0; pointer-events: none; mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
+
+/* Hero */
+.bd-hero { position: relative; overflow: hidden; padding: clamp(46px, 6vw, 96px) clamp(24px, 6vw, 80px) clamp(32px, 4vw, 56px); }
+.bd-hero-glow { position: absolute; left: -14%; top: -30%; width: 70%; height: 150%; z-index: 0; pointer-events: none; background: radial-gradient(760px 520px at 22% 28%, rgba(123,47,226,0.26), transparent 70%); }
+.bd-wave-a { right: -8%; bottom: -34%; width: min(50vw, 560px); height: min(30vw, 320px); opacity: 0.30; }
+.bd-hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.bd-eyebrow { display: flex; align-items: center; gap: 12px; }
+.bd-eyebrow-rule { width: 26px; height: 1px; background: var(--ultra-violet); flex: 0 0 auto; }
+.bd-eyebrow span:last-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+.bd-hero-inner h1 { margin: 0; font-family: var(--font-display); font-size: clamp(38px, 6vw, 82px); line-height: 1.0; font-weight: 800; letter-spacing: -0.04em; }
+.bd-body { display: flex; flex-direction: column; gap: 18px; max-width: 680px; }
+.bd-body p { margin: 0; font-size: clamp(16px, 1.7vw, 18px); line-height: 1.7; color: var(--text-muted); text-wrap: pretty; }
+
+/* Calendar */
+.bd-cal { position: relative; overflow: hidden; padding: clamp(40px, 5vw, 72px) clamp(24px, 6vw, 80px); }
+.bd-cal-inner { position: relative; z-index: 2; max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+.bd-cal-frame { width: 100%; background: var(--night-2); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; box-shadow: 0 28px 70px rgba(0,0,0,0.5); }
+.bd-cal-frame iframe { display: block; width: 100%; height: clamp(620px, 78vh, 760px); background: #FFFFFF; }
+.bd-cal-caption { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: center; }
+
+/* Connect live demo (ported from demo/product-embed) */
+.demo { position: relative; overflow: hidden; background: #0A0F1C; padding: clamp(64px, 10vw, 120px) var(--edge); }
+.demo-glow { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 46% at 50% 0%, rgba(123, 47, 226, .22), transparent 70%),
+              radial-gradient(46% 40% at 50% 100%, rgba(53, 199, 223, .12), transparent 70%); }
+.demo-inner { position: relative; max-width: var(--maxw); margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.demo-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-lilac); }
+.demo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sky-aqua); box-shadow: 0 0 10px var(--sky-aqua); }
+.demo-h2 { font-family: var(--font-display); font-weight: 500; color: var(--snow); font-size: clamp(30px, 4.4vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin: 16px 0 0; max-width: 640px; }
+.demo-sub { font-family: var(--font-body); color: var(--text-soft); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; margin: 16px 0 0; max-width: 52ch; }
+.demo-frame { position: relative; width: 100%; max-width: 1200px; margin: clamp(36px, 5vw, 56px) auto 0; border-radius: 16px; overflow: hidden; background: #0A1420; box-shadow: 0 0 0 1px var(--hairline), 0 44px 100px -34px rgba(0, 0, 0, .85); }
+.demo-bar { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; background: rgba(255, 255, 255, .03); border-bottom: 1px solid var(--hairline); }
+.demo-tl { width: 10px; height: 10px; border-radius: 50%; background: rgba(247, 247, 245, .16); }
+.demo-url { margin-left: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+.demo-iframe { width: 100%; height: clamp(600px, 85vh, 900px); border: 0; display: block; background: #0A1420; }
+.demo-caption { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .04em; color: var(--text-dim); margin: 18px 0 0; }

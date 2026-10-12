@@ -1,0 +1,7 @@
+{
+  "name": "postcss-astro-specificity",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Keeps the Astro site's selector specificity in CSS Modules (see index.cjs).",
+  "main": "index.cjs"
+}

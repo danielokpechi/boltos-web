@@ -1,0 +1,7 @@
+.page-root {
+  position: relative;
+  font-family: var(--font-body);
+  background: var(--page);
+  color: var(--text);
+  overflow-x: hidden;
+}
